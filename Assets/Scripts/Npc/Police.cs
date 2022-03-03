@@ -19,6 +19,6 @@ public class Police : Npc
     // Update is called once per frame
     void Update()
     {
-        
+        //Choose(asd);
     }
 }

@@ -194,16 +194,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 20320827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daab4c58b9c716c42809d226c2cc3ee2, type: 3}
+  m_Script: {fileID: 11500000, guid: 66f4396ba1882164a8857b51cf11fce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sleepy_Percent: 0
-  Hungry_Percent: 0
-  Pee_Percent: 0
-  Thirst_Percent: 0
-  Faint_Percent: 0
-  Fear_Percent: 0
-  Npc_Item: []
+  npc_speed: 0
+  faint_time: 0
+  npc_type: 0
+  state: 0
+  sleepy_percent: 0
+  hungry_percent: 0
+  pee_percent: 0
+  thirst_percent: 0
+  faint_percent: 0
+  fear_percent: 0
+  npc_item: []
+  asd:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
 --- !u!1 &81234638
 GameObject:
   m_ObjectHideFlags: 0
