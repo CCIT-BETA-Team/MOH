@@ -311,7 +311,6 @@ GameObject:
   m_Component:
   - component: {fileID: 470106}
   - component: {fileID: 13717318}
-  - component: {fileID: 259000011654628180}
   m_Layer: 0
   m_Name: Garage_Door_mesh
   m_TagString: Untagged
@@ -345,10 +344,9 @@ SkinnedMeshRenderer:
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 2
+  m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
-  m_RayTraceProcedural: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -391,26 +389,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 1.2305648, z: -1.3463305}
     m_Extent: {x: 1.2640353, y: 1.2343531, z: 1.5104173}
   m_DirtyAABB: 0
---- !u!259 &259000011654628180
-LightProbeProxyVolume:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152810}
-  m_Enabled: 1
-  m_BoundingBoxMode: 2
-  m_ResolutionX: 2
-  m_ResolutionY: 2
-  m_ResolutionZ: 2
-  m_ResolutionProbesPerUnit: 0.25
-  m_BoundingBoxSize: {x: 2.6425428, y: 2.520475, z: 3.22937}
-  m_BoundingBoxOrigin: {x: -3.5774674, y: 1.21579, z: -6.4536657}
-  m_ResolutionMode: 1
-  m_ProbePositionMode: 0
-  m_RefreshMode: 0
-  m_QualityMode: 1
-  m_DataFormat: 1
 --- !u!1 &186098
 GameObject:
   m_ObjectHideFlags: 0

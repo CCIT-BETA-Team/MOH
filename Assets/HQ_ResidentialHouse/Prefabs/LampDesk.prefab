@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33000012765174902}
   - component: {fileID: 23000010694827172}
   - component: {fileID: 64000010176709242}
+  - component: {fileID: 114000013714985082}
   - component: {fileID: 65000012614078372}
   m_Layer: 0
   m_Name: LampDesk
@@ -59,7 +60,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -75,7 +75,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -84,7 +84,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64000010176709242
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -99,6 +98,32 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e0dd295d8c2dec442a4d13866f7767d3, type: 3}
+--- !u!114 &114000013714985082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011694413742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314217762620a584985fa13108d0ba5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lights:
+  - {fileID: 1000012798941898}
+  ReflectionProbes:
+  - {fileID: 0}
+  EmissiveObjects:
+  - {fileID: 23000010694827172}
+  - {fileID: 23000011496819740}
+  PlayerHeadTag: MainCamera
+  LightsON: 1
+  SwithButton: 101
+  TextPrefab: {fileID: 147230, guid: de8f7002b410e3a418f6c6d677dcea35, type: 3}
+  AnimName: 
+  SwitchSound: {fileID: 8300000, guid: 2a91d0613ad93ad4b83df044ce55c3c4, type: 3}
+  Volume: 1
 --- !u!65 &65000012614078372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -202,7 +227,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &1000013205954942
@@ -260,7 +284,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -276,7 +299,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 1
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -285,4 +308,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
