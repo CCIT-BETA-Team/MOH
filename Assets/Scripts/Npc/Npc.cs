@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable]
+public class NpcStatePercent
+{
+
+}
+
 public abstract class Npc : MonoBehaviour
 {
     NavMeshAgent agent;
@@ -54,12 +60,14 @@ public abstract class Npc : MonoBehaviour
     public float fear_percent;
 
 
-    [Space]
 
+
+
+    [Space]
     public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
 
 
-    //public float[] asd = new float[5];
+    public float[] state2;
 
     public float Choose(float[] probs)
     {
@@ -70,14 +78,14 @@ public abstract class Npc : MonoBehaviour
         {
             total += elem;
         }
-        //1,2,3,4
+
         float randomPoint = Random.value * total;
 
         for (int i = 0; i < probs.Length; i++)
         {
             if (randomPoint < probs[i])
             {
-                Debug.Log(probs[i]);
+                //Debug.Log(probs[i]);
                 return i;
             }
             else
@@ -92,7 +100,9 @@ public abstract class Npc : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        
+
+        state2[0] = sleepy_percent;
+
         switch (npc_type)
         {
             case Npc_Type.NONE:
@@ -109,7 +119,6 @@ public abstract class Npc : MonoBehaviour
                 break;
         }
 
-        
 
     }
 
@@ -127,7 +136,7 @@ public abstract class Npc : MonoBehaviour
         switch (state) 
         {
             case State.IDLE:
-                Increase_Percent(sleepy_percent, hungry_percent, pee_percent, thirst_percent);
+                //Increase_Percent(sleepy_percent, hungry_percent, pee_percent, thirst_percent);
                 break;
             case State.Move:
 
