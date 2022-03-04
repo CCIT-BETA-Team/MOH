@@ -11,6 +11,8 @@ public class Controll : MonoBehaviour
     public GameObject Lighting;
     public Animator LeftHandAni;
     public Animator RightHandAni;
+    public float speed;
+
     void Start()
     {
        
@@ -46,6 +48,17 @@ public class Controll : MonoBehaviour
         if(OVRInput.GetDown(OVRInput.Button.Two))
         {
             RightHandAni.SetTrigger("FY");
+        }
+     
+        if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
+        {
+            Vector2 PrimaryThumbstick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+
+            transform.Translate(PrimaryThumbstick * transform.forward);
+        }
+        if (OVRInput.Get(OVRInput.Touch.SecondaryThumbstick))
+        {
+
         }
     }
 }
