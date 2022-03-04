@@ -7,17 +7,18 @@ public class Man : Npc
     public override void Move()
     {
         this.state = State.Move;
+        
     }
-
+   
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Gazechange(Random.value, parametertype.SLEEP);
+
     }
 }

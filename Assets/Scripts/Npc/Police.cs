@@ -10,7 +10,7 @@ public class Police : Npc
     {
         this.state = State.Move;
     }
-
+   
     void Start()
     {
         
