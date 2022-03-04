@@ -9,6 +9,8 @@ public class Woman : Npc
         this.state = State.Move;
     }
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
