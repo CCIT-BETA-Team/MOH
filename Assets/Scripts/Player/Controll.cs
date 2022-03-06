@@ -13,11 +13,17 @@ public class Controll : MonoBehaviour
     public Animator RightHandAni;
 
     public GameObject l_hand;
+    public GameObject l_fakehand;
     public GameObject r_hand;
+    public GameObject r_fakehand;
+
+
+    
     public float speed;
 
     private CharacterController chacontroll;
-
+    private GameObject l_door = null;
+    private GameObject r_door = null;
     void Start()
     {
         chacontroll = GetComponent<CharacterController>();
@@ -33,6 +39,22 @@ public class Controll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       if(l_hand.transform.position!=L_preposition)
+       {
+            Door_moving();
+       }
+        if (r_hand.transform.position != R_preposition)
+        {
+            Door_moving();
+        }
+        if (l_door != null)
+        {
+            l_fakehand.transform.position = l_door.transform.position;
+        }
+        if (r_door != null)
+        {
+            r_fakehand.transform.position = r_door.transform.position;
+        }
         if (OVRInput.GetDown(OVRInput.Button.One))
         {
             Debug.Log("Click one button");
@@ -55,32 +77,10 @@ public class Controll : MonoBehaviour
            
         }
         Vector3 prevector = new Vector3(0,0,0);
-        GameObject door=null;
-        if(OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)!=0)
-        {
-            RaycastHit hit;
-            Physics.Raycast(l_hand.transform.position, l_hand.transform.forward, out hit, 20);
-            if (hit.transform.GetComponent<Door>())
-            {
-                door = hit.transform.gameObject;
-                prevector = l_hand.transform.position;
-                Debug.Log("Object is : " + hit.transform.name);
-                l_hand.transform.position = hit.transform.position;
-            }
-        }
-        if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
-        {
-          if(door!=null)
-          {
-                l_hand.transform.position = door.transform.position;
-            }
-        }
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
-        {
-            door = null;
-            l_hand.transform.position = prevector;
-          
-        }
+
+
+        Hand_controll();
+
         if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
         {
             Vector2 PrimaryThumbstick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
@@ -90,5 +90,84 @@ public class Controll : MonoBehaviour
            
             
         }
+    }
+    
+   public void Hand_controll()
+   {
+        if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) != 0)
+        {
+            RaycastHit hit;
+            Physics.Raycast(l_hand.transform.position,l_hand.transform.forward, out hit, 20);
+            if (hit.transform.GetComponent<Door>()!=null)
+            {
+                l_door = hit.transform.gameObject; 
+                l_fakehand.transform.position = hit.transform.position;
+                l_hand.SetActive(false);
+            }
+        }
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            if (l_door != null)
+            {
+                l_fakehand.transform.position = l_door.transform.position;
+                Vector2 PrimaryThumbstick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+                l_door.GetComponent<Door>().interaction(PrimaryThumbstick);
+            }
+        }
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            l_door = null;
+            l_fakehand.transform.localPosition = new Vector3(0, 0, 0);
+            l_hand.SetActive(true);
+        }
+        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) != 0)
+        {
+            RaycastHit hit;
+            Physics.Raycast(r_hand.transform.position, r_hand.transform.forward, out hit, 20);
+            if (hit.transform.GetComponent<Door>() != null)
+            {
+                r_door = hit.transform.gameObject;
+                Debug.Log("Object is : " + hit.transform.name);
+                r_fakehand.transform.position = hit.transform.position;
+                r_hand.SetActive(false);
+            }
+        }
+        if(OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            if (r_door != null)
+            {
+                r_fakehand.transform.position = r_door.transform.position;
+                Vector2 SecondaryThumbstick = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+               
+            }
+        }
+        if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            r_door = null;
+            r_fakehand.transform.localPosition = new Vector3(0, 0, 0);
+            r_hand.SetActive(true);
+        }
+    }
+
+    private Vector3 L_preposition = new Vector3(0, 0, 0);
+    private Vector3 R_preposition = new Vector3(0, 0, 0);
+    private void Door_moving()
+    {
+         if(r_door!=null)
+         {
+            if (r_hand.transform.position != R_preposition)
+            {
+                r_door.GetComponent<Door>().interaction(new Vector2(0, (r_hand.transform.position.y - R_preposition.y) * 4));
+            }
+         }
+        if (l_door != null)
+        {
+            if (l_hand.transform.position != L_preposition)
+            {
+                l_door.GetComponent<Door>().interaction(new Vector2(0, (l_hand.transform.position.y - L_preposition.y) * 4));
+            }
+        }
+        R_preposition = r_hand.transform.position;
+        L_preposition = l_hand.transform.position;
     }
 }
