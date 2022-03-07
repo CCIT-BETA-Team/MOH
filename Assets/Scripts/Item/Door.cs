@@ -8,10 +8,10 @@ public class Door : Item
     Rigidbody rg;
     float value;
     public float sensitivity = 10f;
-    public enum DoorDir { FRONT, BACK}
+    public enum DoorDir { FRONT, BACK, LEFT ,RIGHT}
     public DoorDir doorDir;
     public GameObject door;
-
+    public Door another_handle;
     void Start()
     {
         rg = GetComponent<Rigidbody>();
@@ -33,8 +33,16 @@ public class Door : Item
                 case DoorDir.BACK:
                     value -= Input.GetAxis("Mouse Y") * sensitivity;
                     break;
+                case DoorDir.LEFT:
+                    break;
+                case DoorDir.RIGHT:
+                    break;
             }
             door.transform.rotation = Quaternion.Euler(0, transform.rotation.y - value, 0);
+            if (another_handle != null)
+            {
+                Connecting();
+            }
         }
     }
 
@@ -55,8 +63,20 @@ public class Door : Item
                 case DoorDir.BACK:
                     value -= vrinput.y * sensitivity;
                     break;
+                case DoorDir.LEFT:
+                    break;
+                case DoorDir.RIGHT:
+                    break;
             }
             door.transform.rotation = Quaternion.Euler(0, transform.rotation.y - value, 0);
+            if(another_handle != null)
+            {
+                Connecting();
+            }
         }
+    }
+    public void Connecting()
+    {
+        another_handle.value = value;
     }
 }

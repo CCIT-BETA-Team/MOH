@@ -9,8 +9,12 @@ public class Controll : MonoBehaviour
 
 
     public GameObject Lighting;
-    public Animator LeftHandAni;
-    public Animator RightHandAni;
+    public Animator leftHandAni;
+    public Animator rightHandAni;
+
+    public Animator f_leftHandAni;
+    public Animator f_rightHandAni;
+
 
     public GameObject l_hand;
     public GameObject l_fakehand;
@@ -18,7 +22,7 @@ public class Controll : MonoBehaviour
     public GameObject r_fakehand;
 
 
-    
+    public float door_sensitivity;
     public float speed;
 
     private CharacterController chacontroll;
@@ -157,14 +161,14 @@ public class Controll : MonoBehaviour
          {
             if (r_hand.transform.position != R_preposition)
             {
-                r_door.GetComponent<Door>().interaction(new Vector2(0, (r_hand.transform.position.y - R_preposition.y) * 4));
+                r_door.GetComponent<Door>().interaction(new Vector2((r_hand.transform.position.x - R_preposition.x) * door_sensitivity, (r_hand.transform.position.y - R_preposition.y) * door_sensitivity));
             }
          }
         if (l_door != null)
         {
             if (l_hand.transform.position != L_preposition)
             {
-                l_door.GetComponent<Door>().interaction(new Vector2(0, (l_hand.transform.position.y - L_preposition.y) * 4));
+                l_door.GetComponent<Door>().interaction(new Vector2((l_hand.transform.position.x - L_preposition.x) * door_sensitivity, (l_hand.transform.position.y - L_preposition.y) * door_sensitivity));
             }
         }
         R_preposition = r_hand.transform.position;
