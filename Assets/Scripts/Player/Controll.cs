@@ -15,6 +15,7 @@ public class Controll : MonoBehaviour
     public Animator f_leftHandAni;
     public Animator f_rightHandAni;
 
+    public GameObject rotation_root;
 
     public GameObject l_hand;
     public GameObject l_fakehand;
@@ -24,6 +25,7 @@ public class Controll : MonoBehaviour
 
     public float door_sensitivity;
     public float speed;
+    public float angle_speed;
 
     private CharacterController chacontroll;
     private GameObject l_door = null;
@@ -93,6 +95,14 @@ public class Controll : MonoBehaviour
             chacontroll.Move(Dir);  
            
             
+        }
+
+        if (OVRInput.Get(OVRInput.Touch.SecondaryThumbstick))
+        {
+            Vector2 SecondaryThumbstick = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+            Debug.Log("Vector 2 : " + SecondaryThumbstick);
+            transform.rotation = Quaternion.Euler(transform.rotation.x + angle_speed * SecondaryThumbstick.y, transform.rotation.y + angle_speed * SecondaryThumbstick.x, transform.rotation.z) ;
+            Debug.Log(" rotation x  " +transform.rotation.x + "  rotation y" + transform.rotation.y );
         }
     }
     
