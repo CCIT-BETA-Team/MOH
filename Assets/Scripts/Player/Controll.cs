@@ -9,13 +9,17 @@ public class Controll : MonoBehaviour
 
 
     public GameObject Lighting;
+    public GameObject head;
+
     public Animator leftHandAni;
     public Animator rightHandAni;
-
     public Animator f_leftHandAni;
     public Animator f_rightHandAni;
 
+
     public GameObject rotation_root;
+
+    public Rigidbody rig;
 
     public GameObject l_hand;
     public GameObject l_fakehand;
@@ -97,13 +101,16 @@ public class Controll : MonoBehaviour
             
         }
 
-        if (OVRInput.Get(OVRInput.Touch.SecondaryThumbstick))
+        var SecondaryThumbstick = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick, OVRInput.Controller.RTouch);
+        if(SecondaryThumbstick.x>0.8f)
         {
-            Vector2 SecondaryThumbstick = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-            Debug.Log("Vector 2 : " + SecondaryThumbstick);
-            transform.rotation = Quaternion.Euler(transform.rotation.x + angle_speed * SecondaryThumbstick.y, transform.rotation.y + angle_speed * SecondaryThumbstick.x, transform.rotation.z) ;
-            Debug.Log(" rotation x  " +transform.rotation.x + "  rotation y" + transform.rotation.y );
+            rig.transform.RotateAround(head.transform.position, head.transform.up,angle_speed*0.1f);
         }
+        else if (SecondaryThumbstick.x < -0.8f)
+        {
+            rig.transform.RotateAround(head.transform.position, head.transform.up, angle_speed * -0.1f);
+        }
+
     }
     
    public void Hand_controll()
