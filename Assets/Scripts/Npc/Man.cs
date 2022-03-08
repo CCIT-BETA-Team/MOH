@@ -45,9 +45,8 @@ public class Man : Npc
 
     Color player_texture_Color;
     Color screen_uv_color;
-  
-  
-    
+
+
     public bool Check_Unit()
     {
         Vector3 screenPoint = cam.WorldToViewportPoint(player.transform.position);
@@ -68,12 +67,12 @@ public class Man : Npc
                     Vector2 screen_pos = cam.WorldToViewportPoint(player.transform.position);
 
                     player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
-                 //   Debug.Log(player_texture_Color.r + ", " + player_texture_Color.g + ", " + player_texture_Color.b + "asd1");
+                    //Debug.Log(player_texture_Color.r + ", " + player_texture_Color.g + ", " + player_texture_Color.b + "asd1");
                     //플레이어 감지 레이 오브젝트 컬러
                   
                    
-                        screen_uv_color = uv_texture(tex).GetPixel((int)screen_pos.x, (int)screen_pos.y);
-                    
+                    screen_uv_color = uv_texture(tex).GetPixel((int)screen_pos.x, (int)screen_pos.y);
+                   
                      
                
                
@@ -85,20 +84,6 @@ public class Man : Npc
         }
     }
  
-    //void cool(float cooltime)
-    //{
-    //    cool_t += Time.deltaTime;
-    //    if (cool_t >= cooltime)
-    //    {
-    //        player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
-    //        Debug.Log(player_texture_Color.r + ", " + player_texture_Color.g + ", " + player_texture_Color.b + "asd1");
-    //        //플레이어 감지 레이 오브젝트 컬러
-    //        screen_uv_color = uv_texture(tex).GetPixel((int)screen_pos.x, (int)screen_pos.y);
-    //        Debug.Log(screen_uv_color.r + ", " + screen_uv_color.g + ", " + screen_uv_color.b + "asd2");
-    //        cool_t = 0;
-    //    }
-    //}//
-
     public void Fear_Check()//경계도 100 이상 되엇을 때 
     {
         if (fear_percent == 100)
