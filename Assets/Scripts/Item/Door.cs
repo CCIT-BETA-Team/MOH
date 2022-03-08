@@ -58,10 +58,10 @@ public class Door : Item
             switch (doorDir)
             {
                 case DoorDir.FRONT:
-                    value += vrinput.y * sensitivity;
+                    value += vrinput.x * sensitivity;
                     break;
                 case DoorDir.BACK:
-                    value -= vrinput.y * sensitivity;
+                    value -= vrinput.x * sensitivity;
                     break;
                 case DoorDir.LEFT:
                     break;
