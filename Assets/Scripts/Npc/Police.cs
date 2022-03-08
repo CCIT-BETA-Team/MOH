@@ -10,7 +10,12 @@ public class Police : Npc
     {
         this.state = State.Move;
     }
-   
+
+    public override void Select_Personality()
+    {
+        // 필요 없음
+    }
+
     void Start()
     {
         
