@@ -45,10 +45,18 @@ public class Man : Npc
 
     Color player_texture_Color;
     Color screen_uv_color;
-
+  
+  
+    
+    public bool Check_Unit()
+    {
+        Vector3 screenPoint = cam.WorldToViewportPoint(player.transform.position);
+        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        return onScreen;
+    }
     void Update()
     {
-        if (IsVisible(cam, player))
+        if (Check_Unit())
         {
             if(Physics.Raycast(cam.transform.position,(player.transform.position - cam.transform.position),out hit, Mathf.Infinity))
             {
@@ -62,40 +70,21 @@ public class Man : Npc
                     player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
                  //   Debug.Log(player_texture_Color.r + ", " + player_texture_Color.g + ", " + player_texture_Color.b + "asd1");
                     //플레이어 감지 레이 오브젝트 컬러
-                    screen_uv_color = uv_texture(tex).GetPixel((int)screen_pos.x, (int)screen_pos.y);
-                 //   Debug.Log(screen_uv_color.r + ", " + screen_uv_color.g + ", " + screen_uv_color.b + "asd2");
+                  
+                   
+                        screen_uv_color = uv_texture(tex).GetPixel((int)screen_pos.x, (int)screen_pos.y);
+                    
+                     
+               
+               
+                  Debug.Log(screen_uv_color.r + ", " + screen_uv_color.g + ", " + screen_uv_color.b + "asd2");
                     //화면에서 보는 플레이어 컬러
 
                 }
             }
         }
     }
-    private void OnRenderObject()
-    {
-        if (IsVisible(cam, player))
-        {
-            if (Physics.Raycast(cam.transform.position, (player.transform.position - cam.transform.position), out hit, Mathf.Infinity))
-            {
-                Debug.DrawRay(cam.transform.position, (player.transform.position - cam.transform.position) * hit.distance, Color.yellow);
-
-                if (hit.transform.gameObject.layer == 6)//player
-                {
-                    Vector2 player_uv = hit.textureCoord;
-                    Vector2 screen_pos = cam.WorldToViewportPoint(player.transform.position);
-
-                    player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
-                    //Debug.Log(player_texture_Color.r + ", " + player_texture_Color.g + ", " + player_texture_Color.b + "asd1");
-                    //플레이어 감지 레이 오브젝트 컬러 //고정
-                    screen_uv_color = uv_texture(tex).GetPixel((int)screen_pos.x, (int)screen_pos.y);
-                    //Debug.Log(screen_pos.x + " , " + screen_pos.y);
-                    Debug.Log(screen_uv_color.r + ", " + screen_uv_color.g + ", " + screen_uv_color.b + "asd2");
-                    //화면에서 보는 플레이어 컬러
-
-                }
-            }
-        }
-
-    }
+ 
     //void cool(float cooltime)
     //{
     //    cool_t += Time.deltaTime;

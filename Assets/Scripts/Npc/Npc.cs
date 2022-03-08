@@ -182,14 +182,33 @@ public abstract class Npc : MonoBehaviour
 
     public Texture2D player_texture;
     public RenderTexture tex;
-
+    public Texture2D uv_tex=null;
     public Texture2D uv_texture(RenderTexture rtex)
     {
-        Texture2D tex = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
-        RenderTexture.active = rtex;
-        tex.ReadPixels(new Rect(0, 0, rtex.width, rtex.height), 0, 0);
-        tex.Apply();
-        return tex;
+
+        if (uv_tex == null)
+        {
+
+            uv_tex = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
+      
+        
+        }
+        
+            RenderTexture.active = rtex;
+            uv_tex.ReadPixels(new Rect(0, 0, rtex.width, rtex.height), 0, 0);
+            uv_tex.Apply();
+        
+      
+       
+        if(uv_tex==null)
+        {
+            return null;
+        }
+        else
+        {
+         return uv_tex;
+      
+        }
     }
     private void Awake()
     {
