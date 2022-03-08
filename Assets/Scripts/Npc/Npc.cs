@@ -188,14 +188,12 @@ public abstract class Npc : MonoBehaviour
 
         if (uv_tex == null)
         {
-
-            uv_tex = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
-      
-        
+            uv_tex = new Texture2D(2000, 2000, TextureFormat.RGB565, false);
         }
-        
+
             RenderTexture.active = rtex;
             uv_tex.ReadPixels(new Rect(0, 0, rtex.width, rtex.height), 0, 0);
+        
             uv_tex.Apply();
         
       
@@ -206,8 +204,7 @@ public abstract class Npc : MonoBehaviour
         }
         else
         {
-         return uv_tex;
-      
+            return uv_tex;
         }
     }
     private void Awake()
