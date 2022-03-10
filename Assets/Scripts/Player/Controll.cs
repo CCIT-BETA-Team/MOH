@@ -25,6 +25,8 @@ public class Controll : MonoBehaviour
 
     public Rigidbody rig;
 
+    public Transform fake_hand_p;
+
     public GameObject l_hand;
     public GameObject l_fakehand;
     public GameObject l_mesh;
@@ -113,16 +115,18 @@ public class Controll : MonoBehaviour
         bool l_tirggerButtonAction = false;
         if(l_device.TryGetFeatureValue(CommonUsages.triggerButton,out l_tirggerButtonAction) && l_tirggerButtonAction)
         {
-            
+    
             RaycastHit hit;
             if (l_door == null)
             {
                 Physics.Raycast(l_hand.transform.position, l_hand.transform.forward, out hit, 20);
                 if (hit.transform.GetComponent<Door>() != null)
                 {
+                    L_preposition = l_hand.transform.localPosition;
                     l_door = hit.transform.gameObject;
                     l_fakehand.transform.position = hit.transform.position;
                     l_mesh.SetActive(false);
+                    l_fakehand.transform.SetParent(hit.transform);
                 }
             }
             else
@@ -139,12 +143,14 @@ public class Controll : MonoBehaviour
             l_door = null;
             l_fakehand.transform.localPosition = new Vector3(0, 0, 0);
             l_mesh.SetActive(true);
+            l_fakehand.transform.SetParent(fake_hand_p);
         }
 
         bool l_primarybutton = false;
         InputFeatureUsage<bool> l_uses1 = CommonUsages.primaryButton;
         if (l_device.TryGetFeatureValue(l_uses1, out l_primarybutton) && l_primarybutton)
         {
+          
             Debug.Log(" Trigger    :   " + l_primarybutton);
             if (Lighting.activeSelf)
             {
@@ -161,6 +167,8 @@ public class Controll : MonoBehaviour
         if (l_device.TryGetFeatureValue(l_uses2, out l_secondarybutton) && l_secondarybutton)
         {
             Debug.Log(" Trigger    :   " + l_secondarybutton);
+
+
         }
 
 
@@ -171,15 +179,19 @@ public class Controll : MonoBehaviour
         bool r_tirggerButtonAction = false;
         if (r_device.TryGetFeatureValue(CommonUsages.triggerButton, out r_tirggerButtonAction) && r_tirggerButtonAction)
         {
+            
             RaycastHit hit;
             if(r_door ==null)
             {
+
                 Physics.Raycast(r_hand.transform.position, r_hand.transform.forward, out hit, 20);
                 if (hit.transform.GetComponent<Door>() != null)
                 {
+                    R_preposition = r_hand.transform.localPosition;
                     r_door = hit.transform.gameObject;
                     r_fakehand.transform.position = hit.transform.position;
                     r_mesh.SetActive(false);
+                    r_fakehand.transform.SetParent(hit.transform);
                 }
             }
             else
@@ -195,6 +207,7 @@ public class Controll : MonoBehaviour
             r_door = null;
             r_fakehand.transform.localPosition = new Vector3(0, 0, 0);
             r_mesh.SetActive(true);
+            r_fakehand.transform.SetParent(fake_hand_p);
         }
         bool r_primarybutton = false;
         InputFeatureUsage<bool> r_uses1 = CommonUsages.primaryButton;
@@ -214,59 +227,31 @@ public class Controll : MonoBehaviour
        {
             Door_moving();
        }
-       
-       /*
         
-        if (l_door != null)
+        Vector2 l_2daxis = Vector2.zero;
+        Vector2 r_2daxis = Vector2.zero;
+        InputFeatureUsage<Vector2> l_stick = CommonUsages.primary2DAxis;
+        InputFeatureUsage<Vector2> r_stick = CommonUsages.secondary2DAxis;
+        
+
+         
+        if(l_device.TryGetFeatureValue(l_stick,out l_2daxis)&& l_2daxis!=Vector2.zero)
         {
-            l_fakehand.transform.position = l_door.transform.position;
+            Vector3 Dir = transform.forward * l_2daxis.y * speed + transform.right * l_2daxis.x * speed;
+            chacontroll.Move(Dir);
         }
-        if (r_door != null)
-        {
-            r_fakehand.transform.position = r_door.transform.position;
-        }
-        */
-        if (OVRInput.GetDown(OVRInput.Button.One))
-        {
-            Debug.Log("Click one button");
-        }
-        if (OVRInput.GetDown(OVRInput.Button.Three))
-        {
-          
-            Debug.Log("Click one button");
-        }
-        if (OVRInput.GetDown(OVRInput.Button.Two))
-        {
-           
-        }
-        Vector3 prevector = new Vector3(0,0,0);
 
 
-       
 
-        if (OVRInput.Get(OVRInput.Touch.PrimaryThumbstick))
+        if (r_device.TryGetFeatureValue(r_stick, out r_2daxis) && r_2daxis != Vector2.zero)
         {
-            Vector2 PrimaryThumbstick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-
-            Vector3 Dir = transform.forward * PrimaryThumbstick.y*speed +transform.right*PrimaryThumbstick.x *speed;
-            chacontroll.Move(Dir);  
-           
-            
+            rig.transform.RotateAround(head.transform.position, head.transform.up, angle_speed * 0.1f);
         }
-
-        var SecondaryThumbstick = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-        if(SecondaryThumbstick.x > 0.8f)
-        {
-            rig.transform.RotateAround(head.transform.position, head.transform.up,angle_speed*0.1f);
-        }
-        else if (SecondaryThumbstick.x < -0.8f)
-        {
-            rig.transform.RotateAround(head.transform.position, head.transform.up, angle_speed * -0.1f);
-        }
+     
 
     }
     
-   public void Hand_controll()
+   public void Fake_hand_controll()
    {
      
     }
@@ -279,12 +264,14 @@ public class Controll : MonoBehaviour
             if (r_hand.transform.localPosition != R_preposition && r_door != null)
             {
                 r_door.GetComponent<Door>().interaction(new Vector2((r_hand.transform.localPosition.z - R_preposition.z) * door_sensitivity, (r_hand.transform.localPosition.y - R_preposition.y) * door_sensitivity));
+        
             }
          
                 
             if (l_hand.transform.localPosition != L_preposition&&l_door!=null)
             {
                 l_door.GetComponent<Door>().interaction(new Vector2((l_hand.transform.localPosition.z - L_preposition.z) * door_sensitivity, (l_hand.transform.localPosition.y - L_preposition.y) * door_sensitivity));
+         
             }
         
         R_preposition = r_hand.transform.localPosition;
