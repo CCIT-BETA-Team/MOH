@@ -38,9 +38,13 @@ public class Controll : MonoBehaviour
     public XRNode Lhand;
     public XRNode Rhand;
 
+
+
     public float door_sensitivity;
     public float speed;
     public float angle_speed;
+
+
 
     private CharacterController chacontroll;
     private GameObject l_door = null;
@@ -170,11 +174,6 @@ public class Controll : MonoBehaviour
 
 
         }
-
-
-
-
-
 
         bool r_tirggerButtonAction = false;
         if (r_device.TryGetFeatureValue(CommonUsages.triggerButton, out r_tirggerButtonAction) && r_tirggerButtonAction)
