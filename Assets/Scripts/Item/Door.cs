@@ -20,6 +20,10 @@ public class Door : Item
     [Header("LEFT and RIGHT type use")]
     public float maximum_y_position;
 
+
+
+    
+
     void Start()
     {
         rg = GetComponent<Rigidbody>();
