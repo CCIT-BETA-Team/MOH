@@ -262,14 +262,14 @@ public class Controll : MonoBehaviour
         
             if (r_hand.transform.localPosition != R_preposition && r_door != null)
             {
-                r_door.GetComponent<Door>().interaction(new Vector2((r_hand.transform.localPosition.z - R_preposition.z) * door_sensitivity, (r_hand.transform.localPosition.y - R_preposition.y) * door_sensitivity));
+                r_door.GetComponent<Door>().interaction(new Vector3((r_hand.transform.localPosition.z - R_preposition.z) * door_sensitivity, (r_hand.transform.localPosition.y - R_preposition.y) * door_sensitivity, (r_hand.transform.localPosition.z - R_preposition.z) * door_sensitivity));
         
             }
          
                 
             if (l_hand.transform.localPosition != L_preposition&&l_door!=null)
             {
-                l_door.GetComponent<Door>().interaction(new Vector2((l_hand.transform.localPosition.z - L_preposition.z) * door_sensitivity, (l_hand.transform.localPosition.y - L_preposition.y) * door_sensitivity));
+                l_door.GetComponent<Door>().interaction(new Vector3((l_hand.transform.localPosition.x - L_preposition.x) * door_sensitivity, (l_hand.transform.localPosition.y - L_preposition.y) * door_sensitivity, (l_hand.transform.localPosition.z - L_preposition.z) * door_sensitivity));
          
             }
         

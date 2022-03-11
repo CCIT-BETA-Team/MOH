@@ -8,10 +8,18 @@ public class Door : Item
     Rigidbody rg;
     float value;
     public float sensitivity = 10f;
-    public enum DoorDir { FRONT, BACK, LEFT ,RIGHT}
+    public enum DoorDir { FRONT, BACK, LEFT ,RIGHT,UPandDOWN}
     public DoorDir doorDir;
     public GameObject door;
     public Door another_handle;
+    [Header("Front and BACK type use")]
+    [Range(0,180)]
+    public float maximum_y_angle=130;// 정문기준 멀쩡한 각도
+    [Header("LEFT and RIGHT type use")]
+    public float maximum_x_position;
+    [Header("LEFT and RIGHT type use")]
+    public float maximum_y_position;
+
     void Start()
     {
         rg = GetComponent<Rigidbody>();
@@ -29,16 +37,22 @@ public class Door : Item
             {
                 case DoorDir.FRONT:
                     value += Input.GetAxis("Mouse Y") * sensitivity;
+                    door.transform.rotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.rotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
                     break;
                 case DoorDir.BACK:
                     value -= Input.GetAxis("Mouse Y") * sensitivity;
+                    door.transform.rotation = Quaternion.Euler(0,Mathf.Clamp(door.transform.rotation.y - value,-maximum_y_angle,maximum_y_angle), 0);
                     break;
                 case DoorDir.LEFT:
+                    value -= Input.GetAxis("Mouse X") * sensitivity;
+                    door.transform.position = new Vector3(door.transform.position.x + value, door.transform.position.y, door.transform.position.z);
                     break;
                 case DoorDir.RIGHT:
+                    value += Input.GetAxis("Mouse X") * sensitivity;
+                    door.transform.position = new Vector3(door.transform.position.x + value, door.transform.position.y, door.transform.position.z);
                     break;
             }
-            door.transform.rotation = Quaternion.Euler(0, transform.rotation.y - value, 0);
+           
             if (another_handle != null)
             {
                 Connecting();
@@ -47,28 +61,37 @@ public class Door : Item
     }
 
     //test code 안드로이드 빌드 제한은 추후에 (VR외 로 사용금지)
-    public  void interaction(Vector2 vrinput)
+    public  void interaction(Vector3 vrinput)
     {
         if (isLock)
         {
-            Debug.Log("잠겨있어요");
+            Debug.Log("Lock");
         }
         else if (!isLock)
         {
             switch (doorDir)
             {
                 case DoorDir.FRONT:
-                    value += vrinput.x * sensitivity;
+                    value += vrinput.z * sensitivity;
+                    door.transform.rotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.rotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
                     break;
                 case DoorDir.BACK:
-                    value -= vrinput.x * sensitivity;
+                    value -= vrinput.z * sensitivity;
+                    door.transform.rotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.rotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
                     break;
                 case DoorDir.LEFT:
+                    value -= vrinput.x * sensitivity;
+                    door.transform.position = new Vector3(door.transform.position.x +value , door.transform.position.y, door.transform.position.z);
+
                     break;
                 case DoorDir.RIGHT:
+                    value += vrinput.x * sensitivity;
+                    door.transform.position = new Vector3(door.transform.position.x + value , door.transform.position.y, door.transform.position.z);
+                    break;
+                case DoorDir.UPandDOWN:
                     break;
             }
-            door.transform.rotation = Quaternion.Euler(0, transform.rotation.y - value, 0);
+            
             if(another_handle != null)
             {
                 Connecting();
