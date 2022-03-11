@@ -91,19 +91,24 @@ public abstract class Npc : MonoBehaviour
         switch (type)
         {
             case parametertype.SLEEP:
-                sleepy_percent += value * (Random.value / 3);
+                if (sleepy_percent <= 100f)
+                    sleepy_percent += value * (Random.value);
                 break;
             case parametertype.HUNGRY:
-                hungry_percent += value * (Random.value / 3);
+                if (hungry_percent <= 100f)
+                    hungry_percent += value * (Random.value);
                 break;
             case parametertype.PEE:
-                pee_percent += value * (Random.value / 3);
+                if (pee_percent <= 100f)
+                    pee_percent += value * (Random.value);
                 break;
             case parametertype.THIRST:
-                thirst_percent += value * (Random.value / 3);
+                if (thirst_percent <= 100f)
+                    thirst_percent += value * (Random.value);
                 break;
             case parametertype.FEAR:
-                fear_percent += value * (Random.value / 3);
+                if (fear_percent <= 100f)
+                    fear_percent += value * (Random.value);
                 break;
         }
 
@@ -168,10 +173,10 @@ public abstract class Npc : MonoBehaviour
                 //
                 break;
         }
-
     }
-
     
+
+  
 
 
 
@@ -185,19 +190,14 @@ public abstract class Npc : MonoBehaviour
     public Texture2D uv_tex=null;
     public Texture2D uv_texture(RenderTexture rtex)
     {
-
         if (uv_tex == null)
         {
             uv_tex = new Texture2D(2000, 2000, TextureFormat.RGB565, false);
         }
-
             RenderTexture.active = rtex;
             uv_tex.ReadPixels(new Rect(0, 0, rtex.width, rtex.height), 0, 0);
-        
             uv_tex.Apply();
-        
-      
-       
+
         if(uv_tex==null)
         {
             return null;
@@ -207,11 +207,11 @@ public abstract class Npc : MonoBehaviour
             return uv_tex;
         }
     }
+
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-
-       
 
         switch (npc_type)
         {
@@ -229,18 +229,14 @@ public abstract class Npc : MonoBehaviour
                 break;
         }
 
-        //asd = player.GetComponent<MeshRenderer>().material.GetTexture("Main")
-
     }
 
 
     private void Update()
     {
-        //Choose(asd);
-        //Increase_Percent(sleepy_percent);
+
     }
 
-    //public abstract void Increase_Precent(ref float[] percent_guage);
    
 
 
