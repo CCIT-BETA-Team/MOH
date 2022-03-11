@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Man : Npc
 {
-
-
-
-
     RaycastHit hit;
     public Camera cam;
-
     public override void Move()
     {
         this.state = State.Move;
@@ -31,7 +26,159 @@ public class Man : Npc
         //Start에서 한번만 돌려주자고~
     }
 
+    //스크린 스케일이 변하는 걸 Update로 계속해서 받아와줄지 한번 생각해봐야함;;
 
+
+    float sleepy_percent_check
+    {
+        get
+        {
+            return sleepy_percent;
+        }
+        set
+        {
+            if(value >= 100)
+            {
+                if(this.state == State.IDLE || this.state == State.Move)
+                this.state = State.SLEEP;
+            }
+            else
+            {
+                sleepy_percent = value;
+            }
+        }
+    }
+    float hungry_percent_check
+    {
+        get
+        {
+            return hungry_percent;
+        }
+        set
+        {
+            if (value >= 100)
+            {
+                if (this.state == State.IDLE || this.state == State.Move)
+                    this.state = State.HUNGRY;
+            }
+            else
+            {
+                hungry_percent = value;
+            }
+        }
+    }
+    float pee_percent_check
+    {
+        get
+        {
+            return pee_percent;
+        }
+        set
+        {
+            if (value >= 100)
+            {
+                if (this.state == State.IDLE || this.state == State.Move)
+                    this.state = State.PEE;
+            }
+            else
+            {
+                pee_percent = value;
+            }
+        }
+    }
+    float thirst_percent_check
+    {
+        get
+        {
+            return thirst_percent;
+        }
+        set
+        {
+            if (value >= 100)
+            {
+                if (this.state == State.IDLE || this.state == State.Move)
+                    this.state = State.THIRST;
+            }
+            else
+            {
+                thirst_percent = value;
+            }
+        }
+    }
+
+    State state_end_check
+    {
+        get
+        {
+            return this.state;
+        }
+        set
+        {
+            switch(value)
+            {
+                case State.SLEEP:
+                    Sleep();
+                    break;
+                case State.HUNGRY:
+                    Hungry();
+                    break;
+                case State.PEE:
+                    Pee();
+                    break;
+                case State.THIRST:
+                    Thirst();
+                    break;
+            }
+        }
+    }
+
+
+
+
+
+
+    bool sleep_end_check = false;
+    private void Sleep()
+    {
+        //다른 Npc가 없는 침실이 있는 방을 얻어와야함
+
+        //이동
+
+        //숙면
+
+
+
+
+        //숙면이 끝난 것을 체크
+        //sleep_end_check = true;
+
+        //퍼센트 게이지 초기화
+        if (sleep_end_check == true)
+        {
+            sleepy_percent = 0;
+            sleepy_percent_check = sleepy_percent;
+        }
+
+        //나음 게이지중 가장 높은 게이지로 상태 변화
+        //없으면 Move로 변화 예정
+    }
+    private void Hungry()
+    {
+        hungry_percent = 0;
+        hungry_percent_check = hungry_percent;
+    }
+    private void Pee()
+    {
+        pee_percent = 0;
+        pee_percent_check = pee_percent;
+    }
+    private void Thirst()
+    {
+        thirst_percent = 0;
+        thirst_percent_check = thirst_percent;
+    }
+
+    
 
     void Start()
     {
@@ -42,7 +189,6 @@ public class Man : Npc
         //player_texture = player.GetComponent<MeshRenderer>().material.mainTexture;
   
     }
-
     Color player_texture_Color;
     Color screen_uv_color;
 
@@ -53,8 +199,12 @@ public class Man : Npc
         bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
         return onScreen;
     }
+
     void Update()
     {
+
+        state_end_check = this.state;
+
         if (Check_Unit())
         {
             if(Physics.Raycast(cam.transform.position,(player.transform.position - cam.transform.position),out hit, Mathf.Infinity))
@@ -65,19 +215,19 @@ public class Man : Npc
                 {
                     Vector2 player_uv = hit.textureCoord;
                     Vector2 screen_pos = cam.WorldToViewportPoint(player.transform.position);
-
+                    
                     player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
-                    //Debug.Log(player_texture_Color.r + ", " + player_texture_Color.g + ", " + player_texture_Color.b + "asd1");
-                    //플레이어 감지 레이 오브젝트 컬러
-                  
-                   
-                    screen_uv_color = uv_texture(tex).GetPixel((int)screen_pos.x, (int)screen_pos.y);
-                   
-                     
-               
-               
-                  Debug.Log(screen_uv_color.r + ", " + screen_uv_color.g + ", " + screen_uv_color.b + "asd2");
-                    //화면에서 보는 플레이어 컬러
+                    screen_uv_color = uv_texture(tex).GetPixel((int)(Screen.width * screen_pos.x),(int)(Screen.height * screen_pos.y));
+
+
+
+                    //Debug.Log("Pixel position   :   "+screen_pos.x +"   "+screen_pos.y);
+
+                    //Debug.Log("Color R : " + player_texture_Color.r + " , " + "Color G : " + +player_texture_Color.g + " , " + "Color B : " + +player_texture_Color.b + " , " + "Texture uv Pixel Color");
+
+
+                    //Debug.Log("Color R : " + screen_uv_color.r + " , " + "Color G : " + + screen_uv_color.g + " , "+"Color B : " + + screen_uv_color.b + " , "+ "Scene uv Pixel Color");
+                    ////화면에서 보는 플레이어 컬러
 
                 }
             }
@@ -95,20 +245,20 @@ public class Man : Npc
 
     public void Report_Pattern()//신고 했을 떄 성격 확인
     {
-        if (this.personality == Npc_Personality.AGGESSIVE && IsVisible(cam,player))
+        if (this.personality == Npc_Personality.AGGESSIVE && Check_Unit())
         {
             //오래동안 도둑을 놓치면 다시 신고하러 가도록
         }
-        else if(this.personality == Npc_Personality.AGGESSIVE && IsVisible(cam, player) == false)
+        else if(this.personality == Npc_Personality.AGGESSIVE && Check_Unit() == false)
         {
             this.state = State.TRACE;
         }
         ////
-        if(this.personality == Npc_Personality.Defensive && IsVisible(cam, player))
+        if(this.personality == Npc_Personality.Defensive && Check_Unit())
         {
 
         }
-        else if(this.personality == Npc_Personality.Defensive && IsVisible(cam, player) == false)
+        else if(this.personality == Npc_Personality.Defensive && Check_Unit() == false)
         {
 
         }
@@ -120,33 +270,22 @@ public class Man : Npc
     }
 
 
-
-
-    public bool IsVisible(Camera cam,GameObject target)
-    {
-        var planes = GeometryUtility.CalculateFrustumPlanes(cam);
-        var point = target.transform.position;
-
-        foreach(var plane in planes)
-        {
-            if(plane.GetDistanceToPoint(point) < 0)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-  
-
-
     IEnumerator State_Gaze_Change()
     {
         yield return new WaitForSeconds(2f);
+        
         StateGazeUp(this.state);
+        ///
+        sleepy_percent_check = sleepy_percent;
+        hungry_percent_check = hungry_percent;
+        pee_percent_check = pee_percent;
+        thirst_percent_check = thirst_percent;
+        ///
+
         StartCoroutine(State_Gaze_Change());
-        //npc 기절,신고 등의 상태에서 코루틴 꺼주기
+        //npc 기절,신고 등의 상태에서 코루틴 꺼주기 생각해보니까 꺼줄필요가 없을 것도 같음
     }
 
     
-    
+ 
 }
