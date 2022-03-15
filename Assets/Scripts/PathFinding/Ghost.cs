@@ -7,18 +7,19 @@ public class Ghost : MonoBehaviour
 {
     public Npc parent_npc;
     public List<GameObject> pathfinding_list = new List<GameObject>();
-    public LayerMask target_layer;
     public GameObject target;
+
+    public float speed;
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.layer == target_layer)
+        if(col.gameObject.layer == LayerMask.NameToLayer("Room") || col.gameObject.layer == LayerMask.NameToLayer("Door"))
         {
             pathfinding_list.Add(col.gameObject);
 
-            if(pathfinding_list[pathfinding_list.Count] == target)
+            if(pathfinding_list[pathfinding_list.Count] == target) 
             {
-                //parent_npc
+                parent_npc.path_finding = pathfinding_list.ToList();
                 Destroy(gameObject);
             }
         }
