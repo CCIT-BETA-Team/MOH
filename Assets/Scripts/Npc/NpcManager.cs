@@ -53,7 +53,7 @@ public class NpcManager : MonoBehaviour
             int y = Random.Range(0, room_list[x].npc_spawn_position.Count);
 
             GameObject spawn_point = room_list[x].npc_spawn_position[y];
-
+             
             Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
 
             room_list[x].npc_spawn_position.RemoveAt(y);
