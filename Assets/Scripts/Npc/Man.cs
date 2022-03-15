@@ -106,7 +106,7 @@ public class Man : Npc
         }
     }
 
-    State state_end_check
+    State state_check
     {
         get
         {
@@ -137,46 +137,70 @@ public class Man : Npc
 
 
 
-    bool sleep_end_check = false;
     private void Sleep()
     {
-        //다른 Npc가 없는 침실이 있는 방을 얻어와야함
+        //자기 방 침대로 이동
 
         //이동
 
-        //숙면
 
+        //숙면
+        
 
 
 
         //숙면이 끝난 것을 체크
-        //sleep_end_check = true;
+        
 
         //퍼센트 게이지 초기화
-        if (sleep_end_check == true)
-        {
-            sleepy_percent = 0;
-            sleepy_percent_check = sleepy_percent;
-        }
+        
+        sleepy_percent = 0;
+        sleepy_percent_check = sleepy_percent;
+        hungry_percent -= 20f;
+        pee_percent -= 20f;
+        thirst_percent -= 20f;
+        this.state = State.Move;
+
 
         //나음 게이지중 가장 높은 게이지로 상태 변화
+
+
+
+
         //없으면 Move로 변화 예정
+
     }
     private void Hungry()
     {
         hungry_percent = 0;
         hungry_percent_check = hungry_percent;
+
+        sleepy_percent -= 20f;
+        pee_percent -= 20f;
+        thirst_percent -= 20f;
+        this.state = State.Move;
     }
     private void Pee()
     {
         pee_percent = 0;
         pee_percent_check = pee_percent;
+
+        sleepy_percent -= 20f;
+        hungry_percent -= 20f;
+        thirst_percent -= 20f;
+        this.state = State.Move;
     }
     private void Thirst()
     {
         thirst_percent = 0;
         thirst_percent_check = thirst_percent;
+
+        sleepy_percent -= 20f;
+        hungry_percent -= 20f;
+        pee_percent -= 20f;
+        this.state = State.Move;
     }
+
 
     
 
@@ -203,7 +227,7 @@ public class Man : Npc
     void Update()
     {
 
-        state_end_check = this.state;
+        state_check = this.state;
 
         if (Check_Unit())
         {
