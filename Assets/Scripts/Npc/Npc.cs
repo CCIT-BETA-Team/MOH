@@ -12,7 +12,8 @@ public class NpcStatePercent
 public abstract class Npc : MonoBehaviour
 {
     NavMeshAgent agent;
-   
+
+    public List<Transform> path_finding = new List<Transform>();
 
     public int npc_speed;//Npc 이동속도
     public int faint_time;//기절시간
