@@ -52,11 +52,11 @@ public class Controll : MonoBehaviour
 
 
 
-
+    #region Animator_p
     private int flexid = -1;
     private int poseid = -1;
     private int pinch = -1;
-
+    #endregion
 
     #region XR
 
