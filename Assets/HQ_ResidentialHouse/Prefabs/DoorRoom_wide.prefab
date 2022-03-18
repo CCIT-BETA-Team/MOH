@@ -401,6 +401,9 @@ MonoBehaviour:
   doorDir: 1
   door: {fileID: 115476}
   another_handle: {fileID: 3301389004919681415}
+  maximum_y_angle: 90
+  maximum_x_position: 0
+  maximum_y_position: 0
 --- !u!1 &7184036400156106872
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,3 +475,6 @@ MonoBehaviour:
   doorDir: 0
   door: {fileID: 115476}
   another_handle: {fileID: 8458431143367345534}
+  maximum_y_angle: 90
+  maximum_x_position: 0
+  maximum_y_position: 0

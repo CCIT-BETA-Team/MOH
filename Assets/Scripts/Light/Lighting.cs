@@ -5,39 +5,29 @@ using UnityEngine;
 public class Lighting : MonoBehaviour
 {
     Light light;
+
     bool electricity =true;
     bool broken = false;
+   public bool on_off = false;
+
+    public List<Animation> light_ani = new List<Animation>();
     public bool broke_property
     { 
         get 
         { return broken; }
         set 
-        { if (value) { electro_property = false; }; broken = value; } 
+        { broken = value; Light_Update();} 
     }
-    public bool electro_property { get {return electricity; }set { Light_Update(); electricity=value; } }
+    public bool electricity_property { get { return electricity; } set { electricity=value; Light_Update(); } }
     private void Start()
     {
-     if(GetComponent<Light>()!=null)
-     {
-            light = GetComponent<Light>();
-     }
-    }
-    public void Light_Down()
-    {
-        if (broke_property)
+        if(GetComponent<Light>()!=null)
         {
-            light.enabled = false;
+            light = GetComponent<Light>();
         }
     }
-    public void Light_On()
-    {
-        if(!broke_property)
-        {
-            light.enabled = true;
-        }  
-        
-    }
-    public void Light_Update()
+  
+    public void Light_Update(bool generate)
     {
         if (broke_property)
         {
@@ -45,7 +35,40 @@ public class Lighting : MonoBehaviour
         }
         else
         {
-            light.enabled = true;
+            if (generate)
+            {
+                if(on_off)
+                {
+                    light.enabled = true;
+                }
+                else
+                {
+                    light.enabled = false;
+                }
+            }
+            else
+            {
+                light.enabled = false;
+            } 
         }
     }
+    public void Light_Update()
+    {
+        if (broke_property)
+        {
+         light.enabled = false;
+        }
+        else
+        {
+            if (on_off)
+            {
+                light.enabled = true;
+            }
+            else
+            {
+                light.enabled = false;
+            }
+        }
+    }
+    
 }

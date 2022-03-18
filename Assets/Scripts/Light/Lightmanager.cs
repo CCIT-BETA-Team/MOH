@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Lightmanager : Singleton<Lightmanager>
 {
-    List<Lighting> lights = new List<Lighting>();
+    public  List<Switch> Switch = new List<Switch>();
+
     //
     //Generator에 붙일지 매니저에 붙일지 생각
     //
@@ -14,36 +15,51 @@ public class Lightmanager : Singleton<Lightmanager>
         get {return generator_power; } 
         set 
         {
-            if (value == false) { All_Power_Down(); }
-            else { All_Power_Up(); }
+            if (value == false) { All_Electricity_Off(); }
+            else { All_Electricity_On(); }
         }
      }
 
     public void All_Power_Down()
     {
-         foreach(Lighting  v in lights)
+         foreach(Switch v in Switch)
          {
-            v.electro_property = false;
-         }
+            v.Turn_On_Off(false);
+        }
     }
     public void All_Power_Up()
     {
-        foreach (Lighting v in lights)
+        foreach (Switch v in Switch)
         {
-            v.electro_property = true;
+            v.Turn_On_Off(true);
         }
     }
+    public void All_Electricity_On()
+    {
+        foreach (Switch v in Switch)
+        {
+            v.Electrocity_On_Off(true);
+        }
+    }
+    public void All_Electricity_Off()
+    {
+        foreach (Switch v in Switch)
+        {
+            v.Electrocity_On_Off(false);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //
-        //RoomManger.GetAllRoom();
-        //
+        generator_on_off = true;
+        All_Power_Up();
+        All_Power_Down();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+   
     }
 }
