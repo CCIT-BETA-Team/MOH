@@ -2972,6 +2972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 136992718}
+  - component: {fileID: 136992719}
   m_Layer: 0
   m_Name: ItemSpawnPosition[2]
   m_TagString: Untagged
@@ -2993,6 +2994,19 @@ Transform:
   m_Father: {fileID: 1878343451}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &136992719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136992717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e67a898d4a66046b3ff6aecf0f1aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item_type: 0
 --- !u!1001 &140584760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6174,7 +6188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc563067bcc0c34ba59e4a0321e890e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 0}
+  map: {fileID: 1084445818}
   npc_prefabs:
   - {fileID: 5511310772564121014, guid: 267148d33685c00499aae6c2555613ab, type: 3}
   - {fileID: 5511310772564121014, guid: 075ac3fbe06287f44a606abe9936fbba, type: 3}
@@ -20538,14 +20552,7 @@ MonoBehaviour:
   npc_spawn_position: []
   telephone: {fileID: 0}
   neighbor_room: []
-  bedroom_item_list: []
-  livingroom_item_list: []
-  diningroom_item_list: []
-  bathroom_item_list: []
-  office_item_list: []
-  nursery_item_list: []
-  dressingroom_item_list: []
-  laundryroom_item_list: []
+  rd: {fileID: 0}
   default_value: 0
   door_open_amont: 0
   sound_from_door: 0
@@ -20703,6 +20710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1084445819}
+  - component: {fileID: 1084445818}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -20710,6 +20718,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1084445818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084445817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e1baf013367974c992e0f2d9527fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc_amount: 0
+  room_list:
+  - {fileID: 1878343453}
+  telephone_list: []
+  police_npc: {fileID: 0}
+  bedroom_data: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  livingroom_data: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  diningroom_data: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  bathroom_data: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  office_data: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  nursery_data: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  dressingroom_data: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  laundryroom_data: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  report: 0
 --- !u!4 &1084445819
 Transform:
   m_ObjectHideFlags: 0
@@ -21520,6 +21554,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1131261795}
+  - component: {fileID: 1131261796}
   m_Layer: 0
   m_Name: ItemSpawnPosition[1]
   m_TagString: Untagged
@@ -21541,6 +21576,19 @@ Transform:
   m_Father: {fileID: 1878343451}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1131261796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131261794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e67a898d4a66046b3ff6aecf0f1aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item_type: 0
 --- !u!1001 &1133337944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23883,6 +23931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1250799893}
+  - component: {fileID: 1250799894}
   m_Layer: 0
   m_Name: ItemSpawnPosition[0]
   m_TagString: Untagged
@@ -23904,6 +23953,19 @@ Transform:
   m_Father: {fileID: 1878343451}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250799894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250799892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e67a898d4a66046b3ff6aecf0f1aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item_type: 0
 --- !u!1 &1252700181
 GameObject:
   m_ObjectHideFlags: 0
@@ -36042,26 +36104,15 @@ MonoBehaviour:
   room_type: 0
   door_list: []
   item_spawn_position:
-  - {fileID: 1250799892}
-  - {fileID: 1131261794}
-  - {fileID: 136992717}
+  - {fileID: 1250799894}
+  - {fileID: 1131261796}
+  - {fileID: 136992719}
   npc_spawn_position:
   - {fileID: 1503416125}
   - {fileID: 1454934080}
   telephone: {fileID: 0}
   neighbor_room: []
-  bedroom_item_list:
-  - {fileID: 4505714320394908194, guid: 471403d75f5b3f54e80de0ecc1f73ee7, type: 3}
-  - {fileID: 3901896521581812149, guid: 7d8d84b21b397674c83d920b00cc7a7e, type: 3}
-  - {fileID: 435020842863494077, guid: bfdf8fcb503a8dd48a2725721880023b, type: 3}
-  - {fileID: 8822269164572371706, guid: 602def286a8340a49b06ebc4baa0d6e9, type: 3}
-  livingroom_item_list: []
-  diningroom_item_list: []
-  bathroom_item_list: []
-  office_item_list: []
-  nursery_item_list: []
-  dressingroom_item_list: []
-  laundryroom_item_list: []
+  rd: {fileID: 0}
   default_value: 0
   door_open_amont: 0
   sound_from_door: 0
