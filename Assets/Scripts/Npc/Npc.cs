@@ -11,7 +11,7 @@ public class NpcStatePercent
 
 public abstract class Npc : MonoBehaviour
 {
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     public List<GameObject> path_finding = new List<GameObject>();
 
@@ -77,6 +77,8 @@ public abstract class Npc : MonoBehaviour
     [Header("Npc 상태별 게이지")]
     [Range(0, 100)]
     public float sleepy_percent;//수면
+    //맵이 미술관이나 박물관 같은 곳에서는 npc가 자면 좀 그러니까 
+    //지정된 방에 의자? 같은 곳으로 가서 앉아서 쉬는 식으로 할 것 같음
     [Range(0, 100)]
     public float hungry_percent;//배고픔
     [Range(0, 100)]

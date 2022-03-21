@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class Man : Npc
 {
-    RaycastHit hit;
-    public Camera cam;
+    RaycastHit hit;//레이
+    public Camera cam;//Npc 눈
+
+    
+    public GameObject ghost;
+    GameObject npc_ghost;
+
+    [Space]
+    public GameObject npc_room;//Npc 자신의 방 
+    public GameObject kitchen_room;//Npc가 이동할 주방
+    public GameObject toilet_room;//Npc가 이동할 화장실
+    public GameObject water_fountain_room;//Npc가 이동할 정수기
+
+    List<float> second_state = new List<float>(1);
+
+
     public override void Move()
     {
         this.state = State.Move;
@@ -27,8 +41,9 @@ public class Man : Npc
     }
 
     //스크린 스케일이 변하는 걸 Update로 계속해서 받아와줄지 한번 생각해봐야함;;
+    
 
-
+    
     float sleepy_percent_check
     {
         get
@@ -39,8 +54,25 @@ public class Man : Npc
         {
             if(value >= 100)
             {
-                if(this.state == State.IDLE || this.state == State.Move)
-                this.state = State.SLEEP;
+                if (this.state == State.IDLE || this.state == State.Move)
+                {
+                    //npc_ghost = Instantiate(ghost,new Vector3(transform.position.x,transform.position.y + 0.5f,transform.position.z),Quaternion.identity); 
+                    //npc_ghost.GetComponent<Ghost>().parent_npc = this;
+                    //npc_ghost.transform.position = this.transform.position;
+                    //npc_ghost.GetComponent<Ghost>().Move_Point(npc_room);
+                    //agent.SetDestination(player.transform.position);
+
+
+
+
+                    
+                    this.state = State.SLEEP;
+                }
+                else
+                {
+                    if (second_state.Count == 0)
+                        second_state.Add(sleepy_percent);
+                }
             }
             else
             {
@@ -60,6 +92,11 @@ public class Man : Npc
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                     this.state = State.HUNGRY;
+                else
+                {
+                    if (second_state.Count == 0)
+                        second_state.Add(sleepy_percent);
+                }
             }
             else
             {
@@ -79,6 +116,11 @@ public class Man : Npc
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                     this.state = State.PEE;
+                else
+                {
+                    if (second_state.Count == 0)
+                        second_state.Add(pee_percent);
+                }
             }
             else
             {
@@ -98,6 +140,11 @@ public class Man : Npc
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                     this.state = State.THIRST;
+                else
+                {
+                    if (second_state.Count == 0)
+                        second_state.Add(thirst_percent);
+                }
             }
             else
             {
@@ -134,35 +181,38 @@ public class Man : Npc
 
 
 
-
+    
 
 
     private void Sleep()
     {
         //자기 방 침대로 이동
-
+        
         //이동
 
 
         //숙면
-        
+
 
 
 
         //숙면이 끝난 것을 체크
-        
+
 
         //퍼센트 게이지 초기화
-        
-        sleepy_percent = 0;
-        sleepy_percent_check = sleepy_percent;
-        hungry_percent -= 20f;
-        pee_percent -= 20f;
-        thirst_percent -= 20f;
-        this.state = State.Move;
+        if (this.state != State.SLEEP)
+        {
+            sleepy_percent = 0;
+            sleepy_percent_check = sleepy_percent;
+            hungry_percent = 0f;
+            pee_percent = 0f;
+            thirst_percent = 0f;
+            this.state = State.Move;
+        }
 
 
         //나음 게이지중 가장 높은 게이지로 상태 변화
+        
 
 
 
@@ -175,9 +225,9 @@ public class Man : Npc
         hungry_percent = 0;
         hungry_percent_check = hungry_percent;
 
-        sleepy_percent -= 20f;
-        pee_percent -= 20f;
-        thirst_percent -= 20f;
+        sleepy_percent = 0f;
+        pee_percent = 0f;
+        thirst_percent = 0f;
         this.state = State.Move;
     }
     private void Pee()
@@ -185,9 +235,9 @@ public class Man : Npc
         pee_percent = 0;
         pee_percent_check = pee_percent;
 
-        sleepy_percent -= 20f;
-        hungry_percent -= 20f;
-        thirst_percent -= 20f;
+        sleepy_percent = 0f;
+        hungry_percent = 0f;
+        thirst_percent = 0f;
         this.state = State.Move;
     }
     private void Thirst()
@@ -195,11 +245,18 @@ public class Man : Npc
         thirst_percent = 0;
         thirst_percent_check = thirst_percent;
 
-        sleepy_percent -= 20f;
-        hungry_percent -= 20f;
-        pee_percent -= 20f;
+        sleepy_percent = 0f;
+        hungry_percent = 0f;
+        pee_percent = 0f;
         this.state = State.Move;
     }
+
+    
+
+
+
+
+
 
 
     
@@ -211,7 +268,6 @@ public class Man : Npc
         StartCoroutine(State_Gaze_Change());
         player_texture = (Texture2D)player.GetComponent<MeshRenderer>().material.mainTexture;
         //player_texture = player.GetComponent<MeshRenderer>().material.mainTexture;
-  
     }
     Color player_texture_Color;
     Color screen_uv_color;
