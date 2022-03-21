@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class Man : Npc
 {
-    RaycastHit hit;
-    public Camera cam;
+    RaycastHit hit;//레이
+    public Camera cam;//Npc 눈
+
+    
+    public GameObject ghost;
+    GameObject npc_ghost;
+
+    [Space]
+    
+
+    List<float> second_state = new List<float>();
+
+
     public override void Move()
     {
         this.state = State.Move;
@@ -27,8 +38,9 @@ public class Man : Npc
     }
 
     //스크린 스케일이 변하는 걸 Update로 계속해서 받아와줄지 한번 생각해봐야함;;
+    
 
-
+    
     float sleepy_percent_check
     {
         get
@@ -39,8 +51,20 @@ public class Man : Npc
         {
             if(value >= 100)
             {
-                if(this.state == State.IDLE || this.state == State.Move)
-                this.state = State.SLEEP;
+                if (this.state == State.IDLE || this.state == State.Move)
+                {
+                    //npc_ghost = Instantiate(ghost,new Vector3(transform.position.x,transform.position.y + 0.5f,transform.position.z),Quaternion.identity); 
+                    //npc_ghost.GetComponent<Ghost>().parent_npc = this;
+                    //npc_ghost.transform.position = this.transform.position;
+                    //npc_ghost.GetComponent<Ghost>().Move_Point(npc_room);
+                    //agent.SetDestination(player.transform.position);
+
+                    this.state = State.SLEEP;
+                }
+                else
+                {
+                    second_state.Add(sleepy_percent);
+                }
             }
             else
             {
@@ -60,6 +84,10 @@ public class Man : Npc
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                     this.state = State.HUNGRY;
+                else
+                {
+                    second_state.Add(sleepy_percent);
+                }
             }
             else
             {
@@ -79,6 +107,10 @@ public class Man : Npc
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                     this.state = State.PEE;
+                else
+                {
+                    second_state.Add(sleepy_percent);
+                }
             }
             else
             {
@@ -98,6 +130,10 @@ public class Man : Npc
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                     this.state = State.THIRST;
+                else
+                {
+                    second_state.Add(sleepy_percent);
+                }
             }
             else
             {
@@ -134,35 +170,53 @@ public class Man : Npc
 
 
 
-
+    
 
 
     private void Sleep()
     {
         //자기 방 침대로 이동
-
+        
         //이동
 
 
         //숙면
-        
+
 
 
 
         //숙면이 끝난 것을 체크
-        
+
 
         //퍼센트 게이지 초기화
         
         sleepy_percent = 0;
         sleepy_percent_check = sleepy_percent;
-        hungry_percent -= 20f;
-        pee_percent -= 20f;
-        thirst_percent -= 20f;
-        this.state = State.Move;
+        if(second_state.Count > 0)
+        {
+            if(second_state[0] == hungry_percent)
+            {
+                this.state = State.HUNGRY;
+                second_state.Clear();
+            }
+
+            if(second_state[0] == pee_percent)
+            {
+                this.state = State.PEE;
+                second_state.Clear();
+            }
+
+            if(second_state[0] == thirst_percent)
+            {
+                this.state = State.THIRST;
+                second_state.Clear();
+            }
+        }//상태 초기화
+
 
 
         //나음 게이지중 가장 높은 게이지로 상태 변화
+
 
 
 
@@ -174,32 +228,84 @@ public class Man : Npc
     {
         hungry_percent = 0;
         hungry_percent_check = hungry_percent;
+        if (second_state.Count > 0)
+        {
+            if (second_state[0] == sleepy_percent)
+            {
+                this.state = State.SLEEP;
+                second_state.Clear();
+            }
 
-        sleepy_percent -= 20f;
-        pee_percent -= 20f;
-        thirst_percent -= 20f;
-        this.state = State.Move;
+            if (second_state[0] == pee_percent)
+            {
+                this.state = State.PEE;
+                second_state.Clear();
+            }
+
+            if (second_state[0] == thirst_percent)
+            {
+                this.state = State.THIRST;
+                second_state.Clear();
+            }
+        }
     }
     private void Pee()
     {
         pee_percent = 0;
         pee_percent_check = pee_percent;
+        if (second_state.Count > 0)
+        {
+            if (second_state[0] == hungry_percent)
+            {
+                this.state = State.HUNGRY;
+                second_state.Clear();
+            }
 
-        sleepy_percent -= 20f;
-        hungry_percent -= 20f;
-        thirst_percent -= 20f;
-        this.state = State.Move;
+            if (second_state[0] == sleepy_percent)
+            {
+                this.state = State.PEE;
+                second_state.Clear();
+            }
+
+            if (second_state[0] == thirst_percent)
+            {
+                this.state = State.THIRST;
+                second_state.Clear();
+            }
+        }
     }
     private void Thirst()
     {
         thirst_percent = 0;
         thirst_percent_check = thirst_percent;
+        if (second_state.Count > 0)
+        {
+            if (second_state[0] == hungry_percent)
+            {
+                this.state = State.HUNGRY;
+                second_state.Clear();
+            }
 
-        sleepy_percent -= 20f;
-        hungry_percent -= 20f;
-        pee_percent -= 20f;
-        this.state = State.Move;
+            if (second_state[0] == pee_percent)
+            {
+                this.state = State.PEE;
+                second_state.Clear();
+            }
+
+            if (second_state[0] == sleepy_percent)
+            {
+                this.state = State.THIRST;
+                second_state.Clear();
+            }
+        }
     }
+
+    
+
+
+
+
+
 
 
     
@@ -211,7 +317,6 @@ public class Man : Npc
         StartCoroutine(State_Gaze_Change());
         player_texture = (Texture2D)player.GetComponent<MeshRenderer>().material.mainTexture;
         //player_texture = player.GetComponent<MeshRenderer>().material.mainTexture;
-  
     }
     Color player_texture_Color;
     Color screen_uv_color;
