@@ -12,12 +12,9 @@ public class Man : Npc
     GameObject npc_ghost;
 
     [Space]
-    public GameObject npc_room;//Npc 자신의 방 
-    public GameObject kitchen_room;//Npc가 이동할 주방
-    public GameObject toilet_room;//Npc가 이동할 화장실
-    public GameObject water_fountain_room;//Npc가 이동할 정수기
+    
 
-    List<float> second_state = new List<float>(1);
+    List<float> second_state = new List<float>();
 
 
     public override void Move()
@@ -62,16 +59,11 @@ public class Man : Npc
                     //npc_ghost.GetComponent<Ghost>().Move_Point(npc_room);
                     //agent.SetDestination(player.transform.position);
 
-
-
-
-                    
                     this.state = State.SLEEP;
                 }
                 else
                 {
-                    if (second_state.Count == 0)
-                        second_state.Add(sleepy_percent);
+                    second_state.Add(sleepy_percent);
                 }
             }
             else
@@ -94,8 +86,7 @@ public class Man : Npc
                     this.state = State.HUNGRY;
                 else
                 {
-                    if (second_state.Count == 0)
-                        second_state.Add(sleepy_percent);
+                    second_state.Add(sleepy_percent);
                 }
             }
             else
@@ -118,8 +109,7 @@ public class Man : Npc
                     this.state = State.PEE;
                 else
                 {
-                    if (second_state.Count == 0)
-                        second_state.Add(pee_percent);
+                    second_state.Add(sleepy_percent);
                 }
             }
             else
@@ -142,8 +132,7 @@ public class Man : Npc
                     this.state = State.THIRST;
                 else
                 {
-                    if (second_state.Count == 0)
-                        second_state.Add(thirst_percent);
+                    second_state.Add(sleepy_percent);
                 }
             }
             else
@@ -200,19 +189,34 @@ public class Man : Npc
 
 
         //퍼센트 게이지 초기화
-        if (this.state != State.SLEEP)
+        
+        sleepy_percent = 0;
+        sleepy_percent_check = sleepy_percent;
+        if(second_state.Count > 0)
         {
-            sleepy_percent = 0;
-            sleepy_percent_check = sleepy_percent;
-            hungry_percent = 0f;
-            pee_percent = 0f;
-            thirst_percent = 0f;
-            this.state = State.Move;
-        }
+            if(second_state[0] == hungry_percent)
+            {
+                this.state = State.HUNGRY;
+                second_state.Clear();
+            }
+
+            if(second_state[0] == pee_percent)
+            {
+                this.state = State.PEE;
+                second_state.Clear();
+            }
+
+            if(second_state[0] == thirst_percent)
+            {
+                this.state = State.THIRST;
+                second_state.Clear();
+            }
+        }//상태 초기화
+
 
 
         //나음 게이지중 가장 높은 게이지로 상태 변화
-        
+
 
 
 
@@ -224,31 +228,76 @@ public class Man : Npc
     {
         hungry_percent = 0;
         hungry_percent_check = hungry_percent;
+        if (second_state.Count > 0)
+        {
+            if (second_state[0] == sleepy_percent)
+            {
+                this.state = State.SLEEP;
+                second_state.Clear();
+            }
 
-        sleepy_percent = 0f;
-        pee_percent = 0f;
-        thirst_percent = 0f;
-        this.state = State.Move;
+            if (second_state[0] == pee_percent)
+            {
+                this.state = State.PEE;
+                second_state.Clear();
+            }
+
+            if (second_state[0] == thirst_percent)
+            {
+                this.state = State.THIRST;
+                second_state.Clear();
+            }
+        }
     }
     private void Pee()
     {
         pee_percent = 0;
         pee_percent_check = pee_percent;
+        if (second_state.Count > 0)
+        {
+            if (second_state[0] == hungry_percent)
+            {
+                this.state = State.HUNGRY;
+                second_state.Clear();
+            }
 
-        sleepy_percent = 0f;
-        hungry_percent = 0f;
-        thirst_percent = 0f;
-        this.state = State.Move;
+            if (second_state[0] == sleepy_percent)
+            {
+                this.state = State.PEE;
+                second_state.Clear();
+            }
+
+            if (second_state[0] == thirst_percent)
+            {
+                this.state = State.THIRST;
+                second_state.Clear();
+            }
+        }
     }
     private void Thirst()
     {
         thirst_percent = 0;
         thirst_percent_check = thirst_percent;
+        if (second_state.Count > 0)
+        {
+            if (second_state[0] == hungry_percent)
+            {
+                this.state = State.HUNGRY;
+                second_state.Clear();
+            }
 
-        sleepy_percent = 0f;
-        hungry_percent = 0f;
-        pee_percent = 0f;
-        this.state = State.Move;
+            if (second_state[0] == pee_percent)
+            {
+                this.state = State.PEE;
+                second_state.Clear();
+            }
+
+            if (second_state[0] == sleepy_percent)
+            {
+                this.state = State.THIRST;
+                second_state.Clear();
+            }
+        }
     }
 
     

@@ -88,7 +88,16 @@ public abstract class Npc : MonoBehaviour
     [Range(0, 100)]
     public float fear_percent;//경계
 
-    
+
+    public GameObject npc_room;//Npc 자신의 방 
+    public GameObject kitchen_room;//Npc가 이동할 주방
+    public GameObject toilet_room;//Npc가 이동할 화장실
+    public GameObject water_fountain_room;//Npc가 이동할 정수기
+
+
+
+
+
     public void Gazechange(float value,parametertype type)
     {
         switch (type)
