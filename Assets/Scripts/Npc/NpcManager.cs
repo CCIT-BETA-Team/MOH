@@ -54,10 +54,27 @@ public class NpcManager : MonoBehaviour
 
             GameObject spawn_point = room_list[x].npc_spawn_position[y];
              
-            Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
+            GameObject npc = Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
+            npc.GetComponent<Npc>().npc_room = npc_room();
 
             room_list[x].npc_spawn_position.RemoveAt(y);
             if (room_list[x].npc_spawn_position.Count <= 0) { room_list.RemoveAt(x); }
         }
+    }
+
+    Room npc_room()
+    {
+        Room r = new Room();
+
+        for(int i = 0; i < room_list.Count; i++)
+        {
+            if (room_list[i].room_type == Room.room_type_.BEDROOM && !room_list[i].is_owner)
+            {
+                r = room_list[i];
+                break;
+            }
+            else { r = null; }
+        }
+        return r;
     }
 }
