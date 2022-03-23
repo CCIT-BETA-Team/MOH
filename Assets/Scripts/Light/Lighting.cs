@@ -100,7 +100,15 @@ public class Lighting : MonoBehaviour
 
             foreach (Material m in light_material)
             {
-                m.SetInt("_Emission", on_off);
+                if(on_off==1)
+                {
+                    m.EnableKeyword("_EMISSION");
+                }
+                else
+                {
+                    m.DisableKeyword("_EMISSION");
+                }
+             
           }
         }
   
