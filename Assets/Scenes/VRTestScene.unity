@@ -23499,6 +23499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5035dc6658ecbfe4d8440705f1595ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  light: {fileID: 0}
   material_target:
   - {fileID: 675100265}
   broken: 0

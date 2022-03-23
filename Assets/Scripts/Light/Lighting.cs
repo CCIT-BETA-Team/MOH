@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lighting : MonoBehaviour
 {
-    Light light;
+    public Light light;
     public GameObject[] material_target;
     List<Material> light_material = new List<Material>();
     bool electricity = true;
@@ -125,11 +125,10 @@ public class Lighting : MonoBehaviour
             cool = time;
         }
     }
-   /// <summary>
-   /// 
-   /// </summary>
-   /// <param name="endless">"¿µ±¸ÆÄ±«"</param>
-   public void Break_Light(bool endless)
+    /// <summary>
+    /// ¿µ±¸ÆÄ±«
+    /// </summary>
+    public void Break_Light()
    {
         broke_property = true;
         cool = -1;
