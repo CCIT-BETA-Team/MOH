@@ -21,8 +21,7 @@ public abstract class Npc : MonoBehaviour
     public GameObject player;
     public LayerMask layermask;
 
-    public enum Npc_Type
-    {
+    public enum Npc_Type{
         NONE,
         POLICE,//경찰 // 남녀구분x
         GRANDFATHER,//할아버지
@@ -89,10 +88,10 @@ public abstract class Npc : MonoBehaviour
     public float fear_percent;//경계
 
 
-    public GameObject npc_room;//Npc 자신의 방 
-    public GameObject kitchen_room;//Npc가 이동할 주방
-    public GameObject toilet_room;//Npc가 이동할 화장실
-    public GameObject water_fountain_room;//Npc가 이동할 정수기
+    public Room npc_room;//Npc 자신의 방 
+    public Room kitchen_room;//Npc가 이동할 주방
+    public Room toilet_room;//Npc가 이동할 화장실
+    public Room water_fountain_room;//Npc가 이동할 정수기
 
 
 
