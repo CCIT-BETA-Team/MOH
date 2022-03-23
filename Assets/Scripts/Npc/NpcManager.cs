@@ -55,7 +55,7 @@ public class NpcManager : MonoBehaviour
             GameObject spawn_point = room_list[x].npc_spawn_position[y];
              
             GameObject npc = Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
-            npc.GetComponent<Npc>().npc_room = npc_room().gameObject;
+            npc.GetComponent<Npc>().npc_room = npc_room();
 
             room_list[x].npc_spawn_position.RemoveAt(y);
             if (room_list[x].npc_spawn_position.Count <= 0) { room_list.RemoveAt(x); }
