@@ -33,7 +33,8 @@ public class RoomData : ScriptableObject
         for (int i = 0; i < item_spawn_position.Count; i++)
         {
             int x = Random.Range(0, item_list(item_spawn_position[i].item_type).Count);
-            Instantiate(item_list(item_spawn_position[i].item_type)[x], item_spawn_position[i].transform.position, Quaternion.identity, room.transform);
+            Item item = Instantiate(item_list(item_spawn_position[i].item_type)[x], item_spawn_position[i].transform.position, Quaternion.identity, room.transform);
+            item_spawn_position[i].item = item;
         }
     }
 }
