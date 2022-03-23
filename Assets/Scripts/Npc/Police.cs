@@ -6,10 +6,6 @@ public class Police : Npc
 {
    
 
-    public override void Move()
-    {
-        this.state = State.Move;
-    }
 
     public override void Select_Personality()
     {

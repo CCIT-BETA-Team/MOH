@@ -11,16 +11,7 @@ public class Man : Npc
     public GameObject ghost;
     GameObject npc_ghost;
 
-    [Space]
     
-
-    List<float> second_state = new List<float>();
-
-
-    public override void Move()
-    {
-        this.state = State.Move;
-    }
 
     public override void Select_Personality()
     {
@@ -38,9 +29,34 @@ public class Man : Npc
     }
 
     //스크린 스케일이 변하는 걸 Update로 계속해서 받아와줄지 한번 생각해봐야함;;
-    
 
-    
+    State state_check
+    {
+        get
+        {
+            return this.state;
+        }
+        set
+        {
+            switch (value)
+            {
+                case State.SLEEP:
+                    Sleep();
+                    break;
+                case State.HUNGRY:
+                    Hungry();
+                    break;
+                case State.PEE:
+                    Pee();
+                    break;
+                case State.THIRST:
+                    Thirst();
+                    break;
+            }
+        }
+    }
+    State? next_state;
+
     float sleepy_percent_check
     {
         get
@@ -63,7 +79,10 @@ public class Man : Npc
                 }
                 else
                 {
-                    second_state.Add(sleepy_percent);
+                   if(next_state == null)
+                    {
+                        next_state = State.SLEEP;
+                    }
                 }
             }
             else
@@ -86,7 +105,10 @@ public class Man : Npc
                     this.state = State.HUNGRY;
                 else
                 {
-                    second_state.Add(sleepy_percent);
+                    if (next_state == null)
+                    {
+                        next_state = State.HUNGRY;
+                    }
                 }
             }
             else
@@ -109,7 +131,10 @@ public class Man : Npc
                     this.state = State.PEE;
                 else
                 {
-                    second_state.Add(sleepy_percent);
+                    if (next_state == null)
+                    {
+                        next_state = State.PEE;
+                    }
                 }
             }
             else
@@ -132,7 +157,10 @@ public class Man : Npc
                     this.state = State.THIRST;
                 else
                 {
-                    second_state.Add(sleepy_percent);
+                    if (next_state == null)
+                    {
+                        next_state = State.THIRST;
+                    }
                 }
             }
             else
@@ -142,78 +170,31 @@ public class Man : Npc
         }
     }
 
-    State state_check
-    {
-        get
-        {
-            return this.state;
-        }
-        set
-        {
-            switch(value)
-            {
-                case State.SLEEP:
-                    Sleep();
-                    break;
-                case State.HUNGRY:
-                    Hungry();
-                    break;
-                case State.PEE:
-                    Pee();
-                    break;
-                case State.THIRST:
-                    Thirst();
-                    break;
-            }
-        }
-    }
 
 
 
-    
-
+    float asad;
 
     private void Sleep()
     {
         //자기 방 침대로 이동
-        
+
         //이동
 
 
         //숙면
 
 
-
-
         //숙면이 끝난 것을 체크
 
-
-        //퍼센트 게이지 초기화
-        
         sleepy_percent = 0;
-        sleepy_percent_check = sleepy_percent;
-        if(second_state.Count > 0)
+        if (next_state != null) 
         {
-            if(second_state[0] == hungry_percent)
-            {
-                this.state = State.HUNGRY;
-                second_state.Clear();
-            }
-
-            if(second_state[0] == pee_percent)
-            {
-                this.state = State.PEE;
-                second_state.Clear();
-            }
-
-            if(second_state[0] == thirst_percent)
-            {
-                this.state = State.THIRST;
-                second_state.Clear();
-            }
-        }//상태 초기화
-
-
+            this.state = next_state.Value;
+            next_state = null;
+        }
+        else { this.state = State.Move; }
+        
 
         //나음 게이지중 가장 높은 게이지로 상태 변화
 
@@ -228,76 +209,16 @@ public class Man : Npc
     {
         hungry_percent = 0;
         hungry_percent_check = hungry_percent;
-        if (second_state.Count > 0)
-        {
-            if (second_state[0] == sleepy_percent)
-            {
-                this.state = State.SLEEP;
-                second_state.Clear();
-            }
-
-            if (second_state[0] == pee_percent)
-            {
-                this.state = State.PEE;
-                second_state.Clear();
-            }
-
-            if (second_state[0] == thirst_percent)
-            {
-                this.state = State.THIRST;
-                second_state.Clear();
-            }
-        }
     }
     private void Pee()
     {
         pee_percent = 0;
         pee_percent_check = pee_percent;
-        if (second_state.Count > 0)
-        {
-            if (second_state[0] == hungry_percent)
-            {
-                this.state = State.HUNGRY;
-                second_state.Clear();
-            }
-
-            if (second_state[0] == sleepy_percent)
-            {
-                this.state = State.PEE;
-                second_state.Clear();
-            }
-
-            if (second_state[0] == thirst_percent)
-            {
-                this.state = State.THIRST;
-                second_state.Clear();
-            }
-        }
     }
     private void Thirst()
     {
         thirst_percent = 0;
         thirst_percent_check = thirst_percent;
-        if (second_state.Count > 0)
-        {
-            if (second_state[0] == hungry_percent)
-            {
-                this.state = State.HUNGRY;
-                second_state.Clear();
-            }
-
-            if (second_state[0] == pee_percent)
-            {
-                this.state = State.PEE;
-                second_state.Clear();
-            }
-
-            if (second_state[0] == sleepy_percent)
-            {
-                this.state = State.THIRST;
-                second_state.Clear();
-            }
-        }
     }
 
     
@@ -322,17 +243,13 @@ public class Man : Npc
     Color screen_uv_color;
 
 
-    public bool Check_Unit()
-    {
-        Vector3 screenPoint = cam.WorldToViewportPoint(player.transform.position);
-        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
-        return onScreen;
-    }
 
     void Update()
     {
-
         state_check = this.state;
+        Debug.Log(this.state);
+        if(next_state != null)
+        Debug.Log(next_state);
 
         if (Check_Unit())
         {
@@ -360,7 +277,7 @@ public class Man : Npc
 
                 }
             }
-        }
+        }//플레이어 카메라 뷰 안에 있을 때만 확인
     }
  
     public void Fear_Check()//경계도 100 이상 되엇을 때 
@@ -393,6 +310,12 @@ public class Man : Npc
         }
     }
 
+    public bool Check_Unit()
+    {
+        Vector3 screenPoint = cam.WorldToViewportPoint(player.transform.position);
+        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        return onScreen;
+    }
     public void Go_Report_Zone()
     {
 
@@ -412,9 +335,7 @@ public class Man : Npc
         ///
 
         StartCoroutine(State_Gaze_Change());
-        //npc 기절,신고 등의 상태에서 코루틴 꺼주기 생각해보니까 꺼줄필요가 없을 것도 같음
     }
 
-    
  
 }

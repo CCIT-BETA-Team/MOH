@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Woman : Npc
 {
-    public override void Move()
-    {
-        this.state = State.Move;
-    }
+    
 
     public override void Select_Personality()
     {

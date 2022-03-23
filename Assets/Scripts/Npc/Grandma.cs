@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Grandma : Npc
 {
-    public override void Move()
-    {
-        this.state = State.Move;
-    }
-
     public override void Select_Personality()
     {
         int a = Random.Range(0, 2);

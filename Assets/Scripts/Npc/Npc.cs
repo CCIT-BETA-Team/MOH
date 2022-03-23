@@ -92,6 +92,7 @@ public abstract class Npc : MonoBehaviour
     public Room kitchen_room;//Npc가 이동할 주방
     public Room toilet_room;//Npc가 이동할 화장실
     public Room water_fountain_room;//Npc가 이동할 정수기
+    public Room report_room;//Npc가 신고하러 갈 위치
 
 
 
@@ -253,8 +254,6 @@ public abstract class Npc : MonoBehaviour
 
 
 
-
-    public abstract void Move();
     public abstract void Select_Personality();
 
     
