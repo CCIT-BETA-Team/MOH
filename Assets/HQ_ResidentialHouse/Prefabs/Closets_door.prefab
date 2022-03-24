@@ -413,10 +413,14 @@ MonoBehaviour:
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
   isLock: 0
-  sensitivity: 10
-  doorDir: 0
+  sensitivity: 1
+  doorDir: 1
   door: {fileID: 198634}
   another_handle: {fileID: 2126594108}
+  maximum_y_angle: 110
+  maximum_x_position: 0
+  maximum_y_position: 0
+  testval: 0
 --- !u!1 &882387713
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,10 +488,14 @@ MonoBehaviour:
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
   isLock: 0
-  sensitivity: 10
+  sensitivity: 1
   doorDir: 0
   door: {fileID: 175628}
   another_handle: {fileID: 1502408161}
+  maximum_y_angle: 110
+  maximum_x_position: 0
+  maximum_y_position: 0
+  testval: 0
 --- !u!1 &1502408159
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,11 +562,15 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
-  isLock: 0
-  sensitivity: 10
-  doorDir: 0
+  isLock: 1
+  sensitivity: 1
+  doorDir: 1
   door: {fileID: 175628}
   another_handle: {fileID: 882387715}
+  maximum_y_angle: 110
+  maximum_x_position: 0
+  maximum_y_position: 0
+  testval: 0
 --- !u!1 &2126594106
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,8 +637,12 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
-  isLock: 0
-  sensitivity: 10
+  isLock: 1
+  sensitivity: 1
   doorDir: 0
   door: {fileID: 198634}
   another_handle: {fileID: 437117155}
+  maximum_y_angle: 110
+  maximum_x_position: 0
+  maximum_y_position: 0
+  testval: 0

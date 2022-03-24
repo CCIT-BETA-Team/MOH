@@ -8,7 +8,6 @@ public class Door : Item
     Rigidbody rg;
     float value;
     public float sensitivity = 10f;
-    public List<Room> room_list = new List<Room>();
     public enum DoorDir { FRONT, BACK, LEFT ,RIGHT,UPandDOWN}
     public DoorDir doorDir;
     public GameObject door;
@@ -20,6 +19,10 @@ public class Door : Item
     public float maximum_x_position;
     [Header("LEFT and RIGHT type use")]
     public float maximum_y_position;
+
+
+
+    
 
     void Start()
     {
@@ -74,11 +77,11 @@ public class Door : Item
             {
                 case DoorDir.FRONT:
                     value += vrinput.z * sensitivity;
-                    door.transform.rotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.rotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
+                    door.transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.localRotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
                     break;
                 case DoorDir.BACK:
                     value -= vrinput.z * sensitivity;
-                    door.transform.rotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.rotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
+                    door.transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.localRotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
                     break;
                 case DoorDir.LEFT:
                     value -= vrinput.x * sensitivity;
@@ -99,7 +102,15 @@ public class Door : Item
             }
         }
     }
+    public float testval = 0;
+   
+    private void Update()
+    {
 
+        Vector3 vectest = new Vector3(testval, 0, testval);
+        interaction(vectest);
+        testval += Time.deltaTime;
+    }
     public void Connecting()
     {
         another_handle.value = value;
