@@ -31,6 +31,7 @@ public class Room : MonoBehaviour
     void Start()
     {
         Door_Setting();
+  
     }
 
     void Door_Setting()
@@ -41,10 +42,7 @@ public class Room : MonoBehaviour
         }
     }
 
-    //NPC 생성 시 개인 방 할당 << 일단 완료 테스트 필요
     //룸에 메인 조명 할당, PLayer가 켤 시 불 true;
     //문이 열렸는지 안열렸는지 체크 -> 방음수치영향 
-    //item spot이 자기 위치에 스폰된 아이템을 갖고있어야함 << 일단 완료 테스트 필요
-    //item spot에서 할당된 아이템이 없어질 시 없어짐 true << 일단 완료 텟트 필요
     //npc manager에 
 }

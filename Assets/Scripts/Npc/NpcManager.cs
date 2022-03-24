@@ -71,6 +71,7 @@ public class NpcManager : MonoBehaviour
             if (room_list[i].room_type == Room.room_type_.BEDROOM && !room_list[i].is_owner)
             {
                 r = room_list[i];
+                r.is_owner = true;
                 break;
             }
             else { r = null; }

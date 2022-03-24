@@ -9,7 +9,7 @@ public class Door : Item
     float value;
     public float sensitivity = 10f;
     public List<Room> room_list = new List<Room>();
-    public enum DoorDir { FRONT, BACK, LEFT ,RIGHT,UPandDOWN}
+    public enum DoorDir { FRONT, BACK, LEFT ,RIGHT,UPandDOWN }
     public DoorDir doorDir;
     public GameObject door;
     public Door another_handle;
@@ -20,10 +20,25 @@ public class Door : Item
     public float maximum_x_position;
     [Header("LEFT and RIGHT type use")]
     public float maximum_y_position;
+    public float door_rotation { get { return door.transform.localRotation.y; } }
+    public bool is_open
+    {
+        get
+        {
+            if(door_rotation != 0) { return true; }
+            else { return false; }
+        }
+    }
+    public bool test;
 
     void Start()
     {
         rg = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if(test != is_open) { test = is_open; }
     }
 
     public override void interaction()
@@ -38,11 +53,11 @@ public class Door : Item
             {
                 case DoorDir.FRONT:
                     value += Input.GetAxis("Mouse Y") * sensitivity;
-                    door.transform.rotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.rotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
+                    door.transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.localRotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
                     break;
                 case DoorDir.BACK:
                     value -= Input.GetAxis("Mouse Y") * sensitivity;
-                    door.transform.rotation = Quaternion.Euler(0,Mathf.Clamp(door.transform.rotation.y - value,-maximum_y_angle,maximum_y_angle), 0);
+                    door.transform.localRotation = Quaternion.Euler(0,Mathf.Clamp(door.transform.localRotation.y - value,-maximum_y_angle,maximum_y_angle), 0);
                     break;
                 case DoorDir.LEFT:
                     value -= Input.GetAxis("Mouse X") * sensitivity;
