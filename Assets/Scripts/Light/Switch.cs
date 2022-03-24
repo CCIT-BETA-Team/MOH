@@ -37,24 +37,28 @@ public class Switch : MonoBehaviour
         {
             on = true;
         }
-        switch (on)
+        if (Lightings != null)
         {
-            case true:
-                //animation controll
-                for(int i =0; i<Lightings.Count;i++)
-                {
-                    Lightings[i].on_off=true;
-                    lever.transform.rotation =Quaternion.Euler(on_rotation);
-                }
-                break;
-            case false:
-                //animation controll
-                for (int i = 0; i < Lightings.Count; i++)
-                {
-                    Lightings[i].on_off = false;
-                    lever.transform.rotation = Quaternion.Euler(off_rotation);
-                }
-                break;
+            switch (on)
+            {
+                case true:
+                    //animation controll
+
+                    for (int i = 0; i < Lightings.Count; i++)
+                    {
+                        Lightings[i].on_off = true;
+                        lever.transform.rotation = Quaternion.Euler(on_rotation);
+                    }
+                    break;
+                case false:
+                    //animation controll
+                    for (int i = 0; i < Lightings.Count; i++)
+                    {
+                        Lightings[i].on_off = false;
+                        lever.transform.rotation = Quaternion.Euler(off_rotation);
+                    }
+                    break;
+            }
         }
 
     }
