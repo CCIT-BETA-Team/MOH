@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Switch : MonoBehaviour
+public class Switch : Item
 {
     public List<Lighting> Lightings = new List<Lighting>();
     bool on = false;
@@ -21,13 +21,36 @@ public class Switch : MonoBehaviour
     {
         Lightmanager.instance.Resist_Light(this);
     }
-    public void interection()
+   
+
+    public void Electrocity_On_Off(bool value)
     {
-    if(switch_sound!=null)
+   
+                for (int i = 0; i < Lightings.Count; i++)
+                {
+                    Lightings[i].electricity_property = value;
+                }
+
+    
+    }
+    private void Update()
     {
+
+        #if UNITY_EDITOR
+        if (Input.anyKey)
+        {
+            interaction();
+        }
+        #endif
+    }
+
+    public override void interaction()
+    {
+        if (switch_sound != null)
+        {
             switch_sound.PlayOneShot(switch_sound.clip);
         }
-      
+
         if (on)
         {
             on = false;
@@ -60,26 +83,5 @@ public class Switch : MonoBehaviour
                     break;
             }
         }
-
     }
-  
-
-    public void Electrocity_On_Off(bool value)
-    {
-   
-                for (int i = 0; i < Lightings.Count; i++)
-                {
-                    Lightings[i].electricity_property = value;
-                }
-
-    
-    }
-    private void Update()
-    {
-        if (Input.anyKey)
-        {
-            interection();
-        }
-    }
-
 }
