@@ -8,6 +8,7 @@ public class Door : Item
     Rigidbody rg;
     float value;
     public float sensitivity = 10f;
+    public List<Room> room_list = new List<Room>();
     public enum DoorDir { FRONT, BACK, LEFT ,RIGHT,UPandDOWN}
     public DoorDir doorDir;
     public GameObject door;
@@ -20,7 +21,7 @@ public class Door : Item
     [Header("LEFT and RIGHT type use")]
     public float maximum_y_position;
 
-
+    
 
     
 
