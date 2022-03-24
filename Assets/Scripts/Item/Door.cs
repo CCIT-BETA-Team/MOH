@@ -21,13 +21,25 @@ public class Door : Item
     [Header("LEFT and RIGHT type use")]
     public float maximum_y_position;
 
-    
-
-    
+    public float door_rotation { get { return door.transform.localRotation.y; } }
+    public bool is_open
+    {
+        get
+        {
+            if(door_rotation != 0) { return true; }
+            else { return false; }
+        }
+    }
+    public bool test;
 
     void Start()
     {
         rg = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        if(test != is_open) { test = is_open; }
     }
 
     public override void interaction()
@@ -103,15 +115,7 @@ public class Door : Item
             }
         }
     }
-    public float testval = 0;
-   
-    private void Update()
-    {
 
-        Vector3 vectest = new Vector3(testval, 0, testval);
-        interaction(vectest);
-        testval += Time.deltaTime;
-    }
     public void Connecting()
     {
         another_handle.value = value;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Drawer : Item
 {
     float value;
-    public float sensitivity = 10f;
+    public float sensitivity;
     float max_z, min_z;
 
     void Start()
@@ -16,8 +16,7 @@ public class Drawer : Item
 
     public override void interaction()
     {
-        value += Input.GetAxis("Mouse Y") * sensitivity;
-        Debug.Log(value);
+        value += Input.GetAxis("Mouse Y") * sensitivity * 0.005f;
         transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Clamp(transform.position.z - value, min_z, max_z));
     }
 }
