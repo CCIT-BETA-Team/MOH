@@ -173,8 +173,6 @@ public class Man : Npc
 
 
 
-    float asad;
-
     private void Sleep()
     {
         //자기 방 침대로 이동
@@ -219,6 +217,7 @@ public class Man : Npc
     {
         thirst_percent = 0;
         thirst_percent_check = thirst_percent;
+        
     }
 
     
@@ -247,9 +246,7 @@ public class Man : Npc
     void Update()
     {
         state_check = this.state;
-        Debug.Log(this.state);
-        if(next_state != null)
-        Debug.Log(next_state);
+      
 
         if (Check_Unit())
         {
