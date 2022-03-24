@@ -31,30 +31,34 @@ public class RemoteControl: Item
    
         Physics.Raycast(transform.position, Vector3.forward, out target, ray_distance);
 
-        if (target.transform.GetComponent<RemotedObject>() != null)
+        if (target.transform != null)
         {
-            if (universal_remocon)
-        {
-            if (target.transform != null)
+
+
+            if (target.transform.GetComponent<RemotedObject>() != null)
             {
-                target.transform.GetComponent<Item>().interaction();
-            }
-        }
-        else
-        {
-          
-                foreach (RemotedObject a in TargetObjects)
-            {
-               
-                    if (a == target.transform.GetComponent<RemotedObject>())
+                if (universal_remocon)
+                {
+                    if (target.transform != null)
                     {
-                        a.interaction();
+                        target.transform.GetComponent<Item>().interaction();
                     }
-            }
-              
+                }
+                else
+                {
+
+                    foreach (RemotedObject a in TargetObjects)
+                    {
+
+                        if (a == target.transform.GetComponent<RemotedObject>())
+                        {
+                            a.interaction();
+                        }
+                    }
+
+                }
             }
         }
-      
        
     }
 }
