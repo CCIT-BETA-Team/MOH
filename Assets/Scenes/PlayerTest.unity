@@ -1404,7 +1404,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.45, y: -0.22, z: 0.6}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7377398654823814533}
   m_Father: {fileID: 1490443560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2703,7 +2704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 79929289}
   hand: {fileID: 1012369945}
-  emptyhand: {fileID: 7767766304752710605, guid: 9c9e024f08fae8e44acc6e46f99d0a24, type: 3}
+  emptyhand: {fileID: 7377398654823814538}
   health: 100
   defaultSpped: 0
   walkingSpeed: 10
@@ -2711,7 +2712,7 @@ MonoBehaviour:
   unlockSpeed: 0
   noiseValue: 0
   itemBag:
-  - {fileID: 7767766304752710605, guid: 9c9e024f08fae8e44acc6e46f99d0a24, type: 3}
+  - {fileID: 7377398654823814538}
   - {fileID: 7767766304752710605, guid: 9c9e024f08fae8e44acc6e46f99d0a24, type: 3}
   - {fileID: 7767766304752710605, guid: 9c9e024f08fae8e44acc6e46f99d0a24, type: 3}
   - {fileID: 7767766304752710605, guid: 9c9e024f08fae8e44acc6e46f99d0a24, type: 3}
@@ -8947,7 +8948,7 @@ Transform:
   m_Children:
   - {fileID: 3168225000874178660}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &5610481237234873360
 Transform:
@@ -9611,12 +9612,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7377398654823814539}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.3, y: 0.1251005, z: -17.582668}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 55.60868, y: -23.118994, z: 12.067932}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 7377398653933345558}
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 1012369946}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7377398654823814538
 MonoBehaviour:
