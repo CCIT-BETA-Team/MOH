@@ -31,7 +31,9 @@ public class RemoteControl: Item
    
         Physics.Raycast(transform.position, Vector3.forward, out target, ray_distance);
 
-        if(universal_remocon)
+        if (target.transform.GetComponent<RemotedObject>() != null)
+        {
+            if (universal_remocon)
         {
             if (target.transform != null)
             {
@@ -40,12 +42,16 @@ public class RemoteControl: Item
         }
         else
         {
-            foreach (RemotedObject a in TargetObjects)
+          
+                foreach (RemotedObject a in TargetObjects)
             {
-                if (a == target.transform.GetComponent<RemotedObject>())
-                {
-                    a.interaction();
-                }
+               
+                    if (a == target.transform.GetComponent<RemotedObject>())
+                    {
+                        a.interaction();
+                    }
+            }
+              
             }
         }
       
