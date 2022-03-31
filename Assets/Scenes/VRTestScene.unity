@@ -1085,13 +1085,14 @@ MonoBehaviour:
   bIsLightOnPlayer: 0
   isLock: 0
   sensitivity: 1
+  room_list: []
   doorDir: 1
   door: {fileID: 1200592233}
   another_handle: {fileID: 743825104}
   maximum_y_angle: 130
   maximum_x_position: 0
   maximum_y_position: 0
-  testval: 0
+  test: 0
 --- !u!65 &60378065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3730,6 +3731,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 415072, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.000006830189
+      objectReference: {fileID: 0}
     - target: {fileID: 446158, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -3747,7 +3752,31 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446158, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446158, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446158, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485484, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485484, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 485484, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11102034, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11102034, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
@@ -3755,12 +3784,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11429534, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
+      propertyPath: doorTexts.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11429534, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
       propertyPath: controls.autoClose
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11429534, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
       propertyPath: controls.openMethod
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11429534, guid: b764bf58dea07cf4f979ff73785488a7, type: 3}
       propertyPath: controls.closeStartFrom
@@ -12431,6 +12464,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d47a1bd69312e34cab9cc86af594678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  itemtype: 0
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
   Lightings: []
   lever: {fileID: 0}
   switch_ani: {fileID: 0}
@@ -14959,13 +15001,14 @@ MonoBehaviour:
   bIsLightOnPlayer: 0
   isLock: 0
   sensitivity: 10
+  room_list: []
   doorDir: 0
   door: {fileID: 1200592233}
   another_handle: {fileID: 60378064}
   maximum_y_angle: 130
   maximum_x_position: 0
   maximum_y_position: 0
-  testval: 0
+  test: 0
 --- !u!65 &743825105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19012,6 +19055,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d47a1bd69312e34cab9cc86af594678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  itemtype: 0
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
   Lightings:
   - {fileID: 254560765}
   lever: {fileID: 1819681853}
@@ -36006,6 +36058,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d47a1bd69312e34cab9cc86af594678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  itemtype: 0
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
   Lightings: []
   lever: {fileID: 1683535933}
   switch_ani: {fileID: 0}
@@ -50178,6 +50239,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d47a1bd69312e34cab9cc86af594678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  itemtype: 0
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
   Lightings:
   - {fileID: 1126749174}
   lever: {fileID: 5221861255455163364}
