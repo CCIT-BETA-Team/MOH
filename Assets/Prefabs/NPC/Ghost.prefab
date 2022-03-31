@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3263810280660732971}
   - component: {fileID: 3263810280660732968}
   - component: {fileID: 3263810280660732974}
-  - component: {fileID: 3263810280660732975}
   - component: {fileID: 3263810280660732972}
-  - component: {fileID: 8895842159998865065}
+  - component: {fileID: 8062500865555143823}
+  - component: {fileID: 3345155403829439089}
   m_Layer: 11
   m_Name: Ghost
   m_TagString: Untagged
@@ -101,7 +101,29 @@ MonoBehaviour:
   pathfinding_list: []
   target: {fileID: 0}
   speed: 0
---- !u!54 &3263810280660732975
+--- !u!195 &3263810280660732972
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3263810280660732973}
+  m_Enabled: 1
+  m_AgentTypeID: -334000983
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!54 &8062500865555143823
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,31 +137,9 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!195 &3263810280660732972
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3263810280660732973}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.1
-  m_Speed: 5
-  m_Acceleration: 20000
-  avoidancePriority: 50
-  m_AngularSpeed: 1e+22
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!135 &8895842159998865065
+--- !u!135 &3345155403829439089
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

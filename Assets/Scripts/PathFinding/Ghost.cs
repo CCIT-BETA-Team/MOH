@@ -23,7 +23,7 @@ public class Ghost : MonoBehaviour
     }
     void Update()
     {
-        a = NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, path);
+        //a = NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, path);
 
         //for (int i = 0; i < path.corners.Length-1; i++)
 			//Debug.DrawLine(path.corners[i], path.corners[i+1], Color.red);
@@ -38,15 +38,19 @@ public class Ghost : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Door"))//col.gameObject.layer == LayerMask.NameToLayer("Room") || 
+        if (col.gameObject.layer == LayerMask.NameToLayer("Door") && col.gameObject.transform.parent.GetComponent<DoorScript>().Opened == false)//col.gameObject.layer == LayerMask.NameToLayer("Room") || 
         {
-            pathfinding_list.Add(col.gameObject);
+            if(col.gameObject.layer == LayerMask.NameToLayer("Door"))
+            {
+                pathfinding_list.Add(col.gameObject);
+                parent_npc.path_finding = pathfinding_list.ToList();
+            }
         }
-        if(col.gameObject.layer == LayerMask.NameToLayer("Room"))
+        if (col.gameObject.layer == LayerMask.NameToLayer("Room"))
         {
             pathfinding_list.Add(col.gameObject);
             parent_npc.path_finding = pathfinding_list.ToList();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
