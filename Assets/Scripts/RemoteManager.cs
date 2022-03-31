@@ -6,7 +6,7 @@ public class RemoteManager : Singleton<RemoteManager>
 {
    public List<RemotedObject> remoted_objects = new List<RemotedObject>();
    public List<RemoteControl> remocons = new List<RemoteControl>();
-    
+   
 
     public void Remocon_Setting()
     {
