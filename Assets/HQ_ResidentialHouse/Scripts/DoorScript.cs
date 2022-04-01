@@ -79,7 +79,7 @@ public class DoorScript : MonoBehaviour {
 	public KeySystem keySystem = new KeySystem();
 
 	Transform player;
-	bool Opened = false;
+	public bool Opened = false;
 	bool inZone = false; 
 	Canvas TextObj;
 	Text theText;
@@ -332,11 +332,13 @@ public class DoorScript : MonoBehaviour {
 		}
 	}
 
+	
 	void CloseSound()
 	{
 		if(doorAnimation[AnimationNames.OpeningAnim].speed < 0 && doorSounds.close != null)
 			PlaySFX(doorSounds.close);
 	}
+
 	#endregion
 
 	#region TEXT
@@ -386,7 +388,7 @@ public class DoorScript : MonoBehaviour {
 	}
 	#endregion
 	
-	void OpenDoor()
+	public void OpenDoor()
 	{
 		doorAnimation.Play(AnimationNames.OpeningAnim);
 		doorAnimation[AnimationNames.OpeningAnim].speed = controls.openingSpeed;
@@ -402,7 +404,7 @@ public class DoorScript : MonoBehaviour {
 		keySystem.enabled = false;
 	}
 	
-	void CloseDoor()
+	public void CloseDoor()
 	{
 		if (doorAnimation[AnimationNames.OpeningAnim].normalizedTime < 0.98f && doorAnimation [AnimationNames.OpeningAnim].normalizedTime > 0) 
 		{

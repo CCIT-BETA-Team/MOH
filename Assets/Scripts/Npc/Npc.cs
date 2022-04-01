@@ -14,12 +14,13 @@ public abstract class Npc : MonoBehaviour
     public NavMeshAgent agent;
 
     public List<GameObject> path_finding = new List<GameObject>();
+    public int path_list_number = 0;
 
     public int npc_speed;//Npc 이동속도
     public int faint_time;//기절시간
 
     public GameObject player;
-    public LayerMask layermask;
+   
 
     public enum Npc_Type{
         NONE,
@@ -42,9 +43,9 @@ public abstract class Npc : MonoBehaviour
         THIRST,//목마름
         REPORT,//신고
         FAINT,//기절
-        ATTACK,//공격 // 2페이지 신고 한 뒤에만 오는 상태
-        ESCAPE,//도주// 2페이지 신고 한 뒤에만 오는 상태
-        TRACE,//추적// 2페이지 신고 한 뒤에만 오는 상태
+        ATTACK,//공격 
+        ESCAPE,//도주
+        TRACE,//추적
         FEAR//경계 
     }
     public State state = State.IDLE;
