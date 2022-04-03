@@ -26684,6 +26684,7 @@ GameObject:
   - component: {fileID: 1263414876}
   - component: {fileID: 1263414875}
   - component: {fileID: 1263414874}
+  - component: {fileID: 1263414878}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -26761,13 +26762,34 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263414873}
-  m_LocalRotation: {x: 0.7071055, y: 0.000000976026, z: -0.0000008419155, w: 0.7071081}
+  m_LocalRotation: {x: 0.70710695, y: 0.0000009760275, z: -0.0000008419137, w: 0.7071067}
   m_LocalPosition: {x: -0.059312493, y: 5.845132, z: 42.23}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1263414878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263414873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c68c725cd17b542bfd89202b591c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maximum_shotting: 0
+  current_shot_count: 0
+  max_watch_mode: 3
+  currnet_watch_mode: 0
+  shot_position: {fileID: 0}
+  stun_bullet: {fileID: 0}
+  sleep_bullet: {fileID: 0}
+  watch_material: {fileID: 1263414873}
+  watch_mode: 2
 --- !u!1001 &1264432932
 PrefabInstance:
   m_ObjectHideFlags: 0

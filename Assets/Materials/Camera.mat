@@ -112,12 +112,15 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
+    - _Camera1: 0
     - _Camera1_Set: 1
+    - _Camera2: 0
     - _Camera2_Set: 1
+    - _Camera3: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _Current_View: 2
+    - _Current_View: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
