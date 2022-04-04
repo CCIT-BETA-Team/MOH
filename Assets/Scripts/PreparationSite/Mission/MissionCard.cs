@@ -7,6 +7,7 @@ public class MissionCard : MonoBehaviour
     public Mission mission;
     public InfoCard ic;
     public WhiteBoard mi;
+    public InformaionPopup ip;
 
     void OnMouseEnter()
     {
@@ -17,6 +18,7 @@ public class MissionCard : MonoBehaviour
     void OnMouseDown()
     {
         mission.WhiteBoard_Update(mi);
+        mission.InfoPopup_Update(ip);
     }
 
     void OnMouseExit()
