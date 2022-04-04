@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("플레이어 프리즈")]
+    public bool freeze;
+
     [Header("플레이어 신체")]
     public Camera cam;
     public GameObject hand;
@@ -51,7 +54,10 @@ public class Player : MonoBehaviour
 
                 break;
             case 1: //PC
-                Control();
+                if(!freeze)
+                {
+                    Control();
+                }
                 if (health <= 0) { Die(); }
                 break;
         }
@@ -121,6 +127,9 @@ public class Player : MonoBehaviour
                 case Item.itemType.DOOR:
                     InteractionItem.interaction();
                     break;
+                case Item.itemType.FURNITURE:
+                    InteractionItem.interaction();
+                    break;
                 default:
                     Pickup_Item();
                     break;
@@ -155,9 +164,12 @@ public class Player : MonoBehaviour
         itemRG[currentItem] = null;
     }
 
-    void Use_Item()
+     void Use_Item()
     {
-        InteractionItem.interaction();
+        if(InteractionItem.itemtype == Item.itemType.TOOL || InteractionItem.itemtype == Item.itemType.EQUIPMENT)
+        {
+            InteractionItem.interaction();
+        }
     }
 
     void Zoom()
