@@ -15,12 +15,15 @@ public class Watch : MonoBehaviour
     public int max_watch_mode = 3;
     [Range(0, 3)]
     public int currnet_watch_mode=0;
-    public Transform shot_position;
+    public Transform shoting_position;
+
     public GameObject stun_bullet;
     public GameObject sleep_bullet;
+    public GameObject[] cam_bullet;
+
     Material Glass;
     public GameObject watch_material;
-
+ 
 
     private bool cam_1, cam_2, cam_3;
     public enum Shot_mode
@@ -37,6 +40,16 @@ public class Watch : MonoBehaviour
     }
     public void Interaction_shot()
     {
+        RaycastHit target;
+        bool taregting = false;
+       
+        Physics.Raycast(shoting_position.position, -shoting_position.up, out target, 100);
+        if (target.point != null)
+        {
+            taregting = true;
+            Debug.Log("Targeting");
+        }
+        GameObject bullet=null;
         switch (watch_mode)
     {
             case Shot_mode.SLEEP:
@@ -45,7 +58,8 @@ public class Watch : MonoBehaviour
             case Shot_mode.STUN:
                 //Shot ¤»¤»
                 break;
-            case Shot_mode.CAM:
+            case Shot_mode.CAM:             
+                bullet = cam_bullet[current_shot_count];
                 switch(current_shot_count)
                 {
                     case 0:
@@ -60,12 +74,19 @@ public class Watch : MonoBehaviour
                         cam_3 = true;
                         Glass.SetInt("_Camera3", 1);
                         break;
-                }
-                current_shot_count += 1;
+                }       
+                
                 break;
+        }
+        GameObject i_bullet = Instantiate(bullet, shoting_position.position, transform.rotation);
+        if (taregting)
+        {
+            i_bullet.transform.LookAt(target.point);
+        }
+        i_bullet.GetComponent<Bullet>().Bust();
+        current_shot_count += 1;
     }
-    }
-    public void Interaction_change(int camnum)
+    public void Interaction_change()
     {
         if (currnet_watch_mode != max_watch_mode)
         {
@@ -111,17 +132,18 @@ public class Watch : MonoBehaviour
         {
             currnet_watch_mode = 0;
         }
-        Glass.SetInt("_Current_View",camnum);
+        Glass.SetInt("_Current_View", currnet_watch_mode);
     }
     // Update is called once per frame
     void Update()
     {
-    #if UNITY_EDITOR
-       if(Input.GetKeyDown(KeyCode.Tab))
+#if UNITY_EDITOR
+        Debug.DrawRay(shoting_position.position, -shoting_position.up, Color.black);
+        if (Input.GetKeyDown(KeyCode.Tab))
        {
             
             
-            Interaction_change(currnet_watch_mode);
+            Interaction_change();
        }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
