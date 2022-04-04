@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        
+        //게임 준비단계 (매니저들한테서 이것저것 단계별설정 여기서 ㄱ)
     }
 
     void Update()
