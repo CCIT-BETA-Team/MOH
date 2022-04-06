@@ -50,7 +50,7 @@ public class Ghost : MonoBehaviour
         {
             pathfinding_list.Add(col.gameObject);
             parent_npc.path_finding = pathfinding_list.ToList();
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 

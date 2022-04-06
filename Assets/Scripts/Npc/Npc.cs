@@ -12,16 +12,12 @@ public class NpcStatePercent
 public abstract class Npc : MonoBehaviour
 {
     public NavMeshAgent agent;
-
+    public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
     public List<GameObject> path_finding = new List<GameObject>();
-    public int path_list_number = 0;
-
-    public int npc_speed;//Npc 이동속도
-    public int faint_time;//기절시간
-
     public GameObject player;
-   
-
+    public int path_list_number = 0;
+    public int npc_speed;
+    public int faint_time;
     public enum Npc_Type{
         NONE,
         POLICE,//경찰 // 남녀구분x
@@ -31,8 +27,6 @@ public abstract class Npc : MonoBehaviour
         WOMAN,//여자
     }
     public Npc_Type npc_type = Npc_Type.NONE;
-    
-    
     public enum State 
     {
         IDLE,//대기
@@ -49,9 +43,6 @@ public abstract class Npc : MonoBehaviour
         FEAR//경계 
     }
     public State state = State.IDLE;
-
-
-
     public enum parametertype
     {
         NONE,
@@ -62,42 +53,27 @@ public abstract class Npc : MonoBehaviour
         FEAR
     }
     public parametertype parameter;
-    //어떤 게이지 올릴건지
-
     public enum Npc_Personality
     {
         AGGESSIVE,
         Defensive
     }
     public Npc_Personality personality = Npc_Personality.AGGESSIVE;
-    //공격적인지 방어적인지
-    
 
-
-    [Header("Npc 상태별 게이지")]
     [Range(0, 100)]
-    public float sleepy_percent;//수면
-    //맵이 미술관이나 박물관 같은 곳에서는 npc가 자면 좀 그러니까 
-    //지정된 방에 의자? 같은 곳으로 가서 앉아서 쉬는 식으로 할 것 같음
+    public float sleepy_percent;
     [Range(0, 100)]
-    public float hungry_percent;//배고픔
+    public float hungry_percent;
     [Range(0, 100)]
-    public float pee_percent;//화장실
+    public float pee_percent;
     [Range(0, 100)]
-    public float thirst_percent;//목마름
+    public float thirst_percent;
     [Range(0, 100)]
-    public float fear_percent;//경계
 
+    public float fear_percent;
 
-    public Room npc_room;//Npc 자신의 방 
-    public Room kitchen_room;//Npc가 이동할 주방
-    public Room toilet_room;//Npc가 이동할 화장실
-    public Room water_fountain_room;//Npc가 이동할 정수기
-    public Room report_room;//Npc가 신고하러 갈 위치
-
-
-
-
+    public Room npc_room;
+    public Room target_room;
 
     public void Gazechange(float value,parametertype type)
     {
@@ -126,8 +102,7 @@ public abstract class Npc : MonoBehaviour
         }
 
     }
-
-    public void Allup(float value,bool Fear_Check)//경계도 올릴꺼임??
+    public void Allup(float value,bool Fear_Check)
     {
         Gazechange(value * (Random.value / 3), parametertype.SLEEP);
         Gazechange(value * (Random.value / 3), parametertype.HUNGRY);
@@ -136,7 +111,6 @@ public abstract class Npc : MonoBehaviour
         if(Fear_Check)
         Gazechange(value * (Random.value / 3), parametertype.FEAR);
     }
-
     public void StateGazeUp(State what)
     {
         switch (what) 
@@ -187,16 +161,6 @@ public abstract class Npc : MonoBehaviour
                 break;
         }
     }
-    
-
-  
-
-
-
-    [Space]
-    public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
-
-
 
     public Texture2D player_texture;
     public RenderTexture tex;
@@ -222,9 +186,16 @@ public abstract class Npc : MonoBehaviour
     }
 
 
+
+
+
+
+
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        
 
         switch (npc_type)
         {
@@ -254,7 +225,9 @@ public abstract class Npc : MonoBehaviour
 
 
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract void Select_Personality();
 
     

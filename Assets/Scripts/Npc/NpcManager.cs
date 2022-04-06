@@ -46,7 +46,7 @@ public class NpcManager : MonoBehaviour
 
     void Spawn_Npc()
     {
-        for(int i = 0; i < map.npc_amount; i++)
+        for(int i = 0; i < map.npc_amount; i++) 
         {
             List<Room> room_list = new List<Room>(this.room_list);
             int x = Random.Range(0, room_list.Count);

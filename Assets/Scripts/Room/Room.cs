@@ -28,6 +28,27 @@ public class Room : MonoBehaviour
     public bool player_on_light;
     public bool is_owner;
 
+    //성준이가 작업한 부분
+    //public List<Room> npc_own_room = new List<Room>();
+    public Map map;
+    public NpcManager npc_manager;
+    //
+
+    private void Awake()
+    {
+        if(this.room_type == room_type_.BEDROOM)
+        {
+            map.npc_own_room.Add(this);
+            npc_manager.room_list.Add(this);
+        }
+        else
+        {
+            map.room_list.Add(this);
+            npc_manager.room_list.Add(this);
+        }
+    }
+    ///
+
     void Start()
     {
         Door_Setting();
