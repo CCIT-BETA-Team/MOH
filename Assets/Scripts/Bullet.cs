@@ -11,15 +11,21 @@ public class Bullet : MonoBehaviour
     bool attached = false;
     private void FixedUpdate()
     {
-     
-        
+        if (activated)
+        {
+              if(!attached)
+              {
+                rig.AddForce(transform.forward * speed, ForceMode.Force);
+              }
+        }
     }
-    public void Bust()
+    
+    public void Burst()
     {
         if (!activated)
         {
-            rig.velocity = transform.forward * speed;
             activated = true;
+          //  rig.AddForce(transform.forward*1000,ForceMode.Impulse);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -27,12 +33,16 @@ public class Bullet : MonoBehaviour
 
         if(attach_object)
         {
+            Debug.Log("isAttached");
             if (!attached)
             {
+                this.transform.parent = collision.collider.transform;
+                Debug.Log("Attached");
+                rig.freezeRotation = true;
                 rig.velocity = new Vector3(0, 0, 0);
                 rig.angularVelocity = new Vector3(0, 0, 0);
-                this.transform.parent = collision.collider.transform;
-                rig.freezeRotation = true;
+                
+                
                 
             }
         }
