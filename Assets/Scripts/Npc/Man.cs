@@ -27,11 +27,9 @@ public class Man : Npc
         {
             this.personality = Npc_Personality.Defensive;
         }
-        //생성하고 Npc가 공격적인지 방어적인지 정해줄거임
-        //Start에서 한번만 돌려주자고~
     }
     
-    //스크린 스케일이 변하는 걸 Update로 계속해서 받아와줄지 한번 생각해봐야함;;
+    
 
     State state_check
     {
@@ -64,10 +62,7 @@ public class Man : Npc
             }
         }
     }
-
-   
     State? next_state;
-
     float sleepy_percent_check
     {
         get
@@ -83,7 +78,6 @@ public class Man : Npc
                     npc_ghost = Instantiate(ghost, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
                     Debug.Log(npc_ghost.transform.position);
                     npc_ghost.GetComponent<Ghost>().parent_npc = this;
-                    //npc_ghost.transform.position = this.transform.position;
                     npc_ghost.GetComponent<Ghost>().Move_Point(npc_room.gameObject);
                     Invoke("Go_Npc_Room", 2f);
 
@@ -185,7 +179,6 @@ public class Man : Npc
     Vector3 npc_velocity;
     private void Sleep()
     {
-        //자기 방 침대로 이동
         if (path_finding.Count > 0)
         {
             var get_door = path_finding[path_list_number].transform.parent.GetComponent<DoorScript>();
@@ -198,14 +191,19 @@ public class Man : Npc
                     this.agent.isStopped = true;
                     npc_velocity = this.agent.velocity;
                     this.agent.velocity = Vector3.zero;
+                    ///
                     get_door.OpenDoor();
-                    Invoke("Go_Npc_Room", 3f);
-                    path_list_number++;
+                    ///
+                    if(path_finding.Count != path_list_number + 1)
+                    {
+                        Invoke("Go_Npc_Room", 2f);
+                        path_list_number++;
+                    }
                 }
             }
         }
-       
 
+      
 
         //숙면
 
@@ -213,12 +211,19 @@ public class Man : Npc
         //숙면이 끝난 것을 체크
 
         //sleepy_percent = 0;
-        //if (next_state != null) 
+        //if (next_state != null)
         //{
         //    this.state = next_state.Value;
+        //    path_finding.Clear();
+        //    path_list_number = 0;
         //    next_state = null;
         //}
-        //else { this.state = State.Move; }
+        //else 
+        //{
+        //    path_finding.Clear();
+        //    path_list_number = 0;
+        //    this.state = State.Move; 
+        //}
 
 
     }
@@ -254,7 +259,6 @@ public class Man : Npc
 
     private void Trace()
     {
-        //플레이어를 쫒음
         Transform player_transform = player.transform;
         agent.SetDestination(player_transform.position);
 
@@ -265,7 +269,6 @@ public class Man : Npc
     {
         if(aggessive_trace_check == true)
         {
-            //계속 쫓음
             Transform player_transform = player.transform;
             agent.SetDestination(player_transform.position);
 
@@ -285,7 +288,7 @@ public class Man : Npc
 
     void Defensive()
     {
-        //신고 지점으로 이동
+        
     }
 
 
@@ -295,27 +298,24 @@ public class Man : Npc
    void Go_Npc_Room()
     {
         if (npc_velocity != null) { this.agent.velocity = npc_velocity; }
-
-        this.agent.SetDestination(npc_room.gameObject.transform.position);
         this.agent.isStopped = false;
-
-        
+        this.agent.SetDestination(npc_room.gameObject.transform.position);
     }
     void Go_kitchen_Room()
     {
-        agent.SetDestination(kitchen_room.gameObject.transform.position);
+        agent.SetDestination(target_room.gameObject.transform.position);
     }
     void Go_Toilet_Room()
     {
-        agent.SetDestination(toilet_room.gameObject.transform.position);
+        agent.SetDestination(target_room.gameObject.transform.position);
     }
     void Go_Water_Fountain_Room()
     {
-        agent.SetDestination(toilet_room.gameObject.transform.position);
+        agent.SetDestination(target_room.gameObject.transform.position);
     }
     void Report_Room()
     {
-        agent.SetDestination(report_room.gameObject.transform.position);
+        agent.SetDestination(target_room.gameObject.transform.position);
     }
 
 
@@ -424,6 +424,7 @@ public class Man : Npc
         yield return new WaitForSeconds(2f);
         
         StateGazeUp(this.state);
+
         ///
         sleepy_percent_check = sleepy_percent;
         hungry_percent_check = hungry_percent;

@@ -7,7 +7,10 @@ public class Map : MonoBehaviour
 {
     public int npc_amount;
 
-    public Room[] room_list;
+    public List<Room> room_list = new List<Room>();
+    /// 성준이가 건든 부분
+    public List<Room> npc_own_room = new List<Room>();
+    ///
     public Item[] telephone_list;
     public GameObject police_npc;
 
@@ -70,7 +73,7 @@ public class Map : MonoBehaviour
                     room.rd = laundryroom_data;
                     break;
             }
-            room.rd.Spawn_Item(room.item_spawn_position, room);
+            //room.rd.Spawn_Item(room.item_spawn_position, room);
         }
     }
 
