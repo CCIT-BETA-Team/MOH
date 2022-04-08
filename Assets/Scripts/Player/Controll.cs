@@ -7,7 +7,7 @@ public class Controll : MonoBehaviour
 {
 
 
- 
+    
     public const string ANIM_LAYER_NAME_THUMB = "Pinch";
     public const string ANIM_PARAM_NAME_FLEX = "Flex";
     public const string ANIM_PARAM_NAME_POSE = "Pose";
@@ -106,7 +106,7 @@ public class Controll : MonoBehaviour
             Debug.Log(string.Format("Device found with name '{0}' and role '{1}'", device.name, device.role.ToString()));
         }
     }
-    public 
+     
     // Update is called once per frame
     void Update()
     {
@@ -186,6 +186,7 @@ public class Controll : MonoBehaviour
                 Physics.Raycast(r_hand.transform.position, r_hand.transform.forward, out hit, 20);
                 if (hit.transform.GetComponent<Door>() != null)
                 {
+                    Debug.Log(" right");
                     R_preposition = r_hand.transform.localPosition;
                     r_door = hit.transform.gameObject;
                     r_fakehand.transform.position = hit.transform.position;

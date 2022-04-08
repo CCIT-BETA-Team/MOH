@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
             {
                 this.transform.parent = collision.collider.transform;
                 Debug.Log("Attached");
+
                 rig.freezeRotation = true;
                 rig.velocity = new Vector3(0, 0, 0);
                 rig.angularVelocity = new Vector3(0, 0, 0);
