@@ -15,8 +15,9 @@ public abstract class Npc : MonoBehaviour
     public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
     public List<GameObject> path_finding = new List<GameObject>();
     public GameObject player;
+    public GameObject target_spot;
     public int path_list_number = 0;
-    public int npc_speed;
+    public float npc_speed;
     public int faint_time;
     public enum Npc_Type{
         NONE,
@@ -72,7 +73,7 @@ public abstract class Npc : MonoBehaviour
 
     public float fear_percent;
 
-    public Room npc_room;
+    
     public Room target_room;
 
     public void Gazechange(float value,parametertype type)

@@ -12,9 +12,9 @@ public class Ghost : MonoBehaviour
     public List<GameObject> pathfinding_list = new List<GameObject>();
     public GameObject target;
 
+    public GameObject target_room;
     public float speed;
-    //float extraRotationSpeed = 5f;
-    bool a;
+   
 
     private void Awake()
     {
@@ -23,12 +23,6 @@ public class Ghost : MonoBehaviour
     }
     void Update()
     {
-        //a = NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, path);
-
-        //for (int i = 0; i < path.corners.Length-1; i++)
-			//Debug.DrawLine(path.corners[i], path.corners[i+1], Color.red);
-        //Vector3 lookrotation = agent.steeringTarget - transform.position;
-        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookrotation), extraRotationSpeed * Time.deltaTime);
     }
     public void Move_Point(GameObject targetroom)
     {
@@ -46,7 +40,7 @@ public class Ghost : MonoBehaviour
                 parent_npc.path_finding = pathfinding_list.ToList();
             }
         }
-        if (col.gameObject.layer == LayerMask.NameToLayer("Room"))
+        if (col.gameObject.layer == LayerMask.NameToLayer("Room") && col.gameObject == target_room)
         {
             pathfinding_list.Add(col.gameObject);
             parent_npc.path_finding = pathfinding_list.ToList();

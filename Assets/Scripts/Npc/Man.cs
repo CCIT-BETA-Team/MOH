@@ -63,6 +63,7 @@ public class Man : Npc
         }
     }
     State? next_state;
+    public Room npc_room;
     float sleepy_percent_check
     {
         get
@@ -76,10 +77,20 @@ public class Man : Npc
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     npc_ghost = Instantiate(ghost, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
-                    Debug.Log(npc_ghost.transform.position);
+                    target_room = npc_room;
+                    npc_ghost.GetComponent<Ghost>().target_room = target_room.gameObject;
+                    if(target_room.GetComponent<Room>().bed != null)
+                    {
+                        if(target_room.GetComponent<Room>().bed.GetComponent<Furniture>().bed_enter != null)
+                        target_spot =  target_room.GetComponent<Room>().bed.GetComponent<Furniture>().bed_enter;
+                        else
+                        {
+                            target_spot = target_room.GetComponent<Room>().bed;
+                        }
+                    }
                     npc_ghost.GetComponent<Ghost>().parent_npc = this;
-                    npc_ghost.GetComponent<Ghost>().Move_Point(npc_room.gameObject);
-                    Invoke("Go_Npc_Room", 2f);
+                    npc_ghost.GetComponent<Ghost>().Move_Point(target_room.gameObject);
+                    //Invoke("Go_Npc_Room", 2f);
 
                     this.state = State.SLEEP;
                 }
@@ -108,7 +119,25 @@ public class Man : Npc
             if (value >= 100)
             {
                 if (this.state == State.IDLE || this.state == State.Move)
+                {
+                    npc_ghost = Instantiate(ghost, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+                    npc_ghost.GetComponent<Ghost>().target_room = target_room.gameObject;
+                    //if (target_room.GetComponent<Room>().Kitchen != null)
+                    //{
+                    //    if (npc_room.GetComponent<Room>().Kitchen.GetComponent<Furniture>().kitchen_enter != null)
+                    //        target_spot = npc_room.GetComponent<Room>().Kitchen.GetComponent<Furniture>().kitchen_enter;
+                    //    else
+                    //    {
+                    //        target_spot = npc_room.GetComponent<Room>().Kitchen;
+                    //    }
+                    //}
+                    if (target_room.GetComponent<Room>().Kitchen == null) Debug.Log(23);
+                    npc_ghost.GetComponent<Ghost>().parent_npc = this;
+                    npc_ghost.GetComponent<Ghost>().Move_Point(target_room.gameObject);
+                    Invoke("Go_Target_Room", 2f);
+
                     this.state = State.HUNGRY;
+                }
                 else
                 {
                     if (next_state == null)
@@ -177,33 +206,81 @@ public class Man : Npc
     }
 
     Vector3 npc_velocity;
+
+
+    bool npc_movecheck = false;
+    bool first_roomopen_check = false;
     private void Sleep()
     {
         if (path_finding.Count > 0)
         {
-            var get_door = path_finding[path_list_number].transform.parent.GetComponent<DoorScript>();
-            Vector3 dis = path_finding[path_list_number].transform.position - this.transform.position;
-            if (path_finding[path_list_number].transform.parent.GetComponent<DoorScript>().Opened == false)
+            if (path_finding.Count == 1 && first_roomopen_check == false)
             {
-                agent.SetDestination(path_finding[path_list_number].gameObject.transform.position);
-                if (Vector3.SqrMagnitude(dis) <= 0.5f)
+                Go_Next_Door();
+            }
+            if(path_finding[path_list_number] != null)
+            if (path_finding[path_list_number].layer == LayerMask.NameToLayer("Door"))
+            {
+                var get_door = path_finding[path_list_number].transform.parent.GetComponent<DoorScript>();
+                Vector3 dis = path_finding[path_list_number].transform.position - this.transform.position;
+                if (path_finding[path_list_number].transform.parent.GetComponent<DoorScript>().Opened == false)
                 {
-                    this.agent.isStopped = true;
-                    npc_velocity = this.agent.velocity;
-                    this.agent.velocity = Vector3.zero;
-                    ///
-                    get_door.OpenDoor();
-                    ///
-                    if(path_finding.Count != path_list_number + 1)
+                    agent.SetDestination(path_finding[path_list_number].gameObject.transform.position);
+                    if (Vector3.SqrMagnitude(dis) <= 0.5f)
                     {
-                        Invoke("Go_Npc_Room", 2f);
-                        path_list_number++;
+                        npc_velocity = this.agent.velocity;
+                        first_roomopen_check = true;
+                        npc_movecheck = true;
+                        this.agent.isStopped = true;
+                        this.agent.velocity = Vector3.zero;
+                        
+                        ///
+                        get_door.OpenDoor();
+
+                        Invoke("Go_Target_Room", 2f);
                     }
                 }
             }
         }
 
-      
+        if(npc_movecheck)
+        {
+            if(path_finding.Count != path_list_number + 1)
+            {
+                if (path_finding[path_list_number + 1].layer == LayerMask.NameToLayer("Door"))
+                {
+                    path_list_number++;
+                    npc_movecheck = false;
+                    Go_Next_Door();
+                }
+                else if(path_finding[path_list_number + 1].layer == LayerMask.NameToLayer("Room"))
+                {
+                    //path_list_number++;
+                    if (agent.remainingDistance <= 0.5f && agent.velocity.sqrMagnitude > 0.2f * 0.2f)
+                    {
+                        //Vector3 dir = target_room.GetComponent<Room>().bed.transform.position - this.transform.position;
+                        //Quaternion rotation = Quaternion.LookRotation(dir);
+                        //this.transform.rotation = rotation;
+                        Debug.Log(23);
+                    }
+                    
+
+                }
+            }
+        }
+
+
+
+        //if (agent.remainingDistance <= 0.5f && agent.velocity.sqrMagnitude > 0.2f * 0.2f)
+        //{
+        //    Vector3 dir = target_room.GetComponent<Room>().bed.transform.position - this.transform.position;
+        //    Quaternion rotation = Quaternion.LookRotation(dir);
+        //    this.transform.rotation = rotation;
+        //}
+
+
+
+
 
         //숙면
 
@@ -227,10 +304,46 @@ public class Man : Npc
 
 
     }
+    
     private void Hungry()
     {
-        hungry_percent = 0;
-        hungry_percent_check = hungry_percent;
+        if (path_finding.Count > 0)
+        {
+            if (path_finding[path_list_number].layer == LayerMask.NameToLayer("Door"))
+            {
+                var get_door = path_finding[path_list_number].transform.parent.GetComponent<DoorScript>();
+                Vector3 dis = path_finding[path_list_number].transform.position - this.transform.position;
+                if (path_finding[path_list_number].transform.parent.GetComponent<DoorScript>().Opened == false)
+                {
+                    agent.SetDestination(path_finding[path_list_number].gameObject.transform.position);
+                    if (Vector3.SqrMagnitude(dis) <= 0.5f)
+                    {
+                        this.agent.isStopped = true;
+                        npc_velocity = this.agent.velocity;
+                        this.agent.velocity = Vector3.zero;
+                        ///
+                        get_door.OpenDoor();
+                        ///
+                        if (path_finding.Count != path_list_number + 1)
+                        {
+                            //Invoke("Go_Target_Room", 2f);
+                            path_list_number++;
+                        }
+                        else
+                        {
+                            //Invoke("Go_Target_Spot", 2f);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (agent.remainingDistance <= 0.5f && agent.velocity.sqrMagnitude > 0.2f * 0.2f)
+        {
+            Vector3 dir = target_room.GetComponent<Room>().Kitchen.transform.position - this.transform.position;
+            Quaternion rotation = Quaternion.LookRotation(dir);
+            this.transform.rotation = rotation;
+        }
     }
     private void Pee()
     {
@@ -295,30 +408,35 @@ public class Man : Npc
     /// <summary>
     /// invoke용 네비메쉬 이동 함수
     /// </summary>
-   void Go_Npc_Room()
+    
+   void Go_Next_Door()
     {
-        if (npc_velocity != null) { this.agent.velocity = npc_velocity; }
+        //this.agent.velocity = npc_velocity;
+        if(path_list_number != 0)
+        {
+            this.agent.velocity = npc_velocity;
+        }
         this.agent.isStopped = false;
-        this.agent.SetDestination(npc_room.gameObject.transform.position);
+        this.agent.SetDestination(path_finding[path_list_number].transform.position);
     }
-    void Go_kitchen_Room()
+  
+    void Go_Target_Room()
     {
+        this.agent.velocity = npc_velocity;
+        this.agent.isStopped = false;
         agent.SetDestination(target_room.gameObject.transform.position);
     }
-    void Go_Toilet_Room()
+    
+    void Go_Target_Spot()
     {
-        agent.SetDestination(target_room.gameObject.transform.position);
-    }
-    void Go_Water_Fountain_Room()
-    {
-        agent.SetDestination(target_room.gameObject.transform.position);
-    }
-    void Report_Room()
-    {
-        agent.SetDestination(target_room.gameObject.transform.position);
-    }
+        this.agent.isStopped = false;
+        this.agent.velocity = npc_velocity;
+        if (target_spot != null)
+        {
+            this.agent.SetDestination(target_spot.transform.position);
 
-
+        }
+    }
 
     void Start()
     {
@@ -337,7 +455,9 @@ public class Man : Npc
     bool report_state_check = false;
     void Update()
     {
+        //
         state_check = this.state;
+        //
       
 
         if (Check_Unit())

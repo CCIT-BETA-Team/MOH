@@ -73,7 +73,7 @@ public class Map : MonoBehaviour
                     room.rd = laundryroom_data;
                     break;
             }
-            //room.rd.Spawn_Item(room.item_spawn_position, room);
+            room.rd.Spawn_Item(room.item_spawn_position, room);
         }
     }
 
