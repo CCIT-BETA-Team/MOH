@@ -126,11 +126,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  item_name: "\uD14C\uC2A4\uD2B8 \uC544\uC774\uD15C"
   itemtype: 3
-  price: 0
+  price: 1000000
   weight: 0
   bIsMoving: 0
   bIsQuestItem: 0
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
