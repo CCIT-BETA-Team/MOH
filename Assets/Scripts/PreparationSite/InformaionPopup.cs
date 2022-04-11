@@ -13,9 +13,4 @@ public class InformaionPopup : MonoBehaviour
     public Vector2 only_main_transform;
     public float sub_transform;
     public float sub_list_transform;
-
-    void Start()
-    {
-        main_mission_text.text = "미션을 선택하세요.";
-    }
 }

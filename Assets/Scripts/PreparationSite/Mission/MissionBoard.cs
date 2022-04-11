@@ -22,6 +22,8 @@ public class MissionBoard : Item
     public Button[] btn_list;
     public Image[] btn_image_list;
 
+    public Mission mission_list;
+
     enum Animation_Events_State { BOARD_IN, BOARD_OUT }
 
     void Update()

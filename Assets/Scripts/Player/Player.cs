@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     [Header("플레이어 스테이터스")]
     public int health;
+    public int money;
     public float defaultSpped;
     public float walkingSpeed;
     public float runningSpeed;
