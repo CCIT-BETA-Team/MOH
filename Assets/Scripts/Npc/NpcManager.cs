@@ -103,4 +103,13 @@ public class NpcManager : Singleton<NpcManager>
                 break;
         }
     }
+    public GameObject Ins_Ghost(Transform npc_transform, GameObject ghost, GameObject target_item, GameObject npc_ghost, Npc npc)
+    {
+        npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
+        var ghost_info = npc_ghost.GetComponent<Ghost>();
+        ghost_info.target_room = target_item.GetComponent<Item>().parent_room.gameObject;
+        ghost_info.parent_npc = npc;
+        ghost_info.Move_Point(target_item);
+        return npc_ghost;
+    }
 }

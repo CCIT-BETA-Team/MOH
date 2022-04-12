@@ -32,7 +32,6 @@ public class Room : MonoBehaviour
     //성준이가 작업한 부분
     //public List<Room> npc_own_room = new List<Room>();
     public Map map;
-    public NpcManager npc_manager;
     //
 
     private void Awake()
@@ -40,12 +39,10 @@ public class Room : MonoBehaviour
         if(this.room_type == room_type_.BEDROOM)
         {
             map.npc_own_room.Add(this);
-            npc_manager.room_list.Add(this);
         }
         else
         {
             map.room_list.Add(this);
-            npc_manager.room_list.Add(this);
         }
     }
     ///

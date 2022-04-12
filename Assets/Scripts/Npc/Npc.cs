@@ -11,7 +11,6 @@ public class NpcStatePercent
 
 public abstract class Npc : MonoBehaviour
 {
-    public NpcManager npcmanager;
     public NavMeshAgent agent;
     public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
     public List<GameObject> path_finding = new List<GameObject>();

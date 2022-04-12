@@ -54,14 +54,6 @@ public class Man : Npc
             }
         }
     }
-    public GameObject Ins_Ghost(Transform npc_transform, GameObject ghost, GameObject target_item, GameObject npc_ghost, Npc npc)
-    {
-        npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
-        //npc_ghost.GetComponent<Ghost>().target_room = target_item.GetComponent<Item>().parent_room;
-        npc_ghost.GetComponent<Ghost>().parent_npc = npc;
-        npc_ghost.GetComponent<Ghost>().Move_Point(target_item);
-        return npc_ghost;
-    }
     State? next_state;
     public Room npc_room;
     float sleepy_percent_check
@@ -74,9 +66,7 @@ public class Man : Npc
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
 
-                    //target_item = 
-
-                    //npcmanager.Ins_Ghost(transform, ghost, target_item, npc_ghost, this);
+                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     this.state = State.SLEEP;
                 }
                 else{ if(next_state == null ){next_state = State.SLEEP;} }
