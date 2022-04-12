@@ -40,7 +40,6 @@ public abstract class Npc : MonoBehaviour
         IDLE,//대기
         Move,//정찰
         SLEEP,//졸림
-        HUNGRY,//배고픔
         PEE,//화장실
         THIRST,//목마름
         REPORT,//신고
@@ -55,7 +54,6 @@ public abstract class Npc : MonoBehaviour
     {
         NONE,
         SLEEP,
-        HUNGRY,
         PEE,
         THIRST,
         FEAR
@@ -107,7 +105,6 @@ public abstract class Npc : MonoBehaviour
     public void Allup(float value,bool Fear_Check)
     {
         Gazechange(value * (Random.value / 3), parametertype.SLEEP);
-        Gazechange(value * (Random.value / 3), parametertype.HUNGRY);
         Gazechange(value * (Random.value / 3), parametertype.PEE);
         Gazechange(value * (Random.value / 3), parametertype.THIRST);
         if(Fear_Check)
@@ -124,22 +121,14 @@ public abstract class Npc : MonoBehaviour
                 Allup(3, false);
                 break;
             case State.SLEEP :
-                Gazechange(3, parametertype.HUNGRY);
-                Gazechange(3, parametertype.PEE);
-                Gazechange(3, parametertype.THIRST);
-                break;
-            case State.HUNGRY :
-                Gazechange(3, parametertype.SLEEP);
                 Gazechange(3, parametertype.PEE);
                 Gazechange(3, parametertype.THIRST);
                 break;
             case State.PEE :
-                Gazechange(3, parametertype.HUNGRY);
                 Gazechange(3, parametertype.SLEEP);
                 Gazechange(3, parametertype.THIRST);
                 break;
             case State.THIRST :
-                Gazechange(3, parametertype.HUNGRY);
                 Gazechange(3, parametertype.PEE);
                 Gazechange(3, parametertype.SLEEP);
                 break;

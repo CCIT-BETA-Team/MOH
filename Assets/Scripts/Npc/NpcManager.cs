@@ -30,7 +30,7 @@ public class NpcManager : Singleton<NpcManager>
     {
         switch (state)
         {
-            case global::Npc.State.HUNGRY:
+            case global::Npc.State.ATTACK:
                 //return Map_Transform[0];
                 break;
         }
