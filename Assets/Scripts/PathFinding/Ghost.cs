@@ -20,6 +20,7 @@ public class Ghost : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         path = new NavMeshPath();
+        
     }
     void Update()
     {
@@ -32,15 +33,12 @@ public class Ghost : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Door") && col.gameObject.transform.parent.GetComponent<DoorScript>().Opened == false)//col.gameObject.layer == LayerMask.NameToLayer("Room") || 
+        if (col.gameObject.layer == 9)//col.gameObject.layer == LayerMask.NameToLayer("Room") || 
         {
-            if(col.gameObject.layer == LayerMask.NameToLayer("Door"))
-            {
                 pathfinding_list.Add(col.gameObject);
                 parent_npc.path_finding = pathfinding_list.ToList();
-            }
         }
-        if (col.gameObject.layer == LayerMask.NameToLayer("Room") && col.gameObject == target_room)
+        if (col.gameObject.layer ==10 && col.gameObject == target_room)
         {
             pathfinding_list.Add(col.gameObject);
             parent_npc.path_finding = pathfinding_list.ToList();
