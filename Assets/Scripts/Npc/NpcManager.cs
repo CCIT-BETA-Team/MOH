@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcManager : MonoBehaviour
+public class NpcManager : Singleton<NpcManager>
 {
     [Header("NPC 오브젝트 프리펩")]
     public Map map;
@@ -14,12 +14,15 @@ public class NpcManager : MonoBehaviour
     public List<Transform> Map_Transform = new List<Transform>();
     public List<Room> room_list = new List<Room>();
 
-    //public List<List<>>
+    [Header("아이템 분류 리스트")]
+    public List<Item> sleep_items = new List<Item>();
+    public List<Item> pee_items = new List<Item>();
+    public List<Item> thirsty_items = new List<Item>();
+    public List<Item> phone_items = new List<Item>();
+    public List<Item> none_items = new List<Item>();
 
-    private void Awake()
-    {
-        Spawn_Npc();
-    }
+//public List<List<>>
+
     public Transform request() { return this.transform; }
     //오버로딩으로 경찰스폰이랑 일반 npc스폰 다르게
 
@@ -44,7 +47,7 @@ public class NpcManager : MonoBehaviour
         return n;
     }
 
-    void Spawn_Npc()
+    public void Spawn_Npc()
     {
         for(int i = 0; i < map.npc_amount; i++) 
         {
@@ -77,5 +80,27 @@ public class NpcManager : MonoBehaviour
             else { r = null; }
         }
         return r;
+    }
+
+    public void Sort_Out_Items(Item i, Item.parameterType pt)
+    {
+        switch(pt)
+        {
+            case Item.parameterType.SLEEP:
+                sleep_items.Add(i);
+                break;
+            case Item.parameterType.PEE:
+                pee_items.Add(i);
+                break;
+            case Item.parameterType.THIRSTY:
+                thirsty_items.Add(i);
+                break;
+            case Item.parameterType.PHONE:
+                phone_items.Add(i);
+                break;
+            case Item.parameterType.NONE:
+                none_items.Add(i);
+                break;
+        }
     }
 }
