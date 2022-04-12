@@ -11,12 +11,19 @@ public class NpcStatePercent
 
 public abstract class Npc : MonoBehaviour
 {
+    public NpcManager npcmanager;
     public NavMeshAgent agent;
     public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
     public List<GameObject> path_finding = new List<GameObject>();
+    //
     public GameObject player;
     public GameObject target_spot;
-    public int path_list_number = 0;
+    //
+    public GameObject ghost;
+    public GameObject npc_ghost;
+    //
+    public GameObject target_item;
+    //
     public float npc_speed;
     public int faint_time;
     public enum Npc_Type{
@@ -64,8 +71,6 @@ public abstract class Npc : MonoBehaviour
     [Range(0, 100)]
     public float sleepy_percent;
     [Range(0, 100)]
-    public float hungry_percent;
-    [Range(0, 100)]
     public float pee_percent;
     [Range(0, 100)]
     public float thirst_percent;
@@ -83,10 +88,6 @@ public abstract class Npc : MonoBehaviour
             case parametertype.SLEEP:
                 if (sleepy_percent <= 100f)
                     sleepy_percent += value * (Random.value);
-                break;
-            case parametertype.HUNGRY:
-                if (hungry_percent <= 100f)
-                    hungry_percent += value * (Random.value);
                 break;
             case parametertype.PEE:
                 if (pee_percent <= 100f)
