@@ -6,12 +6,19 @@ public class MissionCard : MonoBehaviour
 {
     public Mission mission;
     public InfoCard ic;
+    public MissionSpawn ms;
     public WhiteBoard mi;
     public InformaionPopup ip;
 
+    public void Setting()
+    {
+        mission = ms.get_mission();
+        mission.setting_environment();
+    }
+
     void OnMouseEnter()
     {
-        mission.InfoCard_Update(ic);
+        mission.InfoCard_Update(ic, this);
         ic.gameObject.SetActive(true);
     }
 
