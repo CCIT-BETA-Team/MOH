@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Police : Npc
 {
-   
-
-
     public override void Select_Personality()
     {
         // 필요 없음
@@ -17,7 +14,6 @@ public class Police : Npc
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Choose(asd);
