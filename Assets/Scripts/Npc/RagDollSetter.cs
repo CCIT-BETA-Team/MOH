@@ -30,7 +30,7 @@ public class RagDollSetter : MonoBehaviour
 
     private void Update()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         if(Input.GetKeyDown(KeyCode.G))
         {
         

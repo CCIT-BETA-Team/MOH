@@ -16,6 +16,7 @@ public class Watch : MonoBehaviour
     [Range(0, 3)]
     public int currnet_watch_mode=0;
     public Transform shoting_position;
+    public Transform lazer_position;
 
     public GameObject stun_bullet;
     public GameObject sleep_bullet;
@@ -40,51 +41,64 @@ public class Watch : MonoBehaviour
     }
     public void Interaction_shot()
     {
-        RaycastHit target;
-        bool taregting = false;
-       
-        Physics.Raycast(shoting_position.position, -shoting_position.up, out target, 100);
-        if (target.point != null)
+        if (Glass.GetInt("_Current_View") == 0)
         {
-            taregting = true;
-            Debug.Log("Targeting");
-        }
-        GameObject bullet=null;
-        switch (watch_mode)
-    {
-            case Shot_mode.SLEEP:
-                //Shot せせ
-                break;
-            case Shot_mode.STUN:
-                //Shot せせ
-                break;
-            case Shot_mode.CAM:             
-                bullet = cam_bullet[current_shot_count];
-                switch(current_shot_count)
+
+
+            RaycastHit target;
+            bool taregting = false;
+
+            Physics.Raycast(lazer_position.position, lazer_position.forward, out target, 100);
+            if (target.point != null)
+            {
+                taregting = true;
+                Debug.Log("Targeting");
+            }
+            GameObject bullet = null;
+            if (current_shot_count <= maximum_shotting)
+            {
+
+
+                switch (watch_mode)
                 {
-                    case 0:
-                        cam_1 = true;
-                        Glass.SetInt("_Camera1",1);
+                    case Shot_mode.SLEEP:
+                        //Shot せせ
                         break;
-                    case 1:
-                        cam_2 = true;
-                        Glass.SetInt("_Camera2", 1);
+                    case Shot_mode.STUN:
+                        //Shot せせ
                         break;
-                    case 2:
-                        cam_3 = true;
-                        Glass.SetInt("_Camera3", 1);
+                    case Shot_mode.CAM:
+                        bullet = cam_bullet[current_shot_count];
+                        switch (current_shot_count)
+                        {
+                            case 0:
+                                cam_1 = true;
+                                Glass.SetInt("_Camera1", 1);
+                                break;
+                            case 1:
+                                cam_2 = true;
+                                Glass.SetInt("_Camera2", 1);
+                                break;
+                            case 2:
+                                cam_3 = true;
+                                Glass.SetInt("_Camera3", 1);
+                                break;
+                        }
+
                         break;
-                }       
-                
-                break;
+                }
+
+                GameObject i_bullet = Instantiate(bullet, shoting_position.position, shoting_position.rotation);
+                if (taregting)
+                {
+                    Debug.Log("Targetting");
+                    i_bullet.transform.LookAt(target.point);
+                }
+                i_bullet.GetComponent<Bullet>().Burst();
+                current_shot_count += 1;
+            
+            }
         }
-        GameObject i_bullet = Instantiate(bullet, shoting_position.position, transform.rotation);
-        if (taregting)
-        {
-            i_bullet.transform.LookAt(target.point);
-        }
-        i_bullet.GetComponent<Bullet>().Bust();
-        current_shot_count += 1;
     }
     public void Interaction_change()
     {
@@ -138,7 +152,7 @@ public class Watch : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-        Debug.DrawRay(shoting_position.position, -shoting_position.up, Color.black);
+        Debug.DrawRay(lazer_position.position, lazer_position.forward, Color.black);
         if (Input.GetKeyDown(KeyCode.Tab))
        {
             

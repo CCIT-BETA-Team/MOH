@@ -37,9 +37,9 @@ public class Switch : Item
     {
 
         #if UNITY_EDITOR
-        if (Input.anyKey)
+       // if (Input.anyKey)
         {
-            interaction();
+        //    interaction();
         }
         #endif
     }
