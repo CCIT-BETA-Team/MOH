@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -17,10 +18,12 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         //게임 준비단계 (매니저들한테서 이것저것 단계별설정 여기서 ㄱ)
+
+        //NpcManager.instance.Spawn_Npc(); //NPC 스폰
     }
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Backspace)) { PlayerPrefs.DeleteAll(); }
     }
 }
