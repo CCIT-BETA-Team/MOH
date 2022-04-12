@@ -128,11 +128,11 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
-    - _Camera1: 1
+    - _Camera1: 0
     - _Camera1_Set: 1
-    - _Camera2: 1
+    - _Camera2: 0
     - _Camera2_Set: 1
-    - _Camera3: 1
+    - _Camera3: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2

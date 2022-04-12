@@ -171,8 +171,6 @@ public class Controll : MonoBehaviour
         if (l_device.TryGetFeatureValue(l_uses2, out l_secondarybutton) && l_secondarybutton)
         {
             Debug.Log(" Trigger    :   " + l_secondarybutton);
-
-
         }
 
         bool r_tirggerButtonAction = false;
@@ -238,7 +236,7 @@ public class Controll : MonoBehaviour
         if(l_device.TryGetFeatureValue(l_stick,out l_2daxis)&& l_2daxis!=Vector2.zero)
         {
             Vector3 Dir = transform.forward * l_2daxis.y * speed + transform.right * l_2daxis.x * speed;
-            chacontroll.Move(Dir);
+            //chacontroll.Move(Dir);
         }
 
 
