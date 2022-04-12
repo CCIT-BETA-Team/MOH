@@ -1463,7 +1463,7 @@ MonoBehaviour:
   state: 1
   parameter: 0
   personality: 0
-  sleepy_percent: 99.99
+  sleepy_percent: 99.9
   hungry_percent: 0
   pee_percent: 12
   thirst_percent: 0
@@ -1476,7 +1476,7 @@ MonoBehaviour:
   attack_range: 0
   sound: {fileID: 20320833}
   ghost: {fileID: 3263810280660732973, guid: 4499fdd9621cc0843969962a4e081462, type: 3}
-  npc_room: {fileID: 990235131}
+  npc_room: {fileID: 465631020}
 --- !u!4 &20320829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2501ce0aadc935a45b3fa09349416ae1, type: 3}
@@ -16784,9 +16784,8 @@ MonoBehaviour:
   item_spawn_position: []
   npc_spawn_position: []
   telephone: {fileID: 0}
-  bed: {fileID: 718444060}
-  Kitchen: {fileID: 0}
   neighbor_room: []
+  Furniture: []
   rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
   default_value: 0
   door_open_amont: 0
@@ -26173,11 +26172,6 @@ MonoBehaviour:
     volume: 0.5
   is_continuous: 0
   is_glass: 0
---- !u!1 &718444060 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 189428, guid: 7352290823b82b846867cd4849078339, type: 3}
-  m_PrefabInstance: {fileID: 2004257883}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &718752730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34681,9 +34675,8 @@ MonoBehaviour:
   item_spawn_position: []
   npc_spawn_position: []
   telephone: {fileID: 0}
-  bed: {fileID: 0}
-  Kitchen: {fileID: 1674423654}
   neighbor_room: []
+  Furniture: []
   rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
   default_value: 0
   door_open_amont: 0
@@ -39957,6 +39950,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6594724, guid: f38c661e1ca78ab409eda72d74c6e797, type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496544, guid: f38c661e1ca78ab409eda72d74c6e797, type: 3}
+      propertyPath: Opened
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11496544, guid: f38c661e1ca78ab409eda72d74c6e797, type: 3}
@@ -67065,9 +67062,8 @@ MonoBehaviour:
   item_spawn_position: []
   npc_spawn_position: []
   telephone: {fileID: 0}
-  bed: {fileID: 0}
-  Kitchen: {fileID: 0}
   neighbor_room: []
+  Furniture: []
   rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
   default_value: 0
   door_open_amont: 0

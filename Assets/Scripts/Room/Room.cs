@@ -12,9 +12,8 @@ public class Room : MonoBehaviour
     public List<ItemSpot> item_spawn_position = new List<ItemSpot>();
     public List<GameObject> npc_spawn_position = new List<GameObject>();
     public GameObject telephone;
-    public GameObject bed;
-    public GameObject Kitchen;
     public List<Room> neighbor_room = new List<Room>();
+    public GameObject[] Furniture;
 
     [Header("∑Î µ•¿Ã≈∏")]
     public RoomData rd;
