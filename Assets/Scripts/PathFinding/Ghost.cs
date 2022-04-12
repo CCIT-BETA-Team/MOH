@@ -25,10 +25,10 @@ public class Ghost : MonoBehaviour
     void Update()
     {
     }
-    public void Move_Point(GameObject targetroom)
+    public void Move_Point(GameObject target_item)
     {
-        target = targetroom;
-        agent.SetDestination(targetroom.transform.position);
+        target = target_item;
+        agent.SetDestination(target_item.transform.position);
     }
 
     void OnTriggerEnter(Collider col)
@@ -42,6 +42,7 @@ public class Ghost : MonoBehaviour
         {
             pathfinding_list.Add(col.gameObject);
             parent_npc.path_finding = pathfinding_list.ToList();
+            parent_npc.npc_ghost = null;
             Destroy(gameObject);
         }
     }
