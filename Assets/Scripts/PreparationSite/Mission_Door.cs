@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mission_Door : Item
 {
@@ -20,5 +21,7 @@ public class Mission_Door : Item
     {
         Debug.Log(select_mission.name + " Start!");
         //문 열리는 애니메이션 이후 씬전환 굳굳
+
+        SceneManager.LoadScene(select_mission.mission_scene);
     }
 }
