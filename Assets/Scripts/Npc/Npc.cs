@@ -15,6 +15,8 @@ public abstract class Npc : MonoBehaviour
     public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
     public List<GameObject> path_finding = new List<GameObject>();
     //
+    Animator anim;
+    //
     public GameObject player;
     public GameObject target_spot;
     //
