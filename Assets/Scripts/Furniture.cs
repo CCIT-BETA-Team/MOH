@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Furniture : MonoBehaviour
+public class Furniture : Item
 {
-    public GameObject bed_enter;
-    public GameObject kitchen_enter;
+    [Space]
+    public Transform spot;
+    public Vector3 anim_view_dir;
+    private void Awake()
+    {
+        enter_spot = spot;
+    }
+    public override void interaction()
+    {
+
+    }
 }

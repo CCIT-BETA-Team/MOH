@@ -8,12 +8,10 @@ public class Man : Npc
     RaycastHit hit;//레이
     int layermask = 1 << 6;
 
-
     public Camera cam;//Npc 눈
     public float attack_range;//임의 값 설정
     public AudioSource sound;
     
-
     public override void Select_Personality()
     {
         int a = Random.Range(0, 2);
@@ -26,6 +24,7 @@ public class Man : Npc
             this.personality = Npc_Personality.Defensive;
         }
     }
+
     State state_check
     {
         get
@@ -54,16 +53,9 @@ public class Man : Npc
             }
         }
     }
-    public GameObject Ins_Ghost(Transform npc_transform, GameObject ghost, GameObject target_item, GameObject npc_ghost, Npc npc)
-    {
-        npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
-        //npc_ghost.GetComponent<Ghost>().target_room = target_item.GetComponent<Item>().parent_room;
-        npc_ghost.GetComponent<Ghost>().parent_npc = npc;
-        npc_ghost.GetComponent<Ghost>().Move_Point(target_item);
-        return npc_ghost;
-    }
+
     State? next_state;
-    public Room npc_room;
+
     float sleepy_percent_check
     {
         get{ return sleepy_percent; }
@@ -73,10 +65,10 @@ public class Man : Npc
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
-
-                    //target_item = 
-
-                    //npcmanager.Ins_Ghost(transform, ghost, target_item, npc_ghost, this);
+                    //int count = Random.Range(0, NpcManager.instance.sleep_items.Count);
+                    //target_item = NpcManager.instance.sleep_items[count].gameObject; 
+                    npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
+                    this.agent.enabled = true;
                     this.state = State.SLEEP;
                 }
                 else{ if(next_state == null ){next_state = State.SLEEP;} }
@@ -98,7 +90,12 @@ public class Man : Npc
             if (value >= 100)
             {
                 if (this.state == State.IDLE || this.state == State.Move)
+                {
+                    int count = Random.Range(0, NpcManager.instance.pee_items.Count);
+                    target_item = NpcManager.instance.pee_items[count].gameObject;
+                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     this.state = State.PEE;
+                }
                 else
                 {
                     if (next_state == null)
@@ -124,7 +121,12 @@ public class Man : Npc
             if (value >= 100)
             {
                 if (this.state == State.IDLE || this.state == State.Move)
+                {
+                    int count = Random.Range(0, NpcManager.instance.thirsty_items.Count);
+                    target_item = NpcManager.instance.thirsty_items[count].gameObject;
+                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     this.state = State.THIRST;
+                }
                 else
                 {
                     if (next_state == null)
@@ -140,8 +142,9 @@ public class Man : Npc
         }
     }
 
-
+    //
     GameObject Close_Door_Save;
+
     void Reback_Velocity()
     {
         //
@@ -156,16 +159,19 @@ public class Man : Npc
         this.agent.isStopped = false;
         opening_check = false;
     }
+
     void For_Close_Door_Delay() // invoke
     {
         if(Close_Door_Save != null) { Close_Door_Save.GetComponent<DoorScript>().CloseDoor();  Close_Door_Save = null; }
     }
+    //
+
     public bool opening_check = false;
+
     private void Sleep()
     {
         if (npc_ghost != null && opening_check == false)
         {
-            if(this.agent.enabled == true)
             this.agent.SetDestination(npc_ghost.transform.position);
         }
         else if (npc_ghost == null && opening_check == false)
@@ -180,10 +186,11 @@ public class Man : Npc
                 else if(path_finding[0].layer == 10) //Room
                 {
                     if (this.agent.enabled == true)
-                        this.agent.SetDestination(target_item.transform.position);
+                        this.agent.SetDestination(target_item.GetComponent<Item>().enter_spot.transform.position);
                 }
             }
         }
+
         if(path_finding.Count > 0)
         {
             if(path_finding[0].layer == 9)//Door
@@ -200,212 +207,42 @@ public class Man : Npc
                         door_info.OpenDoor();
                         //
                         
-                        
-                        //
-                        
-                        //
                         Invoke("Reback_Velocity", 2f);
-
                     }
                 }
                 else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
                 {
-                    //
+                    Vector3 dis = path_finding[0].transform.position - transform.position;
+
+                    if(Vector3.SqrMagnitude(dis) <= 0.5f)
+                    {
+                        int random_close_door = Random.Range(0, 2);
+                        if (random_close_door == 0) { Close_Door_Save = path_finding[0].transform.parent.gameObject; Invoke("For_Close_Door_Delay", 1f); }
+
+                        path_finding.RemoveAt(0);
+                        if (npc_ghost != null)
+                            npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
+                    }
                 }
             }
             else if (path_finding[0].layer == 10)//Room
             {
-                Vector3 dis_room = target_item.transform.position - this.transform.position;
-                if(Vector3.SqrMagnitude(dis_room) <= 3f)
+                Vector3 dir = target_item.transform.position - transform.position;
+                if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
                 {
-                    this.agent.enabled = false;
-                    this.transform.LookAt(target_item.transform);
-
+                    transform.rotation = Quaternion.LookRotation(dir).normalized;
+                }
+                if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance <= 0.025f) // agent.remainingDistance 
+                {
+                    
                 }
             }
         }
 
-        
-        //else if(path_finding.Count > 2)
-        //{
-        //    if(path_finding[1].layer == 9) 
-        //    {
-        //        if (path_finding[1].transform.parent.GetComponent<DoorScript>().Opened)
-        //        {
-        //        }
-        //        else
-        //        {
-        //            var get_door = path_finding[1].transform.parent.GetComponent<DoorScript>();
-        //            Vector3 dis = path_finding[1].transform.position - this.transform.position;
-        //            if(Vector3.SqrMagnitude(dis) < 0.5f)
-        //            {
-        //                npc_velocity = this.agent.velocity;
-        //                this.agent.isStopped = true;
-        //                this.agent.velocity = Vector3.zero;
-
-        //                get_door.OpenDoor();
-
-        //            }
-
-        //        }
-        //    }
-            
-
-        //}
-        #region
-        //if(path_finding.Count > 0)
-        //{
-        //    if(path_finding.Count == 1 && first_roomopen_check == false)
-        //    {
-        //        if(present_target.layer == 9)//Door
-        //        {
-        //            if (present_target.transform.parent.GetComponent<DoorScript>().Opened == false)
-        //            {
-        //                Go_Next_Door();
-        //                path_list_number++;
-        //                var get_door = present_target.transform.parent.GetComponent<DoorScript>();
-        //                Vector3 dis = present_target.transform.position - this.transform.position;
-        //                if(Vector3.SqrMagnitude(dis) <= 0.5f)
-        //                {
-        //                    npc_velocity = this.agent.velocity;
-        //                    this.agent.isStopped = true;
-        //                    this.agent.velocity = Vector3.zero;
-        //                    get_door.OpenDoor();
-        //                    Invoke("room_open_check", 2f);
-        //                }
-        //            }
-        //            else if (present_target.transform.parent.GetComponent<DoorScript>().Opened)
-        //            {
-        //                Go_Target_Room();
-        //                npc_movecheck = true;
-        //                path_list_number++;
-        //                var get_door = present_target.transform.parent.GetComponent<DoorScript>();
-        //                Vector3 dis = present_target.transform.position - this.transform.position;
-        //                if (Vector3.SqrMagnitude(dis) <= 0.5f)
-        //                {
-        //                    npc_velocity = this.agent.velocity;
-        //                    this.agent.isStopped = true;
-        //                    this.agent.velocity = Vector3.zero;
-        //                    get_door.OpenDoor();
-        //                    Invoke("room_open_check", 2f);
-        //                }
-        //            }
-        //        }
-        //        else if(present_target.layer == 10)//Room
-        //        {
-        //            Go_Target_Room();
-        //            npc_movecheck = true;
-        //            path_list_number++;
-        //            first_roomopen_check = true;
-        //        }
-        //    }
-
-        //    if(path_finding.Count > 1 && first_roomopen_check == true)
-        //    {
-
-        //    }
-        //}
-        //var present_target = path_finding[path_list_number];
-        //if (path_finding.Count > 0)
-        //{
-        //    if (path_finding.Count == 1 && first_roomopen_check == false)
-        //    {
-        //        if (present_target.layer == LayerMask.NameToLayer("Door"))
-        //        {
-        //            if (present_target.transform.parent.GetComponent<DoorScript>().Opened)
-        //            {
-        //                Go_Target_Room();
-        //                npc_movecheck = true;
-        //            }
-        //            else if (present_target.transform.parent.GetComponent<DoorScript>().Opened == false)
-        //            {
-        //                Go_Next_Door();
-
-        //                var get_door = present_target.transform.parent.GetComponent<DoorScript>();
-        //                Vector3 dis = present_target.transform.position - this.transform.position;
-        //                if (present_target.transform.parent.GetComponent<DoorScript>().Opened == false)
-        //                {
-        //                    agent.SetDestination(present_target.gameObject.transform.position);
-        //                    if (Vector3.SqrMagnitude(dis) <= 0.5f)
-        //                    {
-        //                        npc_velocity = this.agent.velocity;
-        //                        first_roomopen_check = true;
-        //                        this.agent.isStopped = true;
-        //                        this.agent.velocity = Vector3.zero;
-
-        //                        ///
-        //                        get_door.OpenDoor();
-        //                        ///
-
-        //                        Invoke("Go_Target_Room", 2f);
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        else if(present_target.layer == LayerMask.NameToLayer("Room")) { }
-        //    }
-        //   }
-        //if (present_target.layer == LayerMask.NameToLayer("Door"))
-        //{
-        //    var get_door = present_target.transform.parent.GetComponent<DoorScript>();
-        //    Vector3 dis = present_target.transform.position - this.transform.position;
-        //    if (present_target.transform.parent.GetComponent<DoorScript>().Opened == false)
-        //    {
-        //        agent.SetDestination(present_target.gameObject.transform.position);
-        //        if (Vector3.SqrMagnitude(dis) <= 0.5f)
-        //        {
-        //            npc_velocity = this.agent.velocity;
-        //            first_roomopen_check = true;
-        //            this.agent.isStopped = true;
-        //            this.agent.velocity = Vector3.zero;
-
-        //            ///
-        //            get_door.OpenDoor();
-        //            ///
-
-        //            Invoke("Go_Target_Room", 2f);
-        //        }
-        //    }
-        //else if (path_finding[path_list_number].transform.parent.GetComponent<DoorScript>().Opened)
-        //{
-        //    npc_movecheck = true;
-        //    first_roomopen_check = true;
-        //}
-
-        //if (npc_movecheck)
-        //{
-        //    if (path_finding.Count != path_list_number + 1)
-        //    {
-        //        if (path_finding[path_list_number + 1].layer == LayerMask.NameToLayer("Door"))
-        //        {
-        //            path_list_number++;
-        //            npc_movecheck = false;
-        //            Go_Next_Door();
-        //        }
-        //        else if (path_finding[path_list_number + 1].layer == LayerMask.NameToLayer("Room"))
-        //        {
-        //            path_list_number++;
-        //            if (agent.remainingDistance <= 0.5f && agent.velocity.sqrMagnitude > 0.2f * 0.2f)
-        //            {
-        //            }
-        //        }
-        //    }
-        //}
 
 
-        //        }
-        //    }
-        //}
-
-
-        #endregion
     }
 
-    private void Hungry()
-    {
-       
-   
-    }
     private void Pee()
     {
         pee_percent = 0;
