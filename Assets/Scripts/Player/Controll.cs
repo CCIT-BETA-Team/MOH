@@ -34,7 +34,7 @@ public class Controll : MonoBehaviour
     public GameObject r_fakehand;
     public GameObject r_mesh;
 
-
+    int doorlayer;
     public XRNode Lhand;
     public XRNode Rhand;
 
@@ -96,7 +96,8 @@ public class Controll : MonoBehaviour
     }
     void Start()
     {
-
+        doorlayer = 1<< LayerMask.NameToLayer("Door"); 
+        Debug.Log("Door code" + doorlayer);
         chacontroll = GetComponent<CharacterController>();
         var inputDevices = new List<UnityEngine.XR.InputDevice>();
         UnityEngine.XR.InputDevices.GetDevices(inputDevices);
@@ -123,7 +124,7 @@ public class Controll : MonoBehaviour
             RaycastHit hit;
             if (l_door == null)
             {
-                Physics.Raycast(l_hand.transform.position, l_hand.transform.forward, out hit, 20);
+                Physics.Raycast(l_hand.transform.position, l_hand.transform.forward, out hit, 20, doorlayer);
                 if (hit.transform.GetComponent<Door>() != null)
                 {
                     L_preposition = l_hand.transform.localPosition;
@@ -181,7 +182,7 @@ public class Controll : MonoBehaviour
             if(r_door ==null)
             {
 
-                Physics.Raycast(r_hand.transform.position, r_hand.transform.forward, out hit, 20);
+                Physics.Raycast(r_hand.transform.position, r_hand.transform.forward, out hit, 20, doorlayer);
                 if (hit.transform.GetComponent<Door>() != null)
                 {
                     Debug.Log(" right");

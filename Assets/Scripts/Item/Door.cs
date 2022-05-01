@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : Item
 {
-    public bool isLock;
+    public bool isLock =false;
     Rigidbody rg;
     float value;
     public float sensitivity = 10f;
