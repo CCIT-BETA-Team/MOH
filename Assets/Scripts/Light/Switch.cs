@@ -69,7 +69,7 @@ public class Switch : Item
 
                     for (int i = 0; i < Lightings.Count; i++)
                     {
-                        Lightings[i].on_off = true;
+                        Lightings[i].electricity_property = true;
                         lever.transform.rotation = Quaternion.Euler(on_rotation);
                     }
                     break;
@@ -77,7 +77,7 @@ public class Switch : Item
                     //animation controll
                     for (int i = 0; i < Lightings.Count; i++)
                     {
-                        Lightings[i].on_off = false;
+                        Lightings[i].electricity_property = false;
                         lever.transform.rotation = Quaternion.Euler(off_rotation);
                     }
                     break;

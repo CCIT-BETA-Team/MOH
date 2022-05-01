@@ -12,7 +12,7 @@ public class Lighting : MonoBehaviour
     public bool on_off = false;
     public float cool = 0.0f;
     public List<Animation> light_ani = new List<Animation>();
-
+    public bool player_lighting = false;
     private float light_range;
     
 
@@ -149,6 +149,10 @@ public class Lighting : MonoBehaviour
         if(collision.transform.tag=="Player"&& on_off&&!broken)
         {
         //플레이어 상태치 변경
+        }
+        if(collision.gameObject.GetComponent<Item>()!=null&& player_lighting)
+        {
+            
         }
     }
 }
