@@ -154,6 +154,7 @@ public abstract class Npc : MonoBehaviour
         }
     }
 
+    /// 
     public Texture2D player_texture;
     public RenderTexture tex;
     public Texture2D uv_tex=null;
@@ -176,7 +177,7 @@ public abstract class Npc : MonoBehaviour
             return uv_tex;
         }
     }
-
+    /// 
 
 
 
