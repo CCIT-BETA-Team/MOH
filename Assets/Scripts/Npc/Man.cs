@@ -307,7 +307,9 @@ public class Man : Npc
         this.state = State.IDLE;
         Select_Personality();
         StartCoroutine(State_Gaze_Change());
+        //
         player_texture = (Texture2D)player.GetComponent<MeshRenderer>().material.mainTexture;
+        //
         //player_texture = player.GetComponent<MeshRenderer>().material.mainTexture;
     }
     Color player_texture_Color;
@@ -330,20 +332,20 @@ public class Man : Npc
             {
                 if (hit.transform.gameObject.layer == 6)//player
                 {
-                    miss_player = false;
-                    Vector2 player_uv = hit.textureCoord;
-                    Vector2 screen_pos = cam.WorldToViewportPoint(player.transform.position);
-                    player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
-                    screen_uv_color = uv_texture(tex).GetPixel((int)(Screen.width * screen_pos.x), (int)(Screen.height * screen_pos.y));
-                    if (screen_uv_color.r + screen_uv_color.g + screen_uv_color.b < 0.1f) { }
-                    else
-                    {
-                        if (this.state != State.REPORT)
-                        {
-                            fear_percent = 100;
-                            Fear_Check();
-                        }
-                    }
+                    //miss_player = false;
+                    //Vector2 player_uv = hit.textureCoord;
+                    //Vector2 screen_pos = cam.WorldToViewportPoint(player.transform.position);
+                    //player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
+                    //screen_uv_color = uv_texture(tex).GetPixel((int)(Screen.width * screen_pos.x), (int)(Screen.height * screen_pos.y));
+                    //if (screen_uv_color.r + screen_uv_color.g + screen_uv_color.b < 0.1f) { }
+                    //else
+                    //{
+                    //    if (this.state != State.REPORT)
+                    //    {
+                    //        fear_percent = 100;
+                    //        Fear_Check();
+                    //    }
+                    //}
                     //Debug.Log("Pixel position   :   "+screen_pos.x +"   "+screen_pos.y);
                     //Debug.Log("Color R : " + player_texture_Color.r + " , " + "Color G : " + +player_texture_Color.g + " , " + "Color B : " + +player_texture_Color.b + " , " + "Texture uv Pixel Color");
                     //Debug.Log("Color R : " + screen_uv_color.r + " , " + "Color G : " + + screen_uv_color.g + " , "+"Color B : " + + screen_uv_color.b + " , "+ "Scene uv Pixel Color");
