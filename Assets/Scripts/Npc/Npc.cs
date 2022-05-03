@@ -15,7 +15,7 @@ public abstract class Npc : MonoBehaviour
     public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
     public List<GameObject> path_finding = new List<GameObject>();
     //
-    Animator anim;
+    public Animator anim;
     //
     public GameObject player;
     public GameObject target_spot;
@@ -24,6 +24,11 @@ public abstract class Npc : MonoBehaviour
     public GameObject npc_ghost;
     //
     public GameObject target_item;
+    //
+    public RaycastHit hit;//레이
+    public int player_layermask = 1 << 6;
+    public float attack_range;//임의 값 설정
+    public AudioSource sound;
     //
     public float npc_speed;
     public int faint_time;
@@ -214,7 +219,12 @@ public abstract class Npc : MonoBehaviour
 
     }
 
-   
+
+    public void Pathfinding_List_Initialization()
+    {
+        path_finding = new List<GameObject>();
+    }
+
 
 
 
@@ -224,4 +234,7 @@ public abstract class Npc : MonoBehaviour
     public abstract void Select_Personality();
 
     
+
+
+
 }
