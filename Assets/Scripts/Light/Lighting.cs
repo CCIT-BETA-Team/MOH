@@ -13,6 +13,9 @@ public class Lighting : MonoBehaviour
     public float cool = 0.0f;
     public List<Animation> light_ani = new List<Animation>();
 
+    private float light_range;
+    
+
     public bool broke_property
     {
         get
@@ -23,11 +26,17 @@ public class Lighting : MonoBehaviour
     public bool electricity_property { get { return electricity; } set { electricity = value; Light_Update(); } }
     private void Start()
     {
-        if (GetComponent<Light>() != null)
+    
+       
+        light_range = light.range;
+        if(GetComponent<SphereCollider>()==null)
         {
-            light = GetComponent<Light>();
+            gameObject.AddComponent<SphereCollider>().isTrigger=true;  
         }
-        foreach(GameObject a in material_target)
+        SphereCollider col = GetComponent<SphereCollider>();
+        col.radius = light_range;
+        col.center = new Vector3(0, 0, 0);
+        foreach (GameObject a in material_target)
         {
             light_material.Add(a.GetComponent<MeshRenderer>().material);
         }
@@ -71,7 +80,7 @@ public class Lighting : MonoBehaviour
     }
 
 
-    //뻘짓 1스택
+
     public void Light_Update()
     {
         if (broke_property)
@@ -133,4 +142,13 @@ public class Lighting : MonoBehaviour
         broke_property = true;
         cool = -1;
    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //수정필요
+        if(collision.transform.tag=="Player"&& on_off&&!broken)
+        {
+        //플레이어 상태치 변경
+        }
+    }
 }

@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &455928
 Transform:
@@ -80,7 +80,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &469986
 Transform:
@@ -168,7 +168,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &452676
 Transform:
@@ -273,7 +273,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &431468
 Transform:
@@ -304,7 +304,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &454404
 Transform:
@@ -334,7 +334,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &458704
 Transform:
@@ -361,12 +361,12 @@ GameObject:
   - component: {fileID: 1805592955688052690}
   - component: {fileID: 5842811117533268829}
   - component: {fileID: 8468786577509967242}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Inner_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1805592955688052690
 Transform:
@@ -376,7 +376,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159210517219628223}
   m_LocalRotation: {x: -0, y: 1.9411756e-23, z: 8.881784e-16, w: 1}
-  m_LocalPosition: {x: 0.7260001, y: 1.2189996, z: 0.15}
+  m_LocalPosition: {x: 0.74, y: 1.05, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 455928}
@@ -394,7 +394,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.06337905, y: 0.069434404, z: 0.08019976}
-  m_Center: {x: 0.009286362, y: -0.17372167, z: -0.1920065}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8468786577509967242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,7 +408,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  item_name: 
   itemtype: 0
+  parameter_type: 0
   price: 0
   weight: 0
   bIsMoving: 0
@@ -416,7 +418,10 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
-  isLock: 1
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+  isLock: 0
   sensitivity: 1
   room_list: []
   doorDir: 0
@@ -425,7 +430,7 @@ MonoBehaviour:
   maximum_y_angle: 90
   maximum_x_position: 0
   maximum_y_position: 0
-  test: 0
+  test: 1
 --- !u!1 &5904470172464591157
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,12 +503,12 @@ GameObject:
   - component: {fileID: 7181742578915952292}
   - component: {fileID: 3056374997372563441}
   - component: {fileID: 6105767627840472859}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: outter_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7181742578915952292
 Transform:
@@ -513,7 +518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9046743907420138003}
   m_LocalRotation: {x: -0, y: 1.9411756e-23, z: 8.881784e-16, w: 1}
-  m_LocalPosition: {x: 0.7260001, y: 1.2189996, z: 0.27}
+  m_LocalPosition: {x: 0.74, y: 1.05, z: 0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 455928}
@@ -531,7 +536,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.06337905, y: 0.069434404, z: 0.08019976}
-  m_Center: {x: 0.009286362, y: -0.17372167, z: -0.1920065}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6105767627840472859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  item_name: 
   itemtype: 0
+  parameter_type: 0
   price: 0
   weight: 0
   bIsMoving: 0
@@ -553,6 +560,9 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
   isLock: 0
   sensitivity: 1
   room_list: []

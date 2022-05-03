@@ -20,7 +20,10 @@ public abstract class Item : MonoBehaviour
     public Sprite item_image;
 
     public Room parent_room;
-
+    //
+    [HideInInspector]
+    public Transform enter_spot;
+    //
     void Awake()
     {
         NpcManager.instance.Sort_Out_Items(this, parameter_type);

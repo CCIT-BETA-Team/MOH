@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3319806}
   - component: {fileID: 2343958}
   - component: {fileID: 6589650}
+  - component: {fileID: 7914578384543144855}
   m_Layer: 0
   m_Name: LampCeiling_birch
   m_TagString: Untagged
@@ -57,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6589650
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -94,6 +97,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.12879744, y: 0.6007838, z: 0.1263346}
   m_Center: {x: 0.0034870896, y: -0.3003919, z: 0}
+--- !u!114 &7914578384543144855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5035dc6658ecbfe4d8440705f1595ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 10838246}
+  material_target:
+  - {fileID: 174392}
+  broken: 0
+  on_off: 0
+  cool: 0
+  light_ani: []
 --- !u!1 &197070
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +198,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1.8
@@ -184,5 +206,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0

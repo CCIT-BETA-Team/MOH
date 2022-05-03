@@ -95,7 +95,7 @@ public class ObjectSound : MonoBehaviour
         Volume_Check();
         Collider[] col = Physics.OverlapBox(transform.position, new Vector3(2 + sound_effect_range, sound_effect_range / 2,
             2 + sound_effect_range), Quaternion.identity, layermask);
-
+        
         if (col.Length != 0)
         {
             for (int i = 0; i < col.Length; i++)
