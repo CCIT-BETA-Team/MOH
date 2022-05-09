@@ -6,6 +6,8 @@ using UnityEngine;
 public class Man : Npc
 {
     public Camera cam;//Npc 눈
+    public RaycastHit hit;//레이
+    int player_layermask = 1 << 6;
 
     //public Camera cam;//Npc 눈
     //public float attack_range;//임의 값 설정
@@ -367,7 +369,7 @@ public class Man : Npc
                     //Debug.Log("Color R : " + screen_uv_color.r + " , " + "Color G : " + + screen_uv_color.g + " , "+"Color B : " + + screen_uv_color.b + " , "+ "Scene uv Pixel Color");
                     ////화면에서 보는 플레이어 컬러
 
-                    Debug.DrawRay(this.transform.position,Vector3.forward, Color.blue,1000000000);
+                    Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
                 }
                 else
                 {

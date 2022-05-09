@@ -25,8 +25,8 @@ public abstract class Npc : MonoBehaviour
     //
     public GameObject target_item;
     //
-    public RaycastHit hit;//레이
-    public int player_layermask = 1 << 6;
+    
+    
     public float attack_range;//임의 값 설정
     public AudioSource sound;
     //
@@ -116,6 +116,7 @@ public abstract class Npc : MonoBehaviour
         if(Fear_Check)
         Gazechange(value * (Random.value / 3), parametertype.FEAR);
     }
+
     public void StateGazeUp(State what)
     {
         switch (what) 
