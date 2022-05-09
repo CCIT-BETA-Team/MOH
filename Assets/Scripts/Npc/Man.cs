@@ -28,7 +28,7 @@ public class Man : Npc
     }
     #endregion
 
-    State state_check
+    public State state_check
     {
         get
         {
@@ -56,95 +56,11 @@ public class Man : Npc
             }
         }
     }
-    State? next_state;
+    
 
-    float sleepy_percent_check
-    {
-        get{ return sleepy_percent; }
-        set
-        {
-            if(value >= 100)
-            {
-                if (this.state == State.IDLE || this.state == State.Move)
-                {
-                    //int count = Random.Range(0, NpcManager.instance.sleep_items.Count);
-                    //target_item = NpcManager.instance.sleep_items[count].gameObject; 
-                    if(target_item != null)
-                    npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
-                    //else if(target_item == null) { }
-                    this.agent.enabled = true;
-                    this.state = State.SLEEP;
-                }
-                else{ if(next_state == null ){next_state = State.SLEEP;} }
-            }
-            else
-            {
-                sleepy_percent = value;
-            }
-        }
-    }
-    float pee_percent_check
-    {
-        get
-        {
-            return pee_percent;
-        }
-        set
-        {
-            if (value >= 100)
-            {
-                if (this.state == State.IDLE || this.state == State.Move)
-                {
-                    int count = Random.Range(0, NpcManager.instance.pee_items.Count);
-                    target_item = NpcManager.instance.pee_items[count].gameObject;
-                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
-                    this.state = State.PEE;
-                }
-                else
-                {
-                    if (next_state == null)
-                    {
-                        next_state = State.PEE;
-                    }
-                }
-            }
-            else
-            {
-                pee_percent = value;
-            }
-        }
-    }
-    float thirst_percent_check
-    {
-        get
-        {
-            return thirst_percent;
-        }
-        set
-        {
-            if (value >= 100)
-            {
-                if (this.state == State.IDLE || this.state == State.Move)
-                {
-                    int count = Random.Range(0, NpcManager.instance.thirsty_items.Count);
-                    target_item = NpcManager.instance.thirsty_items[count].gameObject;
-                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
-                    this.state = State.THIRST;
-                }
-                else
-                {
-                    if (next_state == null)
-                    {
-                        next_state = State.THIRST;
-                    }
-                }
-            }
-            else
-            {
-                thirst_percent = value;
-            }
-        }
-    }
+    
+    
+    
 
     //
     GameObject Close_Door_Save;
@@ -170,8 +86,7 @@ public class Man : Npc
     }
     //
 
-    public bool opening_check = false;
-    public bool state_end_check = false;
+    
 
     private void Sleep()
     {
@@ -193,7 +108,7 @@ public class Man : Npc
                     else if (path_finding[0].layer == 10) //Room layer
                     {
                         if (this.agent.enabled == true)
-                            this.agent.SetDestination(target_item.GetComponent<Item>().enter_spot.transform.position);
+                            this.agent.SetDestination(target_item.GetComponent<TestItem>().enter_spot.transform.position);
                     }
                 }
             }
@@ -284,10 +199,6 @@ public class Man : Npc
     }
 
     
-
-   
-
-    bool aggessive_trace_check = true;
     void Aggessive()
     {
         if(aggessive_trace_check == true)
