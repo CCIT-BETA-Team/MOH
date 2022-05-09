@@ -47,7 +47,7 @@ public class p_Player : MonoBehaviour
     public List<Lighting> p_lighting
     {
         get { return Lighting; }
-        set { Lighting = value; Lighting_Update(); }
+        set { Lighting = value;  }
 
     }
     public void Lighting_Update()
@@ -75,7 +75,8 @@ public class p_Player : MonoBehaviour
     }
     public void Enter_Light(Lighting light)
     {
-        Lighting.Add(light);
+        p_lighting.Add(light);
+        Lighting_Update();
     }
     public void Exit_Light(Lighting light)
     {
@@ -83,7 +84,9 @@ public class p_Player : MonoBehaviour
         {
             if (l == light)
             {
-                Lighting.Remove(l);
+                p_lighting.Remove(l);
+                Lighting_Update();
+                break;
             }
 
         }

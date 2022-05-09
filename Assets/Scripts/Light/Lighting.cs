@@ -14,8 +14,9 @@ public class Lighting : MonoBehaviour
     public List<Animation> light_ani = new List<Animation>();
     public bool player_lighting = false;
     private float light_range;
-    
-
+    public int player_layer = 0;
+    public float ray_delay=0.3f;
+    private float ray_timer;
     public bool broke_property
     {
         get
@@ -26,8 +27,8 @@ public class Lighting : MonoBehaviour
     public bool electricity_property { get { return electricity; } set { electricity = value; Light_Update(); } }
     private void Start()
     {
-    
-       
+
+        player_layer= 1 << LayerMask.NameToLayer("Player")| 1 << LayerMask.NameToLayer("Wall")| 1 << LayerMask.NameToLayer("Furniture");
         light_range = light.range;
         if(GetComponent<SphereCollider>()==null)
         {
@@ -77,6 +78,16 @@ public class Lighting : MonoBehaviour
         {
             broke_property = false;
         }
+
+        if (player_lighting == true && ray_timer == 0)
+        {
+            RaycastHit hit;
+            Debug.Log("Ray ready" + player_layer);
+            //플레이어 위치 물고있어야됨
+            //Physics.Raycast(this.transform.position, .gameObject.transform.position - this.transform.position, out hit, light_range, player_layer);
+            ray_timer = ray_delay;
+        }
+       ray_timer= Mathf.Clamp(ray_timer-Time.deltaTime, 0, ray_delay);
     }
 
 
@@ -145,27 +156,41 @@ public class Lighting : MonoBehaviour
         //플레이어에 라이트 오브젝트 확인후 제거
     }
 
-
-
-
-    private void OnCollisionEnter(Collision collision)
+  
+    private void OnTriggerEnter(Collider collision)
     {
         //수정필요
-        if(collision.transform.tag=="Player"&& on_off&&!broken)
+        if(collision.transform.tag=="Player"&& on_off&& broken == false)
         {
-            collision.transform.GetComponent<p_Player>().Enter_Light(this);
+            RaycastHit hit;
+            Debug.Log("Ray ready" + player_layer);
+            Physics.Raycast(this.transform.position, collision.gameObject.transform.position - this.transform.position, out hit, light_range, player_layer);
+            Debug.DrawRay(this.transform.position, collision.gameObject.transform.position - this.transform.position, Color.blue);
+           
+            if (hit.transform!=null)
+            {
+                Debug.Log("Ray out ready");
+                if (hit.transform.GetComponent<p_Player>()!=null)
+                {
+                    collision.transform.GetComponent<p_Player>().Enter_Light(this);
+                    player_lighting = true;
+                }
+             
+            }
+          
         }
         if(collision.gameObject.GetComponent<Item>()!=null&& player_lighting)
         {
             
         }
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         //수정필요
-        if (collision.transform.tag == "Player" && on_off && !broken)
+        if (collision.transform.tag == "Player" && on_off && broken==false)
         {
             collision.transform.GetComponent<p_Player>().Exit_Light(this);
+            player_lighting = false;
         }
     }
 }
