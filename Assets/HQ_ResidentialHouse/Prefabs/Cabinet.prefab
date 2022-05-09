@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &483790
 Transform:
@@ -42,12 +42,13 @@ GameObject:
   - component: {fileID: 11105290}
   - component: {fileID: 11457000}
   - component: {fileID: 6569684}
+  - component: {fileID: 1047609346}
   m_Layer: 0
   m_Name: Cabinet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &453982
 Transform:
@@ -123,6 +124,7 @@ MonoBehaviour:
     enabled: 0
     isUnlock: 0
     LockPrefab: {fileID: 0}
+  Opened: 0
 --- !u!65 &6569684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -136,6 +138,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7816986, y: 2.1159172, z: 1.1}
   m_Center: {x: 0.57040024, y: 1.075495, z: 0}
+--- !u!114 &1047609346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf639864e094a3942a99eb347fd37125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 2
+  parameter_type: 4
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
 --- !u!1 &183304
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +181,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &442646
 Transform:
@@ -194,6 +222,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -218,6 +247,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6521098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -240,12 +270,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 432228}
+  - component: {fileID: 1047609344}
   m_Layer: 0
   m_Name: Door_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &432228
 Transform:
@@ -261,6 +292,42 @@ Transform:
   m_Father: {fileID: 442646}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1047609344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e16a7e23688fe34fb95747b84f85075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 0
+  parameter_type: 0
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+  isLock: 0
+  sensitivity: 10
+  room_list: []
+  doorDir: 0
+  door: {fileID: 185636}
+  another_handle: {fileID: 0}
+  maximum_y_angle: 130
+  maximum_x_position: 0
+  maximum_y_position: 0
+  test: 0
 --- !u!1 &185926
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,12 +337,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 487022}
+  - component: {fileID: 1047609345}
   m_Layer: 0
   m_Name: Door_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &487022
 Transform:
@@ -291,6 +359,42 @@ Transform:
   m_Father: {fileID: 442646}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1047609345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e16a7e23688fe34fb95747b84f85075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 0
+  parameter_type: 0
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+  isLock: 0
+  sensitivity: 10
+  room_list: []
+  doorDir: 0
+  door: {fileID: 185926}
+  another_handle: {fileID: 0}
+  maximum_y_angle: 130
+  maximum_x_position: 0
+  maximum_y_position: 0
+  test: 0
 --- !u!1 &194648
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +410,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &483638
 Transform:
@@ -337,6 +441,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

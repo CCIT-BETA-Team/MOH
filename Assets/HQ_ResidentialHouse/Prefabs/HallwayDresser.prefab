@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &465884
 Transform:
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.389, z: 0.079}
+  m_LocalPosition: {x: -0, y: 1.483, z: 0.654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 410010}
@@ -45,12 +45,13 @@ GameObject:
   - component: {fileID: 11134042}
   - component: {fileID: 11408716}
   - component: {fileID: 6570556}
+  - component: {fileID: 1606686542}
   m_Layer: 0
   m_Name: Drawer_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &417302
 Transform:
@@ -89,6 +90,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -113,6 +115,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6450394
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -184,6 +187,7 @@ MonoBehaviour:
     enabled: 0
     isUnlock: 0
     LockPrefab: {fileID: 0}
+  Opened: 0
 --- !u!65 &6570556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -197,6 +201,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 2.1328516, z: 0.41477352}
   m_Center: {x: -0.000000014901161, y: 0.2358215, z: 0.15159975}
+--- !u!114 &1606686542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150461766c19ed249947714dff663d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 0
+  parameter_type: 4
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+  sensitivity: 0
 --- !u!1 &155498
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,12 +243,13 @@ GameObject:
   - component: {fileID: 11172638}
   - component: {fileID: 11445254}
   - component: {fileID: 6562860}
+  - component: {fileID: 1606686543}
   m_Layer: 0
   m_Name: Drawer_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &460478
 Transform:
@@ -256,6 +288,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -280,6 +313,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6496300
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -351,6 +385,7 @@ MonoBehaviour:
     enabled: 0
     isUnlock: 0
     LockPrefab: {fileID: 0}
+  Opened: 0
 --- !u!65 &6562860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -364,6 +399,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 2.1328516, z: 0.41477352}
   m_Center: {x: -0.000000014901161, y: 0.2358215, z: 0.15159975}
+--- !u!114 &1606686543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150461766c19ed249947714dff663d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 0
+  parameter_type: 4
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+  sensitivity: 0
 --- !u!1 &170098
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,12 +438,14 @@ GameObject:
   - component: {fileID: 3309586}
   - component: {fileID: 2302452}
   - component: {fileID: 6464786}
+  - component: {fileID: 1328548564}
+  - component: {fileID: 1328548567}
   m_Layer: 0
   m_Name: HallwayDresser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &410010
 Transform:
@@ -424,6 +488,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -448,6 +513,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6464786
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -462,6 +528,51 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 73f9bdc5ab7123743a4b9d1da375b4b2, type: 3}
+--- !u!114 &1328548564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf639864e094a3942a99eb347fd37125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 2
+  parameter_type: 4
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+--- !u!114 &1328548567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e794d112b71369843967c8500854532d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+    interaction_clip: {fileID: 0}
+    continuous_clip: {fileID: 0}
+    crackling_clips: {fileID: 0}
+    volume: 0.5
+  is_continuous: 0
+  is_glass: 0
 --- !u!1 &183100
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,12 +588,13 @@ GameObject:
   - component: {fileID: 11185000}
   - component: {fileID: 11463466}
   - component: {fileID: 6531672}
+  - component: {fileID: 1606686541}
   m_Layer: 0
   m_Name: Drawer_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &488318
 Transform:
@@ -521,6 +633,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -545,6 +658,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6418120
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -616,6 +730,7 @@ MonoBehaviour:
     enabled: 0
     isUnlock: 0
     LockPrefab: {fileID: 0}
+  Opened: 0
 --- !u!65 &6531672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -629,3 +744,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 2.1328516, z: 0.8489043}
   m_Center: {x: 0.0000000061116063, y: 0.23582153, z: 0.3595794}
+--- !u!114 &1606686541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150461766c19ed249947714dff663d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 0
+  parameter_type: 4
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+  sensitivity: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 11160386}
   - component: {fileID: 6575532}
   - component: {fileID: 11420502}
+  - component: {fileID: 2004257886}
   m_Layer: 0
   m_Name: Drawer
   m_TagString: Untagged
@@ -170,6 +171,33 @@ MonoBehaviour:
     isUnlock: 0
     LockPrefab: {fileID: 0}
   Opened: 0
+--- !u!114 &2004257886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150461766c19ed249947714dff663d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 0
+  parameter_type: 4
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+  sensitivity: 0
 --- !u!1 &189428
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +211,7 @@ GameObject:
   - component: {fileID: 2353672}
   - component: {fileID: 6469302}
   - component: {fileID: 718444064}
+  - component: {fileID: 133046318}
   m_Layer: 0
   m_Name: BedAndTable
   m_TagString: Untagged
@@ -287,3 +316,29 @@ MonoBehaviour:
     volume: 0.5
   is_continuous: 0
   is_glass: 0
+--- !u!114 &133046318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf639864e094a3942a99eb347fd37125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 2
+  parameter_type: 0
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
