@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &413152
 Transform:
@@ -58,7 +58,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  item_name: 
   itemtype: 0
+  parameter_type: 0
   price: 0
   weight: 0
   bIsMoving: 0
@@ -66,15 +68,19 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
   isLock: 0
   sensitivity: 10
+  room_list: []
   doorDir: 1
   door: {fileID: 129070}
   another_handle: {fileID: 0}
   maximum_y_angle: 90
   maximum_x_position: 0
   maximum_y_position: 0
-  testval: 0
+  test: 0
 --- !u!1 &148786
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +95,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &473144
 Transform:
@@ -121,7 +127,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &445306
 Transform:
@@ -163,7 +169,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  item_name: 
   itemtype: 0
+  parameter_type: 0
   price: 0
   weight: 0
   bIsMoving: 0
@@ -171,15 +179,19 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
   isLock: 0
   sensitivity: 10
+  room_list: []
   doorDir: 0
   door: {fileID: 152786}
   another_handle: {fileID: 0}
   maximum_y_angle: 90
   maximum_x_position: 0
   maximum_y_position: 0
-  testval: 0
+  test: 0
 --- !u!1 &183624
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +206,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &474544
 Transform:
@@ -227,7 +239,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &437126
 Transform:
@@ -315,7 +327,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &476780
 Transform:
@@ -404,3 +416,4 @@ MonoBehaviour:
     enabled: 0
     isUnlock: 0
     LockPrefab: {fileID: 0}
+  Opened: 0

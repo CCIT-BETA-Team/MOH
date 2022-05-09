@@ -45,12 +45,13 @@ GameObject:
   - component: {fileID: 11111336}
   - component: {fileID: 6505422}
   - component: {fileID: 11400120}
+  - component: {fileID: 1350575783493407902}
   m_Layer: 0
   m_Name: KitchenSetH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &446810
 Transform:
@@ -91,6 +92,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -115,6 +117,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6491258
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -199,6 +202,33 @@ MonoBehaviour:
     enabled: 0
     isUnlock: 0
     LockPrefab: {fileID: 0}
+  Opened: 0
+--- !u!114 &1350575783493407902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf639864e094a3942a99eb347fd37125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 2
+  parameter_type: 2
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
 --- !u!1 &197396
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +241,7 @@ GameObject:
   - component: {fileID: 3315516}
   - component: {fileID: 2349026}
   - component: {fileID: 6456626}
+  - component: {fileID: 2234765443567082254}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -255,6 +286,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -279,6 +311,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6456626
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -293,3 +326,39 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 689ced9fd5dd8c846b47f53131a1bb03, type: 3}
+--- !u!114 &2234765443567082254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e16a7e23688fe34fb95747b84f85075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 0
+  parameter_type: 2
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+  isLock: 0
+  sensitivity: 10
+  room_list: []
+  doorDir: 0
+  door: {fileID: 0}
+  another_handle: {fileID: 0}
+  maximum_y_angle: 130
+  maximum_x_position: 0
+  maximum_y_position: 0
+  test: 0

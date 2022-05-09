@@ -108,7 +108,8 @@ GameObject:
   - component: {fileID: 205000013016686942}
   - component: {fileID: 5094865327056879582}
   - component: {fileID: 5230160420121435719}
-  - component: {fileID: 1753858940273422806}
+  - component: {fileID: 1797939462}
+  - component: {fileID: 1797939463}
   m_Layer: 0
   m_Name: DiningChair
   m_TagString: Untagged
@@ -292,7 +293,7 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!114 &1753858940273422806
+--- !u!114 &1797939462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,7 +310,7 @@ MonoBehaviour:
   itemtype: 0
   parameter_type: 0
   price: 0
-  weight: 100
+  weight: 0
   bIsMoving: 0
   bIsQuestItem: 0
   bIsGrab: 0
@@ -317,6 +318,26 @@ MonoBehaviour:
   bIsLightOnPlayer: 0
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+--- !u!114 &1797939463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011313168318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e794d112b71369843967c8500854532d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+    interaction_clip: {fileID: 0}
+    continuous_clip: {fileID: 0}
+    crackling_clips: {fileID: 0}
+    volume: 0.5
+  is_continuous: 0
+  is_glass: 0
 --- !u!1 &1000013311258206
 GameObject:
   m_ObjectHideFlags: 0

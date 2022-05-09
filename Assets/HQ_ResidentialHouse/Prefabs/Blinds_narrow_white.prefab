@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 0
 --- !u!4 &737027532
 Transform:
@@ -55,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1000010940405144
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,12 +91,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010547092092}
   - component: {fileID: 205000010942063888}
+  - component: {fileID: 1117506985}
+  - component: {fileID: 1117506986}
   m_Layer: 0
   m_Name: Blinds_narrow_white
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 126
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4000010547092092
 Transform:
@@ -136,6 +140,51 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23000012582493770}
   m_Enabled: 1
+--- !u!114 &1117506985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010940405144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf639864e094a3942a99eb347fd37125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  item_name: 
+  itemtype: 2
+  parameter_type: 4
+  price: 0
+  weight: 0
+  bIsMoving: 0
+  bIsQuestItem: 0
+  bIsGrab: 0
+  GrabRotation: {x: 0, y: 0, z: 0}
+  bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
+--- !u!114 &1117506986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010940405144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e794d112b71369843967c8500854532d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+    interaction_clip: {fileID: 0}
+    continuous_clip: {fileID: 0}
+    crackling_clips: {fileID: 0}
+    volume: 0.5
+  is_continuous: 0
+  is_glass: 0
 --- !u!1 &1000012844153948
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +202,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 126
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4000010254587362
 Transform:
@@ -192,6 +241,7 @@ MeshRenderer:
   m_LightProbeUsage: 2
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -216,6 +266,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!259 &6172980947365462741
 LightProbeProxyVolume:
   m_ObjectHideFlags: 0
@@ -235,6 +286,7 @@ LightProbeProxyVolume:
   m_ProbePositionMode: 0
   m_RefreshMode: 0
   m_QualityMode: 1
+  m_DataFormat: 1
 --- !u!1 &1000012889811160
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +304,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 126
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4000014187411130
 Transform:
@@ -291,6 +343,7 @@ MeshRenderer:
   m_LightProbeUsage: 2
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -315,6 +368,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!259 &4586388466149448195
 LightProbeProxyVolume:
   m_ObjectHideFlags: 0
@@ -334,3 +388,4 @@ LightProbeProxyVolume:
   m_ProbePositionMode: 0
   m_RefreshMode: 0
   m_QualityMode: 1
+  m_DataFormat: 1
