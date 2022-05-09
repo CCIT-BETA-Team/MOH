@@ -2,24 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : p_Player
 {
-    [Header("플레이어 프리즈")]
-    public bool freeze;
+
 
     [Header("플레이어 신체")]
     public Camera cam;
     public GameObject hand;
     public Item emptyhand;
 
-    [Header("플레이어 스테이터스")]
-    public int health;
-    public int money;
-    public float defaultSpped;
-    public float walkingSpeed;
-    public float runningSpeed;
-    public float unlockSpeed;
-    public float noiseValue;
+   
      
     [Space]
     [Header("플레이어 아이템 관련")]
@@ -35,16 +27,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
-        switch (GameManager.Platform)
-        {
-            case 0: //오큘러스
-                Debug.Log("Android Hi~");
-                break;
-            case 1: //PC
-                Debug.Log("Window Hi~");
-                break;
-        }
+  
     }
 
     void Update()
@@ -65,7 +48,7 @@ public class Player : MonoBehaviour
     }
 
     Vector2 turn;
-    float sensitivity = 0.5f;
+   
 
     void Control()
     {
