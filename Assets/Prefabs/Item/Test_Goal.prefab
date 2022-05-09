@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4606093667417255085}
   - component: {fileID: 4649722598470848879}
   m_Layer: 0
-  m_Name: Pink_Panty
+  m_Name: Test_Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,8 +109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  item_name: "\uBD84\uD64D \uD32C\uD2F0"
+  item_name: "\uB3C8 \uBB49\uCE58"
   itemtype: 0
+  parameter_type: 0
   price: 0
   weight: 0
   bIsMoving: 0
@@ -119,3 +120,5 @@ MonoBehaviour:
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
   item_image: {fileID: 21300000, guid: 5d9d4cb5ccbfd9247808d302bb693cca, type: 3}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
