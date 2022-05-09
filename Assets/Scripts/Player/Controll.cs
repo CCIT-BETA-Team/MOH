@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.InputSystem;
-public class Controll : MonoBehaviour
+public class Controll : p_Player
 {
 
 
@@ -43,8 +43,8 @@ public class Controll : MonoBehaviour
     public InputActionReference l_grip_click;
     public InputActionReference r_grip_click;
 
-    public float door_sensitivity;
-    public float speed;
+   
+    
     public float angle_speed;
 
 
@@ -280,7 +280,7 @@ public class Controll : MonoBehaviour
          
         if(l_device.TryGetFeatureValue(l_stick,out l_2daxis)&& l_2daxis!=Vector2.zero)
         {
-            Vector3 Dir = transform.forward * l_2daxis.y * speed + transform.right * l_2daxis.x * speed;
+            Vector3 Dir = transform.forward * l_2daxis.y * walkingSpeed + transform.right * l_2daxis.x * walkingSpeed;
             //chacontroll.Move(Dir);
         }
 
@@ -311,14 +311,14 @@ public class Controll : MonoBehaviour
         
             if (r_hand.transform.localPosition != R_preposition && r_door != null)
             {
-                r_door.GetComponent<Door>().interaction(new Vector3((r_hand.transform.localPosition.z - R_preposition.z) * door_sensitivity, (r_hand.transform.localPosition.y - R_preposition.y) * door_sensitivity, (r_hand.transform.localPosition.z - R_preposition.z) * door_sensitivity));
+                r_door.GetComponent<Door>().interaction(new Vector3((r_hand.transform.localPosition.z - R_preposition.z) * sensitivity, (r_hand.transform.localPosition.y - R_preposition.y) * sensitivity, (r_hand.transform.localPosition.z - R_preposition.z) * sensitivity));
         
             }
          
                 
             if (l_hand.transform.localPosition != L_preposition&&l_door!=null)
             {
-                l_door.GetComponent<Door>().interaction(new Vector3((l_hand.transform.localPosition.x - L_preposition.x) * door_sensitivity, (l_hand.transform.localPosition.y - L_preposition.y) * door_sensitivity, (l_hand.transform.localPosition.z - L_preposition.z) * door_sensitivity));
+                l_door.GetComponent<Door>().interaction(new Vector3((l_hand.transform.localPosition.x - L_preposition.x) * sensitivity, (l_hand.transform.localPosition.y - L_preposition.y) * sensitivity, (l_hand.transform.localPosition.z - L_preposition.z) * sensitivity));
          
             }
         

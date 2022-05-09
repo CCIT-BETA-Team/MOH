@@ -133,6 +133,7 @@ public class Lighting : MonoBehaviour
         {
             cool = time;
         }
+        //플레이어에 라이트 오브젝트 확인후 제거
     }
     /// <summary>
     /// 영구파괴
@@ -141,26 +142,18 @@ public class Lighting : MonoBehaviour
    {
         broke_property = true;
         cool = -1;
-   }
-
-   public void Exit_Light(ref List<Lighting> lights)
-   {
-    foreach(Lighting l in lights)
-    {
-        if(l==this)
-        {
-                lights.Remove(l);
-        }
-         
+        //플레이어에 라이트 오브젝트 확인후 제거
     }
-   }
+
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
         //수정필요
         if(collision.transform.tag=="Player"&& on_off&&!broken)
         {
-        //플레이어 상태치 변경
+            collision.transform.GetComponent<p_Player>().Enter_Light(this);
         }
         if(collision.gameObject.GetComponent<Item>()!=null&& player_lighting)
         {
@@ -169,6 +162,10 @@ public class Lighting : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
-       
+        //수정필요
+        if (collision.transform.tag == "Player" && on_off && !broken)
+        {
+            collision.transform.GetComponent<p_Player>().Exit_Light(this);
+        }
     }
 }
