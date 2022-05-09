@@ -19,9 +19,6 @@ public class Mission_Door : Item
     
     void Mission_Start(Mission select_mission)
     {
-        Debug.Log(select_mission.name + " Start!");
-        //문 열리는 애니메이션 이후 씬전환 굳굳
-
-        SceneManager.LoadScene(select_mission.mission_scene);
+        ScenesManager.instance.Load_Sence(select_mission.mission_scene);
     }
 }
