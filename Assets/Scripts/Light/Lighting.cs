@@ -143,6 +143,18 @@ public class Lighting : MonoBehaviour
         cool = -1;
    }
 
+   public void Exit_Light(ref List<Lighting> lights)
+   {
+    foreach(Lighting l in lights)
+    {
+        if(l==this)
+        {
+                lights.Remove(l);
+        }
+         
+    }
+   }
+
     private void OnCollisionEnter(Collision collision)
     {
         //수정필요
@@ -154,5 +166,9 @@ public class Lighting : MonoBehaviour
         {
             
         }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+       
     }
 }

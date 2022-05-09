@@ -593,7 +593,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: WEATHER_MAKER_PRESENT;AURA_IN_PROJECT;AURA_IN_SCENEVIEW
+    1: WEATHER_MAKER_PRESENT;AURA_IN_PROJECT
     7: AURA_IN_PROJECT
   additionalCompilerArguments: {}
   platformArchitecture: {}

@@ -58,8 +58,10 @@ public class Lightmanager : Singleton<Lightmanager>
     void Start()
     {
         generator_on_off = true;
+#if UNITY_EDITOR
         All_Power_Up();
         All_Power_Down();
+#endif
     }
 
     // Update is called once per frame
