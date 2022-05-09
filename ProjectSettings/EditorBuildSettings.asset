@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NpcTest.unity
     guid: 074ed734a1f0ec64f9ca66102c236c36
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: b1b5be0cf5ce06346a155d527b83ecf7
+  - enabled: 1
+    path: Assets/Scenes/PreparationSite.unity
+    guid: b1bdd576f20008c4cb9532e33adad852
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1aab0a05df5f5874090e00995f09ad9b, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: f69431a0e5a0f014fb41add994b4d831, type: 2}
