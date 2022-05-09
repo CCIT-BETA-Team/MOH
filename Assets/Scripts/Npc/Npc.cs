@@ -25,8 +25,12 @@ public abstract class Npc : MonoBehaviour
     //
     public GameObject target_item;
     //
-    
-    
+    protected bool opening_check = false;
+    protected bool state_end_check = false;
+    protected bool aggessive_trace_check = true;
+    //
+
+
     public float attack_range;//임의 값 설정
     public AudioSource sound;
     //
@@ -73,16 +77,14 @@ public abstract class Npc : MonoBehaviour
     public Npc_Personality personality = Npc_Personality.AGGESSIVE;
 
     [Range(0, 100)]
-    public float sleepy_percent;
+    protected float sleepy_percent = 99.9f;
     [Range(0, 100)]
-    public float pee_percent;
+    protected float pee_percent;
     [Range(0, 100)]
-    public float thirst_percent;
+    protected float thirst_percent;
     [Range(0, 100)]
-
     public float fear_percent;
 
-    
     public Room target_room;
 
     public void Gazechange(float value,parametertype type)
@@ -185,6 +187,99 @@ public abstract class Npc : MonoBehaviour
     }
     /// 
 
+    
+    protected State? next_state;
+
+
+    public float sleepy_percent_check
+    {
+        get { return sleepy_percent; }
+        set
+        {
+            if (value >= 100)
+            {
+                if (this.state == State.IDLE || this.state == State.Move)
+                {
+                    //int count = Random.Range(0, NpcManager.instance.sleep_items.Count);
+                    //target_item = NpcManager.instance.sleep_items[count].gameObject; 
+                    if (target_item != null)
+                        npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
+                    //else if(target_item == null) { }
+                    agent.enabled = true;
+                    state = State.SLEEP;
+                }
+                else { if (next_state == null) { next_state = State.SLEEP; } }
+            }
+            else
+            {
+                sleepy_percent = value;
+            }
+        }
+    }
+
+    public float pee_percent_check
+    {
+        get
+        {
+            return pee_percent;
+        }
+        set
+        {
+            if (value >= 100)
+            {
+                if (this.state == State.IDLE || this.state == State.Move)
+                {
+                    int count = Random.Range(0, NpcManager.instance.pee_items.Count);
+                    target_item = NpcManager.instance.pee_items[count].gameObject;
+                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
+                    state = State.PEE;
+                }
+                else
+                {
+                    if (next_state == null)
+                    {
+                        next_state = State.PEE;
+                    }
+                }
+            }
+            else
+            {
+                pee_percent = value;
+            }
+        }
+    }
+
+    public float thirst_percent_check
+    {
+        get
+        {
+            return thirst_percent;
+        }
+        set
+        {
+            if (value >= 100)
+            {
+                if (this.state == State.IDLE || this.state == State.Move)
+                {
+                    int count = Random.Range(0, NpcManager.instance.thirsty_items.Count);
+                    target_item = NpcManager.instance.thirsty_items[count].gameObject;
+                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
+                    this.state = State.THIRST;
+                }
+                else
+                {
+                    if (next_state == null)
+                    {
+                        next_state = State.THIRST;
+                    }
+                }
+            }
+            else
+            {
+                thirst_percent = value;
+            }
+        }
+    }
 
 
 
@@ -193,7 +288,7 @@ public abstract class Npc : MonoBehaviour
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+       
         
 
         switch (npc_type)
