@@ -56,12 +56,6 @@ public class Man : Npc
             }
         }
     }
-    
-
-    
-    
-    
-
     //
     GameObject Close_Door_Save;
 
@@ -84,9 +78,6 @@ public class Man : Npc
     {
         if(Close_Door_Save != null) { Close_Door_Save.GetComponent<DoorScript>().CloseDoor();  Close_Door_Save = null; }
     }
-    //
-
-    
 
     private void Sleep()
     {

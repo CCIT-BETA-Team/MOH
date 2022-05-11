@@ -77,11 +77,11 @@ public abstract class Npc : MonoBehaviour
     public Npc_Personality personality = Npc_Personality.AGGESSIVE;
 
     [Range(0, 100)]
-    protected float sleepy_percent = 99.9f;
+    public float sleepy_percent;
     [Range(0, 100)]
-    protected float pee_percent;
+    public float pee_percent;
     [Range(0, 100)]
-    protected float thirst_percent;
+    public float thirst_percent;
     [Range(0, 100)]
     public float fear_percent;
 
@@ -200,11 +200,8 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
-                    //int count = Random.Range(0, NpcManager.instance.sleep_items.Count);
-                    //target_item = NpcManager.instance.sleep_items[count].gameObject; 
                     if (target_item != null)
-                        npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
-                    //else if(target_item == null) { }
+                    npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     agent.enabled = true;
                     state = State.SLEEP;
                 }
@@ -229,18 +226,12 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
-                    int count = Random.Range(0, NpcManager.instance.pee_items.Count);
-                    target_item = NpcManager.instance.pee_items[count].gameObject;
-                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
+                    if (target_item != null)
+                        npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
+                    agent.enabled = true;
                     state = State.PEE;
                 }
-                else
-                {
-                    if (next_state == null)
-                    {
-                        next_state = State.PEE;
-                    }
-                }
+                else { if (next_state == null) { next_state = State.PEE; } }
             }
             else
             {
@@ -261,18 +252,12 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
-                    int count = Random.Range(0, NpcManager.instance.thirsty_items.Count);
-                    target_item = NpcManager.instance.thirsty_items[count].gameObject;
-                    NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
-                    this.state = State.THIRST;
+                    if (target_item != null)
+                        npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
+                    agent.enabled = true;
+                    state = State.THIRST;
                 }
-                else
-                {
-                    if (next_state == null)
-                    {
-                        next_state = State.THIRST;
-                    }
-                }
+                else { if (next_state == null) { next_state = State.THIRST; } }
             }
             else
             {
@@ -288,9 +273,6 @@ public abstract class Npc : MonoBehaviour
 
     private void Awake()
     {
-       
-        
-
         switch (npc_type)
         {
             case Npc_Type.NONE:
@@ -306,7 +288,6 @@ public abstract class Npc : MonoBehaviour
             case Npc_Type.WOMAN:
                 break;
         }
-
     }
 
 
