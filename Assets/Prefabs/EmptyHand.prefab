@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  item_name: 
   itemtype: 4
+  parameter_type: 0
   price: 0
   weight: 0
   bIsMoving: 0
@@ -52,3 +54,6 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}

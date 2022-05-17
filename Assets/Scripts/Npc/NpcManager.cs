@@ -39,6 +39,14 @@ public class NpcManager : Singleton<NpcManager>
 
     //public List<List<>>
 
+    void Start()
+    {
+        //for(int i = 0; i < room_list.Count; i++)
+        //{
+        //    room_list[i].sett
+        //}
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P)) { Report_Police(); }
