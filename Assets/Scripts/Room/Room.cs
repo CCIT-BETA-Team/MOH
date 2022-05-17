@@ -53,7 +53,7 @@ public class Room : MonoBehaviour
   
     }
 
-    void Door_Setting()
+    public void Door_Setting()
     {
         for(int i = 0; i < door_list.Count; i++)
         {
