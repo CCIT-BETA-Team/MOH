@@ -2067,10 +2067,11 @@ MonoBehaviour:
     popup: {fileID: 210333243}
   - anime: {fileID: 104213184}
     popup: {fileID: 1940064664}
-  - anime: {fileID: 104213184}
+  - anime: {fileID: 2030271926}
     popup: {fileID: 148676383}
   - anime: {fileID: 910056340}
     popup: {fileID: 1909662379}
+  popup_content_transform: {fileID: 436875751}
   start_y: 50
   time: 0.3
 --- !u!1 &1275615519
@@ -8213,6 +8214,8 @@ MonoBehaviour:
   cool: 0
   light_ani: []
   player_lighting: 0
+  player_layer: 0
+  ray_delay: 0.3
 --- !u!4 &1406290428034069190
 Transform:
   m_ObjectHideFlags: 0

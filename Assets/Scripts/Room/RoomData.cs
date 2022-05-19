@@ -38,4 +38,15 @@ public class RoomData : ScriptableObject
             item.parent_room = room;
         }
     }
+
+    public void Spawn_Item(List<ItemSpot> item_spawn_position, Room room, Vector3 rotation)
+    {
+        for (int i = 0; i < item_spawn_position.Count; i++)
+        {
+            int x = Random.Range(0, item_list(item_spawn_position[i].item_type).Count);
+            Item item = Instantiate(item_list(item_spawn_position[i].item_type)[x], item_spawn_position[i].transform.position, Quaternion.Euler(rotation.x, rotation.y, rotation.z), room.transform);
+            item_spawn_position[i].item = item;
+            item.parent_room = room;
+        }
+    }
 }

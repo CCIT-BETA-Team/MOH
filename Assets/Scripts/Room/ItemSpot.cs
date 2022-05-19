@@ -8,6 +8,7 @@ public class ItemSpot : MonoBehaviour
     public item_type_ item_type;
     public Item item;
     public bool item_move;
+    public Vector3 spawn_rotation;
 
     void OnCollisionExit(Collision col)
     {
