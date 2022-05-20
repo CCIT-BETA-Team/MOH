@@ -100,7 +100,7 @@ public class NpcManager : Singleton<NpcManager>
 
         for(int i = 0; i < room_list.Count; i++)
         {
-            if (room_list[i].room_type == Room.room_type_.BEDROOM && !room_list[i].is_owner)
+            if (room_list[i].room_type == Room.room_type_.BED_ROOM && !room_list[i].is_owner)
             {
                 r = room_list[i];
                 r.is_owner = true;
@@ -132,6 +132,18 @@ public class NpcManager : Singleton<NpcManager>
                 break;
         }
     }
+
+    public GameObject Ins_Ghost(Transform npc_transform, GameObject ghost, Npc npc)
+    {
+        GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
+        var ghost_info = npc_ghost.GetComponent<Ghost>();
+        ghost_info.parent_npc = npc;
+        int dir_room = Random.Range(0,room_list.Count);
+        ghost_info.target_room = room_list[dir_room].gameObject;
+        ghost_info.Move_Point(room_list[dir_room]);
+        return npc_ghost;
+        /// For the Move (Ghost)
+    }
     public GameObject Ins_Ghost(Transform npc_transform, GameObject ghost, GameObject target_item, GameObject npc_ghost, Npc npc)
     {
         npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
@@ -149,7 +161,7 @@ public class NpcManager : Singleton<NpcManager>
         {
             float x = Random.Range(police_spawn_point.transform.position.x + police_spawn_point.size.x / 2f, police_spawn_point.transform.position.x - police_spawn_point.size.x / 2f);
             float z = Random.Range(police_spawn_point.transform.position.z + police_spawn_point.size.z / 2f, police_spawn_point.transform.position.z - police_spawn_point.size.z / 2f);
-            spawn_position = new Vector3(x, police_spawn_point.transform.position.y - police_spawn_point.size.y / 2f, z);
+            spawn_position = new Vector3(x, police_npc.transform.localScale.y / 2f, z);
 
             GameObject police = Instantiate(police_npc, spawn_position, Quaternion.identity);
             police.name = "Police[" + i + "]";
