@@ -24,7 +24,7 @@ public abstract class Npc : MonoBehaviour
     public GameObject npc_ghost;
     protected GameObject Close_Door_Save;
     //
-    public Room target_room;
+    public GameObject target_room;
     public GameObject target_item;
     //
     protected bool opening_check = false;
@@ -166,28 +166,28 @@ public abstract class Npc : MonoBehaviour
     }
 
     /// 
-    public Texture2D player_texture;
-    public RenderTexture tex;
-    public Texture2D uv_tex=null;
-    public Texture2D uv_texture(RenderTexture rtex)
-    {
-        if (uv_tex == null)
-        {
-            uv_tex = new Texture2D(2000, 2000, TextureFormat.RGB565, false);
-        }
-            RenderTexture.active = rtex;
-            uv_tex.ReadPixels(new Rect(0, 0, rtex.width, rtex.height), 0, 0);
-            uv_tex.Apply();
+    //public Texture2D player_texture;
+    //public RenderTexture tex;
+    //public Texture2D uv_tex=null;
+    //public Texture2D uv_texture(RenderTexture rtex)
+    //{
+    //    if (uv_tex == null)
+    //    {
+    //        uv_tex = new Texture2D(2000, 2000, TextureFormat.RGB565, false);
+    //    }
+    //        RenderTexture.active = rtex;
+    //        uv_tex.ReadPixels(new Rect(0, 0, rtex.width, rtex.height), 0, 0);
+    //        uv_tex.Apply();
 
-        if(uv_tex==null)
-        {
-            return null;
-        }
-        else
-        {
-            return uv_tex;
-        }
-    }
+    //    if(uv_tex==null)
+    //    {
+    //        return null;
+    //    }
+    //    else
+    //    {
+    //        return uv_tex;
+    //    }
+    //}
     /// 
 
     
@@ -323,6 +323,8 @@ public abstract class Npc : MonoBehaviour
     {
         state = State.Move;
         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, this);
+        //target_room = npc_ghost.GetComponent<Ghost>().target_room;
+        target_room = npc_ghost.GetComponent<Ghost>().target_room;
     }
     public void State_Initizlize()
     {

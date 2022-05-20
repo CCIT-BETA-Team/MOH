@@ -150,10 +150,11 @@ public class Man : Npc
             }
             else if (path_finding[0].layer == 10)//Room
             {
-                Vector3 dir = target_room.gameObject.transform.position - transform.position;
+                Vector3 dir = target_room.transform.position - transform.position;
                 if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
                 {
-                    transform.rotation = Quaternion.LookRotation(dir).normalized;
+                    //transform.rotation = Quaternion.LookRotation(dir).normalized;
+                    transform.LookAt(target_room.transform);
                 }
                 if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance <= 0.025f) // agent.remainingDistance 
                 {
@@ -526,12 +527,12 @@ public class Man : Npc
         Select_Personality();
         StartCoroutine(State_Gaze_Change());
         //
-        player_texture = (Texture2D)player.GetComponent<MeshRenderer>().material.mainTexture;
+        //player_texture = (Texture2D)player.GetComponent<MeshRenderer>().material.mainTexture;
         //
         //player_texture = player.GetComponent<MeshRenderer>().material.mainTexture;
     }
-    Color player_texture_Color;
-    Color screen_uv_color;
+    //Color player_texture_Color;
+    //Color screen_uv_color;
 
 
     float player_check_time;//플레이어 감지 시간
@@ -575,7 +576,7 @@ public class Man : Npc
                     //Debug.Log("Color R : " + screen_uv_color.r + " , " + "Color G : " + + screen_uv_color.g + " , "+"Color B : " + + screen_uv_color.b + " , "+ "Scene uv Pixel Color");
                     ////화면에서 보는 플레이어 컬러
 
-                    Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
+                    //Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
                 }
                 else
                 {

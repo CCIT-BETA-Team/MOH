@@ -161,7 +161,7 @@ public class NpcManager : Singleton<NpcManager>
         {
             float x = Random.Range(police_spawn_point.transform.position.x + police_spawn_point.size.x / 2f, police_spawn_point.transform.position.x - police_spawn_point.size.x / 2f);
             float z = Random.Range(police_spawn_point.transform.position.z + police_spawn_point.size.z / 2f, police_spawn_point.transform.position.z - police_spawn_point.size.z / 2f);
-            spawn_position = new Vector3(x, police_spawn_point.transform.position.y - police_spawn_point.size.y / 2f, z);
+            spawn_position = new Vector3(x, police_npc.transform.localScale.y / 2f, z);
 
             GameObject police = Instantiate(police_npc, spawn_position, Quaternion.identity);
             police.name = "Police[" + i + "]";
