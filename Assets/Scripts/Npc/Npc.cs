@@ -18,15 +18,18 @@ public abstract class Npc : MonoBehaviour
     public Animator anim;
     //
     public GameObject player;
-    public GameObject target_spot;
+    //public GameObject target_spot;
     //
     public GameObject ghost;
     public GameObject npc_ghost;
+    protected GameObject Close_Door_Save;
     //
+    public Room target_room;
     public GameObject target_item;
     //
     protected bool opening_check = false;
     protected bool state_end_check = false;
+    protected bool move_check = false;// 아직 안씀
     protected bool aggessive_trace_check = true;
     //
 
@@ -85,7 +88,7 @@ public abstract class Npc : MonoBehaviour
     [Range(0, 100)]
     public float fear_percent;
 
-    public Room target_room;
+    
 
     public void Gazechange(float value,parametertype type)
     {
@@ -200,9 +203,16 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    State_Initizlize();
+
+                    ////////////
+                    ///여기서 target_room 이랑 target_item 정해줘야 함 딴것도 마찬가지임
+                    ////////////
+
                     if (target_item != null)
                     npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     agent.enabled = true;
+
                     state = State.SLEEP;
                 }
                 else { if (next_state == null) { next_state = State.SLEEP; } }
@@ -226,6 +236,8 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    State_Initizlize();
+
                     if (target_item != null)
                         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     agent.enabled = true;
@@ -252,6 +264,8 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    State_Initizlize();
+
                     if (target_item != null)
                         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     agent.enabled = true;
@@ -288,6 +302,8 @@ public abstract class Npc : MonoBehaviour
             case Npc_Type.WOMAN:
                 break;
         }
+
+        Invoke("Change_State_Move", 1f);
     }
 
 
@@ -303,6 +319,20 @@ public abstract class Npc : MonoBehaviour
     }
 
 
+    public void Change_State_Move()
+    {
+        state = State.Move;
+        npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, this);
+    }
+    public void State_Initizlize()
+    {
+        npc_ghost = null;
+        target_item = null;
+        target_room = null;
+
+        opening_check = false;
+        state_end_check = false;
+    }
 
 
     /// <summary>

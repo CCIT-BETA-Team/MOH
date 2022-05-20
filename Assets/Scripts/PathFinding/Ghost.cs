@@ -25,6 +25,10 @@ public class Ghost : MonoBehaviour
     void Update()
     {
     }
+    public void Move_Point(Room room)
+    {
+        agent.SetDestination(room.gameObject.transform.position);
+    }
     public void Move_Point(GameObject target_item)
     {
         target = target_item;
