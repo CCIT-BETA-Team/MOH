@@ -48,28 +48,28 @@ public class Map : MonoBehaviour
         {
             switch(room.room_type)
             {
-                case Room.room_type_.BEDROOM:
+                case Room.room_type_.BED_ROOM:
                     room.rd = bedroom_data;
                     break;
-                case Room.room_type_.LIVINGROOM:
+                case Room.room_type_.LIVING_ROOM:
                     room.rd = livingroom_data;
                     break;
-                case Room.room_type_.DININGROOM:
+                case Room.room_type_.DINING_ROOM:
                     room.rd = diningroom_data;
                     break;
-                case Room.room_type_.BATHROOM:
+                case Room.room_type_.BATH_ROOM:
                     room.rd = bathroom_data;
                     break;
-                case Room.room_type_.OFFICE:
+                case Room.room_type_.OFFICE_ROOM:
                     room.rd = office_data;
                     break;
-                case Room.room_type_.NURSERY:
+                case Room.room_type_.NURSERY_ROOM:
                     room.rd = nursery_data;
                     break;
-                case Room.room_type_.DRESSINGROOM:
+                case Room.room_type_.DRESSING_ROOM:
                     room.rd = dressingroom_data;
                     break;
-                case Room.room_type_.LAUNDRYROOM:
+                case Room.room_type_.LAUNDRY_ROOM:
                     room.rd = laundryroom_data;
                     break;
             }

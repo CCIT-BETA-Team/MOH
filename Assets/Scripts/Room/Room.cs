@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public enum room_type_ { BEDROOM, LIVINGROOM, DININGROOM, BATHROOM, OFFICE, NURSERY, DRESSINGROOM, LAUNDRYROOM }
+    public enum room_type_ { BED_ROOM, LIVING_ROOM, DINING_ROOM, BATH_ROOM, OFFICE_ROOM, NURSERY_ROOM, DRESSING_ROOM, LAUNDRY_ROOM, GARAGE_ROOM }
     [Header("πÊ ≈∏¿‘")]
     public room_type_ room_type;
 
@@ -36,7 +36,7 @@ public class Room : MonoBehaviour
 
     private void Awake()
     {
-        if(this.room_type == room_type_.BEDROOM)
+        if(this.room_type == room_type_.BED_ROOM)
         {
             map.npc_own_room.Add(this);
         }
