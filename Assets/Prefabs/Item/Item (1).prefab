@@ -128,7 +128,8 @@ MonoBehaviour:
   id: 0
   item_name: "\uD14C\uC2A4\uD2B8 \uC544\uC774\uD15C"
   itemtype: 3
-  price: 1000000
+  parameter_type: 0
+  price: 200
   weight: 0
   bIsMoving: 0
   bIsQuestItem: 0
@@ -136,3 +137,5 @@ MonoBehaviour:
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
   item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}

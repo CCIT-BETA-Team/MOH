@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
 #endif
 
     public GameObject Player;
+    public bool b_selet_mission = false;
     public Mission select_mission;
 
     void Start()
@@ -25,6 +26,9 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
+        //테스트용
         if (Input.GetKeyDown(KeyCode.Backspace)) { PlayerPrefs.DeleteAll(); }
+        if (Input.GetKeyDown(KeyCode.Keypad1)) { PlayerPrefs.SetInt("pMoney", PlayerPrefs.GetInt("pMoney", 0) + 100);}
+        if (Input.GetKeyDown(KeyCode.Keypad2)) { PlayerPrefs.SetInt("pMyung_Seong", PlayerPrefs.GetInt("pMyung_Seong", 0) + 100);}
     }
 }

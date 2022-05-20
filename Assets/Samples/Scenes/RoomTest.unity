@@ -3010,6 +3010,7 @@ MonoBehaviour:
   item_type: 0
   item: {fileID: 0}
   item_move: 0
+  spawn_rotation: {x: 0, y: 0, z: 0}
 --- !u!65 &136992720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6154,7 +6155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326336388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.542099, y: -5.5903006, z: -10.811304}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12303,6 +12304,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000013110065670, guid: 62f475476f29d554caa6b9e6b8c5e1c5, type: 3}
   m_PrefabInstance: {fileID: 628163608}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &628822351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 628822353}
+  - component: {fileID: 628822352}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &628822352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628822351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aadcc153de7e4f34e81cf6c6005a16bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  Player: {fileID: 0}
+  select_mission: {fileID: 0}
+--- !u!4 &628822353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628822351}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.26097775, y: -12.716065, z: -1.9243212}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &629595651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21727,6 +21774,7 @@ MonoBehaviour:
   item_type: 0
   item: {fileID: 0}
   item_move: 0
+  spawn_rotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1131261797
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24120,6 +24168,7 @@ MonoBehaviour:
   item_type: 0
   item: {fileID: 0}
   item_move: 0
+  spawn_rotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1250799895
 BoxCollider:
   m_ObjectHideFlags: 0

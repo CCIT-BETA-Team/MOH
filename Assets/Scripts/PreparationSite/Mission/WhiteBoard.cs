@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class WhiteBoard : MonoBehaviour
 {
+    public Canvas canvas;
     public Text mission_name;
     public Item goal;
     //º¸»ó
@@ -15,4 +16,12 @@ public class WhiteBoard : MonoBehaviour
     public Text scenario;
     public Text main_mission;
     public Text sub_mission;
+
+    void Update()
+    {
+        if(!GameManager.instance.b_selet_mission && canvas.enabled)
+            canvas.enabled = false;
+        else if(GameManager.instance.b_selet_mission && !canvas.enabled)
+            canvas.enabled = true;
+    }
 }

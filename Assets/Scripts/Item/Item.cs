@@ -13,7 +13,8 @@ public abstract class Item : MonoBehaviour
     public enum parameterType
     { SLEEP, PEE, THIRSTY, PHONE, NONE}
     public parameterType parameter_type;
-    public float price, weight;
+    public int price;
+    public float weight;
     public bool bIsMoving, bIsQuestItem, bIsGrab;
     public Vector3 GrabRotation;
     public bool bIsLightOnPlayer;

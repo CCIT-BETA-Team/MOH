@@ -10,7 +10,8 @@ public class p_Player : MonoBehaviour
 
     [Header("플레이어 스테이터스")]
     public int health;
-    public int money;
+    public int money { get { return PlayerPrefs.GetInt("pMoney", 0); } }
+    public int myung_seong { get { return PlayerPrefs.GetInt("pMyung_Seong"); } }
     public float defaultSpped;
     public float walkingSpeed;
     public float runningSpeed;
@@ -20,14 +21,11 @@ public class p_Player : MonoBehaviour
     public float unlockSpeed;
     public float noiseValue;
 
-
-
-  
-
     private void Awake()
     {
     
     }
+
     // Start is called before the first frame update
     void Start()
     {

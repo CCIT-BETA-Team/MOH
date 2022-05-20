@@ -45,6 +45,8 @@ public class Player : p_Player
                 if (health <= 0) { Die(); }
                 break;
         }
+
+        if (Input.GetKeyDown(KeyCode.Keypad1)) { Debug.Log(money); }
     }
 
     Vector2 turn;

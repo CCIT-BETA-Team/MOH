@@ -120,40 +120,6 @@ public class Mission : ScriptableObject
         }
     }
 
-    //public void Informaition_Popup_Move(InformaionPopup ip, Animation anime, Vector3 start_pos, Vector3 end_pos, float time)
-    //{
-    //    AnimationClip clip = new AnimationClip();
-    //    clip.legacy = true;
-
-    //    AnimationCurve curve = AnimationCurve.Linear(0.0f, start_pos.x, time, end_pos.x);
-    //    clip.SetCurve("", typeof(Transform), "localPosition.x", curve);
-
-    //    curve = AnimationCurve.Linear(0.0f, start_pos.y, time, end_pos.y);
-    //    clip.SetCurve("", typeof(Transform), "localPosition.y", curve);
-
-    //    curve = AnimationCurve.Linear(0.0f, start_pos.z, time, end_pos.z);
-    //    clip.SetCurve("", typeof(Transform), "localPosition.z", curve);
-
-    //    curve = AnimationCurve.Linear(0.0f, end_pos.x, time * 2, start_pos.x);
-    //    clip.SetCurve("", typeof(Transform), "localPosition.x", curve);
-
-    //    curve = AnimationCurve.Linear(0.0f, end_pos.y, time * 2, start_pos.y);
-    //    clip.SetCurve("", typeof(Transform), "localPosition.y", curve);
-
-    //    curve = AnimationCurve.Linear(0.0f, end_pos.z, time * 2, start_pos.z);
-    //    clip.SetCurve("", typeof(Transform), "localPosition.z", curve);
-
-    //    AnimationEvent evt = new AnimationEvent();
-    //    evt.time = time;
-    //    evt.functionName = "InfoPopup_Update";
-    //    evt.objectReferenceParameter = ip;
-
-    //    clip.AddEvent(evt);
-
-    //    anime.AddClip(clip, clip.name);
-    //    anime.Play(clip.name);
-    //}
-
     public void setting_environment()
     {
         int i = Random.Range(0, 4);

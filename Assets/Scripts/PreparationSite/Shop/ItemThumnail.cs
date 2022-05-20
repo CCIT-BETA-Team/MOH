@@ -17,6 +17,7 @@ public class ItemThumnail : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public Text item_explain;
     public Text price;
     public Button buy_button;
+    public Text buy_text;
 
     public Vector3 start_position;
     public Vector3 end_position;
@@ -25,6 +26,11 @@ public class ItemThumnail : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     int in_hashcode = Animator.StringToHash("in_ani");
     int out_hashcode = Animator.StringToHash("out_ani");
+
+    void Start()
+    {
+        Buy_Check();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -43,25 +49,27 @@ public class ItemThumnail : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void Buy()
     {
-        if(true)
+        if(PlayerPrefs.GetInt("iBuy_Item[" + item.id + "]") == 0)
         {
-            //money -= item.price;
-            Debug.Log(item.name + " 구매 완료!!");
-            PlayerPrefs.SetInt("shop_tool" + item.id, 1);
-            ts.tools[item.id].SetActive(true);
+            if(item.price <= PlayerPrefs.GetInt("pMoney", 0))
+            {
+                PlayerPrefs.SetInt("iBuy_Item[" + item.id + "]", 1);
+                PlayerPrefs.SetInt("pMoney", PlayerPrefs.GetInt("pMoney") - item.price);
+                Debug.Log(item.name + " 구매 완료!!");
+                PlayerPrefs.SetInt("shop_tool" + item.id, 1);
+                ts.tools[item.id].SetActive(true);
+                Buy_Check();
+            }
+            else
+                Debug.Log("돈이 부족해요..."); //차후 돈 부족 팝업으로 교체
         }
     }
 
-    //void Image_Move(Animation anime, Vector3 start_pos, Vector3 end_pos, float time)
-    //{
-    //    AnimationClip clip = new AnimationClip();
-    //    clip.legacy = true;
-
-    //    AnimationCurve curve = AnimationCurve.Linear(0.0f, start_pos.x, time, end_pos.x);
-    //    clip.SetCurve(relative_path[3], typeof(Transform), "localPosition.y", curve);
-
-    //    anime.AddClip(clip, clip.name);
-    //    Debug.Log(clip.name);
-    //    anime.Play(clip.name);
-    //}
+    void Buy_Check()
+    {
+        if (PlayerPrefs.GetInt("iBuy_Item[" + item.id + "]") == 0)
+            buy_text.text = "구매";
+        else
+            buy_text.text = "구매 완료";
+    }
 }
