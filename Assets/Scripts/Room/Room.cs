@@ -31,19 +31,13 @@ public class Room : MonoBehaviour
 
     //성준이가 작업한 부분
     //public List<Room> npc_own_room = new List<Room>();
+    public NpcManager npcmanager;
     public Map map;
     //
 
     private void Awake()
     {
-        if(this.room_type == room_type_.BED_ROOM)
-        {
-            map.npc_own_room.Add(this);
-        }
-        else
-        {
-            map.room_list.Add(this);
-        }
+        npcmanager.room_list.Add(this);
     }
     ///
 
