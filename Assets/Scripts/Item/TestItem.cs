@@ -16,6 +16,5 @@ public class TestItem : Item
         {
             parent_room.GetComponent<Room>().target_item = this.gameObject;
         }
-
     }
 }
