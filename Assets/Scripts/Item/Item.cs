@@ -10,6 +10,8 @@ public abstract class Item : MonoBehaviour
     public enum itemType
     { DOOR, EQUIPMENT, FURNITURE, TOOL, EMPTYHAND }
     public itemType itemtype;
+    public enum item_size_type { SMALL, MIDIUM, DESK }
+    public item_size_type item_size;
     public enum parameterType
     { SLEEP, PEE, THIRSTY, PHONE, NONE}
     public parameterType parameter_type;

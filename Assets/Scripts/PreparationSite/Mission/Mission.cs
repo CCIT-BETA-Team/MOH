@@ -10,7 +10,7 @@ public class Mission : ScriptableObject
     public string mission_scene;
     public string mission_name;
     public GameObject goal_item;
-    Item goal { get { return goal_item.GetComponent<Item>();} }
+    [HideInInspector] public Item goal { get { return goal_item.GetComponent<Item>();} }
     //º¸»ó
     public Sprite mission_image;
     public Sprite goal_image;

@@ -24,17 +24,6 @@ public class Map : MonoBehaviour
     public RoomData dressingroom_data;
     public RoomData laundryroom_data;
 
-    //[Header("¸Ê ¿¡µðÅÍ")]
-    //public MapData MD;
-    //public int map_x;
-    //public int map_y;
-    //public List<List<Object>> map_node = new List<List<Object>>();
-    //public List<List<Object>> save_node = new List<List<Object>>();
-
-    //public int load_x;
-    //public int load_y;
-    //public List<List<Object>> load_node = new List<List<Object>>();
-
     public bool report;
 
     void Awake()
@@ -73,67 +62,41 @@ public class Map : MonoBehaviour
                     room.rd = laundryroom_data;
                     break;
             }
+            Spawn_Target_Item();
             room.rd.Spawn_Item(room.item_spawn_position, room);
         }
     }
 
-    //public void map_size()
-    //{
-    //    save_node = map_node.ToList();
-    //    map_node = new List<List<Object>>();
+    List<TargetSpot> target_spot;
 
-    //    Map_Node_Update();
+    void Spawn_Target_Item()
+    {
+        GameManager gm = GameManager.instance;
 
-    //    if(save_node.Count != 0)
-    //    {
-    //        int xx, yy;
-    //        if(map_node.Count >= save_node.Count) { yy = save_node.Count; }
-    //        else { yy = map_node.Count; }
-    //        if(map_node[0].Count >= save_node[0].Count) { xx = save_node[0].Count; }
-    //        else { xx = map_node[0].Count; }
+        foreach (var room in room_list)
+        {
+            for(int i = 0; i < room.item_spawn_position.Count; i++)
+            {
+                if (gm.select_mission.goal.item_size == room.item_spawn_position[i].item_type && room.item_spawn_position[i].can_spawn_target)
+                {
+                    target_spot[i].spawn_possible_spot = room.item_spawn_position[i];
+                    target_spot[i].spawn_possible_room = room;
+                }
+            }
+        }
 
-    //        for(int i = 0; i < yy; i++)
-    //        {
-    //            for(int j = 0; j < xx; j++)
-    //            {
-    //                map_node[i][j] = save_node[i][j];
-    //            }
-    //        }
-    //    }
-    //}
+        int n = Random.Range(0, target_spot.Count);
 
-    //void Map_Node_Update()
-    //{
-    //    for(int i = 0; i < map_y; i++)
-    //    {
-    //        List<Object> lo = new List<Object>();
-    //        map_node.Add(lo);
-    //        for(int j = 0; j < map_x; j++)
-    //        {
-    //            lo.Add(null);
-    //        }
-    //    }
-    //}
-
-    //public List<List<Object>> Return_Map_Node(List<List<Object>> target)
-    //{
-    //    target = map_node.ToList();
-
-    //    return target;
-    //}
-
-    //public void Save_Node()
-    //{
-    //    load_x = map_x;
-    //    load_y = map_y;
-    //    MD.load_node = map_node.ToList();
-    //}
-
-    //public void Load_Node()
-    //{
-    //    map_x = load_x;
-    //    map_y = load_y;
-    //    map_node = MD.load_node.ToList();
-    //}
+        Vector3 rotation = target_spot[n].spawn_possible_spot.spawn_rotation;
+        GameObject target_item = Instantiate(gm.select_mission.goal_item, target_spot[n].spawn_possible_spot.transform.position, Quaternion.Euler(rotation.x, rotation.y, rotation.z));
+        target_spot[n].spawn_possible_spot.item = gm.select_mission.goal;
+        target_spot[n].spawn_possible_spot.spawned_item = true;
+        gm.select_mission.goal.parent_room = target_spot[n].spawn_possible_room;
+    }
 }
 
+public class TargetSpot
+{
+    public ItemSpot spawn_possible_spot;
+    public Room spawn_possible_room;
+}

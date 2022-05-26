@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ItemSpot : MonoBehaviour
 {
-    public enum item_type_ { SMALL, MIDIUM, DESK}
-    public item_type_ item_type;
+    public Item.item_size_type item_type;
+    public bool can_spawn_target;
     public Item item;
     public bool item_move;
     public Vector3 spawn_rotation;
+    [HideInInspector] public bool spawned_item;
 
     void OnCollisionExit(Collision col)
     {

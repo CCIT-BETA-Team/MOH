@@ -13,15 +13,15 @@ public class RoomData : ScriptableObject
     public List<Item> desk_item_list = new List<Item>();
 
 
-    List<Item> item_list(ItemSpot.item_type_ it)
+    List<Item> item_list(Item.item_size_type it)
     {
         switch (it)
         {
-            case ItemSpot.item_type_.SMALL:
+            case Item.item_size_type.SMALL:
                 return small_item_list;
-            case ItemSpot.item_type_.MIDIUM:
+            case Item.item_size_type.MIDIUM:
                 return midium_item_list;
-            case ItemSpot.item_type_.DESK:
+            case Item.item_size_type.DESK:
                 return desk_item_list;
             default:
                 return null;
@@ -32,10 +32,14 @@ public class RoomData : ScriptableObject
     {
         for (int i = 0; i < item_spawn_position.Count; i++)
         {
-            int x = Random.Range(0, item_list(item_spawn_position[i].item_type).Count);
-            Item item = Instantiate(item_list(item_spawn_position[i].item_type)[x], item_spawn_position[i].transform.position, Quaternion.identity, room.transform);
-            item_spawn_position[i].item = item;
-            item.parent_room = room;
+            if(!item_spawn_position[i].spawned_item)
+            {
+                int x = Random.Range(0, item_list(item_spawn_position[i].item_type).Count);
+                Item item = Instantiate(item_list(item_spawn_position[i].item_type)[x], item_spawn_position[i].transform.position, Quaternion.identity, room.transform);
+                item_spawn_position[i].item = item;
+                item_spawn_position[i].spawned_item = true;
+                item.parent_room = room;
+            }
         }
     }
 
@@ -43,10 +47,14 @@ public class RoomData : ScriptableObject
     {
         for (int i = 0; i < item_spawn_position.Count; i++)
         {
-            int x = Random.Range(0, item_list(item_spawn_position[i].item_type).Count);
-            Item item = Instantiate(item_list(item_spawn_position[i].item_type)[x], item_spawn_position[i].transform.position, Quaternion.Euler(rotation.x, rotation.y, rotation.z), room.transform);
-            item_spawn_position[i].item = item;
-            item.parent_room = room;
+            if (!item_spawn_position[i].spawned_item)
+            {
+                int x = Random.Range(0, item_list(item_spawn_position[i].item_type).Count);
+                Item item = Instantiate(item_list(item_spawn_position[i].item_type)[x], item_spawn_position[i].transform.position, Quaternion.Euler(rotation.x, rotation.y, rotation.z), room.transform);
+                item_spawn_position[i].item = item;
+                item_spawn_position[i].spawned_item = true;
+                item.parent_room = room;
+            }
         }
     }
 }
