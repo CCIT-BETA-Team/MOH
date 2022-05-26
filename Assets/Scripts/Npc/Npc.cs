@@ -303,7 +303,7 @@ public abstract class Npc : MonoBehaviour
                 break;
         }
 
-        Invoke("Change_State_Move", 1f);
+        //Invoke("Change_State_Move", 1f);
     }
 
 
