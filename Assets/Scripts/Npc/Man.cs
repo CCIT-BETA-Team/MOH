@@ -474,27 +474,19 @@ public class Man : Npc
     //
     private void Report()
     {
-        switch (personality)
-        {
-            case Npc_Personality.AGGESSIVE:
-                Aggessive();
-                break;
-            case Npc_Personality.Defensive:
-                Defensive();
-                break;
-        }
+        
     }
     private void Trace()
     {
-        Transform player_transform = player.transform;
-        agent.SetDestination(player_transform.position);
+        //Transform player_transform = player.transform;
+        //agent.SetDestination(player_transform.position);
 
     }
 
-    
+
     ///////////////////////
 
-
+ #region
     void Aggessive()
     {
         if(aggessive_trace_check == true)
@@ -519,6 +511,10 @@ public class Man : Npc
     void Defensive()
     {
         
+    }
+#endregion
+    private void Awake()
+    {
     }
 
     void Start()
@@ -549,14 +545,33 @@ public class Man : Npc
 
         if (Check_Unit())
         {
-            Debug.Log(20);
             if (Physics.Raycast(cam.transform.position, (player.transform.position - cam.transform.position), out hit, Mathf.Infinity, player_layermask))
             {
-                Debug.Log(hit.transform.gameObject.name);
-                Debug.Log(hit.transform.gameObject.layer);
                 if (hit.transform.gameObject.layer == 6)//player
                 {
-                    Debug.Log(23);
+                    if(player.lighted == true)
+                    {
+                        if(state != State.REPORT && state != State.TRACE)
+                        {
+                            this.agent.isStopped = true;
+                            target_item = null;
+                            target_room = null;
+                            this.agent.isStopped = false;
+                        }
+
+                        
+                        if(personality == Npc_Personality.AGGESSIVE) { state = State.TRACE; }
+                        else if(personality == Npc_Personality.Defensive) { state = State.REPORT; }
+
+                        state_continue = false;
+
+                        //target_item = null;
+                        //target_room = null;
+
+                        //opening_check = false;
+                        //state_end_check = false;
+                    }
+                    //if(hit.transform.gameObject.)
                     //miss_player = false;
                     //Vector2 player_uv = hit.textureCoord;
                     //Vector2 screen_pos = cam.WorldToViewportPoint(player.transform.position);
@@ -578,28 +593,28 @@ public class Man : Npc
 
                     //Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
                 }
-                else
-                {
-                    if(miss_player == false && miss_player != null)
-                    {
-                        miss_player = true;
-                        player_check_time += Time.deltaTime;
-                        if(this.state == State.REPORT || this.state == State.TRACE)
-                        {
-                            if(player_check_time > 5.0f)
-                            {
-                                aggessive_trace_check = false;
-                                player_check_time = 0;
-                            }
-                        }
-                    }
-                }
+                //else
+                //{
+                //    if(miss_player == false && miss_player != null)
+                //    {
+                //        miss_player = true;
+                //        player_check_time += Time.deltaTime;
+                //        if(this.state == State.REPORT || this.state == State.TRACE)
+                //        {
+                //            if(player_check_time > 5.0f)
+                //            {
+                //                aggessive_trace_check = false;
+                //                player_check_time = 0;
+                //            }
+                //        }
+                //    }
+                //}
                 
 
-                if (this.state == State.REPORT || this.state == State.TRACE)
-                {
+                //if (this.state == State.REPORT || this.state == State.TRACE)
+                //{
 
-                }
+                //}
                 
             }
         }
@@ -624,11 +639,10 @@ public class Man : Npc
 
     public bool Check_Unit()
     {
-        Vector3 screenPoint = cam.WorldToViewportPoint(player.transform.position);
+        Vector3 screenPoint = cam.WorldToViewportPoint(player_obj.transform.position);
         bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
         return onScreen;
     }
-
 
 
     IEnumerator State_Gaze_Change()
@@ -642,7 +656,7 @@ public class Man : Npc
         pee_percent_check = pee_percent;
         thirst_percent_check = thirst_percent;
         ///
-
+        if(state_continue)
         StartCoroutine(State_Gaze_Change());
     }
 

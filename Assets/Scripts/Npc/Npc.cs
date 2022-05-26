@@ -17,7 +17,8 @@ public abstract class Npc : MonoBehaviour
     //
     public Animator anim;
     //
-    public GameObject player;
+    public GameObject player_obj;
+    public Player player;
     //public GameObject target_spot;
     //
     public GameObject ghost;
@@ -31,6 +32,8 @@ public abstract class Npc : MonoBehaviour
     protected bool state_end_check = false;
     protected bool move_check = false;// 아직 안씀
     protected bool aggessive_trace_check = true;
+
+    protected bool state_continue = true;//Trace or Report 상태로 바뀌면 변경
     //
 
 

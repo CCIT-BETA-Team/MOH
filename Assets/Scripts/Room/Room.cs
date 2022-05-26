@@ -33,6 +33,7 @@ public class Room : MonoBehaviour
     //public List<Room> npc_own_room = new List<Room>();
     public NpcManager npcmanager;
     public Map map;
+    public GameObject target_item;
     //
 
     private void Awake()
