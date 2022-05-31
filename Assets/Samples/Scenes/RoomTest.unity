@@ -3008,9 +3008,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item_type: 0
+  can_spawn_target: 0
   item: {fileID: 0}
   item_move: 0
   spawn_rotation: {x: 0, y: 0, z: 0}
+  spawned_item: 0
 --- !u!65 &136992720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12335,6 +12337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   Player: {fileID: 0}
+  b_selet_mission: 0
   select_mission: {fileID: 0}
 --- !u!4 &628822353
 Transform:
@@ -20832,7 +20835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e1baf013367974c992e0f2d9527fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc_amount: 2
+  npc_amount: 0
   room_list:
   - {fileID: 1878343453}
   npc_own_room: []
@@ -21772,9 +21775,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item_type: 0
+  can_spawn_target: 0
   item: {fileID: 0}
   item_move: 0
   spawn_rotation: {x: 0, y: 0, z: 0}
+  spawned_item: 0
 --- !u!65 &1131261797
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24166,9 +24171,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item_type: 0
+  can_spawn_target: 1
   item: {fileID: 0}
   item_move: 0
   spawn_rotation: {x: 0, y: 0, z: 0}
+  spawned_item: 0
 --- !u!65 &1250799895
 BoxCollider:
   m_ObjectHideFlags: 0

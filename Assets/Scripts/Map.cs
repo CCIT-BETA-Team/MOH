@@ -67,26 +67,26 @@ public class Map : MonoBehaviour
         }
     }
 
-    List<TargetSpot> target_spot;
+    List<TargetSpot> target_spot = new List<TargetSpot>();
 
     void Spawn_Target_Item()
     {
         GameManager gm = GameManager.instance;
-
         foreach (var room in room_list)
         {
             for(int i = 0; i < room.item_spawn_position.Count; i++)
             {
                 if (gm.select_mission.goal.item_size == room.item_spawn_position[i].item_type && room.item_spawn_position[i].can_spawn_target)
                 {
-                    target_spot[i].spawn_possible_spot = room.item_spawn_position[i];
-                    target_spot[i].spawn_possible_room = room;
+                    TargetSpot spot = new TargetSpot();
+                    spot.spawn_possible_spot = room.item_spawn_position[i];
+                    spot.spawn_possible_room = room;
+                    target_spot.Add(spot);
                 }
             }
         }
 
         int n = Random.Range(0, target_spot.Count);
-
         Vector3 rotation = target_spot[n].spawn_possible_spot.spawn_rotation;
         GameObject target_item = Instantiate(gm.select_mission.goal_item, target_spot[n].spawn_possible_spot.transform.position, Quaternion.Euler(rotation.x, rotation.y, rotation.z));
         target_spot[n].spawn_possible_spot.item = gm.select_mission.goal;
