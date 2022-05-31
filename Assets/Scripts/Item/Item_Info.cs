@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestItem : Item
+public class Item_Info : Item
 {
     public override void interaction()
     {
@@ -16,5 +16,7 @@ public class TestItem : Item
         {
             parent_room.GetComponent<Room>().target_item = this.gameObject;
         }
+
+        //if(parent_room != null) { parent_room.Add_Furniture(this.gameObject); }
     }
 }

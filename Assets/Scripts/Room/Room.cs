@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
     public List<GameObject> npc_spawn_position = new List<GameObject>();
     public GameObject telephone;
     public List<Room> neighbor_room = new List<Room>();
-    public GameObject[] Furniture;
+    public List<GameObject> Furniture;
 
     [Header("룸 데이타")]
     public RoomData rd;
@@ -59,4 +59,10 @@ public class Room : MonoBehaviour
     //룸에 메인 조명 할당, PLayer가 켤 시 불 true;
     //문이 열렸는지 안열렸는지 체크 -> 방음수치영향 
     //npc manager에 
+
+
+    public void Add_Furniture(GameObject have_room)
+    {
+        Furniture.Add(have_room);
+    }
 }

@@ -187,7 +187,7 @@ public class Man : Npc
                     else if (path_finding[0].layer == 10) //Room layer
                     {
                         if (this.agent.enabled == true)
-                            this.agent.SetDestination(target_item.GetComponent<TestItem>().enter_spot.transform.position);
+                            this.agent.SetDestination(target_item.GetComponent<Item_Info>().enter_spot.transform.position);
                     }
                 }
             }
@@ -285,7 +285,7 @@ public class Man : Npc
                     else if (path_finding[0].layer == 10) //Room layer
                     {
                         if (this.agent.enabled == true)
-                            this.agent.SetDestination(target_item.GetComponent<TestItem>().enter_spot.transform.position);
+                            this.agent.SetDestination(target_item.GetComponent<Item_Info>().enter_spot.transform.position);
                     }
                 }
             }
@@ -388,7 +388,7 @@ public class Man : Npc
                     else if (path_finding[0].layer == 10) //Room layer
                     {
                         if (this.agent.enabled == true)
-                            this.agent.SetDestination(target_item.GetComponent<TestItem>().enter_spot.transform.position);
+                            this.agent.SetDestination(target_item.GetComponent<Item_Info>().enter_spot.transform.position);
                     }
                 }
             }
