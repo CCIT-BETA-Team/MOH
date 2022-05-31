@@ -110,7 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   item_name: "\uB3C8 \uBB49\uCE58"
-  itemtype: 0
+  itemtype: 3
+  item_size: 0
   parameter_type: 0
   price: 0
   weight: 0
