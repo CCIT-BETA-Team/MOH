@@ -13,7 +13,7 @@ public abstract class Item : MonoBehaviour
     public enum item_size_type { SMALL, MIDIUM, DESK }
     public item_size_type item_size;
     public enum parameterType
-    { SLEEP, PEE, THIRSTY, PHONE, NONE}
+    { SLEEP, PEE, THIRSTY, PHONE, NONE , DOOR}
     public parameterType parameter_type;
     public int price;
     public float weight;

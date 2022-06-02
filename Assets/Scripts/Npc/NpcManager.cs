@@ -17,12 +17,18 @@ public class NpcManager : Singleton<NpcManager>
     public List<Room> room_list = new List<Room>();
     public BoxCollider police_spawn_point;
 
+    [Header("Target_Room")]
+    public List<Room> Bed_Room = new List<Room>();
+    public List<Room> Bath_Room = new List<Room>();
+    public List<Room> Dining_Room = new List<Room>();
+
     [Header("아이템 분류 리스트")]
     public List<Item> sleep_items = new List<Item>();
     public List<Item> pee_items = new List<Item>();
     public List<Item> thirsty_items = new List<Item>();
     public List<Item> phone_items = new List<Item>();
     public List<Item> none_items = new List<Item>();
+    public List<Item> door_items = new List<Item>();
 
     [Header("경찰 도착까지 시간")]
     [Range(0, 600)]
@@ -37,14 +43,11 @@ public class NpcManager : Singleton<NpcManager>
     [Header("경찰 수")]
     public int police_spawn_count;
 
-    //public List<List<>>
 
     void Start()
     {
-        //for(int i = 0; i < room_list.Count; i++)
-        //{
-        //    room_list[i].sett
-        //}
+        Sort_Room();
+        put_in_target_item();
     }
 
     void Update()
@@ -130,7 +133,35 @@ public class NpcManager : Singleton<NpcManager>
             case Item.parameterType.NONE:
                 none_items.Add(i);
                 break;
+            case Item.parameterType.DOOR:
+                door_items.Add(i);
+                break;
         }
+    }
+    
+    public void Sort_Room()
+    {
+        for(int i = 0; i < room_list.Count; i++)
+        {
+            switch (room_list[i].room_type)
+            {
+                case Room.room_type_.BED_ROOM:
+                    Bed_Room.Add(room_list[i]);
+                    break;
+                case Room.room_type_.DINING_ROOM:
+                    Dining_Room.Add(room_list[i]);
+                    break;
+                case Room.room_type_.BATH_ROOM:
+                    Bath_Room.Add(room_list[i]);
+                    break;
+            }
+        }
+    }
+    public void put_in_target_item()
+    {
+        for (int i = 0; i < sleep_items.Count; i++) { sleep_items[i].parent_room.target_items.Add(sleep_items[i].gameObject); }
+        for (int i = 0; i < pee_items.Count; i++) { pee_items[i].parent_room.target_items.Add(pee_items[i].gameObject); }
+        for (int i = 0; i < thirsty_items.Count; i++) { thirsty_items[i].parent_room.target_items.Add(thirsty_items[i].gameObject); }
     }
 
     public GameObject Ins_Ghost(Transform npc_transform, GameObject ghost, Npc npc)

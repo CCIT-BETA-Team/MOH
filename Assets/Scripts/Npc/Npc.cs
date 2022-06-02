@@ -208,9 +208,8 @@ public abstract class Npc : MonoBehaviour
                 {
                     State_Initizlize();
 
-                    ////////////
-                    ///여기서 target_room 이랑 target_item 정해줘야 함 딴것도 마찬가지임
-                    ////////////
+                    target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
+                    target_item = target_room.GetComponent<Room>().Decide_Target_Item();
 
                     if (target_item != null)
                     npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
@@ -241,6 +240,10 @@ public abstract class Npc : MonoBehaviour
                 {
                     State_Initizlize();
 
+                    target_room = NpcManager.instance.Bath_Room[Random.Range(0, NpcManager.instance.Bath_Room.Count)].gameObject;
+                    target_item = target_room.GetComponent<Room>().Decide_Target_Item();
+
+
                     if (target_item != null)
                         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     agent.enabled = true;
@@ -268,6 +271,9 @@ public abstract class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     State_Initizlize();
+
+                    target_room = NpcManager.instance.Dining_Room[Random.Range(0, NpcManager.instance.Dining_Room.Count)].gameObject;
+                    target_item = target_room.GetComponent<Room>().Decide_Target_Item();
 
                     if (target_item != null)
                         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);

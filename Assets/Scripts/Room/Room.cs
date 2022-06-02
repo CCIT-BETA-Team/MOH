@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
     public List<GameObject> npc_spawn_position = new List<GameObject>();
     public GameObject telephone;
     public List<Room> neighbor_room = new List<Room>();
-    public List<GameObject> Furniture;
+    public List<GameObject> Furniture = new List<GameObject>();
 
     [Header("∑Î µ•¿Ã≈∏")]
     public RoomData rd;
@@ -33,6 +33,7 @@ public class Room : MonoBehaviour
     //public List<Room> npc_own_room = new List<Room>();
     public NpcManager npcmanager;
     public Map map;
+    public List<GameObject> target_items = new List<GameObject>();
     public GameObject target_item;
     //
 
@@ -64,5 +65,13 @@ public class Room : MonoBehaviour
     public void Add_Furniture(GameObject have_room)
     {
         Furniture.Add(have_room);
+    }
+    public GameObject Decide_Target_Item()
+    {
+        int items_count = target_items.Count;
+        int Ran = Random.Range(0, items_count);
+        target_item = target_items[Ran];
+
+        return target_item;
     }
 }
