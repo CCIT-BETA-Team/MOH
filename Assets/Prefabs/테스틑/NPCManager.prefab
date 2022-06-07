@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7223613974133339496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7223613974133339498}
+  - component: {fileID: 7223613974133339497}
+  m_Layer: 0
+  m_Name: NPCManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7223613974133339498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223613974133339496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7223613974133339497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223613974133339496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc563067bcc0c34ba59e4a0321e890e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  map: {fileID: 0}
+  player: {fileID: 0}
+  npc_prefabs:
+  - {fileID: 5511310772564121014, guid: 267148d33685c00499aae6c2555613ab, type: 3}
+  - {fileID: 5511310772564121014, guid: 075ac3fbe06287f44a606abe9936fbba, type: 3}
+  police_npc: {fileID: 2066659748407480902, guid: a77e54b998e33954fb1534f0337bdd43, type: 3}
+  Map_Transform: []
+  room_list:
+  - {fileID: 0}
+  police_spawn_point: {fileID: 0}
+  Bed_Room: []
+  Bath_Room: []
+  Dining_Room: []
+  sleep_items: []
+  pee_items: []
+  thirsty_items: []
+  phone_items: []
+  none_items: []
+  door_items: []
+  police_count: 13
+  min_text: {fileID: 0}
+  sec_text: {fileID: 0}
+  police_spawn_count: 5

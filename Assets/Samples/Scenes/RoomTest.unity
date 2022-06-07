@@ -6140,11 +6140,15 @@ MonoBehaviour:
   room_list:
   - {fileID: 1878343453}
   police_spawn_point: {fileID: 1258475544}
+  Bed_Room: []
+  Bath_Room: []
+  Dining_Room: []
   sleep_items: []
   pee_items: []
   thirsty_items: []
   phone_items: []
   none_items: []
+  door_items: []
   police_count: 13
   min_text: {fileID: 1120546127}
   sec_text: {fileID: 1758906339}
@@ -20663,6 +20667,7 @@ MonoBehaviour:
   is_owner: 0
   npcmanager: {fileID: 0}
   map: {fileID: 0}
+  target_items: []
   target_item: {fileID: 0}
 --- !u!65 &1078306606
 BoxCollider:
@@ -36523,8 +36528,9 @@ MonoBehaviour:
   sound_from_door: 0
   player_on_light: 0
   is_owner: 0
-  npcmanager: {fileID: 0}
-  map: {fileID: 0}
+  npcmanager: {fileID: 326336389}
+  map: {fileID: 1084445818}
+  target_items: []
   target_item: {fileID: 0}
 --- !u!4 &1882719666 stripped
 Transform:
