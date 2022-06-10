@@ -213,6 +213,7 @@ public abstract class Npc : MonoBehaviour
 
                     if (target_item != null)
                     npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
+
                     agent.enabled = true;
 
                     state = State.SLEEP;
@@ -343,6 +344,7 @@ public abstract class Npc : MonoBehaviour
 
         opening_check = false;
         state_end_check = false;
+        state = State.IDLE;
     }
 
 

@@ -24,8 +24,7 @@ public abstract class Item : MonoBehaviour
 
     public Room parent_room;
     //
-    [HideInInspector]
-    public Transform enter_spot;
+    public GameObject enter_spot;
     //
     void Awake()
     {
