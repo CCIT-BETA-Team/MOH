@@ -1,0 +1,962 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7480467356814972404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467356814972411}
+  - component: {fileID: 7480467356814972409}
+  - component: {fileID: 7480467356814972410}
+  m_Layer: 10
+  m_Name: BATH_ROOM_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467356814972411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467356814972404}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.1450253, y: 0, z: 0.938}
+  m_LocalScale: {x: 1.4105847, y: 2.249912, z: 1.3225217}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467356814972409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467356814972404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 3
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467356814972410
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467356814972404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.69, z: 0}
+--- !u!1 &7480467356879679287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467356879679286}
+  m_Layer: 0
+  m_Name: Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467356879679286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467356879679287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7480467357509518324}
+  - {fileID: 7480467357929220685}
+  - {fileID: 7480467357234568318}
+  - {fileID: 7480467356884498860}
+  - {fileID: 7480467357743809919}
+  - {fileID: 7480467357758530223}
+  - {fileID: 7480467357578651167}
+  - {fileID: 7480467358865316637}
+  - {fileID: 7480467357940365280}
+  - {fileID: 7480467358510489357}
+  - {fileID: 7480467357821734366}
+  - {fileID: 7480467356814972411}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7480467356884498861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467356884498860}
+  - component: {fileID: 7480467356884498514}
+  - component: {fileID: 7480467356884498515}
+  m_Layer: 10
+  m_Name: BED_ROOM_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467356884498860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467356884498861}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.225975, y: 2.872, z: 1.4287392}
+  m_LocalScale: {x: 5.5773916, y: 2.2083848, z: 4.944042}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7480467356884498514
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467356884498861}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.56, z: 0}
+--- !u!114 &7480467356884498515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467356884498861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 0
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!1 &7480467357234568312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467357234568318}
+  - component: {fileID: 7480467357234568319}
+  - component: {fileID: 7480467357234568317}
+  m_Layer: 10
+  m_Name: BED_ROOM_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467357234568318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357234568312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.544, y: 2.872, z: 1.91}
+  m_LocalScale: {x: 3.6361592, y: 2.249912, z: 3.4795783}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467357234568319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357234568312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 0
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467357234568317
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357234568312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.58, z: 0}
+--- !u!1 &7480467357509518325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467357509518324}
+  - component: {fileID: 7480467357509518329}
+  - component: {fileID: 7480467357509518330}
+  - component: {fileID: 7480467357509518331}
+  m_Layer: 10
+  m_Name: LIVING_ROOM_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467357509518324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357509518325}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.1540256, y: 0, z: 0.36573917}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467357509518329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357509518325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 1
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items:
+  - {fileID: 0}
+  target_item: {fileID: 0}
+--- !u!65 &7480467357509518330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357509518325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.37, y: 2.61, z: 6}
+  m_Center: {x: 0, y: 1.3, z: -0.04}
+--- !u!65 &7480467357509518331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357509518325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6, y: 2.61, z: 2.79}
+  m_Center: {x: -1.7, y: 1.3, z: 1.76}
+--- !u!1 &7480467357578651160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467357578651167}
+  - component: {fileID: 7480467357578651165}
+  - component: {fileID: 7480467357578651166}
+  m_Layer: 10
+  m_Name: GARAGE_ROOM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467357578651167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357578651160}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.3029747, y: 0, z: 1.6027392}
+  m_LocalScale: {x: 4.8960886, y: 2.249912, z: 5.4170437}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467357578651165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357578651160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 8
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467357578651166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357578651160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.54, z: 0}
+--- !u!1 &7480467357743809912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467357743809919}
+  - component: {fileID: 7480467357743809917}
+  - component: {fileID: 7480467357743809918}
+  m_Layer: 10
+  m_Name: BED_ROOM_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467357743809919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357743809912}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.08197498, y: 2.872, z: -2.4542608}
+  m_LocalScale: {x: 2.525387, y: 2.2083848, z: 1.511489}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7480467357743809917
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357743809912}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.54, z: 0}
+--- !u!114 &7480467357743809918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357743809912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 0
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items:
+  - {fileID: 0}
+  target_item: {fileID: 0}
+--- !u!1 &7480467357758530218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467357758530223}
+  - component: {fileID: 7480467357758530216}
+  - component: {fileID: 7480467357758530217}
+  m_Layer: 10
+  m_Name: DINING_ROOM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467357758530223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357758530218}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.1599998, y: 0, z: -2.112}
+  m_LocalScale: {x: 3.6361592, y: 2.249912, z: 3.4795783}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467357758530216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357758530218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 2
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467357758530217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357758530218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!1 &7480467357821734367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467357821734366}
+  - component: {fileID: 7480467357821734364}
+  - component: {fileID: 7480467357821734365}
+  m_Layer: 10
+  m_Name: BATH_ROOM_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467357821734366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357821734367}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.688025, y: 2.872, z: 2.0127392}
+  m_LocalScale: {x: 1.4716487, y: 2.249912, z: 3.1974192}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467357821734364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357821734367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 3
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467357821734365
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357821734367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.61, z: 0}
+--- !u!1 &7480467357929220686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467357929220685}
+  - component: {fileID: 7480467357929220723}
+  - component: {fileID: 7480467357929220684}
+  m_Layer: 10
+  m_Name: LIVING_ROOM_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467357929220685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357929220686}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.053, y: 0, z: -3.4942608}
+  m_LocalScale: {x: 5.155499, y: 1.971186, z: 3.30076}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467357929220723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357929220686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 1
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467357929220684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357929220686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!1 &7480467357940365281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467357940365280}
+  - component: {fileID: 7480467357940365286}
+  - component: {fileID: 7480467357940365287}
+  m_Layer: 10
+  m_Name: LAUNDRY_ROOM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467357940365280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357940365281}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.510025, y: 2.872, z: -2.3592608}
+  m_LocalScale: {x: 1.4803495, y: 2.249912, z: 1.6380403}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467357940365286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357940365281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 7
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467357940365287
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467357940365281}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.53, z: 0}
+--- !u!1 &7480467358510489358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467358510489357}
+  - component: {fileID: 7480467358510489394}
+  - component: {fileID: 7480467358510489395}
+  - component: {fileID: 7480467358510489356}
+  m_Layer: 10
+  m_Name: BATH_ROOM_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467358510489357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467358510489358}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.0859747, y: 2.872, z: -2.9192607}
+  m_LocalScale: {x: 1.6710265, y: 2.249912, z: 2.7399302}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467358510489394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467358510489358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 3
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467358510489395
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467358510489358}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.55, z: 0}
+--- !u!65 &7480467358510489356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467358510489358}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.58, y: 1, z: 0.34}
+  m_Center: {x: 0.73, y: 0.55, z: 0.27}
+--- !u!1 &7480467358865316638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7480467358865316637}
+  - component: {fileID: 7480467358865316611}
+  - component: {fileID: 7480467358865316636}
+  m_Layer: 10
+  m_Name: OFFICE_ROOM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7480467358865316637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467358865316638}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.947025, y: 2.872, z: -2.1512609}
+  m_LocalScale: {x: 2.4614828, y: 2.249912, z: 2.1739664}
+  m_Children: []
+  m_Father: {fileID: 7480467356879679286}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7480467358865316611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467358865316638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fcdf9c8d6b1b547beb6d52e759f7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 4
+  door_list: []
+  item_spawn_position: []
+  npc_spawn_position: []
+  telephone: {fileID: 0}
+  neighbor_room: []
+  Furniture: []
+  rd: {fileID: 11400000, guid: 595f4cb632603b343830af195d44f0f8, type: 2}
+  default_value: 0
+  door_open_amont: 0
+  sound_from_door: 0
+  player_on_light: 0
+  is_owner: 0
+  npcmanager: {fileID: 0}
+  map: {fileID: 0}
+  target_items: []
+  target_item: {fileID: 0}
+--- !u!65 &7480467358865316636
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480467358865316638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.61, z: 0}
