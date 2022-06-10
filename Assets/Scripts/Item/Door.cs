@@ -5,6 +5,8 @@ using UnityEngine;
 public class Door : Item
 {
     public bool isLock =false;
+    [Range(0, 100)]
+    public float unlock_gauge;
     Rigidbody rg;
     float value;
     public float sensitivity = 10f;
@@ -46,7 +48,7 @@ public class Door : Item
     {
         if(isLock)
         {
-            Debug.Log("잠겨있어요");
+            Unlocking();
         }
         else if(!isLock)
         {
@@ -119,5 +121,10 @@ public class Door : Item
     public void Connecting()
     {
         another_handle.value = value;
+    }
+
+    public void Unlocking()
+    {
+
     }
 }
