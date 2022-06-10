@@ -17,7 +17,7 @@ public class Player : p_Player
     [Header("플레이어 아이템 관련")]
     bool isHoldingItem;
     bool getQuestItem;
-    public List<Item> itemBag = new List<Item>();
+    
     public List<Rigidbody> itemRG = new List<Rigidbody>();
     public List<Collider> itemCol = new List<Collider>();
     int currentItem;
