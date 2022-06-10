@@ -9,6 +9,7 @@ public class PopupManager : Singleton<PopupManager>
     public Transform popup_content_transform;
     public float start_y;
     public float time;
+    public Slider door_unlock_slider;
 
     void Start()
     {

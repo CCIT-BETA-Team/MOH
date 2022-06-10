@@ -54,31 +54,50 @@ public class Player : p_Player
 
     void Control()
     {
-        turn.x += Input.GetAxis("Mouse X") * sensitivity;
-        turn.y += Input.GetAxis("Mouse Y") * sensitivity;
-        transform.localRotation = Quaternion.Euler(0, turn.x, 0);
-        cam.transform.localRotation = Quaternion.Euler(-turn.y, 0, 0);
+        if(!move)
+        {
+            turn.x += Input.GetAxis("Mouse X") * sensitivity;
+            turn.y += Input.GetAxis("Mouse Y") * sensitivity;
+            transform.localRotation = Quaternion.Euler(0, turn.x, 0);
+            cam.transform.localRotation = Quaternion.Euler(-turn.y, 0, 0);
 
-        //이동
-        if (Input.GetKey(KeyCode.W)) { transform.Translate(Vector3.forward * Time.deltaTime * walkingSpeed); }
-        if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * Time.deltaTime * walkingSpeed); }
-        if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * Time.deltaTime * walkingSpeed); }
-        if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * Time.deltaTime * walkingSpeed); }
-        if (Input.GetKey(KeyCode.Space)) { }
+            //이동
+            if (Input.GetKey(KeyCode.W)) { transform.Translate(Vector3.forward * Time.deltaTime * walkingSpeed); }
+            if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * Time.deltaTime * walkingSpeed); }
+            if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * Time.deltaTime * walkingSpeed); }
+            if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * Time.deltaTime * walkingSpeed); }
+            if (Input.GetKey(KeyCode.Space)) { }
+
+            //장비
+            if (Input.GetMouseButton(1)) { Zoom(); }
+            else if (Input.GetMouseButton(0)) { Use_Item(); }
+            if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) { Throw_Item(); }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1)) { ItemSwitch(itemBag[0]); currentItem = 0; }
+            if (Input.GetKeyDown(KeyCode.Alpha2)) { ItemSwitch(itemBag[1]); currentItem = 1; }
+            if (Input.GetKeyDown(KeyCode.Alpha3)) { ItemSwitch(itemBag[2]); currentItem = 2; }
+            if (Input.GetKeyDown(KeyCode.Alpha4)) { ItemSwitch(itemBag[3]); currentItem = 3; }
+        }
 
         //상호작용
         if (Input.GetKeyDown(KeyCode.E)) { ItemCheck(); }
         if (Input.GetKey(KeyCode.E)) { Interaction(); }
-
-        //장비
-        if (Input.GetMouseButton(1)) { Zoom(); }
-        else if (Input.GetMouseButton(0)) { Use_Item(); }
-        if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) { Throw_Item(); }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { ItemSwitch(itemBag[0]); currentItem = 0; }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { ItemSwitch(itemBag[1]); currentItem = 1; }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { ItemSwitch(itemBag[2]); currentItem = 2; }
-        if (Input.GetKeyDown(KeyCode.Alpha4)) { ItemSwitch(itemBag[3]); currentItem = 3; }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (InteractionItem != null)
+            {
+                switch (InteractionItem.itemtype)
+                {
+                    case Item.itemType.DOOR:
+                        InteractionItem.Door_Unlock_Gauge_Init();
+                        break;
+                    case Item.itemType.FURNITURE:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
     void ItemSwitch(Item item)
@@ -97,15 +116,18 @@ public class Player : p_Player
 
         Debug.DrawRay(ray.origin, ray.direction * 10, Color.red);
 
-        if(Physics.Raycast(ray, out hit)) { InteractionObject = hit.transform; }
+        if(Physics.Raycast(ray, out hit))
+        {
+            InteractionObject = hit.transform;
+            InteractionItem = InteractionObject.GetComponent<Item>();
+            InteractionItem.player = this;
+        }
     }
 
     Item InteractionItem;
 
     void Interaction()
     {
-        InteractionItem = InteractionObject.GetComponent<Item>();
-
         if(InteractionItem != null)
         {
             switch (InteractionItem.itemtype)
