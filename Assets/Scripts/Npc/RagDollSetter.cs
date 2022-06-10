@@ -56,7 +56,9 @@ public class RagDollSetter : MonoBehaviour
             foreach (Rigidbody r in rigs)
            {
                 r.isKinematic = false;
+#if UNITY_ADROID
                 r.gameObject.GetComponent<XRGrabInteractable>().enabled = true;
+#endif
            }
      }
      else
@@ -66,7 +68,9 @@ public class RagDollSetter : MonoBehaviour
             {
 
                 r.isKinematic = true;
+#if UNITY_ADROID
                 r.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+#endif
             }
         }
     }

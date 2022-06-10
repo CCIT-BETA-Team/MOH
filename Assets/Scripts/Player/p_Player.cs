@@ -6,8 +6,7 @@ public class p_Player : MonoBehaviour
 {
     [Header("플레이어 프리즈")]
     public bool freeze;
-
-
+    public bool move;
     [Header("플레이어 스테이터스")]
     public int health;
     public int money { get { return PlayerPrefs.GetInt("pMoney", 0); } }
@@ -18,7 +17,10 @@ public class p_Player : MonoBehaviour
     protected float sensitivity = 0.5f;
     public bool lighted;
     [Header("Player로 옮겨야할수도있음")]
-    public float unlockSpeed;
+    public float unlock_default;
+    public float unlock_tool;
+    public float unlock_skill;
+    public float unlock_speed { get { return unlock_default + unlock_tool + unlock_skill; } }
     public float noiseValue;
     public List<Item> itemBag = new List<Item>();
     private void Awake()

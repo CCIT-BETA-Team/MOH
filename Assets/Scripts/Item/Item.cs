@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public abstract class Item : MonoBehaviour
 {
+    //[HideInInspector]
+    public Player player;
     public int id;
     public string item_name;
     public enum itemType
@@ -32,4 +34,6 @@ public abstract class Item : MonoBehaviour
     }
 
     public abstract void interaction();
+
+    public virtual void Door_Unlock_Gauge_Init() { }
 }
