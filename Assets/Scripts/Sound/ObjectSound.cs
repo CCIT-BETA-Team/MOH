@@ -45,6 +45,7 @@ public class ObjectSound : MonoBehaviour
         sound_source.transform.rotation = transform.rotation;
         sound_source.transform.parent = transform;
 
+        if(sound == null)
         sound = sound_source.AddComponent<AudioSource>();
         sound.spatialBlend = 1;
         sound.volume = sounds.volume;
@@ -86,6 +87,7 @@ public class ObjectSound : MonoBehaviour
     }
 
 
+    float ran;
     /// <summary>
     /// 즉발 사운드
     /// </summary>
@@ -100,7 +102,9 @@ public class ObjectSound : MonoBehaviour
         {
             for (int i = 0; i < col.Length; i++)
             {
+                if(col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
                 col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
             }
 
         }
@@ -117,7 +121,9 @@ public class ObjectSound : MonoBehaviour
         {
             for(int i = 0; i < col.Length; i++)
             {
-                col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
             }
             
         }
@@ -135,7 +141,9 @@ public class ObjectSound : MonoBehaviour
             {
                 for (int i = 0; i < col.Length; i++)
                 {
-                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                        col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
                 }
             }
         }
@@ -154,7 +162,9 @@ public class ObjectSound : MonoBehaviour
             {
                 for (int i = 0; i < col.Length; i++)
                 {
-                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                        col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
                 }
             }
         }
@@ -172,7 +182,9 @@ public class ObjectSound : MonoBehaviour
             {
                 for (int i = 0; i < col.Length; i++)
                 {
-                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                        col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
                 }
             }
         }
@@ -191,7 +203,9 @@ public class ObjectSound : MonoBehaviour
             {
                 for (int i = 0; i < col.Length; i++)
                 {
-                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                        col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
                 }
             }
         }
@@ -211,7 +225,9 @@ public class ObjectSound : MonoBehaviour
         {
             for (int i = 0; i < col.Length; i++)
             {
-                col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
             }
         }
     }
@@ -227,7 +243,9 @@ public class ObjectSound : MonoBehaviour
         {
             for (int i = 0; i < col.Length; i++)
             {
-                col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
             }
         }
     }
@@ -244,7 +262,9 @@ public class ObjectSound : MonoBehaviour
             {
                 for (int i = 0; i < col.Length; i++)
                 {
-                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                        col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
                 }
             }
         }
@@ -263,7 +283,9 @@ public class ObjectSound : MonoBehaviour
             {
                 for (int i = 0; i < col.Length; i++)
                 {
-                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                        col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
                 }
             }
         }
@@ -281,7 +303,9 @@ public class ObjectSound : MonoBehaviour
             {
                 for (int i = 0; i < col.Length; i++)
                 {
-                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                        col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
                 }
             }
         }
@@ -300,7 +324,9 @@ public class ObjectSound : MonoBehaviour
             {
                 for (int i = 0; i < col.Length; i++)
                 {
-                    col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    if (col[i].gameObject.GetComponent<Npc>().personality == Npc.Npc_Personality.AGGESSIVE)
+                        col[i].gameObject.GetComponent<Npc>().fear_percent += 10;
+                    else { col[i].gameObject.GetComponent<Npc>().fear_percent += 5; }
                 }
             }
         }

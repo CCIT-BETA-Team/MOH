@@ -68,10 +68,12 @@ public class Room : MonoBehaviour
     }
     public GameObject Decide_Target_Item()
     {
-        int items_count = target_items.Count;
-        int Ran = Random.Range(0, items_count);
-        target_item = target_items[Ran];
-
+        if (target_items.Count != 0)
+        {
+            int items_count = target_items.Count;
+            int Ran = Random.Range(0, items_count);
+            target_item = target_items[Ran];
+        }
         return target_item;
     }
 }

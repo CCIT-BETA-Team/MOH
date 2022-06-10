@@ -9,7 +9,7 @@ public class Furniture : Item
     public Vector3 anim_view_dir;
     private void Awake()
     {
-        enter_spot = spot;
+        //enter_spot = spot;
     }
     public override void interaction()
     {
