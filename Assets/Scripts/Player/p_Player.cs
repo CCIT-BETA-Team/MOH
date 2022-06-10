@@ -20,7 +20,7 @@ public class p_Player : MonoBehaviour
     [Header("Player로 옮겨야할수도있음")]
     public float unlockSpeed;
     public float noiseValue;
-
+    public List<Item> itemBag = new List<Item>();
     private void Awake()
     {
     
