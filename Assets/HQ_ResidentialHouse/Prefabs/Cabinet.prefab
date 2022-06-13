@@ -153,6 +153,7 @@ MonoBehaviour:
   id: 0
   item_name: 
   itemtype: 2
+  item_size: 0
   parameter_type: 4
   price: 0
   weight: 0
@@ -164,6 +165,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  interact_obj: 0
 --- !u!1 &183304
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +309,8 @@ MonoBehaviour:
   id: 0
   item_name: 
   itemtype: 0
-  parameter_type: 0
+  item_size: 0
+  parameter_type: 5
   price: 0
   weight: 0
   bIsMoving: 0
@@ -374,7 +377,8 @@ MonoBehaviour:
   id: 0
   item_name: 
   itemtype: 0
-  parameter_type: 0
+  item_size: 0
+  parameter_type: 5
   price: 0
   weight: 0
   bIsMoving: 0

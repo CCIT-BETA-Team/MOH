@@ -115,6 +115,7 @@ MonoBehaviour:
   id: 0
   item_name: 
   itemtype: 2
+  item_size: 0
   parameter_type: 4
   price: 0
   weight: 0
@@ -126,6 +127,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  interact_obj: 0
 --- !u!114 &726179709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +159,6 @@ GameObject:
   - component: {fileID: 3350980}
   - component: {fileID: 2384146}
   - component: {fileID: 11108550}
-  - component: {fileID: 11405768}
   - component: {fileID: 6599108}
   - component: {fileID: 731226820}
   m_Layer: 0
@@ -246,48 +247,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &11405768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c6531421bd49bc4ba44e586502382a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHeadTag: MainCamera
-  knob: {fileID: 496384}
-  controls:
-    openingSpeed: 1
-    closingSpeed: 1
-    closeStartFrom: 1
-    openMethod: 0
-    openButton: 101
-    autoClose: 0
-  AnimationNames:
-    OpeningAnim: DrawerA
-    LockedAnim: Door_locked
-  doorSounds:
-    enabled: 1
-    open: {fileID: 8300000, guid: 6427f56e53a25cb4baad158c6bd6aa67, type: 3}
-    close: {fileID: 8300000, guid: 6427f56e53a25cb4baad158c6bd6aa67, type: 3}
-    closed: {fileID: 0}
-    volume: 0.728
-    pitchRandom: 0.2
-  doorTexts:
-    enabled: 1
-    openingText: Press [BUTTON] to open
-    closingText: Press [BUTTON] to close
-    lockText: You need a key!
-    TextPrefab: {fileID: 196946, guid: 449c88c761914d5428550f871a1d6272, type: 3}
-  keySystem:
-    enabled: 0
-    isUnlock: 0
-    LockPrefab: {fileID: 0}
-  Opened: 0
 --- !u!65 &6599108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -316,7 +275,8 @@ MonoBehaviour:
   id: 0
   item_name: 
   itemtype: 0
-  parameter_type: 4
+  item_size: 0
+  parameter_type: 5
   price: 0
   weight: 0
   bIsMoving: 0
@@ -440,7 +400,8 @@ MonoBehaviour:
   id: 0
   item_name: 
   itemtype: 0
-  parameter_type: 4
+  item_size: 0
+  parameter_type: 5
   price: 0
   weight: 0
   bIsMoving: 0
@@ -564,7 +525,8 @@ MonoBehaviour:
   id: 0
   item_name: 
   itemtype: 0
-  parameter_type: 4
+  item_size: 0
+  parameter_type: 5
   price: 0
   weight: 0
   bIsMoving: 0

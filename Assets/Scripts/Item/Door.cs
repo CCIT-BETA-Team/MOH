@@ -5,6 +5,8 @@ using UnityEngine;
 public class Door : Item
 {
     public bool isLock =false;
+    public float unlock_gauge;
+    public float gauge_max;
     Rigidbody rg;
     float value;
     public float sensitivity = 10f;
@@ -46,7 +48,7 @@ public class Door : Item
     {
         if(isLock)
         {
-            Debug.Log("잠겨있어요");
+            Unlocking(player.unlock_speed);
         }
         else if(!isLock)
         {
@@ -78,7 +80,7 @@ public class Door : Item
     }
 
     //test code 안드로이드 빌드 제한은 추후에 (VR외 로 사용금지)
-    public  void interaction(Vector3 vrinput)
+    public void interaction(Vector3 vrinput)
     {
         if (isLock)
         {
@@ -119,5 +121,34 @@ public class Door : Item
     public void Connecting()
     {
         another_handle.value = value;
+    }
+
+    public void Unlocking(float unlock_speed)
+    {
+        if (unlock_gauge > 0)
+        {
+            if (!PopupManager.instance.door_unlock_slider.gameObject.activeSelf) PopupManager.instance.door_unlock_slider.gameObject.SetActive(true);
+            if (PopupManager.instance.door_unlock_slider.maxValue != gauge_max) PopupManager.instance.door_unlock_slider.maxValue = gauge_max;
+            if (PopupManager.instance.door_unlock_slider.value != unlock_gauge) PopupManager.instance.door_unlock_slider.value = unlock_gauge;
+            if (!player.move) { player.move = true; }
+            unlock_gauge -= Time.deltaTime * unlock_speed;
+        }
+        else
+        {
+            if (PopupManager.instance.door_unlock_slider.gameObject.activeSelf) { PopupManager.instance.door_unlock_slider.gameObject.SetActive(false); }
+            isLock = false;
+            unlock_gauge = 0;
+            another_handle.unlock_gauge = 0;
+        }
+    }
+
+    public override void Door_Unlock_Gauge_Init()
+    {
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (player.move) { player.move = false; }
+            PopupManager.instance.door_unlock_slider.gameObject.SetActive(false);
+            unlock_gauge = gauge_max;
+        }
     }
 }

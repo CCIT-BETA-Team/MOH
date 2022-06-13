@@ -98,6 +98,7 @@ MonoBehaviour:
   id: 0
   item_name: 
   itemtype: 2
+  item_size: 0
   parameter_type: 4
   price: 0
   weight: 0
@@ -109,6 +110,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  interact_obj: 0
 --- !u!114 &2073584295
 MonoBehaviour:
   m_ObjectHideFlags: 0
