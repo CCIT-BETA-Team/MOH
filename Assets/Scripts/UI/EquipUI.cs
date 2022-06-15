@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler
+public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,IPointerUpHandler,IPointerClickHandler
 {
     public Item current_item= null;
     public Image item_icon= null;
@@ -38,11 +38,22 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        //On mouse ¿Ã∫•∆Æ
+        Debug.Log("Exit");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //
+        Debug.Log("Enter");
+    }
+
+ 
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Debug.Log("Click");
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("Click2"); 
     }
 }
