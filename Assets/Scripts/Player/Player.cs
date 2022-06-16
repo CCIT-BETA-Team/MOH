@@ -16,7 +16,7 @@ public class Player : p_Player
     
     public List<Rigidbody> itemRG = new List<Rigidbody>();
     public List<Collider> itemCol = new List<Collider>();
-    int currentItem;
+    public int currentItem;
     Item unlockTool;
     public Transform InteractionObject;
 
@@ -57,10 +57,10 @@ public class Player : p_Player
             cam.transform.localRotation = Quaternion.Euler(-turn.y, 0, 0);
 
             //이동
-            if (Input.GetKey(KeyCode.W)) { transform.Translate(Vector3.forward * Time.deltaTime * walkingSpeed); }
-            if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * Time.deltaTime * walkingSpeed); }
-            if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * Time.deltaTime * walkingSpeed); }
-            if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * Time.deltaTime * walkingSpeed); }
+            if (Input.GetKey(KeyCode.W)) { transform.Translate(Vector3.forward * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
             if (Input.GetKey(KeyCode.Space)) { }
 
             //장비
@@ -97,6 +97,8 @@ public class Player : p_Player
 
     void ItemSwitch(Item item)
     {
+        if (itemBag[currentItem].gameObject.layer == LayerMask.NameToLayer("Npc"))
+            Throw_Out_Item();
         itemBag[currentItem].gameObject.SetActive(false);
         item.gameObject.SetActive(true);
     }
@@ -108,8 +110,6 @@ public class Player : p_Player
     {
         ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         hit = new RaycastHit();
-
-        Debug.DrawRay(ray.origin, ray.direction * 10, Color.red);
 
         if(Physics.Raycast(ray, out hit))
         {
@@ -151,66 +151,92 @@ public class Player : p_Player
 
     void Pickup_Item()
     {
-        itemBag[currentItem] = InteractionItem;
-
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+        if(currentItem == 0 ||currentItem == 1)
         {
-            rds = InteractionItem.GetComponent<RagDollSetter>();
-            itemRG[currentItem] = rds.test_r;
-            itemCol[currentItem] = rds.test_C;
-            foreach (var col in rds.cols)
-                col.isTrigger = true;
-            rds.test_r.isKinematic = true;
-            foreach (var rig in rds.rigs)
+            Throw_Out_Item();
+
+            itemBag[currentItem] = InteractionItem;
+
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
             {
-                rig.velocity = Vector3.zero;
-                rig.useGravity = true;
+                rds = InteractionItem.GetComponent<RagDollSetter>();
+                itemRG[currentItem] = rds.test_r;
+                itemCol[currentItem] = rds.test_C;
+                foreach (var col in rds.cols)
+                    col.isTrigger = true;
+                rds.test_r.isKinematic = true;
+                foreach (var rig in rds.rigs)
+                {
+                    rig.velocity = new Vector3(0, 0, 0);
+                    rig.useGravity = true;
+                }
+                rds.test_O.transform.position = hand.transform.position;
             }
-            rds.test_O.transform.position = hand.transform.position;
-        }
-        else
-        {
-            itemRG[currentItem] = InteractionItem.GetComponent<Rigidbody>();
-            itemCol[currentItem] = InteractionItem.GetComponent<Collider>();
-            InteractionObject.position = hand.transform.position;
-        }
+            else
+            {
+                itemRG[currentItem] = InteractionItem.GetComponent<Rigidbody>();
+                itemCol[currentItem] = InteractionItem.GetComponent<Collider>();
+                InteractionObject.position = hand.transform.position;
+            }
 
-        itemRG[currentItem].velocity = Vector3.zero;
+            itemRG[currentItem].velocity = Vector3.zero;
 
-        InteractionObject.parent = hand.transform;
-        itemCol[currentItem].isTrigger = true;
-        itemRG[currentItem].useGravity = false;
+            InteractionObject.parent = hand.transform;
+            itemCol[currentItem].isTrigger = true;
+            itemRG[currentItem].useGravity = false;
+        }
     }
 
     void Throw_Item()
     {
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+        if(currentItem == 0 ||currentItem == 1)
         {
-            foreach (var col in rds.cols)
-                col.isTrigger = false;
-            foreach (var rig in rds.rigs)
+            if (itemBag[currentItem].gameObject.layer == LayerMask.NameToLayer("Npc"))
             {
-                rig.isKinematic = true;
+                foreach (var col in rds.cols)
+                    col.isTrigger = false;
+                rds.test_r.isKinematic = false;
             }
+
+            Ray throwRay = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            itemBag[currentItem].transform.parent = null;
+            itemRG[currentItem].AddForce(throwRay.direction * 1000);
+            itemCol[currentItem].isTrigger = false;
+            itemRG[currentItem].useGravity = true;
+
+            itemBag[currentItem] = emptyhand;
+            itemCol[currentItem] = null;
+            itemRG[currentItem] = null;
         }
-
-        Ray throwRay = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        itemBag[currentItem].transform.parent = null;
-        itemRG[currentItem].AddForce(throwRay.direction * 1000);
-        itemCol[currentItem].isTrigger = false;
-        itemRG[currentItem].useGravity = true;
-
-        itemBag[currentItem] = emptyhand;
-        itemCol[currentItem] = null;
-        itemRG[currentItem] = null;
     }
 
-     void Use_Item()
+    void Use_Item()
     {
         if(InteractionItem.itemtype == Item.itemType.TOOL || InteractionItem.itemtype == Item.itemType.EQUIPMENT)
         {
             InteractionItem.interaction();
         }
+    }
+
+    void Throw_Out_Item()
+    {
+        if (itemBag[currentItem].gameObject.layer == LayerMask.NameToLayer("Npc"))
+        {
+            foreach (var col in rds.cols)
+                col.isTrigger = false;
+            rds.test_r.isKinematic = false;
+        }
+
+        if(itemBag[currentItem] != emptyhand)
+        {
+            itemBag[currentItem].transform.parent = null;
+            itemCol[currentItem].isTrigger = false;
+            itemRG[currentItem].useGravity = true;
+        }
+
+        itemBag[currentItem] = emptyhand;
+        itemCol[currentItem] = null;
+        itemRG[currentItem] = null;
     }
 
     void Zoom()

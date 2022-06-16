@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
     public static readonly int Platform = 1;
 #endif
 
-    public GameObject Player;
+    public Player Player;
     public bool b_selet_mission = false;
     public Mission select_mission;
 
