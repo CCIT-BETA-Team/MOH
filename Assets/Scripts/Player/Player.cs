@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Player : p_Player
 {
-
-
     [Header("플레이어 신체")]
     public Camera cam;
     public GameObject hand;
     public Item emptyhand;
-
-   
      
     [Space]
     [Header("플레이어 아이템 관련")]
@@ -50,7 +46,6 @@ public class Player : p_Player
     }
 
     Vector2 turn;
-   
 
     void Control()
     {
@@ -118,7 +113,14 @@ public class Player : p_Player
 
         if(Physics.Raycast(ray, out hit))
         {
-            InteractionObject = hit.transform;
+            if(hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+            {
+                InteractionObject = hit.transform.root;
+            }
+            else
+            {
+                InteractionObject = hit.transform;
+            }
             InteractionItem = InteractionObject.GetComponent<Item>();
             InteractionItem.player = this;
         }
@@ -145,22 +147,53 @@ public class Player : p_Player
         }
     }
 
+    RagDollSetter rds;
+
     void Pickup_Item()
     {
         itemBag[currentItem] = InteractionItem;
-        itemRG[currentItem] = InteractionItem.GetComponent<Rigidbody>();
-        itemCol[currentItem] = InteractionItem.GetComponent<Collider>();
+
+        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+        {
+            rds = InteractionItem.GetComponent<RagDollSetter>();
+            itemRG[currentItem] = rds.test_r;
+            itemCol[currentItem] = rds.test_C;
+            foreach (var col in rds.cols)
+                col.isTrigger = true;
+            rds.test_r.isKinematic = true;
+            foreach (var rig in rds.rigs)
+            {
+                rig.velocity = Vector3.zero;
+                rig.useGravity = true;
+            }
+            rds.test_O.transform.position = hand.transform.position;
+        }
+        else
+        {
+            itemRG[currentItem] = InteractionItem.GetComponent<Rigidbody>();
+            itemCol[currentItem] = InteractionItem.GetComponent<Collider>();
+            InteractionObject.position = hand.transform.position;
+        }
 
         itemRG[currentItem].velocity = Vector3.zero;
 
         InteractionObject.parent = hand.transform;
         itemCol[currentItem].isTrigger = true;
         itemRG[currentItem].useGravity = false;
-        InteractionObject.position = hand.transform.position;
     }
 
     void Throw_Item()
     {
+        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+        {
+            foreach (var col in rds.cols)
+                col.isTrigger = false;
+            foreach (var rig in rds.rigs)
+            {
+                rig.isKinematic = true;
+            }
+        }
+
         Ray throwRay = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         itemBag[currentItem].transform.parent = null;
         itemRG[currentItem].AddForce(throwRay.direction * 1000);

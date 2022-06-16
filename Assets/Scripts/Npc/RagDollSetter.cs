@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using System;
-public class RagDollSetter : MonoBehaviour
+public class RagDollSetter : Item
 {
   public Animator animator;
 
-    Rigidbody[] rigs;
+    public Rigidbody[] rigs;
+    public Collider[] cols;
+
+    public Rigidbody test_r;
+    public Collider test_C;
+    public GameObject test_O;
+
     // Start is called before the first frame update
     private void Awake()
     {
      //   animator = GetComponent<Animator>();
         rigs = transform.GetComponentsInChildren<Rigidbody>();
+        cols = transform.GetComponentsInChildren<Collider>();
+
         foreach (Rigidbody r in rigs)
         {
             if (r.GetComponent<XRGrabInteractable>() == null)
@@ -25,7 +33,6 @@ public class RagDollSetter : MonoBehaviour
                 ragbody.p_ragdoll = this;
                 i_Grab.smoothPosition = true;
                 i_Grab.smoothRotation = true;
-
             }
         }
         RagdollOnOff(false);
@@ -62,7 +69,7 @@ public class RagDollSetter : MonoBehaviour
            }
      }
      else
-     {
+     { 
             animator.enabled=true;
             foreach (Rigidbody r in rigs)
             {
@@ -74,5 +81,9 @@ public class RagDollSetter : MonoBehaviour
             }
         }
     }
- 
+
+    public override void interaction()
+    {
+        
+    }
 }
