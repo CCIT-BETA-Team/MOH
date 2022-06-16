@@ -17,9 +17,8 @@ public abstract class Npc : MonoBehaviour
     //
     public Animator anim;
     //
-    [HideInInspector]
+   
     public GameObject player_obj;
-    [HideInInspector]
     public Player player;
     [HideInInspector]
     public GameObject ghost;
@@ -62,7 +61,6 @@ public abstract class Npc : MonoBehaviour
         THIRST,//목마름
         REPORT,//신고
         FAINT,//기절
-        ATTACK,//공격 
         ESCAPE,//도주
         TRACE,//추적
         FEAR,//경계
@@ -160,12 +158,6 @@ public abstract class Npc : MonoBehaviour
             case State.FAINT :
                 //
                 break;
-            case State.ATTACK :
-                //
-                break;
-            case State.ESCAPE :
-                //
-                break;
             case State.TRACE:
                 //
                 break;
@@ -204,7 +196,7 @@ public abstract class Npc : MonoBehaviour
     /// 
     #endregion
     [SerializeField]
-    protected State? next_state = State.NULL;
+    protected State next_state = State.NULL;
 
 
     public float sleepy_percent_check
@@ -327,6 +319,7 @@ public abstract class Npc : MonoBehaviour
             case Npc_Type.WOMAN:
                 break;
         }
+        Select_Personality();
         //Invoke("Change_State_Move", 1f);
     }
 
@@ -334,6 +327,9 @@ public abstract class Npc : MonoBehaviour
     private void Update()
     {
 
+
+        if (this.agent.enabled) { anim.SetBool(moveing_hash, true); }
+        else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
     }
 
 
@@ -346,7 +342,6 @@ public abstract class Npc : MonoBehaviour
     public void Change_State_Move()
     {
         state = State.Move;
-        Debug.Log("돌아가는지 체크");
         this.agent.enabled = true;
         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, this);
         //target_room = npc_ghost.GetComponent<Ghost>().target_room;
@@ -365,10 +360,33 @@ public abstract class Npc : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    public abstract void Select_Personality();
+    public void Select_Personality()
+    {
+        int a = Random.Range(0, 2);
+        if (a == 0)
+        {
+            this.personality = Npc_Personality.AGGESSIVE;
+        }
+        else if (a == 1)
+        {
+            this.personality = Npc_Personality.Defensive;
+        }
+    }
 
-    
 
 
+    public void Fear_Check()//플레이어를 감지하여 경계도가 100이 된 상황
+    {
+        sleepy_percent = 0;
+        sleepy_percent_check = sleepy_percent;
+        pee_percent = 0;
+        pee_percent_check = pee_percent;
+        thirst_percent = 0;
+        thirst_percent_check = thirst_percent;
 
+        for(int i = 0; i < NpcManager.instance.npc_list.Count;i++)
+        {
+            NpcManager.instance.npc_list[i].GetComponent<Npc>().state = State.REPORT;
+        }
+    }
 }

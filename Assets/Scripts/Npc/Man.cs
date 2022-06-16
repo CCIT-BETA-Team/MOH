@@ -13,20 +13,6 @@ public class Man : Npc
     //public float attack_range;//임의 값 설정
     //public AudioSource sound;
 
-    #region//Personality
-    public override void Select_Personality()
-    {
-        int a = Random.Range(0, 2);
-        if(a == 0)
-        {
-            this.personality = Npc_Personality.AGGESSIVE;
-        }
-        else if(a == 1)
-        {
-            this.personality = Npc_Personality.Defensive;
-        }
-    }
-    #endregion
 
 
     private State state_check
@@ -89,7 +75,6 @@ public class Man : Npc
             Close_Door_Save = null; 
         }
     }
-
     private void Move()
     {
         if (!state_end_check)
@@ -112,7 +97,6 @@ public class Man : Npc
                         if (this.agent.enabled == true)
                         {
                             this.agent.SetDestination(target_room.transform.position);
-                            Debug.Log("가는중?");
                         }
                     }
                 }
@@ -156,9 +140,7 @@ public class Man : Npc
                 }
                 else if (path_finding[0].layer == 10)//Room
                 {
-                    Debug.Log("레이어 감지는 됨");
                     Vector3 dir = target_room.transform.position - transform.position;
-                    Debug.Log(Vector3.SqrMagnitude(dir));
                     if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
                     {
                         //transform.rotation = Quaternion.LookRotation(dir).normalized;
@@ -175,23 +157,22 @@ public class Man : Npc
         if (state_end_check)
         {
             Pathfinding_List_Initialization();
-            if (next_state == null)
+            if (next_state == State.NULL)
             {
                 State_Initizlize();
                 Change_State_Move();
             }
-            else if (next_state != null)
+            else if (next_state != State.NULL)
             {
                 State_Initizlize();
-                state = next_state.Value;
-                next_state = null;
+                state = next_state;
+                next_state = State.NULL;
                 //다음 state 설정
             }
 
             state_end_check = false;
         }
     }
-
     private void Sleep()
     {
         if (!state_end_check)
@@ -262,7 +243,6 @@ public class Man : Npc
                     if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
                     {
                         this.agent.enabled = false;
-                        Debug.Log("거리");
                         //상호작용 애니메이션
 
                         
@@ -285,7 +265,7 @@ public class Man : Npc
             }
             else if(next_state != State.NULL)
             {
-                state = next_state.Value;
+                state = next_state;
                 //next_state = null;
                 next_state = State.NULL;
                 //다음 state 설정
@@ -368,7 +348,6 @@ public class Man : Npc
                     }
                     if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
                     {
-                        Debug.Log(23323);
                         //상호작용 애니메이션
                         state_end_check = true;//애니메이션 끝나면 true  ㄱ
                     }
@@ -389,7 +368,7 @@ public class Man : Npc
             }
             else if (next_state != State.NULL)
             {
-                state = next_state.Value;
+                state = next_state;
                 next_state = State.NULL;
                 //다음 state 설정
 
@@ -472,7 +451,6 @@ public class Man : Npc
                     }
                     if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
                     {
-                        Debug.Log(23323);
                         //상호작용 애니메이션
                         state_end_check = true;//애니메이션 끝나면 true  ㄱ
                     }
@@ -493,7 +471,7 @@ public class Man : Npc
             }
             else if (next_state != State.NULL)
             {
-                state = next_state.Value;
+                state = next_state;
                 next_state = State.NULL;
                 //다음 state 설정
 
@@ -548,6 +526,7 @@ public class Man : Npc
 #endregion
     private void Awake()
     {
+
     }
 
     void Start()
@@ -571,48 +550,28 @@ public class Man : Npc
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) { Change_State_Move(); }
-
         #region
         state_check = this.state;
-        //Debug.Log(this.state);
         #endregion
         ///
         ///
         ///
-        #region
-        if(this.agent.enabled) { anim.SetBool(moveing_hash,true); }
-        else if(!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
-        #endregion
-
+        
+        if(this.state != State.REPORT)
         if (Check_Unit())
         {
             if (Physics.Raycast(cam.transform.position, (player.transform.position - cam.transform.position), out hit, Mathf.Infinity, player_layermask))
             {
                 if (hit.transform.gameObject.layer == 6)//player
                 {
-                    if(player.lighted == true)
+                    if (player.lighted == true)
                     {
-                        if(state != State.REPORT && state != State.TRACE)
-                        {
-                            this.agent.isStopped = true;
-                            target_item = null;
-                            target_room = null;
-                            this.agent.isStopped = false;
-                        }
-
-                        
-                        if(personality == Npc_Personality.AGGESSIVE) { state = State.TRACE; }
-                        else if(personality == Npc_Personality.Defensive) { state = State.REPORT; }
-
-                        state_continue = false;
-
-                        //target_item = null;
-                        //target_room = null;
-
-                        //opening_check = false;
-                        //state_end_check = false;
+                        Debug.Log(3);
+                        State_Initizlize();
+                        ///Percent_Initialization
+                        Fear_Check();
                     }
+                    #region
                     //if(hit.transform.gameObject.)
                     //miss_player = false;
                     //Vector2 player_uv = hit.textureCoord;
@@ -634,7 +593,9 @@ public class Man : Npc
                     ////화면에서 보는 플레이어 컬러
 
                     //Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
+                    #endregion ///
                 }
+                #region
                 //else
                 //{
                 //    if(miss_player == false && miss_player != null)
@@ -651,31 +612,18 @@ public class Man : Npc
                 //        }
                 //    }
                 //}
-                
+
 
                 //if (this.state == State.REPORT || this.state == State.TRACE)
                 //{
 
                 //}
-                
+                #endregion
             }
         }
     }
  
-    public void Fear_Check()//플레이어를 감지하여 경계도가 100이 된 상황
-    {
-        StopAllCoroutines();//가중치 증가 중지
-
-        //가중치 초기화
-        sleepy_percent = 0;
-        sleepy_percent_check = sleepy_percent;
-        pee_percent = 0;
-        pee_percent_check = pee_percent;
-        thirst_percent = 0;
-        thirst_percent_check = thirst_percent;
-
-        this.state = State.REPORT;
-    }
+    
 
     
 
