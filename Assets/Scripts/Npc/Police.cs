@@ -6,11 +6,6 @@ public class Police : Npc
 {
     public Animator anime;
 
-    public override void Select_Personality()
-    {
-        // 필요 없음
-    }
-
     void Start()
     {
         

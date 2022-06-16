@@ -17,6 +17,9 @@ public class NpcManager : Singleton<NpcManager>
     public List<Room> room_list = new List<Room>();
     public BoxCollider police_spawn_point;
 
+    //For Test ::Jun
+    public List<GameObject> npc_list = new List<GameObject>();
+
     [Header("Target_Room")]
     public List<Room> Bed_Room = new List<Room>();
     public List<Room> Bath_Room = new List<Room>();
@@ -58,16 +61,6 @@ public class NpcManager : Singleton<NpcManager>
     public Transform request() { return this.transform; }
     //오버로딩으로 경찰스폰이랑 일반 npc스폰 다르게
 
-    public Transform request(Npc.State state)
-    {
-        switch (state)
-        {
-            case global::Npc.State.ATTACK:
-                //return Map_Transform[0];
-                break;
-        }
-        return null;
-    }
 
     GameObject Decide_Npc(GameObject[] npc_list)
     {
@@ -90,6 +83,7 @@ public class NpcManager : Singleton<NpcManager>
             GameObject spawn_point = room_list[x].npc_spawn_position[y];
              
             GameObject npc = Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
+            npc_list.Add(npc);
             //npc.GetComponent<Npc>().npc_room = npc_room();
 
             room_list[x].npc_spawn_position.RemoveAt(y);
