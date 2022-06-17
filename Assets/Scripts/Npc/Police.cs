@@ -6,6 +6,9 @@ public class Police : Npc
 {
     public Animator anime;
 
+    private void Awake()
+    {
+    }
     void Start()
     {
         
@@ -14,22 +17,22 @@ public class Police : Npc
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A)) { Gun_Attack(); }
+
+        Vector3 distance = player.transform.position - this.transform.position;
+        attack_range = Vector3.SqrMagnitude(distance);
     }
 
-    void Move()
-    {
-        //이러면 알아서 하겠지 ㅋㅋ
-    }
+    
 
     //나중에 강성준이 NPC Script로 옮길 예정.
-    public enum Attack_Type { GUN, PUNCH, CUDGEL }
-    [Header("NPC 공격 타입")]
-    public Attack_Type attack_type;
+    //public enum Attack_Type { GUN, PUNCH, CUDGEL }
+    //[Header("NPC 공격 타입")]
+    //public Attack_Type attack_type;
 
-    [Header("무기 오브젝트")]
-    public GameObject gun;
-    public GameObject gun_bullet;
-    public GameObject cudgel;
+    //[Header("무기 오브젝트")]
+    //public GameObject gun;
+    //public GameObject gun_bullet;
+    //public GameObject cudgel;
 
     //애니메이션 이벤트 현재 공격중인지 체크
     bool is_attack;
@@ -38,6 +41,7 @@ public class Police : Npc
     int punch_attack_hashcode = Animator.StringToHash("PunchAttack");
     int cudgel_attack_hashcode = Animator.StringToHash("CudgelAttack");
 
+    #region
     public delegate void Atk();
     public Atk Attack;
 
@@ -113,4 +117,5 @@ public class Police : Npc
             is_attack = false;
         }
     }
+    #endregion
 }

@@ -20,14 +20,13 @@ public abstract class Npc : MonoBehaviour
    
     public GameObject player_obj;
     public Player player;
-    [HideInInspector]
     public GameObject ghost;
-    [HideInInspector]
     public GameObject npc_ghost;
     protected GameObject Close_Door_Save;
     //
     public GameObject target_room;
     public GameObject target_item;
+    public GameObject current_room;
     //
     protected bool opening_check = false;
     protected bool state_end_check = false;
@@ -84,6 +83,19 @@ public abstract class Npc : MonoBehaviour
         Defensive
     }
     public Npc_Personality personality = Npc_Personality.AGGESSIVE;
+
+
+    /// <summary>
+    /// For Police , Aggessive Npc
+    /// </summary>
+    public enum Attack_Type { GUN, PUNCH, CUDGEL }
+    [Header("NPC 공격 타입")]
+    public Attack_Type attack_type;
+
+    [Header("무기 오브젝트")]
+    public GameObject gun;
+    public GameObject gun_bullet;
+    public GameObject cudgel;
 
     [Range(0, 100)]
     public float sleepy_percent;
@@ -210,6 +222,7 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    sleepy_percent = 0;
                     State_Initizlize();
                     Re_Set_Room:
                     target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
@@ -222,7 +235,7 @@ public abstract class Npc : MonoBehaviour
 
                     state = State.SLEEP;
                 }
-                else { if (next_state == null) { next_state = State.SLEEP; } }
+                else { next_state = State.SLEEP;  }
             }
             else
             {
@@ -243,6 +256,7 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    pee_percent = 0;
                     State_Initizlize();
 
                     Re_Set_Room:
@@ -256,7 +270,7 @@ public abstract class Npc : MonoBehaviour
                     agent.enabled = true;
                     state = State.PEE;
                 }
-                else { if (next_state == null) { next_state = State.PEE; } }
+                else {  next_state = State.PEE;  }
             }
             else
             {
@@ -277,6 +291,7 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    thirst_percent = 0;
                     State_Initizlize();
 
                     Re_Set_Room:
@@ -290,7 +305,7 @@ public abstract class Npc : MonoBehaviour
                     agent.enabled = true;
                     state = State.THIRST;
                 }
-                else { if (next_state == null) { next_state = State.THIRST; } }
+                else {  next_state = State.THIRST;  }
             }
             else
             {
@@ -322,7 +337,8 @@ public abstract class Npc : MonoBehaviour
                 break;
         }
         Select_Personality();
-        //Invoke("Change_State_Move", 1f);
+        if(npc_type != Npc_Type.POLICE)
+        Invoke("Change_State_Move", 1f);
     }
 
 
@@ -374,6 +390,19 @@ public abstract class Npc : MonoBehaviour
         if (a == 0)
         {
             this.personality = Npc_Personality.AGGESSIVE;
+            int select_attack_type = Random.Range(0, 3);
+            switch(select_attack_type)
+            {
+                case 0:
+                    this.attack_type = Attack_Type.GUN;
+                    break;
+                case 1:
+                    this.attack_type = Attack_Type.PUNCH;
+                    break;
+                case 2:
+                    this.attack_type = Attack_Type.CUDGEL;
+                    break;
+            }
         }
         else if (a == 1)
         {
@@ -391,4 +420,6 @@ public abstract class Npc : MonoBehaviour
             NpcManager.instance.npc_list[i].GetComponent<Npc>().state = State.REPORT;
         }
     }
+
+
 }

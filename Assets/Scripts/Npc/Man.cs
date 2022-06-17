@@ -8,13 +8,6 @@ public class Man : Npc
     public Camera cam;//Npc 눈
     public RaycastHit hit;//레이
     int player_layermask = 1 << 6;
-
-    //public Camera cam;//Npc 눈
-    //public float attack_range;//임의 값 설정
-    //public AudioSource sound;
-
-
-
     private State state_check
     {
         get
@@ -54,9 +47,12 @@ public class Man : Npc
         //
         int random_close_door = Random.Range(0,2);
         if(random_close_door == 0) 
-        { 
-            Close_Door_Save = path_finding[0].transform.parent.gameObject;
-            Invoke("For_Close_Door_Delay", 1f); 
+        {
+            if (path_finding[0].transform.parent.gameObject.layer != 10)
+            {
+                Close_Door_Save = path_finding[0].transform.parent.gameObject;
+                Invoke("For_Close_Door_Delay", 1f);
+            }
         }
         //
         path_finding.RemoveAt(0);
@@ -245,8 +241,12 @@ public class Man : Npc
                         this.agent.enabled = false;
                         //상호작용 애니메이션
 
-                        
-                        state_end_check = true;//애니메이션 끝나면 true  ㄱ
+
+                        if (current_room == target_room)
+                        {
+                            //상호작용 애니메이션
+                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                        }
                     }
                 }
             }
@@ -348,8 +348,15 @@ public class Man : Npc
                     }
                     if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
                     {
+                        this.agent.enabled = false;
                         //상호작용 애니메이션
-                        state_end_check = true;//애니메이션 끝나면 true  ㄱ
+
+
+                        if (current_room == target_room)
+                        {
+                            //상호작용 애니메이션
+                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                        }
                     }
                 }
             }
@@ -451,8 +458,18 @@ public class Man : Npc
                     }
                     if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
                     {
-                        //상호작용 애니메이션
-                        state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                        if (current_room == target_room)
+                        {
+                            this.agent.enabled = false;
+                            //상호작용 애니메이션
+
+
+                            if (current_room == target_room)
+                            {
+                                //상호작용 애니메이션
+                                state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            }
+                        }
                     }
                 }
             }
@@ -607,9 +624,12 @@ public class Man : Npc
         
         if(Vector3.SqrMagnitude(distance) <= 3f)
         {
+            anim.SetBool(moveing_hash, false);
             if (Vector3.SqrMagnitude(distance) <= 3f && Vector3.SqrMagnitude(distance) >= 1f)
             {
                 transform.rotation = Quaternion.LookRotation(distance).normalized;
+                //
+                //공격 애니메이션 실행
             }
         }
         else
@@ -647,8 +667,8 @@ public class Man : Npc
                             Vector3 dis = path_finding[0].transform.position - this.transform.position;
                             if (Vector3.SqrMagnitude(dis) <= 1f)
                             {
-                                //opening_check = true;
-                                //this.agent.enabled = false;
+                                opening_check = true;
+                                this.agent.enabled = false;
                                 //
                                 door_info.OpenDoor();
                                 Pathfinding_List_Initialization();
@@ -657,7 +677,7 @@ public class Man : Npc
                                 npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
 
 
-                                //Invoke("Reback_Velocity", 2f);
+                                Invoke("Reback_Velocity", 2f);
                             }
                         }
                         else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
@@ -666,9 +686,6 @@ public class Man : Npc
 
                             if (Vector3.SqrMagnitude(dis) <= 0.5f)
                             {
-                                //int random_close_door = Random.Range(0, 2);
-                                //if (random_close_door == 0) { Close_Door_Save = path_finding[0].transform.parent.gameObject; Invoke("For_Close_Door_Delay", 1f); }
-
                                 path_finding.RemoveAt(0);
                                 if (npc_ghost != null)
                                     npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
@@ -744,6 +761,7 @@ public class Man : Npc
         {
             if (Physics.Raycast(cam.transform.position, (player.transform.position - cam.transform.position), out hit, Mathf.Infinity, player_layermask))
             {
+                    Debug.Log(hit.transform.gameObject.name);
                 if (hit.transform.gameObject.layer == 6)//player
                 {
                     if (player.lighted == true)
@@ -834,5 +852,12 @@ public class Man : Npc
         StartCoroutine(State_Gaze_Change());
     }
 
- 
-}
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.layer == 10)
+        {
+            current_room = col.gameObject;
+        }
+    }
+ }
