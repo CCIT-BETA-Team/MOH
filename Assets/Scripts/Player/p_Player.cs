@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class p_Player : MonoBehaviour
+public class p_Player : Singleton<p_Player>
 {
     [Header("플레이어 프리즈")]
     public bool freeze;
@@ -23,10 +23,6 @@ public class p_Player : MonoBehaviour
     public float unlock_speed { get { return unlock_default + unlock_tool + unlock_skill; } }
     public float noiseValue;
     public List<Item> itemBag = new List<Item>();
-    private void Awake()
-    {
-    
-    }
 
     // Start is called before the first frame update
     void Start()
