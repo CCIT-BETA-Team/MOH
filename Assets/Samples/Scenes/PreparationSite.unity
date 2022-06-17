@@ -6275,7 +6275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
-  Player: {fileID: 1980524734}
+  Player: {fileID: 2062341153}
   b_selet_mission: 0
   select_mission: {fileID: 0}
 --- !u!4 &616376693
@@ -9471,6 +9471,10 @@ PrefabInstance:
       propertyPath: emptyhand
       value: 
       objectReference: {fileID: 7767766304752710605, guid: 9c9e024f08fae8e44acc6e46f99d0a24, type: 3}
+    - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
+      propertyPath: dontDestroyOnLoad
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: itemBag.Array.data[0]
       value: 
@@ -18460,7 +18464,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
   m_PrefabInstance: {fileID: 931865257}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2062341153}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c4e40c3edae988448a0a33aac3f4d9c, type: 3}
@@ -19020,6 +19024,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0009994507, y: -0.00015306}
   m_SizeDelta: {x: 325.63, y: 42.047}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2062341153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2680651238598190310, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
+  m_PrefabInstance: {fileID: 931865257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2064207117
 GameObject:
   m_ObjectHideFlags: 0
