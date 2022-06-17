@@ -380,30 +380,32 @@ MonoBehaviour:
   agent: {fileID: 0}
   npc_item: []
   path_finding: []
+  anim: {fileID: 0}
+  player_obj: {fileID: 0}
   player: {fileID: 0}
-  target_spot: {fileID: 0}
   ghost: {fileID: 0}
   npc_ghost: {fileID: 0}
+  target_room: {fileID: 0}
   target_item: {fileID: 0}
+  faint_gauge: 100
+  attack_range: 0
+  sound: {fileID: 0}
   npc_speed: 0
   faint_time: 0
-  npc_type: 0
+  npc_type: 1
   state: 0
   parameter: 0
   personality: 0
-  sleepy_percent: 0
-  pee_percent: 0
-  thirst_percent: 0
-  fear_percent: 0
-  target_room: {fileID: 0}
-  player_texture: {fileID: 0}
-  tex: {fileID: 0}
-  uv_tex: {fileID: 0}
-  anime: {fileID: 2066659748407480900}
   attack_type: 0
   gun: {fileID: 2563305654657560466}
   gun_bullet: {fileID: 7098204079420810003, guid: 1b2ace8fc6814644d8d8434c7e4a63f8, type: 3}
   cudgel: {fileID: 0}
+  sleepy_percent: 0
+  pee_percent: 0
+  thirst_percent: 0
+  fear_percent: 0
+  next_state: 10
+  anime: {fileID: 2066659748407480900}
 --- !u!1 &2162087632578283106
 GameObject:
   m_ObjectHideFlags: 0
