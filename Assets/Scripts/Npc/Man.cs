@@ -496,6 +496,7 @@ public class Man : Npc
             pee_percent_check = pee_percent;
             thirst_percent = 0;
             thirst_percent_check = thirst_percent;
+            Pathfinding_List_Initialization();
             //npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
         }
 
@@ -506,52 +507,203 @@ public class Man : Npc
         }
         else if(personality == Npc_Personality.Defensive)
         {
-
             if (!first_report_check)
             {
                 int report_obj_count = NpcManager.instance.phone_items.Count;
-                NpcManager.instance.Ins_Ghost(this.transform, ghost, NpcManager.instance.phone_items[Random.Range(0, report_obj_count)].gameObject, this);
+                target_item = NpcManager.instance.phone_items[Random.Range(0, report_obj_count)].gameObject;
+                npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, this);
             }
-
             first_report_check = true;
+            if (!state_end_check)
+            {
+                if (npc_ghost != null && opening_check == false)
+                {
+                    this.agent.SetDestination(npc_ghost.transform.position);
+                }
+                else if (npc_ghost == null && opening_check == false)
+                {
+                    if (path_finding.Count > 0)
+                    {
+                        if (path_finding[0].layer != 10) //Room layer
+                        {
+                            if (this.agent.enabled == true)//형식적 확인
+                                this.agent.SetDestination(path_finding[0].transform.position);
+                        }
+                        else if (path_finding[0].layer == 10) //Room layer
+                        {
+                            if (this.agent.enabled == true)
+                                this.agent.SetDestination(target_item.GetComponent<Item_Info>().enter_spot.transform.position);
+                        }
+                    }
+                }
+
+                if (path_finding.Count > 0)
+                {
+                    if (path_finding[0].layer == 9)//Door
+                    {
+                        if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened == false)
+                        {
+                            var door_info = path_finding[0].transform.parent.GetComponent<DoorScript>();
+                            Vector3 dis = path_finding[0].transform.position - this.transform.position;
+                            if (Vector3.SqrMagnitude(dis) <= 1f)
+                            {
+                                opening_check = true;
+                                this.agent.enabled = false;
+                                //
+                                door_info.OpenDoor();
+                                //
+
+                                Invoke("Reback_Velocity", 2f);
+                            }
+                        }
+                        else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
+                        {
+                            Vector3 dis = path_finding[0].transform.position - transform.position;
+
+                            if (Vector3.SqrMagnitude(dis) <= 0.5f)
+                            {
+                                int random_close_door = Random.Range(0, 2);
+                                if (random_close_door == 0) { Close_Door_Save = path_finding[0].transform.parent.gameObject; Invoke("For_Close_Door_Delay", 1f); }
+
+                                path_finding.RemoveAt(0);
+                                if (npc_ghost != null)
+                                    npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
+                            }
+                        }
+                    }
+                    else if (path_finding[0].layer == 10)//Room
+                    {
+                        Vector3 dir = target_item.transform.position - transform.position;
+                        if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
+                        {
+                            transform.rotation = Quaternion.LookRotation(dir).normalized;
+                        }
+                        if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                        {
+                            this.agent.enabled = false;
+                            //상호작용 애니메이션
+
+
+                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                        }
+                    }
+                }
+            }
+            else if(state_end_check)
+            {
+                //경찰 호출
+                if(!NpcManager.instance.police_report)
+                NpcManager.instance.Report_Police();
+
+                //웅크린 동작 애니메이션
+            }
         }
     }
     private void Trace()
     {
-        
+        Vector3 distance = player.gameObject.transform.position - transform.position;
 
+        npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+        
+        if(Vector3.SqrMagnitude(distance) <= 3f)
+        {
+            if (Vector3.SqrMagnitude(distance) <= 3f && Vector3.SqrMagnitude(distance) >= 1f)
+            {
+                transform.rotation = Quaternion.LookRotation(distance).normalized;
+            }
+        }
+        else
+        {
+            if (!state_end_check)
+            {
+                if (npc_ghost != null && opening_check == false)
+                {
+                    this.agent.SetDestination(npc_ghost.transform.position);
+                }
+                //else if (npc_ghost == null && opening_check == false)
+                //{
+                //    if (path_finding.Count > 0)
+                //    {
+                //        if (path_finding[0].layer != 10) //Room layer
+                //        {
+                //            if (this.agent.enabled == true)//형식적 확인
+                //                this.agent.SetDestination(path_finding[0].transform.position);
+                //        }
+                //        else if (path_finding[0].layer == 10) //Room layer
+                //        {
+                //            if (this.agent.enabled == true)
+                //                this.agent.SetDestination(target_item.GetComponent<Item_Info>().enter_spot.transform.position);
+                //        }
+                //    }
+                //}
+
+                if (path_finding.Count > 0)
+                {
+                    if (path_finding[0].layer == 9)//Door
+                    {
+                        if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened == false)
+                        {
+                            var door_info = path_finding[0].transform.parent.GetComponent<DoorScript>();
+                            Vector3 dis = path_finding[0].transform.position - this.transform.position;
+                            if (Vector3.SqrMagnitude(dis) <= 1f)
+                            {
+                                //opening_check = true;
+                                //this.agent.enabled = false;
+                                //
+                                door_info.OpenDoor();
+                                Pathfinding_List_Initialization();
+                                Destroy(npc_ghost);
+                                //
+                                npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+
+
+                                //Invoke("Reback_Velocity", 2f);
+                            }
+                        }
+                        else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
+                        {
+                            Vector3 dis = path_finding[0].transform.position - transform.position;
+
+                            if (Vector3.SqrMagnitude(dis) <= 0.5f)
+                            {
+                                //int random_close_door = Random.Range(0, 2);
+                                //if (random_close_door == 0) { Close_Door_Save = path_finding[0].transform.parent.gameObject; Invoke("For_Close_Door_Delay", 1f); }
+
+                                path_finding.RemoveAt(0);
+                                if (npc_ghost != null)
+                                    npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
+                                Pathfinding_List_Initialization();
+                                Destroy(npc_ghost);
+                                npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+                            }
+                        }
+                    }
+                    //else if (path_finding[0].layer == 10)//Room
+                    //{
+                    //    Vector3 dir = target_item.transform.position - transform.position;
+                    //    if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
+                    //    {
+
+                    //        transform.rotation = Quaternion.LookRotation(dir).normalized;
+                    //    }
+                    //    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                    //    {
+                    //        this.agent.enabled = false;
+                    //        //상호작용 애니메이션
+
+
+                    //        state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                    //    }
+                    //}
+                }
+            }
+        }
     }
 
 
     ///////////////////////
 
- #region
-    void Aggessive()
-    {
-        if(aggessive_trace_check == true)
-        {
-            Transform player_transform = player.transform;
-            agent.SetDestination(player_transform.position);
-
-            Collider[] col = Physics.OverlapBox(transform.position, new Vector3(2, 2,
-            2 ), Quaternion.identity, player_layermask);
-            
-            if(col.Length != 0)
-            {
-               //
-            }
-        }
-        else if(aggessive_trace_check == false)
-        {
-            //쫓는걸 그만두고 신고하러 감
-        }
-    }
-
-    void Defensive()
-    {
-        
-    }
-#endregion
+ 
     private void Awake()
     {
 

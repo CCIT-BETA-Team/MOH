@@ -41,7 +41,7 @@ public class NpcManager : Singleton<NpcManager>
     int current_count;
     int count_min { get { return current_count / 60; } }
     int count_sec { get { return current_count % 60; } }
-    bool police_report;
+    public bool police_report;
 
     [Header("°æÂû ¼ö")]
     public int police_spawn_count;
