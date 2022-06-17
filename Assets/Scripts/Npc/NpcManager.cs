@@ -158,6 +158,15 @@ public class NpcManager : Singleton<NpcManager>
         for (int i = 0; i < thirsty_items.Count; i++) { thirsty_items[i].parent_room.target_items.Add(thirsty_items[i].gameObject); }
     }
 
+    public GameObject Ins_Ghost(Transform npc_transform , Transform player , GameObject ghost , Npc npc)
+    {
+        GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
+        var ghost_info = npc_ghost.GetComponent<Ghost>();
+        ghost_info.Move_Point(player.gameObject);
+        return npc_ghost;
+        //For the Move To Player
+    }
+    
     public GameObject Ins_Ghost(Transform npc_transform, GameObject ghost, Npc npc)
     {
         GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
@@ -177,8 +186,16 @@ public class NpcManager : Singleton<NpcManager>
         ghost_info.parent_npc = npc;
         ghost_info.Move_Point(target_item);
         return npc_ghost;
+        ///For the Move To StateRoom
     }
-
+    public GameObject Ins_Ghost(Transform npc_transform , GameObject ghost, GameObject telphone,Npc npc)
+    {
+        GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
+        var ghost_info = npc_ghost.GetComponent<Ghost>();
+        ghost_info.parent_npc = npc;
+        ghost_info.Move_Point(telphone);
+        return npc_ghost;
+    }
     public void Spawn_Police()
     {
         Vector3 spawn_position;
