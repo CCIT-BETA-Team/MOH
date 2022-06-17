@@ -36,7 +36,9 @@ public abstract class Npc : MonoBehaviour
 
     protected bool state_continue = true;//Trace or Report 상태로 바뀌면 변경
     //
-
+    //npc에 타격에 따른 감소값
+    public float faint_gauge = 100;
+    //
 
     public float attack_range;//임의 값 설정
     public AudioSource sound;
@@ -326,10 +328,16 @@ public abstract class Npc : MonoBehaviour
 
     private void Update()
     {
-
-
-        if (this.agent.enabled) { anim.SetBool(moveing_hash, true); }
-        else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
+        if(state != State.FAINT)
+        if(faint_gauge <=0)
+        {
+            npc_ghost = null;
+            target_item = null;
+            target_room = null;
+            opening_check = false;
+            Pathfinding_List_Initialization();
+            state = State.FAINT;
+        }
     }
 
 
@@ -377,12 +385,6 @@ public abstract class Npc : MonoBehaviour
 
     public void Fear_Check()//플레이어를 감지하여 경계도가 100이 된 상황
     {
-        sleepy_percent = 0;
-        sleepy_percent_check = sleepy_percent;
-        pee_percent = 0;
-        pee_percent_check = pee_percent;
-        thirst_percent = 0;
-        thirst_percent_check = thirst_percent;
 
         for(int i = 0; i < NpcManager.instance.npc_list.Count;i++)
         {

@@ -12,11 +12,11 @@ public class Item_Info : Item
     public bool interact_obj = false;
     private void Start()
     {
-        //if(interact_obj == true && parent_room != null)
-        //{
-        //    parent_room.GetComponent<Room>().target_item = this.gameObject;
-        //}
-
         if(parent_room != null) { parent_room.Add_Furniture(this.gameObject); }
+        if (this.parameter_type == parameterType.PHONE)
+        {
+            //NpcManager.instance.Report_Room.Add(parent_room);
+            NpcManager.instance.phone_items.Add(this);
+        }
     }
 }
