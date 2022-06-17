@@ -482,15 +482,43 @@ public class Man : Npc
             state_end_check = false;
         }
     }
-    //
+
+    bool first_report_check = false;
     private void Report()
     {
-        
+        //처음 초기화
+        if (!first_report_check)
+        {
+            State_Initizlize();
+            sleepy_percent = 0;
+            sleepy_percent_check = sleepy_percent;
+            pee_percent = 0;
+            pee_percent_check = pee_percent;
+            thirst_percent = 0;
+            thirst_percent_check = thirst_percent;
+            //npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+        }
+
+
+        if(personality == Npc_Personality.AGGESSIVE)
+        {
+            state = State.TRACE;
+        }
+        else if(personality == Npc_Personality.Defensive)
+        {
+
+            if (!first_report_check)
+            {
+                int report_obj_count = NpcManager.instance.phone_items.Count;
+                NpcManager.instance.Ins_Ghost(this.transform, ghost, NpcManager.instance.phone_items[Random.Range(0, report_obj_count)].gameObject, this);
+            }
+
+            first_report_check = true;
+        }
     }
     private void Trace()
     {
-        //Transform player_transform = player.transform;
-        //agent.SetDestination(player_transform.position);
+        
 
     }
 
@@ -553,11 +581,13 @@ public class Man : Npc
         #region
         state_check = this.state;
         #endregion
-        ///
-        ///
-        ///
-        
-        if(this.state != State.REPORT)
+
+        #region
+        if (this.agent.enabled) { anim.SetBool(moveing_hash, true); }
+        else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
+        #endregion
+
+        if (this.state != State.REPORT || this.state != State.TRACE)
         if (Check_Unit())
         {
             if (Physics.Raycast(cam.transform.position, (player.transform.position - cam.transform.position), out hit, Mathf.Infinity, player_layermask))
@@ -566,8 +596,10 @@ public class Man : Npc
                 {
                     if (player.lighted == true)
                     {
-                        Debug.Log(3);
-                        State_Initizlize();
+                        ///진행중인 애니메이션 꺼주기
+                        
+                        ///
+                        
                         ///Percent_Initialization
                         Fear_Check();
                     }

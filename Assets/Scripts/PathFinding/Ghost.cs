@@ -34,6 +34,10 @@ public class Ghost : MonoBehaviour
         target = target_item;
         agent.SetDestination(target_item.transform.position);
     }
+    public void Move_To_Character(GameObject player)
+    {
+
+    }
 
     void OnTriggerEnter(Collider col)
     {
@@ -42,6 +46,7 @@ public class Ghost : MonoBehaviour
                 pathfinding_list.Add(col.gameObject);
                 parent_npc.path_finding = pathfinding_list.ToList();
         }
+        if(target_room != null)
         if (col.gameObject.layer ==10 && col.gameObject == target_room)
         {
             pathfinding_list.Add(col.gameObject);
