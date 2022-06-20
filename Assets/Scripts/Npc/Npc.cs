@@ -211,7 +211,7 @@ public abstract class Npc : MonoBehaviour
     #endregion
     [SerializeField]
     protected State next_state = State.NULL;
-
+    protected State current_state = State.NULL;
 
     public float sleepy_percent_check
     {
@@ -224,9 +224,11 @@ public abstract class Npc : MonoBehaviour
                 {
                     sleepy_percent = 0;
                     State_Initizlize();
+                    current_state = State.SLEEP;
                     Re_Set_Room:
                     target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
                     target_item = target_room.GetComponent<Room>().Decide_Target_Item();
+
                     if (target_item != null)
                     npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     else if(target_item == null) { goto Re_Set_Room; }
@@ -258,6 +260,7 @@ public abstract class Npc : MonoBehaviour
                 {
                     pee_percent = 0;
                     State_Initizlize();
+                    current_state = State.PEE;
 
                     Re_Set_Room:
                     target_room = NpcManager.instance.Bath_Room[Random.Range(0, NpcManager.instance.Bath_Room.Count)].gameObject;
@@ -293,6 +296,7 @@ public abstract class Npc : MonoBehaviour
                 {
                     thirst_percent = 0;
                     State_Initizlize();
+                    current_state = State.THIRST;
 
                     Re_Set_Room:
                     target_room = NpcManager.instance.Dining_Room[Random.Range(0, NpcManager.instance.Dining_Room.Count)].gameObject;
