@@ -553,6 +553,7 @@ public class Man : Npc
                         }
                     }
                 }
+<<<<<<< HEAD
 
                 if (path_finding.Count > 0)
                 {
@@ -600,6 +601,55 @@ public class Man : Npc
                             this.agent.enabled = false;
                             //상호작용 애니메이션
 
+=======
+
+                if (path_finding.Count > 0)
+                {
+                    if (path_finding[0].layer == 9)//Door
+                    {
+                        if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened == false)
+                        {
+                            var door_info = path_finding[0].transform.parent.GetComponent<DoorScript>();
+                            Vector3 dis = path_finding[0].transform.position - this.transform.position;
+                            if (Vector3.SqrMagnitude(dis) <= 1f)
+                            {
+                                opening_check = true;
+                                this.agent.enabled = false;
+                                //
+                                door_info.OpenDoor();
+                                //
+
+                                Invoke("Reback_Velocity", 2f);
+                            }
+                        }
+                        else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
+                        {
+                            Vector3 dis = path_finding[0].transform.position - transform.position;
+
+                            if (Vector3.SqrMagnitude(dis) <= 0.5f)
+                            {
+                                int random_close_door = Random.Range(0, 2);
+                                if (random_close_door == 0) { Close_Door_Save = path_finding[0].transform.parent.gameObject; Invoke("For_Close_Door_Delay", 1f); }
+
+                                path_finding.RemoveAt(0);
+                                if (npc_ghost != null)
+                                    npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
+                            }
+                        }
+                    }
+                    else if (path_finding[0].layer == 10)//Room
+                    {
+                        Vector3 dir = target_item.transform.position - transform.position;
+                        if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
+                        {
+                            transform.rotation = Quaternion.LookRotation(dir).normalized;
+                        }
+                        if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                        {
+                            this.agent.enabled = false;
+                            //상호작용 애니메이션
+
+>>>>>>> JHS
 
                             state_end_check = true;//애니메이션 끝나면 true  ㄱ
                         }
@@ -624,12 +674,18 @@ public class Man : Npc
         
         if(Vector3.SqrMagnitude(distance) <= 3f)
         {
+<<<<<<< HEAD
             anim.SetBool(moveing_hash, false);
             if (Vector3.SqrMagnitude(distance) <= 3f && Vector3.SqrMagnitude(distance) >= 1f)
             {
                 transform.rotation = Quaternion.LookRotation(distance).normalized;
                 //
                 //공격 애니메이션 실행
+=======
+            if (Vector3.SqrMagnitude(distance) <= 3f && Vector3.SqrMagnitude(distance) >= 1f)
+            {
+                transform.rotation = Quaternion.LookRotation(distance).normalized;
+>>>>>>> JHS
             }
         }
         else
@@ -667,8 +723,13 @@ public class Man : Npc
                             Vector3 dis = path_finding[0].transform.position - this.transform.position;
                             if (Vector3.SqrMagnitude(dis) <= 1f)
                             {
+<<<<<<< HEAD
                                 opening_check = true;
                                 this.agent.enabled = false;
+=======
+                                //opening_check = true;
+                                //this.agent.enabled = false;
+>>>>>>> JHS
                                 //
                                 door_info.OpenDoor();
                                 Pathfinding_List_Initialization();
@@ -677,7 +738,11 @@ public class Man : Npc
                                 npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
 
 
+<<<<<<< HEAD
                                 Invoke("Reback_Velocity", 2f);
+=======
+                                //Invoke("Reback_Velocity", 2f);
+>>>>>>> JHS
                             }
                         }
                         else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
@@ -686,6 +751,12 @@ public class Man : Npc
 
                             if (Vector3.SqrMagnitude(dis) <= 0.5f)
                             {
+<<<<<<< HEAD
+=======
+                                //int random_close_door = Random.Range(0, 2);
+                                //if (random_close_door == 0) { Close_Door_Save = path_finding[0].transform.parent.gameObject; Invoke("For_Close_Door_Delay", 1f); }
+
+>>>>>>> JHS
                                 path_finding.RemoveAt(0);
                                 if (npc_ghost != null)
                                     npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);

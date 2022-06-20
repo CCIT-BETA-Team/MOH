@@ -8,12 +8,15 @@ public class ResultPopup : MonoBehaviour
     public Result[] Results = new Result[2];
     [Space]
     public Canvas result_popup;
-    public Text time;
-    public Text mission_name;
-    public Text pay;
+    public Text result_text;
+    public Text time_text;
+    public Text mission_name_text;
+    public Text pay_text;
 
     public void On_Result_Popup(int result)
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        result_text.text = Results[result].result;
         result_popup.enabled = true;
     }
 

@@ -8,6 +8,8 @@ public class Player : p_Player
     public Camera cam;
     public GameObject hand;
     public Item emptyhand;
+    public Rigidbody rg;
+    public float power;
      
     [Space]
     [Header("플레이어 아이템 관련")]
@@ -61,7 +63,9 @@ public class Player : p_Player
             if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
             if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
             if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
-            if (Input.GetKey(KeyCode.Space)) { }
+            if (Input.GetKey(KeyCode.LeftShift)) { }
+            if (Input.GetKeyDown(KeyCode.Space)) { rg.AddForce(Vector3.up * power); }
+            if (Input.GetKey(KeyCode.LeftControl)) { }
 
             //장비
             if (Input.GetMouseButton(1)) { Zoom(); }
@@ -247,5 +251,6 @@ public class Player : p_Player
     void Die()
     {
         Debug.Log("으앙쥬금");
+        NpcManager.instance.map.result_popup.On_Result_Popup(1);
     }
 }
