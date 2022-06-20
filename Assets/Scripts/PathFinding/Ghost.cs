@@ -11,6 +11,7 @@ public class Ghost : MonoBehaviour
     public Npc parent_npc;
     public List<GameObject> pathfinding_list = new List<GameObject>();
     public GameObject target;
+    public GameObject player;
 
     public GameObject target_room;
     public float speed;
@@ -20,10 +21,12 @@ public class Ghost : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         path = new NavMeshPath();
-        
+        player = GameManager.instance.Player;
+
     }
     void Update()
     {
+        if(is_report) { agent.SetDestination(player.transform.position); }
     }
     public void Move_Point(Room room)
     {
@@ -38,7 +41,12 @@ public class Ghost : MonoBehaviour
     {
 
     }
+    public void Movo_To_Player()
+    {
+        agent.SetDestination(player.transform.position);
+    }
 
+    public bool is_report;
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.layer == 9)//col.gameObject.layer == LayerMask.NameToLayer("Room") || 
@@ -51,9 +59,15 @@ public class Ghost : MonoBehaviour
         {
             pathfinding_list.Add(col.gameObject);
             parent_npc.path_finding = pathfinding_list.ToList();
-            parent_npc.npc_ghost = null;
+                Debug.Log(pathfinding_list.Count);
+                parent_npc.npc_ghost = null;
             Debug.Log(col.gameObject.name);
             Destroy(gameObject);
+        }
+
+        if(is_report)
+        {
+            Debug.Log(col.gameObject.name);
         }
     }
 

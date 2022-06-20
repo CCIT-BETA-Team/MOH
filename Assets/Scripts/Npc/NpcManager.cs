@@ -162,7 +162,9 @@ public class NpcManager : Singleton<NpcManager>
     {
         GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
         var ghost_info = npc_ghost.GetComponent<Ghost>();
-        ghost_info.Move_Point(player.gameObject);
+        ghost_info.parent_npc = npc;
+        //ghost_info.Movo_To_Player();
+        ghost_info.is_report = true;
         return npc_ghost;
         //For the Move To Player
     }
@@ -182,8 +184,8 @@ public class NpcManager : Singleton<NpcManager>
     {
         npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
         var ghost_info = npc_ghost.GetComponent<Ghost>();
-        ghost_info.target_room = target_item.GetComponent<Item_Info>().parent_room.gameObject;
         ghost_info.parent_npc = npc;
+        ghost_info.target_room = ghost_info.parent_npc.target_room;
         ghost_info.Move_Point(target_item);
         return npc_ghost;
         ///For the Move To StateRoom

@@ -42,13 +42,14 @@ public class Man : Npc
     //
     
     ///////////////////////
+    
     void Reback_Velocity()
     {
         //
         int random_close_door = Random.Range(0,2);
         if(random_close_door == 0) 
         {
-            if (path_finding[0].transform.parent.gameObject.layer != 10)
+            if (path_finding[0].transform.gameObject.layer != 10)
             {
                 Close_Door_Save = path_finding[0].transform.parent.gameObject;
                 Invoke("For_Close_Door_Delay", 1f);
@@ -56,8 +57,10 @@ public class Man : Npc
         }
         //
         path_finding.RemoveAt(0);
-        if (npc_ghost != null)
+        if (state == current_state&& npc_ghost != null)
+        {  
             npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
+        }
         //
         this.agent.enabled = true;
         this.agent.isStopped = false;
@@ -112,7 +115,7 @@ public class Man : Npc
                             //
                             door_info.OpenDoor();
                             //
-
+                            current_state = State.Move;
                             Invoke("Reback_Velocity", 2f);
                         }
                     }
@@ -209,7 +212,7 @@ public class Man : Npc
                             //
                             door_info.OpenDoor();
                             //
-
+                            current_state = State.SLEEP;
                             Invoke("Reback_Velocity", 2f);
                         }
                     }
@@ -278,6 +281,7 @@ public class Man : Npc
     }
     private void Pee()
     {
+        current_state = State.PEE;
         if (!state_end_check)
         {
             if (npc_ghost != null && opening_check == false)
@@ -316,7 +320,7 @@ public class Man : Npc
                             //
                             door_info.OpenDoor();
                             //
-
+                            current_state = State.PEE;
                             Invoke("Reback_Velocity", 2f);
                         }
                     }
@@ -426,7 +430,7 @@ public class Man : Npc
                             //
                             door_info.OpenDoor();
                             //
-
+                            current_state = State.THIRST;
                             Invoke("Reback_Velocity", 2f);
                         }
                     }
@@ -506,7 +510,11 @@ public class Man : Npc
         //처음 초기화
         if (!first_report_check)
         {
-            State_Initizlize();
+            Destroy(npc_ghost);
+            state = State.IDLE;
+            target_item = null;
+            target_room = null;
+            opening_check = false;
             sleepy_percent = 0;
             sleepy_percent_check = sleepy_percent;
             pee_percent = 0;
@@ -521,6 +529,9 @@ public class Man : Npc
         if(personality == Npc_Personality.AGGESSIVE)
         {
             state = State.TRACE;
+            current_state = State.TRACE;
+
+            first_report_check = true;
         }
         else if(personality == Npc_Personality.Defensive)
         {
@@ -569,7 +580,7 @@ public class Man : Npc
                                 //
                                 door_info.OpenDoor();
                                 //
-
+                                current_state = State.REPORT;
                                 Invoke("Reback_Velocity", 2f);
                             }
                         }
@@ -620,7 +631,13 @@ public class Man : Npc
     {
         Vector3 distance = player.gameObject.transform.position - transform.position;
 
-        npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+        if (npc_ghost == null)
+        {
+            npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+        }
+        else if (npc_ghost != null)
+        {
+        }
         
         if(Vector3.SqrMagnitude(distance) <= 3f)
         {
@@ -677,6 +694,7 @@ public class Man : Npc
                                 npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
 
 
+                                current_state = State.TRACE;
                                 Invoke("Reback_Velocity", 2f);
                             }
                         }
@@ -716,20 +734,20 @@ public class Man : Npc
             }
         }
     }
-
-
-    ///////////////////////
-
- 
+    private void Faint()
+    {
+        current_state = State.FAINT;
+    }
     private void Awake()
     {
-
     }
 
     void Start()
     {
         this.state = State.IDLE;
-        Select_Personality();
+        //Select_Personality();
+        this.personality = Npc_Personality.AGGESSIVE;
+
         StartCoroutine(State_Gaze_Change());
         //
         //player_texture = (Texture2D)player.GetComponent<MeshRenderer>().material.mainTexture;
@@ -749,6 +767,7 @@ public class Man : Npc
     {
         #region
         state_check = this.state;
+        //Debug.Log(this.state);
         #endregion
 
         #region
@@ -756,22 +775,27 @@ public class Man : Npc
         else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
         #endregion
 
-        if (this.state != State.REPORT || this.state != State.TRACE)
+        if (this.state != State.REPORT && this.state != State.TRACE)
         if (Check_Unit())
         {
-            if (Physics.Raycast(cam.transform.position, (player.transform.position - cam.transform.position), out hit, Mathf.Infinity))
+                Vector3 p_dir = player.transform.position - cam.transform.position;
+            if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity))
             {
-                    Debug.Log(hit.transform.gameObject.name);
+                    Debug.DrawRay(cam.transform.position, new Vector3(p_dir.x, p_dir.y + 0.5f, p_dir.z), Color.red);
+                    Debug.Log(hit.transform.gameObject);
                 if (hit.transform.gameObject.layer == 6)//player
                 {
                     if (player.lighted == true)
                     {
-                        ///진행중인 애니메이션 꺼주기
-                        
-                        ///
-                        
-                        ///Percent_Initialization
-                        Fear_Check();
+                            ///진행중인 애니메이션 꺼주기
+
+                            ///
+
+                            ///Percent_Initialization
+                            ///
+                            current_state = State.REPORT;
+
+                            Fear_Check();
                     }
                     #region
                     //if(hit.transform.gameObject.)
@@ -823,6 +847,9 @@ public class Man : Npc
                 #endregion
             }
         }
+
+
+
     }
  
     
@@ -855,6 +882,7 @@ public class Man : Npc
 
     void OnTriggerEnter(Collider col)
     {
+        Debug.Log(234234);
         if (col.gameObject.layer == 10)
         {
             current_room = col.gameObject;
