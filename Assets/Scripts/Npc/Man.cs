@@ -759,7 +759,7 @@ public class Man : Npc
         if (this.state != State.REPORT || this.state != State.TRACE)
         if (Check_Unit())
         {
-            if (Physics.Raycast(cam.transform.position, (player.transform.position - cam.transform.position), out hit, Mathf.Infinity, player_layermask))
+            if (Physics.Raycast(cam.transform.position, (player.transform.position - cam.transform.position), out hit, Mathf.Infinity))
             {
                     Debug.Log(hit.transform.gameObject.name);
                 if (hit.transform.gameObject.layer == 6)//player
