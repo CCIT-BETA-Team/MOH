@@ -4503,9 +4503,10 @@ MonoBehaviour:
   - result: "\uC131\uACF5"
   - result: "\uC2E4\uD328"
   result_popup: {fileID: 198443399}
-  time: {fileID: 66260822}
-  mission_name: {fileID: 2115128071}
-  pay: {fileID: 30805958}
+  result_text: {fileID: 912858521}
+  time_text: {fileID: 66260822}
+  mission_name_text: {fileID: 2115128071}
+  pay_text: {fileID: 30805958}
 --- !u!114 &198443397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6449,6 +6450,7 @@ MonoBehaviour:
   police_count: 13
   min_text: {fileID: 1120546127}
   sec_text: {fileID: 1758906339}
+  police_report: 0
   police_spawn_count: 5
 --- !u!4 &326336390
 Transform:
@@ -21230,6 +21232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e1baf013367974c992e0f2d9527fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  result_popup: {fileID: 198443396}
   npc_amount: 0
   room_list:
   - {fileID: 1878343453}

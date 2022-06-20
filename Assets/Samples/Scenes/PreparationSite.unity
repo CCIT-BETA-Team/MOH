@@ -9468,9 +9468,21 @@ PrefabInstance:
       value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
+      propertyPath: rg
+      value: 
+      objectReference: {fileID: 2062341156}
+    - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: emptyhand
       value: 
       objectReference: {fileID: 7767766304752710605, guid: 9c9e024f08fae8e44acc6e46f99d0a24, type: 3}
+    - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
+      propertyPath: walkingSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: dontDestroyOnLoad
       value: 1
@@ -19027,6 +19039,11 @@ RectTransform:
 --- !u!1 &2062341153 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2680651238598190310, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
+  m_PrefabInstance: {fileID: 931865257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &2062341156 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2680651238598190308, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
   m_PrefabInstance: {fileID: 931865257}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2064207117

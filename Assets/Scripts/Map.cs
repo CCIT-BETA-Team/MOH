@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Map : MonoBehaviour
 {
+    public ResultPopup result_popup;
     public int npc_amount;
 
     public List<Room> room_list = new List<Room>();
