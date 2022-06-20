@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public abstract class Item : MonoBehaviour
 {
-    [HideInInspector]
     public Player player;
     public int id;
     public string item_name;

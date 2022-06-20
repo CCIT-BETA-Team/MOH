@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Player : p_Player
 {
     [Header("플레이어 신체")]
     public Camera cam;
+    public ScreenShot ss;
     public GameObject hand;
     public Item emptyhand;
     public Rigidbody rg;
@@ -15,12 +17,19 @@ public class Player : p_Player
     [Header("플레이어 아이템 관련")]
     bool isHoldingItem;
     bool getQuestItem;
-    
+    [HideInInspector]
+    public bool is_attack;
+    bool is_capture;
+
     public List<Rigidbody> itemRG = new List<Rigidbody>();
     public List<Collider> itemCol = new List<Collider>();
     public int currentItem;
     Item unlockTool;
     public Transform InteractionObject;
+
+    public Animator ani;
+    [HideInInspector]
+    public int attack_hash = Animator.StringToHash("Attack");
 
     void Start()
     {
@@ -69,7 +78,7 @@ public class Player : p_Player
 
             //장비
             if (Input.GetMouseButton(1)) { Zoom(); }
-            else if (Input.GetMouseButton(0)) { Use_Item(); }
+            else if (Input.GetMouseButtonDown(0)) { Use_Item(); }
             if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) { Throw_Item(); }
 
             if (Input.GetKeyDown(KeyCode.Alpha1)) { ItemSwitch(itemBag[0]); currentItem = 0; }
@@ -159,36 +168,47 @@ public class Player : p_Player
         {
             Throw_Out_Item();
 
-            itemBag[currentItem] = InteractionItem;
-
-            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+            if (GameManager.instance.select_mission != null && InteractionItem.gameObject.name == GameManager.instance.select_mission.goal_item.name)
             {
-                rds = InteractionItem.GetComponent<RagDollSetter>();
-                itemRG[currentItem] = rds.test_r;
-                itemCol[currentItem] = rds.test_C;
-                foreach (var col in rds.cols)
-                    col.isTrigger = true;
-                rds.test_r.isKinematic = true;
-                foreach (var rig in rds.rigs)
-                {
-                    rig.velocity = new Vector3(0, 0, 0);
-                    rig.useGravity = true;
-                }
-                rds.test_O.transform.position = hand.transform.position;
-            }
-            else
-            {
-                itemRG[currentItem] = InteractionItem.GetComponent<Rigidbody>();
-                itemCol[currentItem] = InteractionItem.GetComponent<Collider>();
-                InteractionObject.position = hand.transform.position;
+                ss.take_screen = true;
+                return;
             }
 
-            itemRG[currentItem].velocity = Vector3.zero;
-
-            InteractionObject.parent = hand.transform;
-            itemCol[currentItem].isTrigger = true;
-            itemRG[currentItem].useGravity = false;
+            Pick_Up();
         }
+    }
+
+    public void Pick_Up()
+    {
+        itemBag[currentItem] = InteractionItem;
+
+        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+        {
+            rds = InteractionItem.GetComponent<RagDollSetter>();
+            itemRG[currentItem] = rds.test_r;
+            itemCol[currentItem] = rds.test_C;
+            foreach (var col in rds.cols)
+                col.isTrigger = true;
+            rds.test_r.isKinematic = true;
+            foreach (var rig in rds.rigs)
+            {
+                rig.velocity = new Vector3(0, 0, 0);
+                rig.useGravity = true;
+            }
+            rds.test_O.transform.position = hand.transform.position;
+        }
+        else
+        {
+            itemRG[currentItem] = InteractionItem.GetComponent<Rigidbody>();
+            itemCol[currentItem] = InteractionItem.GetComponent<Collider>();
+            InteractionObject.position = hand.transform.position;
+        }
+
+        itemRG[currentItem].velocity = Vector3.zero;
+
+        InteractionObject.parent = hand.transform;
+        itemCol[currentItem].isTrigger = true;
+        itemRG[currentItem].useGravity = false;
     }
 
     void Throw_Item()
@@ -250,7 +270,6 @@ public class Player : p_Player
 
     void Die()
     {
-        Debug.Log("으앙쥬금");
         NpcManager.instance.map.result_popup.On_Result_Popup(1);
     }
 }

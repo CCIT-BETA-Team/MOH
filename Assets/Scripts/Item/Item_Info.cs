@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Item_Info : Item
 {
+    public int damage;
+
     public override void interaction()
     {
-        Debug.Log("테스트 아이템 사용");
+        player.ani.SetTrigger(player.attack_hash);
     }
 
     public bool interact_obj = false;
@@ -17,6 +19,17 @@ public class Item_Info : Item
         {
             //NpcManager.instance.Report_Room.Add(parent_room);
             NpcManager.instance.phone_items.Add(this);
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        Debug.Log(0);
+        if (player.is_attack && col.gameObject.layer == 12)
+        {
+            Debug.Log(1);
+            Npc npc = col.transform.root.GetComponent<Npc>();
+            npc.faint_gauge -= damage;
         }
     }
 }

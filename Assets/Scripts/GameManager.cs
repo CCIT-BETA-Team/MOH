@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager>
     public bool b_selet_mission = false;
     public Mission select_mission;
 
+    public Sprite screen_sprite;
+
     void Start()
     {
         //게임 준비단계 (매니저들한테서 이것저것 단계별설정 여기서 ㄱ)
