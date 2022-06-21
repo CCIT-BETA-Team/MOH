@@ -582,6 +582,7 @@ public class Man : Npc
                                 //
                                 current_state = State.REPORT;
                                 Invoke("Reback_Velocity", 2f);
+                                Debug.Log(23);
                             }
                         }
                         else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
