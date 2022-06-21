@@ -24,10 +24,8 @@ public class Item_Info : Item
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log(0);
         if (player.is_attack && col.gameObject.layer == 12)
         {
-            Debug.Log(1);
             Npc npc = col.transform.root.GetComponent<Npc>();
             npc.faint_gauge -= damage;
         }
