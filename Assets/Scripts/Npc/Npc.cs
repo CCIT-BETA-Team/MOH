@@ -24,6 +24,9 @@ public abstract class Npc : MonoBehaviour
     public GameObject npc_ghost;
     protected GameObject Close_Door_Save;
     //
+    protected int layermask_for_except = (1 << 9) | (1 << 10) | (1 << 15);
+    
+    //
     public GameObject target_room;
     public GameObject target_item;
     public GameObject current_room;
@@ -343,6 +346,7 @@ public abstract class Npc : MonoBehaviour
         Select_Personality();
         if(npc_type != Npc_Type.POLICE)
         Invoke("Change_State_Move", 1f);
+        
     }
 
 

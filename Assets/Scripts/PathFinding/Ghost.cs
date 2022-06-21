@@ -67,7 +67,11 @@ public class Ghost : MonoBehaviour
 
         if(is_report)
         {
-            Debug.Log(col.gameObject.name);
+            if(col.gameObject.layer == 6)
+            {
+                pathfinding_list.Add(col.gameObject);
+                parent_npc.path_finding = pathfinding_list.ToList();
+            }
         }
     }
 
