@@ -634,6 +634,7 @@ public class Man : Npc
         if (npc_ghost == null)
         {
             npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+            Debug.Log("»ý¼º");
         }
         else if (npc_ghost != null)
         {
@@ -690,8 +691,9 @@ public class Man : Npc
                                 door_info.OpenDoor();
                                 Pathfinding_List_Initialization();
                                 Destroy(npc_ghost);
+                                npc_ghost = null;
                                 //
-                                npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+                                //npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
 
 
                                 current_state = State.TRACE;
@@ -709,7 +711,7 @@ public class Man : Npc
                                     npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
                                 Pathfinding_List_Initialization();
                                 Destroy(npc_ghost);
-                                npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+                                npc_ghost = null;
                             }
                         }
                     }
@@ -740,6 +742,7 @@ public class Man : Npc
     }
     private void Awake()
     {
+        layermask_for_except = ~layermask_for_except;
     }
 
     void Start()
@@ -779,7 +782,7 @@ public class Man : Npc
         if (Check_Unit())
         {
                 Vector3 p_dir = player.transform.position - cam.transform.position;
-            if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity))
+            if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity,layermask_for_except))
             {
                     Debug.DrawRay(cam.transform.position, new Vector3(p_dir.x, p_dir.y + 0.5f, p_dir.z), Color.red);
                     Debug.Log(hit.transform.gameObject);
@@ -882,7 +885,6 @@ public class Man : Npc
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log(234234);
         if (col.gameObject.layer == 10)
         {
             current_room = col.gameObject;
