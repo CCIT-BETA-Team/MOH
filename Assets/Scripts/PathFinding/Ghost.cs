@@ -15,7 +15,7 @@ public class Ghost : MonoBehaviour
 
     public GameObject target_room;
     public float speed;
-   
+
 
     private void Awake()
     {
@@ -26,7 +26,17 @@ public class Ghost : MonoBehaviour
     }
     void Update()
     {
-        if(is_report) { agent.SetDestination(player.transform.position); }
+        if(is_report)
+        {
+            agent.SetDestination(player.transform.position); 
+            if(agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance <= 0.5f)
+            {
+                pathfinding_list.Add(player);
+                if(parent_npc.path_finding.Count == 0)
+                parent_npc.path_finding = pathfinding_list.ToList();
+                Destroy(this.gameObject);
+            }
+        }
     }
     public void Move_Point(Room room)
     {
@@ -59,9 +69,7 @@ public class Ghost : MonoBehaviour
         {
             pathfinding_list.Add(col.gameObject);
             parent_npc.path_finding = pathfinding_list.ToList();
-                Debug.Log(pathfinding_list.Count);
                 parent_npc.npc_ghost = null;
-            Debug.Log(col.gameObject.name);
             Destroy(gameObject);
         }
 
@@ -69,11 +77,10 @@ public class Ghost : MonoBehaviour
         {
             if(col.gameObject.layer == 6)
             {
-                pathfinding_list.Add(col.gameObject);
-                parent_npc.path_finding = pathfinding_list.ToList();
+                Debug.Log(col.gameObject);
+                //pathfinding_list.Add(player);
+                //parent_npc.path_finding = pathfinding_list.ToList();
             }
         }
     }
-
-    
 }

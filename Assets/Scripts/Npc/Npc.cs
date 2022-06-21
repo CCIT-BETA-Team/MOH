@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[System.Serializable]
-public class NpcStatePercent
-{
-
-}
-
-public abstract class Npc : MonoBehaviour
+public class Npc : MonoBehaviour
 {
     public NavMeshAgent agent;
     public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
@@ -45,7 +39,8 @@ public abstract class Npc : MonoBehaviour
     public float attack_range;//임의 값 설정
     public AudioSource sound;
     //
-    public float npc_speed;
+    protected float npc_speed;
+    protected float report_npc_speed = 1.5f;
     public int faint_time;
     public enum Npc_Type{
         NONE,
@@ -111,6 +106,10 @@ public abstract class Npc : MonoBehaviour
 
     #region
     protected readonly int moveing_hash = Animator.StringToHash("agent_move_check");
+    protected readonly int gun_hash = Animator.StringToHash("agent_attack_check_gun");
+    protected readonly int punch_hash = Animator.StringToHash("agent_attack_check_punch");
+    protected readonly int cudgel_hash = Animator.StringToHash("agent_attack_check_cudgel");
+
     #endregion
 
 
@@ -146,7 +145,6 @@ public abstract class Npc : MonoBehaviour
         if(Fear_Check)
         Gazechange(value * (Random.value / 3), parametertype.FEAR);
     }
-
     public void StateGazeUp(State what)
     {
         switch (what) 
@@ -344,8 +342,11 @@ public abstract class Npc : MonoBehaviour
                 break;
         }
         Select_Personality();
+
         if(npc_type != Npc_Type.POLICE)
         Invoke("Change_State_Move", 1f);
+
+        if(npc_type == Npc_Type.POLICE) { attack_type = Attack_Type.GUN; }
         
     }
 
@@ -387,11 +388,6 @@ public abstract class Npc : MonoBehaviour
         target_room = null;
         opening_check = false;
     }
-
-
-    /// <summary>
-    /// 
-    /// </summary>
     public void Select_Personality()
     {
         int a = Random.Range(0, 2);
@@ -417,9 +413,6 @@ public abstract class Npc : MonoBehaviour
             this.personality = Npc_Personality.Defensive;
         }
     }
-
-
-
     public void Fear_Check()//플레이어를 감지하여 경계도가 100이 된 상황
     {
 
