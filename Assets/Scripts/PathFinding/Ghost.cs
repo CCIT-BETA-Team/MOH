@@ -24,6 +24,11 @@ public class Ghost : MonoBehaviour
         player = GameManager.instance.Player;
 
     }
+    private void Start()
+    {
+
+       
+    }
     void Update()
     {
         if(is_report)
