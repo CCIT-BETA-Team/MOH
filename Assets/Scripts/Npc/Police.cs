@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Police : Npc
 {
@@ -8,31 +9,101 @@ public class Police : Npc
 
     private void Awake()
     {
+        player_obj = GameManager.instance.Player;
+        player = GameManager.instance.Player.GetComponent<Player>();
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
     }
     void Start()
     {
-        
+        attack_type = Attack_Type.GUN;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) { Gun_Attack(); }
+        if (this.agent.enabled) { anim.SetBool(moveing_hash, true); }
+        else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
 
-        Vector3 distance = player.transform.position - this.transform.position;
-        attack_range = Vector3.SqrMagnitude(distance);
+        Trace();
     }
+    private void Trace()
+    {
+        Vector3 distance = player_obj.transform.position - this.gameObject.transform.position;
+        Debug.Log(Vector3.SqrMagnitude(distance));
+        if (current_state != State.TRACE)
+        {
+            npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
+            
+            //Debug.Log("Ghost생성"); 
+        }
+        current_state = State.TRACE;
+        if (Vector3.SqrMagnitude(distance) <= 5f)
+        {
+            agent.enabled = false;
 
-    
+            Vector3 look_rotation = new Vector3(player_obj.transform.position.x, transform.position.y, player_obj.transform.position.z);
+            transform.LookAt(look_rotation);
+            anim.SetTrigger(gun_hash);
+        }
+        else if (Vector3.SqrMagnitude(distance) > 5f)
+        {
+            anim.ResetTrigger(gun_hash);
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("running"))
+                agent.enabled = true;
 
-    //나중에 강성준이 NPC Script로 옮길 예정.
-    //public enum Attack_Type { GUN, PUNCH, CUDGEL }
-    //[Header("NPC 공격 타입")]
-    //public Attack_Type attack_type;
+            if (npc_ghost == null) { npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this); Debug.Log("고스트를 몇번 생성했냐?"); }
+            if (!state_end_check)
+            {
+                if (npc_ghost != null && opening_check == false) { this.agent.SetDestination(npc_ghost.transform.position); }
+                else if (npc_ghost == null) { this.agent.SetDestination(player_obj.transform.position); }
+                if (path_finding.Count > 0)
+                {
+                    if (path_finding[0].layer == 9)//Door
+                    {
+                        if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened == false)
+                        {
+                            var door_info = path_finding[0].transform.parent.GetComponent<DoorScript>();
+                            Vector3 dis = path_finding[0].transform.position - this.transform.position;
 
-    //[Header("무기 오브젝트")]
-    //public GameObject gun;
-    //public GameObject gun_bullet;
-    //public GameObject cudgel;
+                            if (Vector3.SqrMagnitude(dis) <= 1f)
+                            {
+                                opening_check = true;
+                                //this.agent.enabled = false;
+                                //
+                                door_info.OpenDoor();
+                                //
+                                current_state = State.TRACE;
+                                path_finding.RemoveAt(0);
+                                opening_check = false;
+                                Destroy(npc_ghost);
+                                npc_ghost = null;
+                            }
+                        }
+                        else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
+                        {
+                            path_finding.RemoveAt(0);
+                            if (npc_ghost != null) { npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0); }
+
+                            Vector3 dis = path_finding[0].transform.position - transform.position;
+
+                            if (Vector3.SqrMagnitude(dis) <= 0.5f)
+                            {
+
+                            }
+                        }
+                    }
+                }
+            }
+            if (path_finding.Count > 0)
+            {
+                if (path_finding[0].layer == 6)
+                {
+                    Pathfinding_List_Initialization();
+                }
+            }
+        }
+    }
+    #region
+
 
     //애니메이션 이벤트 현재 공격중인지 체크
     bool is_attack;
@@ -41,7 +112,7 @@ public class Police : Npc
     int punch_attack_hashcode = Animator.StringToHash("PunchAttack");
     int cudgel_attack_hashcode = Animator.StringToHash("CudgelAttack");
 
-    #region
+    
     public delegate void Atk();
     public Atk Attack;
 
@@ -118,4 +189,6 @@ public class Police : Npc
         }
     }
     #endregion
+
+
 }

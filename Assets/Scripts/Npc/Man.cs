@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [System.Serializable]
 public class Man : Npc
@@ -35,6 +36,9 @@ public class Man : Npc
                     break;
                 case State.TRACE:
                     Trace();
+                    break;
+                case State.FAINT:
+                    Faint();
                     break;
             }
         }
@@ -629,17 +633,18 @@ public class Man : Npc
             }
         }
     }
-    
+
     private void Trace()
     {
         Vector3 distance = player_obj.transform.position - transform.position;
+        Debug.Log(Vector3.SqrMagnitude(distance));
         if (current_state != State.TRACE)
         {
             npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
             //Debug.Log("Ghost생성"); 
         }
         current_state = State.TRACE;
-        if (Vector3.SqrMagnitude(distance) <= 4f)
+        if (Vector3.SqrMagnitude(distance) <= 5f)
         {
             agent.enabled = false;
 
@@ -652,30 +657,32 @@ public class Man : Npc
                     ///
                     ///
                     ///
-                    anim.SetBool(gun_hash, true);
+                    anim.SetTrigger(gun_hash);
                     break;
                 case Attack_Type.PUNCH:
                     ///
                     ///
                     ///
-                    anim.SetBool(punch_hash, true);
+                    anim.SetTrigger(punch_hash);
                     break;
                 case Attack_Type.CUDGEL:
                     ///
                     ///
                     ///
-                    anim.SetBool(cudgel_hash, true);
+                    anim.SetTrigger(cudgel_hash);
                     break;
             }
             //
         }
-        else if (Vector3.SqrMagnitude(distance) > 4f)
+        else if (Vector3.SqrMagnitude(distance) > 5f)
         {
-            anim.SetBool(gun_hash, false);
-            anim.SetBool(punch_hash, false);
-            anim.SetBool(cudgel_hash, false);
+            anim.ResetTrigger(gun_hash);
+            anim.ResetTrigger(punch_hash);
+            anim.ResetTrigger(cudgel_hash);
 
+            if(anim.GetCurrentAnimatorStateInfo(0).IsName("idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("walk"))
             agent.enabled = true;
+
             if (npc_ghost == null) { npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this); Debug.Log("고스트를 몇번 생성했냐?"); }
             if (!state_end_check)
             {
@@ -770,13 +777,36 @@ public class Man : Npc
             }
         }
     }
+    bool faint_first_check;
     private void Faint()
     {
-        current_state = State.FAINT;
+        //current_state = State.FAINT;
+        if (!faint_first_check)
+        {
+            Destroy(npc_ghost);
+            state = State.IDLE;
+            target_item = null;
+            target_room = null;
+            npc_ghost = null;
+            opening_check = false;
+            sleepy_percent = 0;
+            sleepy_percent_check = sleepy_percent;
+            pee_percent = 0;
+            pee_percent_check = pee_percent;
+            thirst_percent = 0;
+            thirst_percent_check = thirst_percent;
+            Pathfinding_List_Initialization();
+            //current_state = State.REPORT;
+            this.agent.enabled = false;
+            //agent.speed = report_npc_speed;
+        }
     }
     private void Awake()
     {
         layermask_for_except = ~layermask_for_except;
+        player_obj = GameManager.instance.Player;
+        player = GameManager.instance.Player.GetComponent<Player>();
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
     }
 
     void Start()
@@ -879,7 +909,10 @@ public class Man : Npc
         }
 
 
-
+        if(faint_gauge <= 0)
+        {
+            state = State.FAINT;
+        }
     }
  
     
