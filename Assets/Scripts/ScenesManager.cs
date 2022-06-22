@@ -9,23 +9,21 @@ public class ScenesManager : Singleton<ScenesManager>
 {
     static string nextScene;
     public Text loadingText;
+    int scene_index;
 
     [SerializeField]
     Image LoadingBar;
 
 
-    public void Load_Sence(string SceneName)
+    public void Load_Scene(string SceneName)
     {
-        //loadingText = this.gameObject.transform.GetChild(3).gameObject.GetComponent<Text>();
-        //LoadingBar = this.gameObject.transform.GetChild(2).gameObject.GetComponent<Image>();
         nextScene = SceneName;
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(scene_index);
     }
-    int scene_num;
+
     private void Awake()
     {
-        scene_num = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("456456456 +" + scene_num);
+        scene_index = SceneManager.GetActiveScene().buildIndex;
     }
     void Start()
     {
@@ -34,7 +32,7 @@ public class ScenesManager : Singleton<ScenesManager>
 
     IEnumerator LoadSceneProcess()
     {
-        AsyncOperation op = SceneManager.LoadSceneAsync(scene_num + 1);
+        AsyncOperation op = SceneManager.LoadSceneAsync(scene_index+1);
         op.allowSceneActivation = false;
         float timer = 0f;
         while(!op.isDone)
