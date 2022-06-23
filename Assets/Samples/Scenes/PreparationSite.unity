@@ -4404,6 +4404,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &453566404
 Rigidbody:
@@ -5734,6 +5735,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &567185387
 Rigidbody:
@@ -6278,6 +6280,7 @@ MonoBehaviour:
   Player: {fileID: 2062341153}
   b_selet_mission: 0
   select_mission: {fileID: 0}
+  screen_sprite: {fileID: 0}
 --- !u!4 &616376693
 Transform:
   m_ObjectHideFlags: 0
@@ -8392,6 +8395,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &818100524
 Rigidbody:
@@ -10681,6 +10685,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &1060306567
 Rigidbody:
@@ -16146,6 +16151,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &1646927378
 Rigidbody:
@@ -19041,18 +19047,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2680651238598190310, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
   m_PrefabInstance: {fileID: 931865257}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2062341154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062341153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5c5bcdb705e4c478c9e833112cb285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &2062341156 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 2680651238598190308, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
@@ -19852,6 +19846,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &2113385321
 Rigidbody:
@@ -24819,6 +24814,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &919132148039931139
 Rigidbody:
@@ -24902,6 +24898,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &919132148234675264
 Rigidbody:
@@ -24967,6 +24964,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &919132149009597028
 Rigidbody:
@@ -25085,6 +25083,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &919132149439995023
 Rigidbody:
@@ -32364,6 +32363,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &5115465019238725378
 Rigidbody:
@@ -35279,6 +35279,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &7135705212538604553
 Rigidbody:
@@ -35345,6 +35346,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &7135705213160892866
 Rigidbody:
@@ -35411,6 +35413,7 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
   interact_obj: 0
 --- !u!54 &7135705213748429416
 Rigidbody:

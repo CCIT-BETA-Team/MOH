@@ -19,6 +19,8 @@ public class NpcManager : Singleton<NpcManager>
 
     //For Test ::Jun
     public List<GameObject> npc_list = new List<GameObject>();
+    public Queue<GameObject> pooling_ghost = new Queue<GameObject>();
+
 
     [Header("Target_Room")]
     public List<Room> Bed_Room = new List<Room>();

@@ -36,7 +36,8 @@ public class ResultPopup : MonoBehaviour
 
     public void Go_PreparationSite()
     {
-        ScenesManager.instance.Load_Sence("PreparationSite");
+        //ScenesManager.instance.Load_Sence("PreparationSite");
+        ScenesManager.instance.Load_Scene("PreparationSite");
     }
 
     IEnumerator Timer()
