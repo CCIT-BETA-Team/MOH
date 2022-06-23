@@ -9,7 +9,7 @@ public class ScenesManager : Singleton<ScenesManager>
 {
     static string nextScene;
     public Text loadingText;
-    int scene_index;
+    //int scene_index;
 
     [SerializeField]
     Image LoadingBar;
@@ -18,21 +18,22 @@ public class ScenesManager : Singleton<ScenesManager>
     public void Load_Scene(string SceneName)
     {
         nextScene = SceneName;
-        SceneManager.LoadScene(scene_index);
+        SceneManager.LoadScene("LoadingScene");
     }
 
-    private void Awake()
-    {
-        scene_index = SceneManager.GetActiveScene().buildIndex;
-    }
+    //private void Awake()
+    //{
+    //    //scene_index = SceneManager.GetActiveScene().buildIndex;
+    //}
     void Start()
     {
+        LoadingBar.fillAmount=0;
         StartCoroutine(LoadSceneProcess());
     }
 
     IEnumerator LoadSceneProcess()
     {
-        AsyncOperation op = SceneManager.LoadSceneAsync(scene_index+1);
+        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene/*scene_index+1*/);
         op.allowSceneActivation = false;
         float timer = 0f;
         while(!op.isDone)
