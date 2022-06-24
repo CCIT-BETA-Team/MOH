@@ -11,8 +11,8 @@ public class ScenesManager : Singleton<ScenesManager>
     public Text loadingText;
     public Text missionText;
     public Text tipText;
-    
-    //int scene_index;
+    public string[] str;
+
 
     [SerializeField]
     Image LoadingBar;
@@ -24,10 +24,6 @@ public class ScenesManager : Singleton<ScenesManager>
         SceneManager.LoadScene("LoadingScene");
     }
 
-    //private void Awake()
-    //{
-    //    //scene_index = SceneManager.GetActiveScene().buildIndex;
-    //}
     void Start()
     {
         LoadingBar.fillAmount=0;
@@ -37,16 +33,10 @@ public class ScenesManager : Singleton<ScenesManager>
     IEnumerator LoadSceneProcess()
     {
         missionText.text = GameManager.instance.select_mission.mission_name;
-        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene/*scene_index+1*/);
+        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         float timer = 0f;
-        int index = UnityEngine.Random.Range(0, 6);
-        string[] str = { "알고 계셨나요?  렝가는 슈리마의 바스타야 종족인 킬라쉬 부족 출신입니다.",
-                         "내셔 남작은 자신의 뒤에 있는 챔피언에게 훨씬 더 큰 피해를 줍니다.",
-                         "알고 계셨나요? 타릭은 원래 데마시아 군인이었고, 지금은 타곤 성위 수호자가 깃든 몸이 되었습니다",
-                         "알고 계셨나요? 누누의 설인 친구 이름은 윌럼프입니다.",
-                         "알고 계셨나요? 드래곤은 처치된 지 6분 후에 재생성됩니다.",
-                         "중국의 한 스시 전문점에서 리그 오브 레전드의 랭크에 따라 할인을 제공한 적이 있다고 합니다."};
+        int index = UnityEngine.Random.Range(0, str.Length);
         tipText.text = str[index];
         while(!op.isDone)
         {
