@@ -11,12 +11,12 @@ public class ScenesManager : Singleton<ScenesManager>
     public Text loadingText;
     public Text missionText;
     public Text tipText;
+    public Text anyKeyText;
     public string[] str;
-
+    AsyncOperation op;
 
     [SerializeField]
     Image LoadingBar;
-
 
     public void Load_Scene(string SceneName)
     {
@@ -26,14 +26,19 @@ public class ScenesManager : Singleton<ScenesManager>
 
     void Start()
     {
-        LoadingBar.fillAmount=0;
         StartCoroutine(LoadSceneProcess());
+    }
+
+    void Update()
+    {
+        if (Input.anyKey)
+            op.allowSceneActivation = true;
     }
 
     IEnumerator LoadSceneProcess()
     {
         missionText.text = GameManager.instance.select_mission.mission_name;
-        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
+        op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         float timer = 0f;
         int index = UnityEngine.Random.Range(0, str.Length);
@@ -42,7 +47,7 @@ public class ScenesManager : Singleton<ScenesManager>
         {
             yield return null;
 
-            if(op.progress<0.001f)
+            if (op.progress < 0.001f)
             {
                 LoadingBar.fillAmount = op.progress;
                 loadingText.text = (Math.Truncate(LoadingBar.fillAmount * 100)).ToString() + "%";
@@ -52,10 +57,11 @@ public class ScenesManager : Singleton<ScenesManager>
                 timer += Time.deltaTime;
                 LoadingBar.fillAmount = Mathf.Lerp(0.001f, 1.0f, timer);
                 loadingText.text = (Math.Truncate(LoadingBar.fillAmount * 100)).ToString() + "%";
-                if(LoadingBar.fillAmount>=1.0f)
+                if (LoadingBar.fillAmount >= 1.0f)
                 {
-                    op.allowSceneActivation = true;
-                    yield break;
+                    anyKeyText.text = "계속 하려면 아무키나 입력하세요.";
+                    if (op.allowSceneActivation == true)
+                        yield break;
                 }
             }
         }
