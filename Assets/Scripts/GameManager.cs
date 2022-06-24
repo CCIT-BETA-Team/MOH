@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     {
         //게임 준비단계 (매니저들한테서 이것저것 단계별설정 여기서 ㄱ)
 
-        NpcManager.instance.Spawn_Npc(); //NPC 스폰
+        //NpcManager.instance.Spawn_Npc(); //NPC 스폰
     }
 
     void Update()
