@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[System.Serializable]
-public class NpcStatePercent
-{
-
-}
-
-public abstract class Npc : MonoBehaviour
+public class Npc : MonoBehaviour
 {
     public NavMeshAgent agent;
     public List<GameObject> npc_item = new List<GameObject>();//Npc가 소유한 아이템 리스트
@@ -17,18 +11,19 @@ public abstract class Npc : MonoBehaviour
     //
     public Animator anim;
     //
-    [HideInInspector]
+   
     public GameObject player_obj;
-    [HideInInspector]
     public Player player;
-    [HideInInspector]
     public GameObject ghost;
-    [HideInInspector]
     public GameObject npc_ghost;
     protected GameObject Close_Door_Save;
     //
+    protected int layermask_for_except = (1 << 9) | (1 << 10) | (1 << 15);
+    
+    //
     public GameObject target_room;
     public GameObject target_item;
+    public GameObject current_room;
     //
     protected bool opening_check = false;
     protected bool state_end_check = false;
@@ -37,12 +32,15 @@ public abstract class Npc : MonoBehaviour
 
     protected bool state_continue = true;//Trace or Report 상태로 바뀌면 변경
     //
-
+    //npc에 타격에 따른 감소값
+    public float faint_gauge = 100;
+    //
 
     public float attack_range;//임의 값 설정
     public AudioSource sound;
     //
-    public float npc_speed;
+    protected float npc_speed;
+    protected float report_npc_speed = 1.5f;
     public int faint_time;
     public enum Npc_Type{
         NONE,
@@ -62,7 +60,6 @@ public abstract class Npc : MonoBehaviour
         THIRST,//목마름
         REPORT,//신고
         FAINT,//기절
-        ATTACK,//공격 
         ESCAPE,//도주
         TRACE,//추적
         FEAR,//경계
@@ -85,6 +82,19 @@ public abstract class Npc : MonoBehaviour
     }
     public Npc_Personality personality = Npc_Personality.AGGESSIVE;
 
+
+    /// <summary>
+    /// For Police , Aggessive Npc
+    /// </summary>
+    public enum Attack_Type { GUN, PUNCH, CUDGEL }
+    [Header("NPC 공격 타입")]
+    public Attack_Type attack_type;
+
+    [Header("무기 오브젝트")]
+    public GameObject gun;
+    public GameObject gun_bullet;
+    public GameObject cudgel;
+
     [Range(0, 100)]
     public float sleepy_percent;
     [Range(0, 100)]
@@ -96,6 +106,10 @@ public abstract class Npc : MonoBehaviour
 
     #region
     protected readonly int moveing_hash = Animator.StringToHash("agent_move_check");
+    protected readonly int gun_hash = Animator.StringToHash("agent_attack_check_gun");
+    protected readonly int punch_hash = Animator.StringToHash("agent_attack_check_punch");
+    protected readonly int cudgel_hash = Animator.StringToHash("agent_attack_check_cudgel");
+
     #endregion
 
 
@@ -131,7 +145,6 @@ public abstract class Npc : MonoBehaviour
         if(Fear_Check)
         Gazechange(value * (Random.value / 3), parametertype.FEAR);
     }
-
     public void StateGazeUp(State what)
     {
         switch (what) 
@@ -158,12 +171,6 @@ public abstract class Npc : MonoBehaviour
                 //
                 break;
             case State.FAINT :
-                //
-                break;
-            case State.ATTACK :
-                //
-                break;
-            case State.ESCAPE :
                 //
                 break;
             case State.TRACE:
@@ -204,8 +211,8 @@ public abstract class Npc : MonoBehaviour
     /// 
     #endregion
     [SerializeField]
-    protected State? next_state = State.NULL;
-
+    protected State next_state = State.NULL;
+    protected State current_state = State.NULL;
 
     public float sleepy_percent_check
     {
@@ -216,10 +223,13 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    sleepy_percent = 0;
                     State_Initizlize();
+                    current_state = State.SLEEP;
                     Re_Set_Room:
                     target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
                     target_item = target_room.GetComponent<Room>().Decide_Target_Item();
+
                     if (target_item != null)
                     npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, npc_ghost, this);
                     else if(target_item == null) { goto Re_Set_Room; }
@@ -228,7 +238,7 @@ public abstract class Npc : MonoBehaviour
 
                     state = State.SLEEP;
                 }
-                else { if (next_state == null) { next_state = State.SLEEP; } }
+                else { next_state = State.SLEEP;  }
             }
             else
             {
@@ -249,7 +259,9 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    pee_percent = 0;
                     State_Initizlize();
+                    current_state = State.PEE;
 
                     Re_Set_Room:
                     target_room = NpcManager.instance.Bath_Room[Random.Range(0, NpcManager.instance.Bath_Room.Count)].gameObject;
@@ -262,7 +274,7 @@ public abstract class Npc : MonoBehaviour
                     agent.enabled = true;
                     state = State.PEE;
                 }
-                else { if (next_state == null) { next_state = State.PEE; } }
+                else {  next_state = State.PEE;  }
             }
             else
             {
@@ -283,7 +295,9 @@ public abstract class Npc : MonoBehaviour
             {
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
+                    thirst_percent = 0;
                     State_Initizlize();
+                    current_state = State.THIRST;
 
                     Re_Set_Room:
                     target_room = NpcManager.instance.Dining_Room[Random.Range(0, NpcManager.instance.Dining_Room.Count)].gameObject;
@@ -296,7 +310,7 @@ public abstract class Npc : MonoBehaviour
                     agent.enabled = true;
                     state = State.THIRST;
                 }
-                else { if (next_state == null) { next_state = State.THIRST; } }
+                else {  next_state = State.THIRST;  }
             }
             else
             {
@@ -327,13 +341,28 @@ public abstract class Npc : MonoBehaviour
             case Npc_Type.WOMAN:
                 break;
         }
-        //Invoke("Change_State_Move", 1f);
+        Select_Personality();
+
+        if(npc_type != Npc_Type.POLICE)
+        Invoke("Change_State_Move", 1f);
+
+        if(npc_type == Npc_Type.POLICE) { attack_type = Attack_Type.GUN; }
+        
     }
 
 
     private void Update()
     {
-
+        if(state != State.FAINT)
+        if(faint_gauge <=0)
+        {
+            npc_ghost = null;
+            target_item = null;
+            target_room = null;
+            opening_check = false;
+            Pathfinding_List_Initialization();
+            state = State.FAINT;
+        }
     }
 
 
@@ -346,7 +375,6 @@ public abstract class Npc : MonoBehaviour
     public void Change_State_Move()
     {
         state = State.Move;
-        Debug.Log("돌아가는지 체크");
         this.agent.enabled = true;
         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, this);
         //target_room = npc_ghost.GetComponent<Ghost>().target_room;
@@ -360,15 +388,39 @@ public abstract class Npc : MonoBehaviour
         target_room = null;
         opening_check = false;
     }
+    public void Select_Personality()
+    {
+        int a = Random.Range(0, 2);
+        if (a == 0)
+        {
+            this.personality = Npc_Personality.AGGESSIVE;
+            int select_attack_type = Random.Range(0, 3);
+            switch(select_attack_type)
+            {
+                case 0:
+                    this.attack_type = Attack_Type.GUN;
+                    break;
+                case 1:
+                    this.attack_type = Attack_Type.PUNCH;
+                    break;
+                case 2:
+                    this.attack_type = Attack_Type.CUDGEL;
+                    break;
+            }
+        }
+        else if (a == 1)
+        {
+            this.personality = Npc_Personality.Defensive;
+        }
+    }
+    public void Fear_Check()//플레이어를 감지하여 경계도가 100이 된 상황
+    {
 
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public abstract void Select_Personality();
-
-    
-
+        for(int i = 0; i < NpcManager.instance.npc_list.Count;i++)
+        {
+            NpcManager.instance.npc_list[i].GetComponent<Npc>().state = State.REPORT;
+        }
+    }
 
 
 }

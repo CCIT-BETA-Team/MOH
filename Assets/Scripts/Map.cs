@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Map : MonoBehaviour
 {
+    public ResultPopup result_popup;
     public int npc_amount;
 
     public List<Room> room_list = new List<Room>();
@@ -87,6 +88,7 @@ public class Map : MonoBehaviour
         int n = Random.Range(0, target_spot.Count);
         Vector3 rotation = target_spot[n].spawn_possible_spot.spawn_rotation;
         GameObject target_item = Instantiate(gm.select_mission.goal_item, target_spot[n].spawn_possible_spot.transform.position, Quaternion.Euler(rotation.x, rotation.y, rotation.z));
+        target_item.transform.name = gm.select_mission.goal_item.name;
         target_spot[n].spawn_possible_spot.item = gm.select_mission.goal;
         target_spot[n].spawn_possible_spot.spawned_item = true;
         gm.select_mission.goal.parent_room = target_spot[n].spawn_possible_room;

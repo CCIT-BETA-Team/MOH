@@ -18,11 +18,20 @@ EditorBuildSettings:
     path: Assets/Samples/Scenes/PreparationSite.unity
     guid: b1bdd576f20008c4cb9532e33adad852
   - enabled: 1
+    path: Assets/Samples/Scenes/LoadingScene.unity
+    guid: df3fcf5817a2ee9479ebc866fde4cdf5
+  - enabled: 1
+    path: Assets/Samples/Scenes/FadeScene.unity
+    guid: c829213ea14c8184c9e0bec79e727614
+  - enabled: 1
     path: Assets/Scenes/Test Map 1.unity
     guid: ea0286a26b32d414ca52b27591fcb934
   - enabled: 1
     path: Assets/Samples/Scenes/RoomTest.unity
     guid: fc745ae66e4011644bd533730049a26a
+  - enabled: 1
+    path: Assets/Scenes/MissionScenes/Test Map 2.unity
+    guid: de4f0172b225a094f9421914cc95289f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 1aab0a05df5f5874090e00995f09ad9b, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: f69431a0e5a0f014fb41add994b4d831, type: 2}

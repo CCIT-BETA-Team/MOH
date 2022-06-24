@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class Item_Info : Item
 {
+    public int damage;
+
     public override void interaction()
     {
-        Debug.Log("테스트 아이템 사용");
+        player.ani.SetTrigger(player.attack_hash);
     }
 
     public bool interact_obj = false;
     private void Start()
     {
-        //if(interact_obj == true && parent_room != null)
-        //{
-        //    parent_room.GetComponent<Room>().target_item = this.gameObject;
-        //}
-
         if(parent_room != null) { parent_room.Add_Furniture(this.gameObject); }
+        if (this.parameter_type == parameterType.PHONE)
+        {
+            //NpcManager.instance.Report_Room.Add(parent_room);
+            NpcManager.instance.phone_items.Add(this);
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (player.is_attack && col.gameObject.layer == 12)
+        {
+            Npc npc = col.transform.root.GetComponent<Npc>();
+            npc.faint_gauge -= damage;
+        }
     }
 }

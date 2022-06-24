@@ -17,6 +17,11 @@ public class NpcManager : Singleton<NpcManager>
     public List<Room> room_list = new List<Room>();
     public BoxCollider police_spawn_point;
 
+    //For Test ::Jun
+    public List<GameObject> npc_list = new List<GameObject>();
+    public Queue<GameObject> pooling_ghost = new Queue<GameObject>();
+
+
     [Header("Target_Room")]
     public List<Room> Bed_Room = new List<Room>();
     public List<Room> Bath_Room = new List<Room>();
@@ -38,7 +43,7 @@ public class NpcManager : Singleton<NpcManager>
     int current_count;
     int count_min { get { return current_count / 60; } }
     int count_sec { get { return current_count % 60; } }
-    bool police_report;
+    public bool police_report;
 
     [Header("경찰 수")]
     public int police_spawn_count;
@@ -58,16 +63,6 @@ public class NpcManager : Singleton<NpcManager>
     public Transform request() { return this.transform; }
     //오버로딩으로 경찰스폰이랑 일반 npc스폰 다르게
 
-    public Transform request(Npc.State state)
-    {
-        switch (state)
-        {
-            case global::Npc.State.ATTACK:
-                //return Map_Transform[0];
-                break;
-        }
-        return null;
-    }
 
     GameObject Decide_Npc(GameObject[] npc_list)
     {
@@ -90,6 +85,7 @@ public class NpcManager : Singleton<NpcManager>
             GameObject spawn_point = room_list[x].npc_spawn_position[y];
              
             GameObject npc = Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
+            npc_list.Add(npc);
             //npc.GetComponent<Npc>().npc_room = npc_room();
 
             room_list[x].npc_spawn_position.RemoveAt(y);
@@ -164,6 +160,17 @@ public class NpcManager : Singleton<NpcManager>
         for (int i = 0; i < thirsty_items.Count; i++) { thirsty_items[i].parent_room.target_items.Add(thirsty_items[i].gameObject); }
     }
 
+    public GameObject Ins_Ghost(Transform npc_transform , Transform player , GameObject ghost , Npc npc)
+    {
+        GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
+        var ghost_info = npc_ghost.GetComponent<Ghost>();
+        ghost_info.parent_npc = npc;
+        //ghost_info.Movo_To_Player();
+        ghost_info.is_report = true;
+        return npc_ghost;
+        //For the Move To Player
+    }
+    
     public GameObject Ins_Ghost(Transform npc_transform, GameObject ghost, Npc npc)
     {
         GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
@@ -179,12 +186,20 @@ public class NpcManager : Singleton<NpcManager>
     {
         npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
         var ghost_info = npc_ghost.GetComponent<Ghost>();
-        ghost_info.target_room = target_item.GetComponent<Item_Info>().parent_room.gameObject;
         ghost_info.parent_npc = npc;
+        ghost_info.target_room = ghost_info.parent_npc.target_room;
         ghost_info.Move_Point(target_item);
         return npc_ghost;
+        ///For the Move To StateRoom
     }
-
+    public GameObject Ins_Ghost(Transform npc_transform , GameObject ghost, GameObject telphone,Npc npc)
+    {
+        GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
+        var ghost_info = npc_ghost.GetComponent<Ghost>();
+        ghost_info.parent_npc = npc;
+        ghost_info.Move_Point(telphone);
+        return npc_ghost;
+    }
     public void Spawn_Police()
     {
         Vector3 spawn_position;
