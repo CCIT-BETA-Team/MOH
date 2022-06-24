@@ -28,6 +28,7 @@ public class Mission : ScriptableObject
     public weather_enum weather;
     public enum time_enum { EARLY_EVENING, EVENING, NIGHT }
     public time_enum time;
+    public GameObject[] mission_popups;
     
     public void WhiteBoard_Update(WhiteBoard m)
     {
@@ -42,7 +43,7 @@ public class Mission : ScriptableObject
         m.main_mission.text = main_mission;
         m.sub_mission.text = sub_mission[0];
     }
-
+    
     public void InfoCard_Update(InfoCard ic, MissionCard m)
     {
         ic.mission_name.text = mission_name;
@@ -81,7 +82,7 @@ public class Mission : ScriptableObject
                 Destroy(ip.sub_mission_text[i].gameObject);
             }
         }
-
+        
         if (sub_mission.Length > 0)
         {
             ip.sub_mission.enabled = true;
