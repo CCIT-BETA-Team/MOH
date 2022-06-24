@@ -9,7 +9,10 @@ public class ScenesManager : Singleton<ScenesManager>
 {
     static string nextScene;
     public Text loadingText;
-    //int scene_index;
+    public Text missionText;
+    public Text tipText;
+    public string[] str;
+
 
     [SerializeField]
     Image LoadingBar;
@@ -21,10 +24,6 @@ public class ScenesManager : Singleton<ScenesManager>
         SceneManager.LoadScene("LoadingScene");
     }
 
-    //private void Awake()
-    //{
-    //    //scene_index = SceneManager.GetActiveScene().buildIndex;
-    //}
     void Start()
     {
         LoadingBar.fillAmount=0;
@@ -33,9 +32,12 @@ public class ScenesManager : Singleton<ScenesManager>
 
     IEnumerator LoadSceneProcess()
     {
-        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene/*scene_index+1*/);
+        missionText.text = GameManager.instance.select_mission.mission_name;
+        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         float timer = 0f;
+        int index = UnityEngine.Random.Range(0, str.Length);
+        tipText.text = str[index];
         while(!op.isDone)
         {
             yield return null;
