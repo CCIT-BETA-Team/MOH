@@ -19,7 +19,6 @@ public class NpcManager : Singleton<NpcManager>
 
     //For Test ::Jun
     public List<GameObject> npc_list = new List<GameObject>();
-    public Queue<GameObject> pooling_ghost = new Queue<GameObject>();
 
 
     [Header("Target_Room")]
@@ -48,6 +47,11 @@ public class NpcManager : Singleton<NpcManager>
     [Header("°æÂû ¼ö")]
     public int police_spawn_count;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Debug.Log("Npc_manager check");
+    }
 
     void Start()
     {

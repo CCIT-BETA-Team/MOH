@@ -804,13 +804,18 @@ public class Man : Npc
     private void Awake()
     {
         layermask_for_except = ~layermask_for_except;
-        player_obj = GameManager.instance.Player;
-        player = GameManager.instance.Player.GetComponent<Player>();
+        //player_obj = GameManager.instance.Player;
+        //player = GameManager.instance.Player.GetComponent<Player>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
+
+        
     }
 
     void Start()
     {
+        player_obj = GameManager.instance.Player;
+        player = GameManager.instance.Player.GetComponent<Player>();
+
         this.state = State.IDLE;
         //Select_Personality();
         this.personality = Npc_Personality.AGGESSIVE;
