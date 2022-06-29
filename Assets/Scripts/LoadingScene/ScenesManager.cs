@@ -24,19 +24,33 @@ public class ScenesManager : Singleton<ScenesManager>
         SceneManager.LoadScene("LoadingScene");
     }
 
-    void Start()
+    public void Load_Scene_2(string SceneName)
     {
-        StartCoroutine(LoadSceneProcess());
+        SceneManager.LoadScene(SceneName);
     }
 
+    void Start()
+    {
+        if (tt)
+        {
+            StartCoroutine(LoadSceneProcess());
+        }
+    }
+    public bool tt;
     void Update()
     {
-        if (Input.anyKey)
-            op.allowSceneActivation = true;
+        if(tt)
+        {
+            if (Input.anyKey)
+            {
+                op.allowSceneActivation = true;
+            }
+        }
     }
 
     IEnumerator LoadSceneProcess()
     {
+        yield return null;
         missionText.text = GameManager.instance.select_mission.mission_name;
         op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
