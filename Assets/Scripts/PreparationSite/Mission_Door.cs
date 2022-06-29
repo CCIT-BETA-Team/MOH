@@ -19,7 +19,6 @@ public class Mission_Door : Item
     
     static void Mission_Start(Mission select_mission)
     {
-        //select_mission.goal_item;
         ScenesManager.instance.Load_Scene(select_mission.mission_scene);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -193,9 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC54C\uACE0 \uACC4\uC168\uB098\uC694? \uC18C\uC2DD\uC5D0 \uC758\uD558\uBA74
-    \uC7AC\uD5CC\uC774\uB294 \uD32C\uD2F0\uB97C \uD558\uB8E8\uC5D0 \uD55C \uBC88\uC529
-    \uAC08\uC544\uC785\uC2B5\uB2C8\uB2E4!"
+  m_Text: 
 --- !u!222 &9357203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -349,7 +347,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uAE40\uC7AC\uD5CC\uC758 \uAD6C\uBA4D\uB09C \uD32C\uD2F0"
+  m_Text: 
 --- !u!222 &873856778
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -764,6 +762,7 @@ MonoBehaviour:
     \uB125\uC11C\uC2A4\uB97C \uC9C0\uCF1C 71\uBD84 29\uCD08 \uB9CC\uC5D0 FNC\uB97C
     \uC7A1\uC544\uB0C8\uC2B5\uB2C8\uB2E4. "
   LoadingBar: {fileID: 2013184616}
+  tt: 1
 --- !u!114 &1515618932
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class MissionCard : MonoBehaviour
         mission.WhiteBoard_Update(mi);
         mission.InfoPopup_Update(ip);
         GameManager.instance.b_selet_mission = true;
+        PopupManager.instance.Mission_Info_Text();
     }
 
     void OnMouseExit()
