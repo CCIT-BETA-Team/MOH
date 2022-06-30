@@ -38,6 +38,7 @@ public class ResultPopup : MonoBehaviour
     {
         //ScenesManager.instance.Load_Sence("PreparationSite");
         ScenesManager.instance.Load_Scene("PreparationSite");
+        //ScenesManager.instance.missionText.text = "";
     }
 
     IEnumerator Timer()

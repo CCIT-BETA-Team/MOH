@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/Scenes/VRTestScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samples/Scenes/NpcTest.unity
     guid: 074ed734a1f0ec64f9ca66102c236c36
   - enabled: 1

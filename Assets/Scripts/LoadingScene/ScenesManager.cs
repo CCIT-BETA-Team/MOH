@@ -15,13 +15,6 @@ public class ScenesManager : Singleton<ScenesManager>
     public string[] str;
     AsyncOperation op;
 
-    #region 로딩 이미지 용
-
-    public Sprite[] pictures;
-    public Image loadingimage; 
-    #endregion
-
-
     [SerializeField]
     Image LoadingBar;
 
@@ -31,20 +24,33 @@ public class ScenesManager : Singleton<ScenesManager>
         SceneManager.LoadScene("LoadingScene");
     }
 
+    public void Load_Scene_2(string SceneName)
+    {
+        SceneManager.LoadScene(SceneName);
+    }
+
     void Start()
     {
-        RandomLoadingImage();
-        StartCoroutine(LoadSceneProcess());
+        if (tt)
+        {
+            StartCoroutine(LoadSceneProcess());
+        }
     }
-    
+    public bool tt;
     void Update()
     {
-        if (Input.anyKey)
-            op.allowSceneActivation = true;
+        if(tt)
+        {
+            if (Input.anyKey)
+            {
+                op.allowSceneActivation = true;
+            }
+        }
     }
 
     IEnumerator LoadSceneProcess()
     {
+        yield return null;
         missionText.text = GameManager.instance.select_mission.mission_name;
         op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
@@ -73,9 +79,5 @@ public class ScenesManager : Singleton<ScenesManager>
                 }
             }
         }
-    }
-    public void RandomLoadingImage()
-    {
-        loadingimage.sprite = pictures[UnityEngine.Random.Range(0, pictures.Length)];
     }
 }
