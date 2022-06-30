@@ -19,6 +19,6 @@ public class Mission_Door : Item
     
     static void Mission_Start(Mission select_mission)
     {
-        ScenesManager.instance.Load_Scene(select_mission.mission_scene);
+        ScenesManager.instance.Load_Scene(select_mission.mission_scene,ScenesManager.LoadingType.DELAY);
     }
 }
