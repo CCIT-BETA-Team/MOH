@@ -15,6 +15,13 @@ public class ScenesManager : Singleton<ScenesManager>
     public string[] str;
     AsyncOperation op;
 
+    #region 로딩 이미지 용
+
+    public Sprite[] pictures;
+    public Image loadingimage; 
+    #endregion
+
+
     [SerializeField]
     Image LoadingBar;
 
@@ -26,9 +33,10 @@ public class ScenesManager : Singleton<ScenesManager>
 
     void Start()
     {
+        RandomLoadingImage();
         StartCoroutine(LoadSceneProcess());
     }
-
+    
     void Update()
     {
         if (Input.anyKey)
@@ -65,5 +73,9 @@ public class ScenesManager : Singleton<ScenesManager>
                 }
             }
         }
+    }
+    public void RandomLoadingImage()
+    {
+        loadingimage.sprite = pictures[UnityEngine.Random.Range(0, pictures.Length)];
     }
 }
