@@ -125,9 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf639864e094a3942a99eb347fd37125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   id: 0
   item_name: "\uD14C\uC2A4\uD2B8 \uC544\uC774\uD15C"
   itemtype: 3
+  item_size: 0
   parameter_type: 0
   price: 200
   weight: 0
@@ -136,6 +138,8 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
-  item_image: {fileID: 0}
+  item_image: {fileID: 21300000, guid: f9da07db4c698ae4182de9110f9a254a, type: 3}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
+  interact_obj: 0
