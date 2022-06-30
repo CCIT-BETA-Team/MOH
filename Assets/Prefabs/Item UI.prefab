@@ -67,18 +67,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 1
+    m_FontSize: 62
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 62
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!1 &1753001596430810662
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1753001596648794300}
   - component: {fileID: 1753001596648794302}
-  - component: {fileID: 1753001596648794303}
+  - component: {fileID: 6013643763572863817}
   m_Layer: 5
   m_Name: Text UI
   m_TagString: Untagged
@@ -221,7 +221,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753001596648794301}
   m_CullTransparentMesh: 1
---- !u!114 &1753001596648794303
+--- !u!114 &6013643763572863817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
