@@ -15,37 +15,52 @@ public class ScenesManager : Singleton<ScenesManager>
     public string[] str;
     AsyncOperation op;
 
+
+    #region For Loading Image
+    public Sprite[] pictures;
+    public Image loadingimage;
+    #endregion
+
     [SerializeField]
     Image LoadingBar;
 
-    public void Load_Scene(string SceneName)
+
+    public enum LoadingType
     {
-        nextScene = SceneName;
-        SceneManager.LoadScene("LoadingScene");
+    DELAY=0,
+    DIRECT
     }
 
-    public void Load_Scene_2(string SceneName)
+    public void Load_Scene(string SceneName,LoadingType type)
     {
-        SceneManager.LoadScene(SceneName);
+      
+        switch (type)
+        {
+            case (LoadingType)0:
+                nextScene = SceneName;
+                SceneManager.LoadScene("LoadingScene");
+                break;
+            case (LoadingType)1:
+                SceneManager.LoadScene(SceneName);
+                break;
+        }
+
     }
 
     void Start()
     {
-        if (tt)
-        {
-            StartCoroutine(LoadSceneProcess());
-        }
+        RandomLoadingImage();
+        StartCoroutine(LoadSceneProcess());
+
     }
-    public bool tt;
     void Update()
     {
-        if(tt)
-        {
+       
             if (Input.anyKey)
             {
                 op.allowSceneActivation = true;
             }
-        }
+      
     }
 
     IEnumerator LoadSceneProcess()
@@ -79,5 +94,9 @@ public class ScenesManager : Singleton<ScenesManager>
                 }
             }
         }
+    }
+    public void RandomLoadingImage()
+    {
+        loadingimage.sprite = pictures[UnityEngine.Random.Range(0, pictures.Length)];
     }
 }
