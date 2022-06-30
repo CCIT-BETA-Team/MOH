@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using UnityEngine.UI;
 
 public class Map : MonoBehaviour
 {
+    public GameObject target_building;
+    public GameObject target_building_parent;
+    public Image[] target_directions;
+    public Camera player_cam;
+
     public ResultPopup result_popup;
     public int npc_amount;
 
@@ -28,6 +33,12 @@ public class Map : MonoBehaviour
     void Awake()
     {
         Set_Map_Data();
+        PopupManager.instance.Mission_Popup_On();
+    }
+
+    void Update()
+    {
+        building_guide();
     }
 
     void Set_Map_Data()
@@ -92,6 +103,64 @@ public class Map : MonoBehaviour
         target_spot[n].spawn_possible_spot.item = gm.select_mission.goal;
         target_spot[n].spawn_possible_spot.spawned_item = true;
         gm.select_mission.goal.parent_room = target_spot[n].spawn_possible_room;
+    }
+
+    void building_guide()
+    {
+        if(player_cam == null) { player_cam = GameManager.instance.Player.GetComponent<Player>().cam; }
+        Vector3 view_pos = player_cam.WorldToViewportPoint(target_building.transform.position);
+
+        if (view_pos.x >= 0 && view_pos.x <= 1 && view_pos.y >= 0 && view_pos.y <= 1 && view_pos.z > 0)
+        {
+            if(!target_directions[0].enabled)
+            {
+                target_directions[0].enabled = true;
+                target_directions[1].enabled = false;
+                target_directions[2].enabled = false;
+            }
+
+            target_directions[0].transform.position = player_cam.WorldToScreenPoint(target_building.transform.position);
+        }
+        else
+        {
+            if (player_cam.WorldToScreenPoint(target_building.transform.position).y > 1050)
+            {
+                target_directions[1].transform.position = new Vector3(target_directions[1].transform.position.x, 1050, target_directions[1].transform.position.z);
+                target_directions[2].transform.position = new Vector3(target_directions[2].transform.position.x, 1050, target_directions[2].transform.position.z);
+            }
+            else if (player_cam.WorldToScreenPoint(target_building.transform.position).y < 30)
+            {
+                target_directions[1].transform.position = new Vector3(target_directions[1].transform.position.x, 30, target_directions[1].transform.position.z);
+                target_directions[2].transform.position = new Vector3(target_directions[2].transform.position.x, 30, target_directions[2].transform.position.z);
+            }
+            else
+            {
+                target_directions[1].transform.position = new Vector3(target_directions[1].transform.position.x, player_cam.WorldToScreenPoint(target_building.transform.position).y, target_directions[1].transform.position.z);
+                target_directions[2].transform.position = new Vector3(target_directions[2].transform.position.x, player_cam.WorldToScreenPoint(target_building.transform.position).y, target_directions[2].transform.position.z);
+            }
+
+            target_directions[0].enabled = false;
+
+            if (Get_Direction() > 0)
+            {
+                target_directions[1].enabled = false;
+                target_directions[2].enabled = true;
+            }
+            else
+            {
+                target_directions[1].enabled = true;
+                target_directions[2].enabled = false;
+            }
+        }
+    }
+
+    float Get_Direction()
+    {
+        Vector3 dir = (GameManager.instance.Player.transform.forward).normalized;
+        Vector3 dir2 = (target_building_parent.transform.position - GameManager.instance.Player.transform.position).normalized;
+        float angle = Vector3.SignedAngle(dir, dir2, GameManager.instance.Player.transform.up);
+
+        return angle;
     }
 }
 

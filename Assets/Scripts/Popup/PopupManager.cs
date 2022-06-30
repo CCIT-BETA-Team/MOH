@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PopupManager : Singleton<PopupManager>
 {
     public List<PopupObject> popup_list = new List<PopupObject>();
+    public PopupObject mission_info_popup;
+    public Text[] mission_info_text;
     public Transform popup_content_transform;
     public float start_y;
     public float time;
@@ -15,6 +17,7 @@ public class PopupManager : Singleton<PopupManager>
     {
         for (int i = 0; i < popup_list.Count; i++)
             AnimetionNArray(i);
+        Anime_Setting();
     }
 
     void Update()
@@ -29,6 +32,7 @@ public class PopupManager : Singleton<PopupManager>
         if (Input.GetKey(KeyCode.Alpha6)) { Popup_Off(1); }
         if (Input.GetKey(KeyCode.Alpha7)) { Popup_Off(2); }
         if (Input.GetKey(KeyCode.Alpha8)) { Popup_Off(3); }
+        if (Input.GetKey(KeyCode.Alpha9)) { Mission_Popup_On(); }
     }
 
     public void Popup_On(int num)
@@ -47,9 +51,34 @@ public class PopupManager : Singleton<PopupManager>
         }
     }
 
+    void Anime_Setting()
+    {
+        foreach (AnimationState state in mission_info_popup.anime)
+        {
+            mission_info_popup.animeList.Add(state.name);
+        }
+    }
+
     public void Popup_Off(int num)
     {
         popup_list[num].anime.Play(popup_list[num].animeList[1]);
+    }
+
+    public void Mission_Popup_On()
+    {
+        mission_info_popup.popup_object.SetActive(true);
+        mission_info_popup.anime.Play(mission_info_popup.animeList[0]);
+    }
+
+    public void Mission_Popup_Off()
+    {
+        mission_info_popup.anime.Play(mission_info_popup.animeList[1]);
+        mission_info_popup.popup_object.SetActive(false);
+    }
+
+    public void Mission_Info_Text()
+    {
+        mission_info_text[2].text = GameManager.instance.select_mission.mission_name;
     }
 }
 

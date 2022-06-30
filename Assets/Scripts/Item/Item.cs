@@ -27,9 +27,10 @@ public abstract class Item : MonoBehaviour
     //
     public GameObject enter_spot;
     //
-    void Awake()
+    void Start()
     {
-        NpcManager.instance.Sort_Out_Items(this, parameter_type);
+        //Debug.Log("item check");
+        //NpcManager.instance.Sort_Out_Items(this, parameter_type);
     }
 
     public abstract void interaction();

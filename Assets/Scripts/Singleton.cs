@@ -15,7 +15,6 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         get
         {
-            Initialize();
             return _instance;
         }
     }
@@ -32,11 +31,21 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         if (_instance != null)
         {
+            var instances = GameObject.FindObjectsOfType<T>();
+            for (int i = 0; i < instances.Length; i++)
+            {
+                if (_instance.gameObject != instances[i].gameObject)
+                {
+                    Destroy(instances[i].gameObject);
+                }
+
+            }
             return;
         }
         lock (_syncRoot)
         {
             _instance = GameObject.FindObjectOfType<T>();
+          
 
             if (_instance == null)
             {
@@ -48,11 +57,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
     protected virtual void Awake()
     {
-        if (_instance != null)
-        {
-            Debug.LogError(GetType().Name + " Singleton class is already created.");
-        }
-
+        Initialize();
         if (dontDestroyOnLoad)
         {
             DontDestroyOnLoad(this);

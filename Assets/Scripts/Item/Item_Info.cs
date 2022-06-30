@@ -14,7 +14,9 @@ public class Item_Info : Item
     public bool interact_obj = false;
     private void Start()
     {
-        if(parent_room != null) { parent_room.Add_Furniture(this.gameObject); }
+        NpcManager.instance.Sort_Out_Items(this, parameter_type);
+
+        if (parent_room != null) { parent_room.Add_Furniture(this.gameObject); }
         if (this.parameter_type == parameterType.PHONE)
         {
             //NpcManager.instance.Report_Room.Add(parent_room);
@@ -24,10 +26,8 @@ public class Item_Info : Item
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log(0);
         if (player.is_attack && col.gameObject.layer == 12)
         {
-            Debug.Log(1);
             Npc npc = col.transform.root.GetComponent<Npc>();
             npc.faint_gauge -= damage;
         }

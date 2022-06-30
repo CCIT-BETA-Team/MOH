@@ -35,7 +35,16 @@ public class p_Player : Singleton<p_Player>
     {
 
     }
-
+    public void Freezing()
+    {
+        freeze = true;
+        move = true;
+    }
+    public void Melting()
+    {
+        freeze = false;
+        move = false;
+    }
 
     #region Light
     List<Lighting> Lighting = new List<Lighting>();
