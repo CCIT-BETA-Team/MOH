@@ -39,7 +39,10 @@ public class ResultPopup : MonoBehaviour
     public void Go_PreparationSite()
     {
         //ScenesManager.instance.Load_Sence("PreparationSite");
-        ScenesManager.instance.Load_Scene("PreparationSite");
+        GameManager.instance.player_comp.Player_Init();
+        PopupManager.instance.Mission_Popup_Init();
+        GameManager.instance.b_selet_mission = false;
+        ScenesManager.instance.Load_Scene("PreparationSite", (ScenesManager.LoadingType)1);
         //ScenesManager.instance.missionText.text = "";
     }
 

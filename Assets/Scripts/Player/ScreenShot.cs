@@ -37,6 +37,7 @@ public class ScreenShot : MonoBehaviour
     {
         if (take_screen)
         {
+            PopupManager.instance.Popup_On(2);
             Screen_Shot();
             player.Pick_Up();
             take_screen = false;

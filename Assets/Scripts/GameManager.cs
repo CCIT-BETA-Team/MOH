@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
 #endif
 
     public GameObject Player;
+    public Player player_comp;
     public bool b_selet_mission = false;
     public Mission select_mission;
 

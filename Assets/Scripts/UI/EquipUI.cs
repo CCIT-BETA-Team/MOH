@@ -90,6 +90,7 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,
             manager.selected_obj = current_item;
             Point_In_Animation();
             text.text = current_item.item_name;
+            manager.equip_num = current_item_num;
     }
     public void OnPointerUp(PointerEventData eventData)
     {

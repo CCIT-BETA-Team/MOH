@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class MissionBoard : Item
 {
-    public Player player;
-    public Camera ply_cam;
+    //public Player player;
+    //public Camera ply_cam;
     public Camera mission_cam;
 
     public Vector3[] mission_board_io;
@@ -33,7 +33,7 @@ public class MissionBoard : Item
             mission_board_canvas.enabled = false;
             mission_board_in = false;
             board_state = false;
-            Camera_Move(mission_cam_anime, mission_cam.transform.position, ply_cam.transform.position, mission_cam.transform.eulerAngles, player.transform.eulerAngles, 1.2f, Animation_Events_State.BOARD_OUT); ;
+            Camera_Move(mission_cam_anime, mission_cam.transform.position, GameManager.instance.player_comp.cam.transform.position, mission_cam.transform.eulerAngles, player.transform.eulerAngles, 1.2f, Animation_Events_State.BOARD_OUT); ;
         }
         if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && board_state && mission_board_in)
         {
@@ -54,10 +54,10 @@ public class MissionBoard : Item
 
     void Camera_Switch()
     {
-        ply_cam.enabled = false;
+        GameManager.instance.player_comp.cam.enabled = false;
         mission_cam.enabled = true;
         mission_board_in = true;
-        Camera_Move(mission_cam_anime, ply_cam.transform.position, mission_board_io[0], player.transform.eulerAngles, mission_board_io[1], 1.2f, Animation_Events_State.BOARD_IN);
+        Camera_Move(mission_cam_anime, GameManager.instance.player_comp.cam.transform.position, mission_board_io[0], player.transform.eulerAngles, mission_board_io[1], 1.2f, Animation_Events_State.BOARD_IN);
         player.freeze = true;
     }
 
@@ -143,7 +143,7 @@ public class MissionBoard : Item
 
     void Board_Out_Event()
     {
-        ply_cam.enabled = true;
+        GameManager.instance.player_comp.cam.enabled = true;
         mission_cam.enabled = false;
         player.freeze = false;
         Cursor.lockState = CursorLockMode.Locked;

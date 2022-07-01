@@ -21118,8 +21118,9 @@ MonoBehaviour:
   tipText: {fileID: 0}
   anyKeyText: {fileID: 0}
   str: []
+  pictures: []
+  loadingimage: {fileID: 0}
   LoadingBar: {fileID: 0}
-  tt: 0
 --- !u!4 &1084708385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010518481260, guid: a37a40bc6104df94eb10d316ed7a55cd, type: 3}
@@ -43060,7 +43061,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3109362006698115200, guid: e0744351ebebbe2429b4f26eba83dd3b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3109362006698115205, guid: e0744351ebebbe2429b4f26eba83dd3b, type: 3}
       propertyPath: m_Name
@@ -43068,7 +43069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3109362006698115205, guid: e0744351ebebbe2429b4f26eba83dd3b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3109362006698115215, guid: e0744351ebebbe2429b4f26eba83dd3b, type: 3}
       propertyPath: m_Pivot.x

@@ -206,6 +206,7 @@ public class NpcManager : Singleton<NpcManager>
     }
     public void Spawn_Police()
     {
+        PopupManager.instance.Popup_On(1);
         Vector3 spawn_position;
         for(int i = 0; i < police_spawn_count; i++)
         {
@@ -247,5 +248,6 @@ public class NpcManager : Singleton<NpcManager>
         current_count = police_count;
 
         StartCoroutine(Count_Police_Time());
+        PopupManager.instance.Popup_On(0);
     }
 }
