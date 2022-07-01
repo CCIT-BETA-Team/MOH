@@ -25,7 +25,7 @@ public class MissionCard : MonoBehaviour
     void OnMouseDown()
     {
         mission.WhiteBoard_Update(mi);
-        mission.InfoPopup_Update(ip);
+        mission.InfoPopup_Update(PopupManager.instance.ip);
         GameManager.instance.b_selet_mission = true;
         PopupManager.instance.Mission_Info_Text();
     }

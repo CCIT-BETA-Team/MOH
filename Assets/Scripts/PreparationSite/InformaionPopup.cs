@@ -8,9 +8,10 @@ public class InformaionPopup : MonoBehaviour
     public RectTransform rt;
     public RectTransform cb_rt;
 
+    public Text main_mission;
     public Text main_mission_text;
     public Text sub_mission;
-    public Text[] sub_mission_text;
+    public List<Text> sub_mission_text;
     public GameObject go;
 
     public Vector2 only_main_transform;

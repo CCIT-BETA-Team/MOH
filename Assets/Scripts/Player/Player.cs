@@ -108,7 +108,7 @@ public class Player : p_Player
         }
     }
 
-    void ItemSwitch(Item item)
+    public void ItemSwitch(Item item)
     {
         if (itemBag[currentItem].gameObject.layer == LayerMask.NameToLayer("Npc"))
             Throw_Out_Item();
@@ -261,6 +261,18 @@ public class Player : p_Player
         itemBag[currentItem] = emptyhand;
         itemCol[currentItem] = null;
         itemRG[currentItem] = null;
+    }
+
+    public void Player_Init()
+    {
+        for(int i = 0; i < 2; i++)
+        {
+            Destroy(itemBag[i].gameObject);
+            itemBag[i] = emptyhand;
+            itemCol[i] = null;
+            itemRG[i] = null;
+            currentItem = 0;
+        }
     }
 
     void Zoom()

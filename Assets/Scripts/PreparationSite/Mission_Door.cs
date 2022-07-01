@@ -9,6 +9,7 @@ public class Mission_Door : Item
     {
         if(GameManager.instance.select_mission != null)
         {
+            GameManager.instance.Player.SetActive(false);
             Mission_Start(GameManager.instance.select_mission);
         }
         else if(GameManager.instance.select_mission == null)

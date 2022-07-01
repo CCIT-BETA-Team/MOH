@@ -33,6 +33,7 @@ public class Map : MonoBehaviour
     void Awake()
     {
         Set_Map_Data();
+        GameManager.instance.Player.SetActive(true);
         PopupManager.instance.Mission_Popup_On();
     }
 
