@@ -2447,7 +2447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1c49e6867b5e044a1999fc9bf3fcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 7905692328919483454}
   npc_item: []
   path_finding: []
   anim: {fileID: 7905692328919483448}
@@ -2475,7 +2475,7 @@ MonoBehaviour:
   thirst_percent: 0
   fear_percent: 0
   next_state: 10
-  cam: {fileID: 0}
+  cam: {fileID: 7905692328998802868}
 --- !u!195 &7905692328919483454
 NavMeshAgent:
   m_ObjectHideFlags: 0

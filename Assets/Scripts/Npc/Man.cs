@@ -248,11 +248,22 @@ public class Man : Npc
                         this.agent.enabled = false;
                         //상호작용 애니메이션
 
-
+                        if(path_finding[0].gameObject.name == "BED_ROOM_1")
+                        {
+                            transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
+                            Vector3 look = Vector3.zero;
+                            transform.rotation = Quaternion.LookRotation(look);
+                        }
+                        if (path_finding[0].gameObject.name == "BED_ROOM_2")
+                        {
+                            transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
+                            transform.rotation = target_item.transform.rotation;
+                        }
                         if (current_room == target_room)
                         {
                             //상호작용 애니메이션
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            //state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            anim.SetTrigger(sleep_hash);
                         }
                     }
                 }
@@ -353,17 +364,35 @@ public class Man : Npc
                     if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
                     {
                         transform.rotation = Quaternion.LookRotation(dir).normalized;
+                        //transform.rotation = target_item.transform.rotation;
                     }
-                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 0.1f) // agent.remainingDistance 
                     {
                         this.agent.enabled = false;
+                        transform.rotation = target_item.transform.rotation;
+
                         //상호작용 애니메이션
-
-
+                        if(path_finding[0].gameObject.name == "BATH_ROOM_1")
+                        {
+                            this.transform.position = new Vector3(-22.6f, 3.361f, -21.83f);
+                        }
+                        if(path_finding[0].gameObject.name == "BATH_ROOM_2")
+                        {
+                            this.transform.position = new Vector3(-16.89f, 3.361f, -17.84f);
+                        }
+                        if (path_finding[0].gameObject.name == "BATH_ROOM_3")
+                        {
+                            this.transform.position = new Vector3(-16.5f, 0.7f, -18.8f);
+                        }
                         if (current_room == target_room)
                         {
                             //상호작용 애니메이션
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            if (once == false)
+                            {
+                                anim.SetTrigger(pee_hash);
+                                Invoke("state_end_check_for_invoke", 5f);
+                                once = true;
+                            }
                         }
                     }
                 }
@@ -392,6 +421,7 @@ public class Man : Npc
                 pee_percent = 0;
             }
             state_end_check = false;
+            once = false;
         }
     }
     private void Thirst()
@@ -475,7 +505,7 @@ public class Man : Npc
                             if (current_room == target_room)
                             {
                                 //상호작용 애니메이션
-                                state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                                anim.SetTrigger(thirst_hash);
                             }
                         }
                     }

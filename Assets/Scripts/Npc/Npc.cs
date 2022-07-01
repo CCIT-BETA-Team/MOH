@@ -109,6 +109,11 @@ public class Npc : MonoBehaviour
     protected readonly int gun_hash = Animator.StringToHash("agent_attack_check_gun");
     protected readonly int punch_hash = Animator.StringToHash("agent_attack_check_punch");
     protected readonly int cudgel_hash = Animator.StringToHash("agent_attack_check_cudgel");
+    protected readonly int sleep_hash = Animator.StringToHash("sleep_check");
+    protected readonly int pee_hash = Animator.StringToHash("pee_check");
+    protected readonly int pee_end_hash = Animator.StringToHash("pee_end_check");
+    protected readonly int thirst_hash = Animator.StringToHash("thirst_check");
+    
 
     #endregion
 
@@ -422,5 +427,18 @@ public class Npc : MonoBehaviour
         }
     }
 
+    public void anim_event_state_check()
+    {
+        anim.ResetTrigger("sleep_hash");
+        anim.ResetTrigger("pee_hash");
+        anim.ResetTrigger("thirst_hash");
+        state_end_check = true;
+    }
 
+    protected bool once = false;
+    public void state_end_check_for_invoke()
+    {
+        anim.SetTrigger(pee_end_hash);
+        state_end_check = true;
+    }
 }

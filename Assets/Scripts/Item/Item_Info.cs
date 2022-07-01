@@ -14,6 +14,7 @@ public class Item_Info : Item
     public bool interact_obj = false;
     private void Start()
     {
+        player = GameManager.instance.Player.GetComponent<Player>();
         NpcManager.instance.Sort_Out_Items(this, parameter_type);
 
         if (parent_room != null) { parent_room.Add_Furniture(this.gameObject); }
