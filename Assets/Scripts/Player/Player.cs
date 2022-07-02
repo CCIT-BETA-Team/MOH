@@ -39,21 +39,26 @@ public class Player : p_Player
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Keypad1)) { Debug.Log(money); }
+
         switch (GameManager.Platform)
         {
             case 0: //오큘러스
 
                 break;
             case 1: //PC
-                if(!freeze)
+                if (!freeze)
                 {
                     Control();
                 }
                 if (health <= 0) { Die(); }
                 break;
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Keypad1)) { Debug.Log(money); }
+    void FixedUpdate()
+    {
+
     }
 
     Vector2 turn;
@@ -88,11 +93,23 @@ public class Player : p_Player
         }
 
         //상호작용
-        if (Input.GetKeyDown(KeyCode.E)) { ItemCheck(); }
-        if (Input.GetKey(KeyCode.E)) { Interaction(); }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            InteractionItem = null;
+            ItemCheck();
+            if (InteractionItem.itemtype == Item.itemType.TOOL || InteractionItem.itemtype == Item.itemType.EQUIPMENT) { Pickup_Item(); }
+        }
+        if(InteractionItem)
+        {
+            if(InteractionItem.itemtype == Item.itemType.DOOR || InteractionItem.itemtype == Item.itemType.FURNITURE)
+            {
+                if (Input.GetKey(KeyCode.E)) { Interaction(); }
+            }
+        }
+
         if (Input.GetKeyUp(KeyCode.E))
         {
-            if (InteractionItem != null)
+            if (InteractionItem)
             {
                 switch (InteractionItem.itemtype)
                 {
@@ -117,33 +134,54 @@ public class Player : p_Player
     }
 
     Ray ray;
+    RaycastHit[] hits;
     RaycastHit hit;
 
     void ItemCheck()
     {
         ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        hit = new RaycastHit();
+        hits = Physics.RaycastAll(ray, 10);
 
-        if(Physics.Raycast(ray, out hit))
+        for (int i = 0; i < hits.Length; i++)
         {
-            if(hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+            RaycastHit hit_ = hits[i];
+            if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
-                InteractionObject = hit.transform.root;
+                break;
             }
-            else
+
+            if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
             {
-                InteractionObject = hit.transform;
+                Item item = hit_.transform.GetComponent<Item>();
+                if (item)
+                {
+                    InteractionObject = hit_.transform.root;
+                    hit = hit_;
+                    InteractionItem = item;
+                    InteractionItem.player = this;
+                    break;
+                }
             }
-            InteractionItem = InteractionObject.GetComponent<Item>();
-            InteractionItem.player = this;
+            else if (hit_.transform.gameObject.layer != LayerMask.NameToLayer("NPCBody"))
+            {
+                Item item = hit_.transform.GetComponent<Item>();
+                if (item)
+                {
+                    InteractionObject = hit_.transform;
+                    hit = hit_;
+                    InteractionItem = item;
+                    InteractionItem.player = this;
+                    break;
+                }
+            }
         }
     }
 
-    Item InteractionItem;
+    public Item InteractionItem;
 
     void Interaction()
     {
-        if(InteractionItem != null)
+        if(InteractionItem)
         {
             switch (InteractionItem.itemtype)
             {

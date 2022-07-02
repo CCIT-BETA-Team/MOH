@@ -10062,7 +10062,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5275036072528902096, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
+      propertyPath: screen_texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 5f365aeaff5197549888455c6be54b37, type: 3}
+    m_RemovedComponents:
+    - {fileID: 5275036072528902096, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
 --- !u!1001 &939449838
 PrefabInstance:
@@ -38321,7 +38326,7 @@ GameObject:
   - component: {fileID: 7167746125981741750}
   - component: {fileID: 8050636172728192998}
   m_Layer: 0
-  m_Name: Laptop_A
+  m_Name: Shop_Labtop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

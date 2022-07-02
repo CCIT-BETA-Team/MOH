@@ -33,7 +33,7 @@ public class MissionBoard : Item
             mission_board_canvas.enabled = false;
             mission_board_in = false;
             board_state = false;
-            Camera_Move(mission_cam_anime, mission_cam.transform.position, GameManager.instance.player_comp.cam.transform.position, mission_cam.transform.eulerAngles, player.transform.eulerAngles, 1.2f, Animation_Events_State.BOARD_OUT); ;
+            Camera_Move(mission_cam_anime, mission_cam.transform.position, GameManager.instance.player_comp.cam.transform.position, mission_cam.transform.eulerAngles, player.transform.eulerAngles, 1.2f, Animation_Events_State.BOARD_OUT);
         }
         if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && board_state && mission_board_in)
         {
