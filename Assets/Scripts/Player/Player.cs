@@ -97,7 +97,11 @@ public class Player : p_Player
         {
             InteractionItem = null;
             ItemCheck();
-            if (InteractionItem.itemtype == Item.itemType.TOOL || InteractionItem.itemtype == Item.itemType.EQUIPMENT) { Pickup_Item(); }
+            if (InteractionItem.itemtype == Item.itemType.TOOL || InteractionItem.itemtype == Item.itemType.EQUIPMENT)
+            {
+                ani.SetTrigger("PickUp");
+                //Pickup_Item();
+            }
         }
         if(InteractionItem)
         {
@@ -123,6 +127,8 @@ public class Player : p_Player
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F)) { ani.SetTrigger("FXXk"); }
     }
 
     public void ItemSwitch(Item item)
@@ -202,7 +208,7 @@ public class Player : p_Player
 
     void Pickup_Item()
     {
-        if(currentItem == 0 ||currentItem == 1)
+        if(currentItem == 0 || currentItem == 1)
         {
             Throw_Out_Item();
 
