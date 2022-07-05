@@ -15,6 +15,8 @@ public class Item_Info : Item
     private void Start()
     {
         player = GameManager.instance.Player.GetComponent<Player>();
+
+        if(NpcManager.instance != null)
         NpcManager.instance.Sort_Out_Items(this, parameter_type);
 
         if (parent_room != null) { parent_room.Add_Furniture(this.gameObject); }

@@ -348,8 +348,8 @@ public class Npc : MonoBehaviour
         }
         Select_Personality();
 
-        if(npc_type != Npc_Type.POLICE)
-        Invoke("Change_State_Move", 1f);
+        //if(npc_type != Npc_Type.POLICE)
+        //Invoke("Change_State_Move", 1f);
 
         if(npc_type == Npc_Type.POLICE) { attack_type = Attack_Type.GUN; }
         
@@ -381,6 +381,7 @@ public class Npc : MonoBehaviour
     {
         state = State.Move;
         this.agent.enabled = true;
+        if(ghost != null)
         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, this);
         //target_room = npc_ghost.GetComponent<Ghost>().target_room;
         target_room = npc_ghost.GetComponent<Ghost>().target_room;
