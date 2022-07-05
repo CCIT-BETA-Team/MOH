@@ -183,9 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150461766c19ed249947714dff663d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   id: 0
   item_name: 
   itemtype: 0
+  item_size: 0
   parameter_type: 4
   price: 0
   weight: 0
@@ -231,6 +233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414176}
+  - {fileID: 1025543025}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -328,10 +331,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf639864e094a3942a99eb347fd37125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   id: 0
   item_name: 
   itemtype: 2
-  parameter_type: 0
+  item_size: 0
+  parameter_type: 4
   price: 0
   weight: 0
   bIsMoving: 0
@@ -342,3 +347,35 @@ MonoBehaviour:
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
   enter_spot: {fileID: 0}
+  damage: 0
+  interact_obj: 0
+--- !u!1 &1025543024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1025543025}
+  m_Layer: 0
+  m_Name: Enter_Spot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 8
+  m_IsActive: 1
+--- !u!4 &1025543025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025543024}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.755, y: 0, z: 1.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 407452}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}

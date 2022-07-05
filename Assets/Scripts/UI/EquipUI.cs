@@ -59,7 +59,7 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,
         while(item_ui.color.r!=1&& current_item!=null)
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            Debug.Log(item_ui.color.r);
+            //Debug.Log(item_ui.color.r);
             item_ui.color = new Color((Mathf.Clamp(item_ui.color.r + (1.0f / 254), 0, 1)), (Mathf.Clamp(item_ui.color.r + (1.0f / 254), 0, 1)), (Mathf.Clamp(item_ui.color.r + (1.0f / 254), 0, 1)), 1);
 
         }
