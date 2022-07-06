@@ -248,11 +248,10 @@ public class Player : p_Player
             InteractionObject.position = hand.transform.position;
         }
 
-        itemRG[currentItem].velocity = Vector3.zero;
-
         InteractionObject.parent = hand.transform;
         itemCol[currentItem].isTrigger = true;
         itemRG[currentItem].useGravity = false;
+        itemRG[currentItem].velocity = Vector3.zero;
     }
 
     void Throw_Item()

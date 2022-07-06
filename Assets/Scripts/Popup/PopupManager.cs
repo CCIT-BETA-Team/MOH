@@ -30,7 +30,7 @@ public class PopupManager : Singleton<PopupManager>
     void Update()
     {
         //테스트용
-        if (Input.GetKey(KeyCode.Alpha3)) { Popup_On(2); }
+        //if (Input.GetKey(KeyCode.Alpha3)) { Popup_On(2); }
     }
 
     public void Popup_On(int num)
