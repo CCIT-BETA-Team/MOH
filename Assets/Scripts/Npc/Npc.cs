@@ -113,7 +113,7 @@ public class Npc : MonoBehaviour
     protected readonly int pee_hash = Animator.StringToHash("pee_check");
     protected readonly int pee_end_hash = Animator.StringToHash("pee_end_check");
     protected readonly int thirst_hash = Animator.StringToHash("thirst_check");
-    
+    protected readonly int call_police_hash = Animator.StringToHash("call_police_check");
 
     #endregion
 
@@ -440,6 +440,11 @@ public class Npc : MonoBehaviour
     public void state_end_check_for_invoke()
     {
         anim.SetTrigger(pee_end_hash);
+        state_end_check = true;
+    }
+    
+    public void State_end_check_true()
+    {
         state_end_check = true;
     }
 }

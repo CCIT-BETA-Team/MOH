@@ -647,8 +647,8 @@ public class Man : Npc
                             this.agent.enabled = false;
                             //상호작용 애니메이션
 
-
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            anim.SetTrigger(call_police_hash);
+                            //state_end_check = true;//애니메이션 끝나면 true  ㄱ
                         }
                     }
                 }
