@@ -803,8 +803,8 @@ public class Man : Npc
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 
-        if (npc_type != Npc_Type.POLICE)
-            Invoke("Change_State_Move", 1f);
+        //if (npc_type != Npc_Type.POLICE)
+        //    Invoke("Change_State_Move", 1f);
 
         //this.state = State.IDLE;
         //Select_Personality();
@@ -835,16 +835,15 @@ public class Man : Npc
         if (this.state != State.REPORT && this.state != State.TRACE)
         if (Check_Unit())
         {
-                Vector3 p_dir = player.transform.position - cam.transform.position;
-            if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity))
+            Vector3 p_dir = player.transform.position - cam.transform.position;
+            if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity, layermask_for_except))
             {
+                    Debug.DrawRay(cam.transform.position, p_dir, Color.red);
                     Debug.Log(hit.transform.gameObject.name);
                 if (hit.transform.gameObject.layer == 6)//player
                 {
-                    Debug.Log(hit.transform.gameObject.name);
                     if (player.lighted == true)
                     {
-                            Debug.Log(232323);
 
                             ///진행중인 애니메이션 꺼주기
 

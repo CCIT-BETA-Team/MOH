@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 496464}
   - component: {fileID: 3324502}
   - component: {fileID: 2386846}
-  - component: {fileID: 6572382}
   - component: {fileID: 6487128}
   - component: {fileID: 11174480}
   - component: {fileID: 11403296}
@@ -61,6 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,19 +85,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6572382
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106862}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.01, y: 2, z: 0.9488889}
-  m_Center: {x: 0, y: -0.2981253, z: -0.61484814}
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6487128
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -169,6 +157,7 @@ MonoBehaviour:
     enabled: 0
     isUnlock: 0
     LockPrefab: {fileID: 0}
+  Opened: 0
 --- !u!1 &111824
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +214,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -249,6 +239,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6542430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -320,6 +311,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -344,6 +336,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6416526
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -414,6 +407,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -438,6 +432,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6574646
 BoxCollider:
   m_ObjectHideFlags: 0
