@@ -673,7 +673,7 @@ public class Man : Npc
             //Debug.Log("Ghost»ý¼º"); 
         }
         current_state = State.TRACE;
-        if (Vector3.SqrMagnitude(distance) <= 8)
+        if (Vector3.SqrMagnitude(distance) <= 5)
         {
             agent.enabled = false;
 
@@ -703,7 +703,7 @@ public class Man : Npc
             }
             //
         }
-        else if (Vector3.SqrMagnitude(distance) > 8f)
+        else if (Vector3.SqrMagnitude(distance) > 5f)
         {
             anim.ResetTrigger(gun_hash);
             anim.ResetTrigger(punch_hash);
@@ -839,7 +839,6 @@ public class Man : Npc
             if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity, layermask_for_except))
             {
                     Debug.DrawRay(cam.transform.position, p_dir, Color.red);
-                    Debug.Log(hit.transform.gameObject.name);
                 if (hit.transform.gameObject.layer == 6)//player
                 {
                     if (player.lighted == true)
@@ -911,6 +910,10 @@ public class Man : Npc
         {
             state = State.FAINT;
         }
+
+        Vector3 ASD = transform.position - player.transform.position;
+        Debug.Log(Vector3.SqrMagnitude(ASD));
+
     }
  
     
