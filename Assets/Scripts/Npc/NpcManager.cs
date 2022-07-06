@@ -47,15 +47,10 @@ public class NpcManager : Singleton<NpcManager>
     [Header("°æÂû ¼ö")]
     public int police_spawn_count;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        Debug.Log("Npc_manager check");
-    }
-
     void Start()
     {
         Sort_Room();
+        Spawn_Npc();
         put_in_target_item();
     }
 
