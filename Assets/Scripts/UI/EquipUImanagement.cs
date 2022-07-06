@@ -64,7 +64,6 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
     {
       foreach(GameObject i in UIs)
       {
-           
             if(i.GetComponent<EquipUI>()!=null)
             {
                 i.GetComponent<EquipUI>().Color_clear();
@@ -78,6 +77,7 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
       for(int i = 0; i < UI_comps.Length; i++)
             UI_comps[i].selet_image.color = UI_comps[i].selet_image_colors[0];
     }
+
     private void EnableUI()
     {
         foreach (GameObject i in UIs)
@@ -87,7 +87,6 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
             {
                 i.GetComponent<EquipUI>().Update_equipUI();
             }
-            
         }
         UI_comps[GameManager.instance.player_comp.currentItem].is_select = true;
         UI_comps[GameManager.instance.player_comp.currentItem].selet_image.color = UI_comps[GameManager.instance.player_comp.currentItem].selet_image_colors[2];
