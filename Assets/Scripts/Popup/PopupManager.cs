@@ -17,6 +17,7 @@ public class PopupManager : Singleton<PopupManager>
     public GameObject ip_;
     [HideInInspector]
     public GameObject current_popup;
+    public Image cross_head;
 
     void Start()
     {

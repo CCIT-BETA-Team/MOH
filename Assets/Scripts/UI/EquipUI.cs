@@ -11,6 +11,10 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,
     public Image item_icon= null;
     public Image item_ui = null;
     public Text text = null;
+    public Image selet_image;
+    public Color[] selet_image_colors;
+    public EquipUI[] other_image_comps;
+    public Image[] other_selet_image;
     
     public static Color32 selectedcolor = new Color32(125,125,125,255);
     public static Color32 defalutcolor = new Color32(255,255,255,255);
@@ -23,6 +27,7 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,
     EQUIPMENT_4,
     }
     public p_Player player;
+    public bool is_select;
     
     public equip_num current_item_num = equip_num.NONE;
     public void Update_equipUI()
@@ -61,7 +66,6 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,
             yield return new WaitForSeconds(Time.deltaTime);
             //Debug.Log(item_ui.color.r);
             item_ui.color = new Color((Mathf.Clamp(item_ui.color.r + (1.0f / 254), 0, 1)), (Mathf.Clamp(item_ui.color.r + (1.0f / 254), 0, 1)), (Mathf.Clamp(item_ui.color.r + (1.0f / 254), 0, 1)), 1);
-
         }
 
     }
@@ -76,13 +80,13 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,
         if (current_item != null)
             StartCoroutine(Point_Out_Ani());
             text.text = "";
-
+        if (!is_select)
+            selet_image.color = selet_image_colors[0];
     }
     public void Color_clear()
     {
         if (current_item != null)
             item_ui.color = defalutcolor;
-
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -91,6 +95,8 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,
             Point_In_Animation();
             text.text = current_item.item_name;
             manager.equip_num = current_item_num;
+        if(!is_select)
+            selet_image.color = selet_image_colors[1];
     }
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -101,6 +107,14 @@ public class EquipUI : MonoBehaviour , IPointerEnterHandler,IPointerExitHandler,
     {
         if (current_item != null)
             manager.Selected();
+
+        is_select = true;
+        selet_image.color = selet_image_colors[2];
+        for (int i = 0; i < other_selet_image.Length; i++)
+        {
+            other_selet_image[i].color = selet_image_colors[0];
+            other_image_comps[i].is_select = false;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

@@ -8,6 +8,8 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
     public bool available = true;
     public KeyCode key= KeyCode.Mouse2;
     public GameObject[] UIs;
+    public EquipUI[] UI_comps;
+    public Image[] select_images;
     public Item selected_obj;
     public EquipUI.equip_num equip_num;
 
@@ -21,6 +23,7 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
                 EnableUI();
                 Time.timeScale = 0.1f;
                 Cursor.lockState = CursorLockMode.None;
+                PopupManager.instance.cross_head.enabled = false;
             }
             if (Input.GetKeyUp(key))
             {
@@ -28,14 +31,13 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
                 DisableUI();
                 Time.timeScale = 1f;
                 Cursor.lockState = CursorLockMode.Locked;
-
+                PopupManager.instance.cross_head.enabled = true;
             }
         } 
     }
     public void Selected()
     {
         //selected_obj ·Î ¿ä¸®
-        Debug.Log(0);
         Player p = GameManager.instance.player_comp;
         switch (equip_num)
         {
@@ -73,6 +75,8 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
             }
             i.SetActive(false);
       }
+      for(int i = 0; i < UI_comps.Length; i++)
+            UI_comps[i].selet_image.color = UI_comps[i].selet_image_colors[0];
     }
     private void EnableUI()
     {
@@ -85,6 +89,8 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
             }
             
         }
+        UI_comps[GameManager.instance.player_comp.currentItem].is_select = true;
+        UI_comps[GameManager.instance.player_comp.currentItem].selet_image.color = UI_comps[GameManager.instance.player_comp.currentItem].selet_image_colors[2];
     }
  
 }
