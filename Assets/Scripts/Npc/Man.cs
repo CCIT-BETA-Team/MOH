@@ -839,10 +839,8 @@ public class Man : Npc
             if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity, layermask_for_except))
             {
                     Debug.DrawRay(cam.transform.position, p_dir, Color.red);
-<<<<<<< HEAD
                     Debug.Log(hit.transform.gameObject.name);
-=======
->>>>>>> main
+
                 if (hit.transform.gameObject.layer == 6)//player
                 {
                     if (player.lighted == true)
