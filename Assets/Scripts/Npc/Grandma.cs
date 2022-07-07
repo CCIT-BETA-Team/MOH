@@ -911,8 +911,7 @@ public class Grandma : Npc
             state = State.FAINT;
         }
 
-        Vector3 ASD = transform.position - player.transform.position;
-        Debug.Log(Vector3.SqrMagnitude(ASD));
+        //(Input.GetKey(KeyCode.K)) { anim.SetTrigger(gun_hash); }
 
     }
 
