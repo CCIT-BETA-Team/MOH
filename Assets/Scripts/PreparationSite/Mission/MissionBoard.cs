@@ -28,7 +28,6 @@ public class MissionBoard : Item
 
     void Update()
     {
-        PopupManager.instance.cross_head.enabled = false;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             mission_board_canvas.enabled = false;
@@ -56,6 +55,7 @@ public class MissionBoard : Item
 
     void Camera_Switch()
     {
+        PopupManager.instance.cross_head.enabled = false;
         GameManager.instance.player_comp.cam.enabled = false;
         mission_cam.enabled = true;
         mission_board_in = true;
