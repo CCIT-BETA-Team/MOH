@@ -436,6 +436,7 @@ public class Npc : MonoBehaviour
         state_end_check = true;
     }
 
+    //For_State_End_Check
     protected bool once = false;
     public void state_end_check_for_invoke()
     {
@@ -446,5 +447,15 @@ public class Npc : MonoBehaviour
     public void State_end_check_true()
     {
         state_end_check = true;
+    }
+
+    //For_Gun
+    public void Set_Active_True_For_Gun()
+    {
+        gun.SetActive(true);
+    }
+    public void Set_Active_False_For_Gun()
+    {
+        if(gun.activeSelf == true) { gun.SetActive(false); }
     }
 }

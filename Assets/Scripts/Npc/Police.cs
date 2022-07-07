@@ -9,13 +9,15 @@ public class Police : Npc
 
     private void Awake()
     {
-        player_obj = GameManager.instance.Player;
-        player = GameManager.instance.Player.GetComponent<Player>();
-        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        
     }
     void Start()
     {
         attack_type = Attack_Type.GUN;
+
+        player_obj = GameManager.instance.Player;
+        player = GameManager.instance.Player.GetComponent<Player>();
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
     }
 
     void Update()
