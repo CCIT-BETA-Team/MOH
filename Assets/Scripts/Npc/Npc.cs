@@ -18,7 +18,7 @@ public class Npc : MonoBehaviour
     public GameObject npc_ghost;
     protected GameObject Close_Door_Save;
     //
-    protected int layermask_for_except = (1 << 9) | (1 << 10) | (1 << 15);
+    protected int layermask_for_except = (1 << 9) | (1 << 10) | (1 << 15) | (1 << 17);
     
     //
     public GameObject target_room;
@@ -34,6 +34,8 @@ public class Npc : MonoBehaviour
     //
     //npc에 타격에 따른 감소값
     public float faint_gauge = 100;
+    //
+    public float distance_rest = 0;
     //
 
     public float attack_range;//임의 값 설정

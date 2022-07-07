@@ -803,8 +803,8 @@ public class Man : Npc
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 
-        //if (npc_type != Npc_Type.POLICE)
-        //    Invoke("Change_State_Move", 1f);
+        if (npc_type != Npc_Type.POLICE)
+            Invoke("Change_State_Move", 1f);
 
         //this.state = State.IDLE;
         //Select_Personality();
@@ -824,6 +824,11 @@ public class Man : Npc
     {
         #region
         state_check = this.state;
+        if(target_room != null)
+        {
+            Vector3 asd = target_room.transform.position - transform.position;
+            distance_rest = Vector3.SqrMagnitude(asd);
+        }
         //Debug.Log(this.state);
         #endregion
 
@@ -838,8 +843,8 @@ public class Man : Npc
             Vector3 p_dir = player.transform.position - cam.transform.position;
             if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity, layermask_for_except))
             {
-                    Debug.DrawRay(cam.transform.position, p_dir, Color.red);
-                    Debug.Log(hit.transform.gameObject.name);
+                    //Debug.DrawRay(cam.transform.position, p_dir, Color.red);
+                    //Debug.Log(hit.transform.gameObject.name);
 
                 if (hit.transform.gameObject.layer == 6)//player
                 {
@@ -913,8 +918,8 @@ public class Man : Npc
             state = State.FAINT;
         }
 
-        Vector3 ASD = transform.position - player.transform.position;
-        Debug.Log(Vector3.SqrMagnitude(ASD));
+        //Vector3 ASD = transform.position - player.transform.position;
+        //Debug.Log(Vector3.SqrMagnitude(ASD));
 
     }
  

@@ -803,8 +803,8 @@ public class Woman : Npc
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 
-        //if (npc_type != Npc_Type.POLICE)
-        //    Invoke("Change_State_Move", 1f);
+        if (npc_type != Npc_Type.POLICE)
+            Invoke("Change_State_Move", 1f);
 
         //this.state = State.IDLE;
         //Select_Personality();
@@ -838,7 +838,7 @@ public class Woman : Npc
                 Vector3 p_dir = player.transform.position - cam.transform.position;
                 if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x, p_dir.y + 0.5f, p_dir.z), out hit, Mathf.Infinity, layermask_for_except))
                 {
-                    Debug.DrawRay(cam.transform.position, p_dir, Color.red);
+                    //Debug.DrawRay(cam.transform.position, p_dir, Color.red);
                     if (hit.transform.gameObject.layer == 6)//player
                     {
                         if (player.lighted == true)
@@ -911,8 +911,8 @@ public class Woman : Npc
             state = State.FAINT;
         }
 
-        Vector3 ASD = transform.position - player.transform.position;
-        Debug.Log(Vector3.SqrMagnitude(ASD));
+        //Vector3 ASD = transform.position - player.transform.position;
+        //Debug.Log(Vector3.SqrMagnitude(ASD));
 
     }
 
