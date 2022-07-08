@@ -58,24 +58,11 @@ public class Player : p_Player
 
     void FixedUpdate()
     {
-        //rg.MovePosition(transform.position + Vector3.forward * Time.fixedDeltaTime * 10);
-        //switch (GameManager.Platform)
-        //{
-        //    case 0: //오큘러스
-
-        //        break;
-        //    case 1: //PC
-        //        if (!freeze)
-        //        {
-        //            Control();
-        //        }
-        //        if (health <= 0) { Die(); }
-        //        break;
-        //}
+        //rg.MovePosition(transform.position + transform.rotation * Vector3.forward * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f));
     }
 
     Vector2 turn;
-    Vector3 movement;
+    public Vector3 movement;
 
     void Control()
     {
@@ -87,14 +74,21 @@ public class Player : p_Player
             cam.transform.localRotation = Quaternion.Euler(-turn.y, 0, 0);
 
             //이동
-            if (Input.GetKey(KeyCode.W)) { rg.MovePosition(transform.position + transform.rotation * Vector3.forward * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
-            if (Input.GetKey(KeyCode.A)) { rg.MovePosition(transform.position + transform.rotation * Vector3.left * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
-            if (Input.GetKey(KeyCode.S)) { rg.MovePosition(transform.position + transform.rotation * Vector3.back * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
-            if (Input.GetKey(KeyCode.D)) { rg.MovePosition(transform.position + transform.rotation * Vector3.right * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            if (Input.GetKey(KeyCode.W)) { movement += new Vector3(0,0,1); }
+            if (Input.GetKey(KeyCode.A)) { movement += new Vector3(-1, 0, 0); }
+            if (Input.GetKey(KeyCode.S)) { movement -= new Vector3(0, 0, 1); }
+            if (Input.GetKey(KeyCode.D)) { movement += new Vector3(1, 0, 0); }
+            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D)) { movement = new Vector3(0, 0, 0); }
+            //if (Input.GetKey(KeyCode.W)) { rg.MovePosition(transform.position + transform.rotation * Vector3.forward * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            //if (Input.GetKey(KeyCode.A)) { rg.MovePosition(transform.position + transform.rotation * Vector3.left * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            //if (Input.GetKey(KeyCode.S)) { rg.MovePosition(transform.position + transform.rotation * Vector3.back * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            //if (Input.GetKey(KeyCode.D)) { rg.MovePosition(transform.position + transform.rotation * Vector3.right * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
 
-            movement = Vector3.Normalize(movement);
+            movement = movement.normalized;
             movement *= walkingSpeed;
-            rg.MovePosition(transform.position + movement * Time.deltaTime);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+                rg.MovePosition(transform.position + transform.rotation * movement * Time.fixedDeltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f));
+            //rg.MovePosition(transform.position + movement * Time.deltaTime);
 
             if (Input.GetKey(KeyCode.LeftShift)) { }
             if (Input.GetKeyDown(KeyCode.Space)) { rg.AddForce(Vector3.up * power); }
