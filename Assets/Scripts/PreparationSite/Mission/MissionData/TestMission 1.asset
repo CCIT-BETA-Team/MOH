@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6641b2d5fac89b4dac16933b6621338, type: 3}
   m_Name: TestMission 1
   m_EditorClassIdentifier: 
-  mission_scene: Test Map 1
+  mission_scene: RoomTest
   mission_name: "\uBBF8\uC1581"
   mission_building_name: "\uB3D9\uBB18 \uB450\uC0B0 \uC544\uD30C\uD2B8"
   goal_item: {fileID: 2086195658485625636, guid: dae03fc240873384dbedcd6182957397, type: 3}
@@ -26,6 +26,6 @@ MonoBehaviour:
   - "- \uC11C\uBE0C \uBBF8\uC158 \uC774\uB984"
   - "- \uC11C\uBE0C \uBBF8\uC158 \uC774\uB984"
   - "- \uC11C\uBE0C \uBBF8\uC158 \uC774\uB984"
-  weather: 1
+  weather: 2
   time: 1
   mission_popups: []

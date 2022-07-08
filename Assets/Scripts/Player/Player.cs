@@ -58,10 +58,24 @@ public class Player : p_Player
 
     void FixedUpdate()
     {
+        //rg.MovePosition(transform.position + Vector3.forward * Time.fixedDeltaTime * 10);
+        //switch (GameManager.Platform)
+        //{
+        //    case 0: //오큘러스
 
+        //        break;
+        //    case 1: //PC
+        //        if (!freeze)
+        //        {
+        //            Control();
+        //        }
+        //        if (health <= 0) { Die(); }
+        //        break;
+        //}
     }
 
     Vector2 turn;
+    Vector3 movement;
 
     void Control()
     {
@@ -73,10 +87,15 @@ public class Player : p_Player
             cam.transform.localRotation = Quaternion.Euler(-turn.y, 0, 0);
 
             //이동
-            if (Input.GetKey(KeyCode.W)) { transform.Translate(Vector3.forward * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
-            if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
-            if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
-            if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            if (Input.GetKey(KeyCode.W)) { rg.MovePosition(transform.position + transform.rotation * Vector3.forward * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            if (Input.GetKey(KeyCode.A)) { rg.MovePosition(transform.position + transform.rotation * Vector3.left * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            if (Input.GetKey(KeyCode.S)) { rg.MovePosition(transform.position + transform.rotation * Vector3.back * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+            if (Input.GetKey(KeyCode.D)) { rg.MovePosition(transform.position + transform.rotation * Vector3.right * Time.deltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f)); }
+
+            movement = Vector3.Normalize(movement);
+            movement *= walkingSpeed;
+            rg.MovePosition(transform.position + movement * Time.deltaTime);
+
             if (Input.GetKey(KeyCode.LeftShift)) { }
             if (Input.GetKeyDown(KeyCode.Space)) { rg.AddForce(Vector3.up * power); }
             if (Input.GetKey(KeyCode.LeftControl)) { }
@@ -251,6 +270,8 @@ public class Player : p_Player
         InteractionObject.parent = hand.transform;
         itemCol[currentItem].isTrigger = true;
         itemRG[currentItem].useGravity = false;
+        itemRG[currentItem].isKinematic = true;
+        itemRG[currentItem].detectCollisions = false;
         itemRG[currentItem].velocity = Vector3.zero;
     }
 
@@ -267,6 +288,8 @@ public class Player : p_Player
 
             Ray throwRay = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             itemBag[currentItem].transform.parent = null;
+            itemRG[currentItem].isKinematic = false;
+            itemRG[currentItem].detectCollisions = true;
             itemRG[currentItem].AddForce(throwRay.direction * 1000);
             itemCol[currentItem].isTrigger = false;
             itemRG[currentItem].useGravity = true;
