@@ -7,9 +7,9 @@ public class StepSound : MonoBehaviour
     AudioSource audioSource;
     [SerializeField]
     AudioClip[] groundMaterial;
+    Animator anim;
     Vector2 turn;
     public Camera cam;
-    Animator anim;
     public float speed = 5.0f;
     public float sensitivity = 0.5f;
     bool isMoving;
@@ -43,6 +43,11 @@ public class StepSound : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) { transform.Translate(Vector3.left * Time.deltaTime * speed); }
         if (Input.GetKey(KeyCode.S)) { transform.Translate(Vector3.back * Time.deltaTime * speed); }
         if (Input.GetKey(KeyCode.D)) { transform.Translate(Vector3.right * Time.deltaTime * speed); }
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            anim.SetBool("IsMove", true);
+        else
+            anim.SetBool("IsMove", false);
     }
 
     void Update()
@@ -50,20 +55,26 @@ public class StepSound : MonoBehaviour
         Debug.DrawRay(transform.position, new Vector3(0, -1, 0) * 3.0f, Color.green);
         if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out hit))
         {
-            if (hit.collider.CompareTag("grass"))
+            if (hit.collider.CompareTag("grass")&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
-                audioSource.clip = groundMaterial[1];
-                Debug.Log("grass");
+                if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
+                    return;
+                else
+                    audioSource.clip = groundMaterial[1];
             }
-            else if (hit.collider.CompareTag("wood"))
+            else if (hit.collider.CompareTag("wood")&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
-                audioSource.clip = groundMaterial[2];
-                Debug.Log("wood");
+                if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
+                    return;
+                else
+                    audioSource.clip = groundMaterial[2];
             }
-            else if (hit.collider.CompareTag("ground"))
+            else if (hit.collider.CompareTag("ground")&& anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
-                audioSource.clip = groundMaterial[0];
-                Debug.Log("ground");
+                if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
+                    return;
+                else
+                    audioSource.clip = groundMaterial[0];
             }
             
         }
@@ -78,19 +89,7 @@ public class StepSound : MonoBehaviour
 
         if (isMoving == true)
             audioSource.Play();
-
         else
             audioSource.Pause();
     }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if(other.gameObject.tag=="grass")
-    //        audioSource.clip = groundMaterial[1];
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag == "grass")
-    //        audioSource.clip = groundMaterial[0];
-    //}
 }
