@@ -227,7 +227,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.29, z: 4.41}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -18.84597, y: 1.9799998, z: -11.343721}
+  m_ConnectedAnchor: {x: 0.2740305, y: 1.4899998, z: 8.766279}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -608,7 +608,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018712511}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
