@@ -67,7 +67,7 @@ public class Grandma : Npc
         }
         //
         this.agent.enabled = true;
-        this.agent.isStopped = false;
+        //this.agent.isStopped = false;
         opening_check = false;
     }
     void For_Close_Door_Delay() // invoke
@@ -566,7 +566,6 @@ public class Grandma : Npc
         if (personality == Npc_Personality.AGGESSIVE)
         {
             state = State.TRACE;
-
             first_report_check = true;
         }
         else if (personality == Npc_Personality.Defensive)
@@ -838,7 +837,7 @@ public class Grandma : Npc
                 Vector3 p_dir = player.transform.position - cam.transform.position;
                 if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x, p_dir.y + 0.5f, p_dir.z), out hit, Mathf.Infinity, layermask_for_except))
                 {
-                    //Debug.DrawRay(cam.transform.position, p_dir, Color.red);
+                    Debug.DrawRay(cam.transform.position, p_dir, Color.red);
                     if (hit.transform.gameObject.layer == 6)//player
                     {
                         if (player.lighted == true)

@@ -231,7 +231,9 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     sleepy_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.SLEEP;
                     Re_Set_Room:
                     target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
@@ -267,7 +269,9 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     pee_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.PEE;
 
                     Re_Set_Room:
@@ -303,7 +307,9 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     thirst_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.THIRST;
 
                     Re_Set_Room:

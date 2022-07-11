@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gun_Effect : MonoBehaviour
 {
+    public Animator ani;
+    public GameObject gun_effect;
     // Start is called before the first frame update
     void Start()
     {
