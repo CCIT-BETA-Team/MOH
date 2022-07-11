@@ -10353,7 +10353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2680651238598190308, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: m_Constraints
-      value: 122
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: rg
@@ -10369,7 +10369,7 @@ PrefabInstance:
       objectReference: {fileID: 7767766304752710605, guid: 9c9e024f08fae8e44acc6e46f99d0a24, type: 3}
     - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: walkingSpeed
-      value: 5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2680651238598190309, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: dontDestroyOnLoad
