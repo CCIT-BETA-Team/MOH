@@ -466,4 +466,19 @@ public class Npc : MonoBehaviour
     {
         if(gun.activeSelf == true) { gun.SetActive(false); }
     }
+
+    public void Gun_Interact()
+    {
+        gun.GetComponent<Gun_Effect>().Gun_Light_On();
+    }
+
+    public void Set_Active_True_For_Bat()
+    {
+        cudgel.SetActive(true);
+    }
+
+    public void Set_Active_False_For_Bat()
+    {
+        if (cudgel.activeSelf == true) { cudgel.SetActive(false); }
+    }
 }

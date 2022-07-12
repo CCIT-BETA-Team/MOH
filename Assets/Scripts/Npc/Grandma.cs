@@ -697,6 +697,7 @@ public class Grandma : Npc
                     ///
                     ///
                     ///
+                    cudgel.SetActive(true);
                     anim.SetTrigger(cudgel_hash);
                     break;
             }
@@ -877,30 +878,6 @@ public class Grandma : Npc
                         //Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
                         #endregion ///
                     }
-                    #region
-                    //else
-                    //{
-                    //    if(miss_player == false && miss_player != null)
-                    //    {
-                    //        miss_player = true;
-                    //        player_check_time += Time.deltaTime;
-                    //        if(this.state == State.REPORT || this.state == State.TRACE)
-                    //        {
-                    //            if(player_check_time > 5.0f)
-                    //            {
-                    //                aggessive_trace_check = false;
-                    //                player_check_time = 0;
-                    //            }
-                    //        }
-                    //    }
-                    //}
-
-
-                    //if (this.state == State.REPORT || this.state == State.TRACE)
-                    //{
-
-                    //}
-                    #endregion
                 }
             }
 
@@ -909,9 +886,11 @@ public class Grandma : Npc
         {
             state = State.FAINT;
         }
-
-        //(Input.GetKey(KeyCode.K)) { anim.SetTrigger(gun_hash); }
-
+        
+        //if(Input.GetKeyDown(KeyCode.J))
+        //{
+        //    anim.SetTrigger(gun_hash);
+        //}
     }
 
 

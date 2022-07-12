@@ -698,6 +698,7 @@ public class Woman : Npc
                     ///
                     ///
                     ///
+                    cudgel.SetActive(true);
                     anim.SetTrigger(cudgel_hash);
                     break;
             }
