@@ -155,30 +155,44 @@ public class Lighting : MonoBehaviour
         //플레이어에 라이트 오브젝트 확인후 제거
     }
   
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         //수정필요
         if(collision.transform.tag=="Player"&& on_off&& broken == false)
         {
-            RaycastHit hit;
-            Debug.Log("Ray ready" + player_layer);
-            Physics.Raycast(this.transform.position, collision.gameObject.transform.position - this.transform.position, out hit, light_range, player_layer);
-            Debug.DrawRay(this.transform.position, collision.gameObject.transform.position - this.transform.position, Color.blue);
-           
-            if (hit.transform!=null)
-            {
-                Debug.Log("Ray out ready");
-                if (hit.transform.GetComponent<p_Player>()!=null)
-                {
-                    collision.transform.GetComponent<p_Player>().Enter_Light(this);
-                    player_lighting = true;
-                }
-            }
+            Debug.Log(1111);
+            if(!started_coroutine)
+                StartCoroutine(player_check(collision));
         }
         if(collision.gameObject.GetComponent<Item>()!=null&& player_lighting)
         {
             
         }
+    }
+
+    bool started_coroutine = false;
+
+    IEnumerator player_check(Collider collision)
+    {
+        started_coroutine = true;
+
+        RaycastHit hit;
+        Debug.Log("Ray ready" + player_layer);
+        Physics.Raycast(this.transform.position, collision.gameObject.transform.position - this.transform.position, out hit, light_range, player_layer);
+        Debug.DrawRay(this.transform.position, collision.gameObject.transform.position - this.transform.position, Color.blue);
+
+        if (hit.transform != null)
+        {
+            Debug.Log("Ray out ready");
+            if (hit.transform.GetComponent<p_Player>() != null)
+            {
+                collision.transform.GetComponent<p_Player>().Enter_Light(this);
+                player_lighting = true;
+            }
+        }
+
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(player_check(collision));
     }
 
     private void OnTriggerExit(Collider collision)
@@ -188,6 +202,8 @@ public class Lighting : MonoBehaviour
         {
             collision.transform.GetComponent<p_Player>().Exit_Light(this);
             player_lighting = false;
+            started_coroutine = false;
+            StopCoroutine("started_coroutine");
         }
     }
 }

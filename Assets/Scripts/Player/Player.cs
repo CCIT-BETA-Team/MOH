@@ -28,6 +28,7 @@ public class Player : p_Player
     public Transform InteractionObject;
 
     public Animator ani;
+    public LayerMask item_layer_mask;
     [HideInInspector] public int attack_hash = Animator.StringToHash("Attack");
     [HideInInspector] public int swap_hash_0 = Animator.StringToHash("Swap_0");
     [HideInInspector] public int swap_hash_1 = Animator.StringToHash("Swap_1");
@@ -171,46 +172,77 @@ public class Player : p_Player
     Ray ray;
     RaycastHit[] hits;
     RaycastHit hit;
-
+    public Transform sibal;
     void ItemCheck()
     {
+        InteractionObject = null;
+        InteractionItem = null;
         ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        hits = Physics.RaycastAll(ray, 10);
+        hit = new RaycastHit();
 
-        for (int i = 0; i < hits.Length; i++)
+        if(Physics.Raycast(ray, out hit, item_layer_mask))
         {
-            RaycastHit hit_ = hits[i];
-            if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("Wall") || hit_.transform.gameObject.layer == LayerMask.NameToLayer("Door"))
+            if(hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
             {
-                break;
+                InteractionObject = hit.transform.root;
             }
+            else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item"))
+            {
+                InteractionObject = hit.transform;
+            }
+            InteractionItem = InteractionObject.GetComponent<Item>();
+            InteractionItem.player = this;
+        }
 
-            if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
-            {
-                Item item = hit_.transform.GetComponent<Item>();
-                if (item)
-                {
-                    InteractionObject = hit_.transform.root;
-                    hit = hit_;
-                    InteractionItem = item;
-                    InteractionItem.player = this;
-                    break;
-                }
-            }
-            else if (hit_.transform.gameObject.layer != LayerMask.NameToLayer("NPCBody"))
-            {
-                Item item = hit_.transform.GetComponent<Item>();
-                if (item)
-                {
-                    InteractionObject = hit_.transform;
-                    hit = hit_;
-                    InteractionItem = item;
-                    InteractionItem.player = this;
-                    break;
-                }
-            }
+        sibal = null;
+        Ray rray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hhit = new RaycastHit();
+
+        if (Physics.Raycast(rray, out hhit))
+        {
+            sibal = hhit.transform;
         }
     }
+
+    //void ItemCheck()
+    //{
+    //    ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    //    hits = Physics.RaycastAll(ray, 10);
+
+    //    for (int i = 0; i < hits.Length; i++)
+    //    {
+    //        RaycastHit hit_ = hits[i];
+    //        if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("Wall") || hit_.transform.gameObject.layer == LayerMask.NameToLayer("Door"))
+    //        {
+    //            break;
+    //        }
+
+    //        if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+    //        {
+    //            Item item = hit_.transform.GetComponent<Item>();
+    //            if (item)
+    //            {
+    //                InteractionObject = hit_.transform.root;
+    //                hit = hit_;
+    //                InteractionItem = item;
+    //                InteractionItem.player = this;
+    //                break;
+    //            }
+    //        }
+    //        else if (hit_.transform.gameObject.layer != LayerMask.NameToLayer("NPCBody"))
+    //        {
+    //            Item item = hit_.transform.GetComponent<Item>();
+    //            if (item)
+    //            {
+    //                InteractionObject = hit_.transform;
+    //                hit = hit_;
+    //                InteractionItem = item;
+    //                InteractionItem.player = this;
+    //                break;
+    //            }
+    //        }
+    //    }
+    //}
 
     public Item InteractionItem;
 
