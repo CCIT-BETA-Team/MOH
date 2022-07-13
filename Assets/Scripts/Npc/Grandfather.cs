@@ -572,8 +572,10 @@ public class Grandfather : Npc
         {
             if (!first_report_check)
             {
+                state = State.REPORT;
                 int report_obj_count = NpcManager.instance.phone_items.Count;
                 target_item = NpcManager.instance.phone_items[Random.Range(0, report_obj_count)].gameObject;
+                target_room = target_item.GetComponent<Item_Info>().parent_room.gameObject;
                 npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, this);
             }
             first_report_check = true;

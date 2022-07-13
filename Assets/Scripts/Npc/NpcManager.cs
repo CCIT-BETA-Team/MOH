@@ -205,6 +205,7 @@ public class NpcManager : Singleton<NpcManager>
         GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
         var ghost_info = npc_ghost.GetComponent<Ghost>();
         ghost_info.parent_npc = npc;
+        ghost_info.target_room = npc.target_room;
         ghost_info.Move_Point(telphone);
         return npc_ghost;
     }
