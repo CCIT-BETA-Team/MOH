@@ -84,7 +84,11 @@ public class NpcManager : Singleton<NpcManager>
             GameObject spawn_point = room_list[x].npc_spawn_position[y];
              
             GameObject npc = Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
+            npc.GetComponent<Npc>().sleepy_percent = 99.99f;
             npc_list.Add(npc);
+            if(i == 0) { npc.GetComponent<Npc>().personality = Npc.Npc_Personality.AGGESSIVE; }
+            else if(i == 1) { npc.GetComponent<Npc>().personality = Npc.Npc_Personality.Defensive; }
+
             //npc.GetComponent<Npc>().npc_room = npc_room();
 
             room_list[x].npc_spawn_position.RemoveAt(y);

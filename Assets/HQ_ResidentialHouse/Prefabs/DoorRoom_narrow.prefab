@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 455928}
   - component: {fileID: 6553104}
   - component: {fileID: 2697970727406801936}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: DoorNarrow_joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 1805592955688052690}
   - component: {fileID: 5842811117533268829}
   - component: {fileID: 8468786577509967242}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Inner_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,8 +393,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.06337905, y: 0.069434404, z: 0.08019976}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.18601212, y: 0.21219495, z: 0.13143598}
+  m_Center: {x: -0.008133262, y: -6.5973146e-17, z: -0.025618099}
 --- !u!114 &8468786577509967242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +418,8 @@ MonoBehaviour:
   bIsMoving: 0
   bIsQuestItem: 0
   bIsGrab: 0
-  GrabRotation: {x: 0, y: 0, z: 0}
+  grap_position: {x: 0, y: 0, z: 0}
+  grap_rotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
@@ -507,7 +508,7 @@ GameObject:
   - component: {fileID: 7181742578915952292}
   - component: {fileID: 3056374997372563441}
   - component: {fileID: 6105767627840472859}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: outter_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +540,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.06337905, y: 0.069434404, z: 0.08019976}
+  m_Size: {x: 0.18601212, y: 0.21219495, z: 0.13143598}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6105767627840472859
 MonoBehaviour:
@@ -564,7 +565,8 @@ MonoBehaviour:
   bIsMoving: 0
   bIsQuestItem: 0
   bIsGrab: 0
-  GrabRotation: {x: 0, y: 0, z: 0}
+  grap_position: {x: 0, y: 0, z: 0}
+  grap_rotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
   item_image: {fileID: 0}
   parent_room: {fileID: 0}

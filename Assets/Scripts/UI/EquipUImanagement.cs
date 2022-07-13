@@ -42,20 +42,24 @@ public class EquipUImanagement : Singleton<EquipUImanagement>
         switch (equip_num)
         {
             case EquipUI.equip_num.EQUIPMENT_1:
-                p.ItemSwitch(p.itemBag[0]);
-                p.currentItem = 0;
+                p.ani.SetTrigger("Swap_0");
+                //p.ItemSwitch(p.itemBag[0]);
+                //p.currentItem = 0;
                 break;
             case EquipUI.equip_num.EQUIPMENT_2:
-                p.ItemSwitch(p.itemBag[1]);
-                p.currentItem = 1;
+                p.ani.SetTrigger("Swap_1");
+                //p.ItemSwitch(p.itemBag[1]);
+                //p.currentItem = 1;
                 break;
             case EquipUI.equip_num.EQUIPMENT_3:
-                p.ItemSwitch(p.itemBag[2]);
-                p.currentItem = 2;
+                p.ani.SetTrigger("Swap_2");
+                //p.ItemSwitch(p.itemBag[2]);
+                //p.currentItem = 2;
                 break;
             case EquipUI.equip_num.EQUIPMENT_4:
-                p.ItemSwitch(p.itemBag[3]);
-                p.currentItem = 3;
+                p.ani.SetTrigger("Swap_3");
+                //p.ItemSwitch(p.itemBag[3]);
+                //p.currentItem = 3;
                 break;
         }
     }

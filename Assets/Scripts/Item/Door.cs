@@ -14,6 +14,7 @@ public class Door : Item
     public enum DoorDir { FRONT, BACK, LEFT ,RIGHT,UPandDOWN}
     public DoorDir doorDir;
     public GameObject door;
+    public GameObject door_parent;
     public Door another_handle;
     [Header("Front and BACK type use")]
     [Range(0,180)]
@@ -56,11 +57,11 @@ public class Door : Item
             {
                 case DoorDir.FRONT:
                     value += Input.GetAxis("Mouse Y") * sensitivity;
-                    door.transform.rotation = Quaternion.Euler(0, Mathf.Clamp(door.transform.rotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
+                    door.transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(door_parent.transform.rotation.y + door.transform.rotation.y - value, -maximum_y_angle, maximum_y_angle), 0);
                     break;
                 case DoorDir.BACK:
                     value -= Input.GetAxis("Mouse Y") * sensitivity;
-                    door.transform.rotation = Quaternion.Euler(0,Mathf.Clamp(door.transform.rotation.y - value,-maximum_y_angle,maximum_y_angle), 0);
+                    door.transform.localRotation = Quaternion.Euler(0,Mathf.Clamp(door_parent.transform.rotation.y + door.transform.rotation.y - value,-maximum_y_angle,maximum_y_angle), 0);
                     break;
                 case DoorDir.LEFT:
                     value -= Input.GetAxis("Mouse X") * sensitivity;

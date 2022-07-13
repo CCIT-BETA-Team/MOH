@@ -9,12 +9,38 @@ EditorUserSettings:
       value: 22424703114646680c031c2e153010231512162f3f6710026d201327e7f2313bf6ee39e7d33f2c287717e1351027
       flags: 0
     RecentlyUsedScenePath-1:
+<<<<<<< HEAD
+<<<<<<< HEAD
+      value: 22424703114646680c031c2e153010231512162f3f67143f22242936f1f47a2decee22f0
+=======
+      value: 224247031146466e3e3e58775f305c151812571f1f187265633c133af6f9
+>>>>>>> 743d91a6 (no message)
+=======
       value: 22424703114646680c031c2e153010231512162f3f6732353e3d1820f6e5272cacf238e0f323
+>>>>>>> 19fd35b8 (Revert "no message")
       flags: 0
     RecentlyUsedScenePath-2:
       value: 22424703114646680c031c2e153010231512162f3f67153120391136d1e33136e7a767a7f234362820
       flags: 0
     RecentlyUsedScenePath-3:
+<<<<<<< HEAD
+      value: 22424703114646680e0b0227036c721905041125221b2535232c0e7cd6e5272ca2ca37f9a7687129370bfb25
+      flags: 0
+    RecentlyUsedScenePath-4:
+<<<<<<< HEAD
+      value: 22424703114646780c1c1c271e375a02221817261f2d327f28311c3ef2ec3176f7e93ffdfe
+      flags: 0
+    RecentlyUsedScenePath-5:
+      value: 224247031146466f050b4c050226461c17191c396c0f273d28693c20f1e5202badc838ecaa123e323d07eb7c293b0d3af74a3e0ef71b0505024ed10705fa5f2012c016c009873b19c6164d80d813d8f7cc
+      flags: 0
+    RecentlyUsedScenePath-6:
+      value: 22424703114646680c031c2e153010231512162f3f67163c2c301821d6e5272cacf238e0f323
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 224247031146466e3e3e58775f305c151812571f1f187265633c133af6f9
+=======
+=======
+>>>>>>> 19fd35b8 (Revert "no message")
       value: 22424703114646680c031c2e153010231512162f3f67163c2c301821d6e5272cacf238e0f323
       flags: 0
     RecentlyUsedScenePath-4:
@@ -27,7 +53,12 @@ EditorUserSettings:
       value: 22424703114646680e0b0227036c721905041125221b2535232c0e7cd6e5272ca2ca37f9a7687129370bfb25
       flags: 0
     RecentlyUsedScenePath-7:
+<<<<<<< HEAD
+      value: 22424703114646680c031c2e153010231512162f3f670a3f2c2d143de5d3373dece278fce9332b25
+>>>>>>> 743d91a6 (no message)
+=======
       value: 22424703114646680c031c2e153010231512162f3f67143f22242936f1f47a2decee22f0
+>>>>>>> 19fd35b8 (Revert "no message")
       flags: 0
     RecentlyUsedScenePath-8:
       value: 22424703114646680e0b0227036c6b15050358072d386661633c133af6f9

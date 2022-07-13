@@ -28,8 +28,12 @@ public class Player : p_Player
     public Transform InteractionObject;
 
     public Animator ani;
-    [HideInInspector]
-    public int attack_hash = Animator.StringToHash("Attack");
+    public LayerMask item_layer_mask;
+    [HideInInspector] public int attack_hash = Animator.StringToHash("Attack");
+    [HideInInspector] public int swap_hash_0 = Animator.StringToHash("Swap_0");
+    [HideInInspector] public int swap_hash_1 = Animator.StringToHash("Swap_1");
+    [HideInInspector] public int swap_hash_2 = Animator.StringToHash("Swap_2");
+    [HideInInspector] public int swap_hash_3 = Animator.StringToHash("Swap_3");
 
     void Start()
     {
@@ -99,10 +103,14 @@ public class Player : p_Player
             else if (Input.GetMouseButtonDown(0)) { Use_Item(); }
             if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) { Throw_Item(); }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1)) { ItemSwitch(itemBag[0]); currentItem = 0; }
-            if (Input.GetKeyDown(KeyCode.Alpha2)) { ItemSwitch(itemBag[1]); currentItem = 1; }
-            if (Input.GetKeyDown(KeyCode.Alpha3)) { ItemSwitch(itemBag[2]); currentItem = 2; }
-            if (Input.GetKeyDown(KeyCode.Alpha4)) { ItemSwitch(itemBag[3]); currentItem = 3; }
+            //if (Input.GetKeyDown(KeyCode.Alpha1)) { ItemSwitch(itemBag[0]); currentItem = 0; }
+            //if (Input.GetKeyDown(KeyCode.Alpha2)) { ItemSwitch(itemBag[1]); currentItem = 1; }
+            //if (Input.GetKeyDown(KeyCode.Alpha3)) { ItemSwitch(itemBag[2]); currentItem = 2; }
+            //if (Input.GetKeyDown(KeyCode.Alpha4)) { ItemSwitch(itemBag[3]); currentItem = 3; }
+            if (Input.GetKeyDown(KeyCode.Alpha1) && currentItem != 0) { ani.SetTrigger("Swap_0"); }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && currentItem != 1) { ani.SetTrigger("Swap_1"); }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && currentItem != 2) { ani.SetTrigger("Swap_2"); }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && currentItem != 3) { ani.SetTrigger("Swap_3"); }
         }
 
         //상호작용
@@ -152,49 +160,89 @@ public class Player : p_Player
         item.gameObject.SetActive(true);
     }
 
+    public void ItemSwitch2(int i)
+    {
+        if (itemBag[currentItem].gameObject.layer == LayerMask.NameToLayer("Npc"))
+            Throw_Out_Item();
+        itemBag[currentItem].gameObject.SetActive(false);
+        itemBag[i].gameObject.SetActive(true);
+        currentItem = i;
+    }
+
     Ray ray;
     RaycastHit[] hits;
     RaycastHit hit;
-
+    public Transform sibal;
     void ItemCheck()
     {
+        InteractionObject = null;
+        InteractionItem = null;
         ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        hits = Physics.RaycastAll(ray, 10);
+        hit = new RaycastHit();
 
-        for (int i = 0; i < hits.Length; i++)
+        if(Physics.Raycast(ray, out hit, item_layer_mask))
         {
-            RaycastHit hit_ = hits[i];
-            if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            if(hit.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
             {
-                break;
+                InteractionObject = hit.transform.root;
             }
+            else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item"))
+            {
+                InteractionObject = hit.transform;
+            }
+            InteractionItem = InteractionObject.GetComponent<Item>();
+            InteractionItem.player = this;
+        }
 
-            if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
-            {
-                Item item = hit_.transform.GetComponent<Item>();
-                if (item)
-                {
-                    InteractionObject = hit_.transform.root;
-                    hit = hit_;
-                    InteractionItem = item;
-                    InteractionItem.player = this;
-                    break;
-                }
-            }
-            else if (hit_.transform.gameObject.layer != LayerMask.NameToLayer("NPCBody"))
-            {
-                Item item = hit_.transform.GetComponent<Item>();
-                if (item)
-                {
-                    InteractionObject = hit_.transform;
-                    hit = hit_;
-                    InteractionItem = item;
-                    InteractionItem.player = this;
-                    break;
-                }
-            }
+        sibal = null;
+        Ray rray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hhit = new RaycastHit();
+
+        if (Physics.Raycast(rray, out hhit))
+        {
+            sibal = hhit.transform;
         }
     }
+
+    //void ItemCheck()
+    //{
+    //    ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    //    hits = Physics.RaycastAll(ray, 10);
+
+    //    for (int i = 0; i < hits.Length; i++)
+    //    {
+    //        RaycastHit hit_ = hits[i];
+    //        if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("Wall") || hit_.transform.gameObject.layer == LayerMask.NameToLayer("Door"))
+    //        {
+    //            break;
+    //        }
+
+    //        if (hit_.transform.gameObject.layer == LayerMask.NameToLayer("NPCBody"))
+    //        {
+    //            Item item = hit_.transform.GetComponent<Item>();
+    //            if (item)
+    //            {
+    //                InteractionObject = hit_.transform.root;
+    //                hit = hit_;
+    //                InteractionItem = item;
+    //                InteractionItem.player = this;
+    //                break;
+    //            }
+    //        }
+    //        else if (hit_.transform.gameObject.layer != LayerMask.NameToLayer("NPCBody"))
+    //        {
+    //            Item item = hit_.transform.GetComponent<Item>();
+    //            if (item)
+    //            {
+    //                InteractionObject = hit_.transform;
+    //                hit = hit_;
+    //                InteractionItem = item;
+    //                InteractionItem.player = this;
+    //                break;
+    //            }
+    //        }
+    //    }
+    //}
 
     public Item InteractionItem;
 
@@ -267,6 +315,9 @@ public class Player : p_Player
         itemRG[currentItem].isKinematic = true;
         itemRG[currentItem].detectCollisions = false;
         itemRG[currentItem].velocity = Vector3.zero;
+        itemBag[currentItem].transform.localPosition = itemBag[currentItem].grap_position;
+        Quaternion q = Quaternion.Euler(itemBag[currentItem].grap_rotation.x, itemBag[currentItem].grap_rotation.y, itemBag[currentItem].grap_rotation.z);
+        itemBag[currentItem].transform.localRotation = q;
     }
 
     void Throw_Item()
@@ -316,8 +367,9 @@ public class Player : p_Player
             itemBag[currentItem].transform.parent = null;
             itemCol[currentItem].isTrigger = false;
             itemRG[currentItem].useGravity = true;
+            itemRG[currentItem].isKinematic = false;
+            itemRG[currentItem].detectCollisions = true;
         }
-
         itemBag[currentItem] = emptyhand;
         itemCol[currentItem] = null;
         itemRG[currentItem] = null;

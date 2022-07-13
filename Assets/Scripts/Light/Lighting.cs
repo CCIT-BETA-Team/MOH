@@ -13,7 +13,7 @@ public class Lighting : MonoBehaviour
     public float cool = 0.0f;
     public List<Animation> light_ani = new List<Animation>();
     public bool player_lighting = false;
-    private float light_range;
+    public float light_range;
     public int player_layer = 0;
     public float ray_delay=0.3f;
     private float ray_timer;
@@ -24,7 +24,9 @@ public class Lighting : MonoBehaviour
         set
         { broken = value; Light_Update(); }
     }
+
     public bool electricity_property { get { return electricity; } set { electricity = value; Light_Update(); } }
+
     private void Start()
     {
 
@@ -42,6 +44,7 @@ public class Lighting : MonoBehaviour
             light_material.Add(a.GetComponent<MeshRenderer>().material);
         }
     }
+
     private void Update()
     {
         if (broke_property)
@@ -90,8 +93,6 @@ public class Lighting : MonoBehaviour
        ray_timer= Mathf.Clamp(ray_timer-Time.deltaTime, 0, ray_delay);
     }
 
-
-
     public void Light_Update()
     {
         if (broke_property)
@@ -129,13 +130,10 @@ public class Lighting : MonoBehaviour
                     m.DisableKeyword("_EMISSION");
                 }
              
-          }
+            }
         }
   
     }
-
-
-
 
     public void Break_Light(float time)
     {
@@ -146,6 +144,7 @@ public class Lighting : MonoBehaviour
         }
         //플레이어에 라이트 오브젝트 확인후 제거
     }
+
     /// <summary>
     /// 영구파괴
     /// </summary>
@@ -155,35 +154,47 @@ public class Lighting : MonoBehaviour
         cool = -1;
         //플레이어에 라이트 오브젝트 확인후 제거
     }
-
   
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         //수정필요
         if(collision.transform.tag=="Player"&& on_off&& broken == false)
         {
-            RaycastHit hit;
-            Debug.Log("Ray ready" + player_layer);
-            Physics.Raycast(this.transform.position, collision.gameObject.transform.position - this.transform.position, out hit, light_range, player_layer);
-            Debug.DrawRay(this.transform.position, collision.gameObject.transform.position - this.transform.position, Color.blue);
-           
-            if (hit.transform!=null)
-            {
-                Debug.Log("Ray out ready");
-                if (hit.transform.GetComponent<p_Player>()!=null)
-                {
-                    collision.transform.GetComponent<p_Player>().Enter_Light(this);
-                    player_lighting = true;
-                }
-             
-            }
-          
+            Debug.Log(1111);
+            if(!started_coroutine)
+                StartCoroutine(player_check(collision));
         }
         if(collision.gameObject.GetComponent<Item>()!=null&& player_lighting)
         {
             
         }
     }
+
+    bool started_coroutine = false;
+
+    IEnumerator player_check(Collider collision)
+    {
+        started_coroutine = true;
+
+        RaycastHit hit;
+        Debug.Log("Ray ready" + player_layer);
+        Physics.Raycast(this.transform.position, collision.gameObject.transform.position - this.transform.position, out hit, light_range, player_layer);
+        Debug.DrawRay(this.transform.position, collision.gameObject.transform.position - this.transform.position, Color.blue);
+
+        if (hit.transform != null)
+        {
+            Debug.Log("Ray out ready");
+            if (hit.transform.GetComponent<p_Player>() != null)
+            {
+                collision.transform.GetComponent<p_Player>().Enter_Light(this);
+                player_lighting = true;
+            }
+        }
+
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(player_check(collision));
+    }
+
     private void OnTriggerExit(Collider collision)
     {
         //수정필요
@@ -191,6 +202,8 @@ public class Lighting : MonoBehaviour
         {
             collision.transform.GetComponent<p_Player>().Exit_Light(this);
             player_lighting = false;
+            started_coroutine = false;
+            StopCoroutine("started_coroutine");
         }
     }
 }

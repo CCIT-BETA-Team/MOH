@@ -106,6 +106,8 @@ public class Npc : MonoBehaviour
     [Range(0, 100)]
     public float fear_percent;
 
+    public GameObject what;
+
     #region
     protected readonly int moveing_hash = Animator.StringToHash("agent_move_check");
     protected readonly int gun_hash = Animator.StringToHash("agent_attack_check_gun");
@@ -231,7 +233,9 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     sleepy_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.SLEEP;
                     Re_Set_Room:
                     target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
@@ -267,7 +271,9 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     pee_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.PEE;
 
                     Re_Set_Room:
@@ -303,7 +309,9 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     thirst_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.THIRST;
 
                     Re_Set_Room:
@@ -348,7 +356,7 @@ public class Npc : MonoBehaviour
             case Npc_Type.WOMAN:
                 break;
         }
-        Select_Personality();
+        //Select_Personality();
 
         //if(npc_type != Npc_Type.POLICE)
         //Invoke("Change_State_Move", 1f);
@@ -402,16 +410,16 @@ public class Npc : MonoBehaviour
         if (a == 0)
         {
             this.personality = Npc_Personality.AGGESSIVE;
-            int select_attack_type = Random.Range(0, 3);
+            int select_attack_type = Random.Range(0, 2);
             switch(select_attack_type)
             {
                 case 0:
                     this.attack_type = Attack_Type.GUN;
                     break;
-                case 1:
+                case 2:
                     this.attack_type = Attack_Type.PUNCH;
                     break;
-                case 2:
+                case 1:
                     this.attack_type = Attack_Type.CUDGEL;
                     break;
             }
@@ -459,5 +467,20 @@ public class Npc : MonoBehaviour
     public void Set_Active_False_For_Gun()
     {
         if(gun.activeSelf == true) { gun.SetActive(false); }
+    }
+
+    public void Gun_Interact()
+    {
+        gun.GetComponent<Gun_Effect>().Gun_Light_On();
+    }
+
+    public void Set_Active_True_For_Bat()
+    {
+        cudgel.SetActive(true);
+    }
+
+    public void Set_Active_False_For_Bat()
+    {
+        if (cudgel.activeSelf == true) { cudgel.SetActive(false); }
     }
 }

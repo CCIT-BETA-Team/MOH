@@ -67,7 +67,7 @@ public class Grandma : Npc
         }
         //
         this.agent.enabled = true;
-        this.agent.isStopped = false;
+        //this.agent.isStopped = false;
         opening_check = false;
     }
     void For_Close_Door_Delay() // invoke
@@ -566,7 +566,6 @@ public class Grandma : Npc
         if (personality == Npc_Personality.AGGESSIVE)
         {
             state = State.TRACE;
-
             first_report_check = true;
         }
         else if (personality == Npc_Personality.Defensive)
@@ -698,6 +697,7 @@ public class Grandma : Npc
                     ///
                     ///
                     ///
+                    cudgel.SetActive(true);
                     anim.SetTrigger(cudgel_hash);
                     break;
             }
@@ -808,7 +808,7 @@ public class Grandma : Npc
 
         //this.state = State.IDLE;
         //Select_Personality();
-        this.personality = Npc_Personality.AGGESSIVE;
+        //this.personality = Npc_Personality.AGGESSIVE;
 
         StartCoroutine(State_Gaze_Change());
         //
@@ -838,7 +838,8 @@ public class Grandma : Npc
                 Vector3 p_dir = player.transform.position - cam.transform.position;
                 if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x, p_dir.y + 0.5f, p_dir.z), out hit, Mathf.Infinity, layermask_for_except))
                 {
-                    //Debug.DrawRay(cam.transform.position, p_dir, Color.red);
+                    Debug.DrawRay(cam.transform.position, p_dir, Color.red);
+                    what = hit.transform.gameObject;
                     if (hit.transform.gameObject.layer == 6)//player
                     {
                         if (player.lighted == true)
@@ -878,30 +879,6 @@ public class Grandma : Npc
                         //Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
                         #endregion ///
                     }
-                    #region
-                    //else
-                    //{
-                    //    if(miss_player == false && miss_player != null)
-                    //    {
-                    //        miss_player = true;
-                    //        player_check_time += Time.deltaTime;
-                    //        if(this.state == State.REPORT || this.state == State.TRACE)
-                    //        {
-                    //            if(player_check_time > 5.0f)
-                    //            {
-                    //                aggessive_trace_check = false;
-                    //                player_check_time = 0;
-                    //            }
-                    //        }
-                    //    }
-                    //}
-
-
-                    //if (this.state == State.REPORT || this.state == State.TRACE)
-                    //{
-
-                    //}
-                    #endregion
                 }
             }
 
@@ -911,8 +888,10 @@ public class Grandma : Npc
             state = State.FAINT;
         }
 
-        //(Input.GetKey(KeyCode.K)) { anim.SetTrigger(gun_hash); }
-
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    anim.SetTrigger(gun_hash);
+        //}
     }
 
 

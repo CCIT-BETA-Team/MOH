@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7993801862366535736
 Transform:
   m_ObjectHideFlags: 0
@@ -54,7 +54,8 @@ MonoBehaviour:
   bIsMoving: 0
   bIsQuestItem: 0
   bIsGrab: 0
-  GrabRotation: {x: 0, y: 0, z: 0}
+  grap_position: {x: 0, y: 0, z: 0}
+  grap_rotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
