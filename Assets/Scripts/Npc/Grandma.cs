@@ -808,7 +808,7 @@ public class Grandma : Npc
 
         //this.state = State.IDLE;
         //Select_Personality();
-        this.personality = Npc_Personality.AGGESSIVE;
+        //this.personality = Npc_Personality.AGGESSIVE;
 
         StartCoroutine(State_Gaze_Change());
         //
@@ -839,6 +839,7 @@ public class Grandma : Npc
                 if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x, p_dir.y + 0.5f, p_dir.z), out hit, Mathf.Infinity, layermask_for_except))
                 {
                     Debug.DrawRay(cam.transform.position, p_dir, Color.red);
+                    what = hit.transform.gameObject;
                     if (hit.transform.gameObject.layer == 6)//player
                     {
                         if (player.lighted == true)
@@ -886,8 +887,8 @@ public class Grandma : Npc
         {
             state = State.FAINT;
         }
-        
-        //if(Input.GetKeyDown(KeyCode.J))
+
+        //if (Input.GetKeyDown(KeyCode.J))
         //{
         //    anim.SetTrigger(gun_hash);
         //}

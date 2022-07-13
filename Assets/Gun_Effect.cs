@@ -29,11 +29,11 @@ public class Gun_Effect : MonoBehaviour
     public void Gun_Light_On()
     {
         if(gun_light == null)
-        gun_light = Instantiate(gun_effect, effect_trans.position , Quaternion.Euler(0,0,135));
+        gun_light = Instantiate(gun_effect, effect_trans.position , Quaternion.Euler(0, 90, 0));
         gun_light.transform.parent = effect_trans;
         //Debug.Log(23);
         ani.SetTrigger(Shot);
-        Invoke("Destroy_Light",1f);
+        Invoke("Destroy_Light",0.1f);
     }
 
     void Destroy_Light()

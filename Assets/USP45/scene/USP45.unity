@@ -340,19 +340,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566683797501817282, guid: b603779091cf3ed46bbb65d9ac8fdece, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.83256304
       objectReference: {fileID: 0}
     - target: {fileID: 4566683797501817282, guid: b603779091cf3ed46bbb65d9ac8fdece, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4566683797501817282, guid: b603779091cf3ed46bbb65d9ac8fdece, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.55393034
       objectReference: {fileID: 0}
     - target: {fileID: 4566683797501817282, guid: b603779091cf3ed46bbb65d9ac8fdece, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4566683797501817282, guid: b603779091cf3ed46bbb65d9ac8fdece, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -360,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566683797501817282, guid: b603779091cf3ed46bbb65d9ac8fdece, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -67.274
       objectReference: {fileID: 0}
     - target: {fileID: 4566683797501817282, guid: b603779091cf3ed46bbb65d9ac8fdece, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1563,12 +1563,16 @@ MonoBehaviour:
   currentItem: 0
   InteractionObject: {fileID: 0}
   ani: {fileID: 0}
+  item_layer_mask:
+    serializedVersion: 2
+    m_Bits: 0
   attack_hash: 1080829965
   swap_hash_0: -1128567260
   swap_hash_1: -876847438
   swap_hash_2: 1387597576
   swap_hash_3: 632438686
   movement: {x: 0, y: 0, z: 0}
+  sibal: {fileID: 0}
   InteractionItem: {fileID: 0}
 --- !u!1001 &953608224802082855
 PrefabInstance:

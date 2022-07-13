@@ -106,6 +106,8 @@ public class Npc : MonoBehaviour
     [Range(0, 100)]
     public float fear_percent;
 
+    public GameObject what;
+
     #region
     protected readonly int moveing_hash = Animator.StringToHash("agent_move_check");
     protected readonly int gun_hash = Animator.StringToHash("agent_attack_check_gun");
@@ -354,7 +356,7 @@ public class Npc : MonoBehaviour
             case Npc_Type.WOMAN:
                 break;
         }
-        Select_Personality();
+        //Select_Personality();
 
         //if(npc_type != Npc_Type.POLICE)
         //Invoke("Change_State_Move", 1f);
@@ -408,16 +410,16 @@ public class Npc : MonoBehaviour
         if (a == 0)
         {
             this.personality = Npc_Personality.AGGESSIVE;
-            int select_attack_type = Random.Range(0, 3);
+            int select_attack_type = Random.Range(0, 2);
             switch(select_attack_type)
             {
                 case 0:
                     this.attack_type = Attack_Type.GUN;
                     break;
-                case 1:
+                case 2:
                     this.attack_type = Attack_Type.PUNCH;
                     break;
-                case 2:
+                case 1:
                     this.attack_type = Attack_Type.CUDGEL;
                     break;
             }

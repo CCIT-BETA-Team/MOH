@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 9108773492866108358}
   - component: {fileID: 2680651238598190308}
   - component: {fileID: 2680651238598190311}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,10 +282,10 @@ MonoBehaviour:
   move: 0
   health: 100
   defaultSpped: 0
-  walkingSpeed: 1.5
+  walkingSpeed: 3
   runningSpeed: 0
-  lighted: 0
-  unlock_default: 0
+  lighted: 1
+  unlock_default: 10
   unlock_tool: 0
   unlock_skill: 0
   noiseValue: 0
@@ -314,8 +314,16 @@ MonoBehaviour:
   currentItem: 0
   InteractionObject: {fileID: 0}
   ani: {fileID: 9108773492866108358}
+  item_layer_mask:
+    serializedVersion: 2
+    m_Bits: 790528
   attack_hash: 1080829965
+  swap_hash_0: -1128567260
+  swap_hash_1: -876847438
+  swap_hash_2: 1387597576
+  swap_hash_3: 632438686
   movement: {x: 0, y: 0, z: 0}
+  sibal: {fileID: 0}
   InteractionItem: {fileID: 0}
 --- !u!114 &8864199862823499747
 MonoBehaviour:
@@ -529,7 +537,8 @@ MonoBehaviour:
   bIsMoving: 0
   bIsQuestItem: 0
   bIsGrab: 0
-  GrabRotation: {x: 0, y: 0, z: 0}
+  grap_position: {x: 0, y: 0, z: 0}
+  grap_rotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
   item_image: {fileID: 0}
   parent_room: {fileID: 0}
