@@ -247,6 +247,10 @@ public class Man : Npc
                     {
                         this.agent.enabled = false;
                         //상호작용 애니메이션
+                        if (current_room == target_room)
+                        {
+                            anim.SetTrigger(sleep_hash);
+                        }
 
                         if (path_finding[0].gameObject.name == "BED_ROOM_1")
                         {
@@ -258,12 +262,6 @@ public class Man : Npc
                         {
                             transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
                             transform.rotation = target_item.transform.rotation;
-                        }
-                        if (current_room == target_room)
-                        {
-                            //상호작용 애니메이션
-                            //state_end_check = true;//애니메이션 끝나면 true  ㄱ
-                            anim.SetTrigger(sleep_hash);
                         }
                     }
                 }
@@ -371,6 +369,17 @@ public class Man : Npc
                         this.agent.enabled = false;
                         transform.rotation = target_item.transform.rotation;
 
+                        if (current_room == target_room)
+                        {
+                            //상호작용 애니메이션
+                            if (once == false)
+                            {
+                                anim.SetTrigger(pee_hash);
+                                Invoke("state_end_check_for_invoke", 5f);
+                                once = true;
+                            }
+                        }
+
                         //상호작용 애니메이션
                         if (path_finding[0].gameObject.name == "BATH_ROOM_1")
                         {
@@ -383,16 +392,6 @@ public class Man : Npc
                         if (path_finding[0].gameObject.name == "BATH_ROOM_3")
                         {
                             this.transform.position = new Vector3(-16.5f, 0.7f, -18.8f);
-                        }
-                        if (current_room == target_room)
-                        {
-                            //상호작용 애니메이션
-                            if (once == false)
-                            {
-                                anim.SetTrigger(pee_hash);
-                                Invoke("state_end_check_for_invoke", 5f);
-                                once = true;
-                            }
                         }
                     }
                 }
@@ -801,6 +800,8 @@ public class Man : Npc
 
     void Start()
     {
+        bed_room_1 = NpcManager.instance.bed_room_1;
+        bed_room_2 = NpcManager.instance.bed_room_2;
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 

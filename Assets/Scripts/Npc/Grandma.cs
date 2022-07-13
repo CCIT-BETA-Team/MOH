@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [System.Serializable]
-public class Grandma : Npc
+public class Grandmather : Npc
 {
     public Camera cam;//Npc 눈
     public RaycastHit hit;//레이
@@ -247,6 +247,10 @@ public class Grandma : Npc
                     {
                         this.agent.enabled = false;
                         //상호작용 애니메이션
+                        if (current_room == target_room)
+                        {
+                            anim.SetTrigger(sleep_hash);
+                        }
 
                         if (path_finding[0].gameObject.name == "BED_ROOM_1")
                         {
@@ -258,12 +262,6 @@ public class Grandma : Npc
                         {
                             transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
                             transform.rotation = target_item.transform.rotation;
-                        }
-                        if (current_room == target_room)
-                        {
-                            //상호작용 애니메이션
-                            //state_end_check = true;//애니메이션 끝나면 true  ㄱ
-                            anim.SetTrigger(sleep_hash);
                         }
                     }
                 }
@@ -371,6 +369,17 @@ public class Grandma : Npc
                         this.agent.enabled = false;
                         transform.rotation = target_item.transform.rotation;
 
+                        if (current_room == target_room)
+                        {
+                            //상호작용 애니메이션
+                            if (once == false)
+                            {
+                                anim.SetTrigger(pee_hash);
+                                Invoke("state_end_check_for_invoke", 5f);
+                                once = true;
+                            }
+                        }
+
                         //상호작용 애니메이션
                         if (path_finding[0].gameObject.name == "BATH_ROOM_1")
                         {
@@ -383,16 +392,6 @@ public class Grandma : Npc
                         if (path_finding[0].gameObject.name == "BATH_ROOM_3")
                         {
                             this.transform.position = new Vector3(-16.5f, 0.7f, -18.8f);
-                        }
-                        if (current_room == target_room)
-                        {
-                            //상호작용 애니메이션
-                            if (once == false)
-                            {
-                                anim.SetTrigger(pee_hash);
-                                Invoke("state_end_check_for_invoke", 5f);
-                                once = true;
-                            }
                         }
                     }
                 }
@@ -566,6 +565,7 @@ public class Grandma : Npc
         if (personality == Npc_Personality.AGGESSIVE)
         {
             state = State.TRACE;
+
             first_report_check = true;
         }
         else if (personality == Npc_Personality.Defensive)
@@ -800,6 +800,8 @@ public class Grandma : Npc
 
     void Start()
     {
+        bed_room_1 = NpcManager.instance.bed_room_1;
+        bed_room_2 = NpcManager.instance.bed_room_2;
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 
@@ -879,6 +881,30 @@ public class Grandma : Npc
                         //Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
                         #endregion ///
                     }
+                    #region
+                    //else
+                    //{
+                    //    if(miss_player == false && miss_player != null)
+                    //    {
+                    //        miss_player = true;
+                    //        player_check_time += Time.deltaTime;
+                    //        if(this.state == State.REPORT || this.state == State.TRACE)
+                    //        {
+                    //            if(player_check_time > 5.0f)
+                    //            {
+                    //                aggessive_trace_check = false;
+                    //                player_check_time = 0;
+                    //            }
+                    //        }
+                    //    }
+                    //}
+
+
+                    //if (this.state == State.REPORT || this.state == State.TRACE)
+                    //{
+
+                    //}
+                    #endregion
                 }
             }
 
@@ -888,10 +914,8 @@ public class Grandma : Npc
             state = State.FAINT;
         }
 
-        //if (Input.GetKeyDown(KeyCode.J))
-        //{
-        //    anim.SetTrigger(gun_hash);
-        //}
+        //(Input.GetKey(KeyCode.K)) { anim.SetTrigger(gun_hash); }
+
     }
 
 

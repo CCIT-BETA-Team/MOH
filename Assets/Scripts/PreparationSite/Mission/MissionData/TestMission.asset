@@ -25,6 +25,6 @@ MonoBehaviour:
   sub_mission:
   - "- \uC11C\uBE0C \uBBF8\uC158 \uC774\uB984"
   - "- \uC11C\uBE0C \uBBF8\uC158 \uC774\uB984"
-  weather: 0
+  weather: 2
   time: 0
   mission_popups: []

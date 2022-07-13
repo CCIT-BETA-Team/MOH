@@ -23,6 +23,7 @@ public class NpcManager : Singleton<NpcManager>
 
     [Header("Target_Room")]
     public List<Room> Bed_Room = new List<Room>();
+    public List<Room> Bed_Rooms = new List<Room>();
     public List<Room> Bath_Room = new List<Room>();
     public List<Room> Dining_Room = new List<Room>();
 
@@ -73,6 +74,9 @@ public class NpcManager : Singleton<NpcManager>
         return n;
     }
 
+    public Room bed_room_1;
+    public Room bed_room_2;
+    public Room[] bed_rooms;
     public void Spawn_Npc()
     {
         for(int i = 0; i < map.npc_amount; i++) 
@@ -84,8 +88,9 @@ public class NpcManager : Singleton<NpcManager>
             GameObject spawn_point = room_list[x].npc_spawn_position[y];
              
             GameObject npc = Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
-            npc.GetComponent<Npc>().sleepy_percent = 99.99f;
+            npc.GetComponent<Npc>().sleepy_percent = 99f;
             npc_list.Add(npc);
+            npc.GetComponent<Npc>().my_room = bed_rooms[i];
             if(i == 0) { npc.GetComponent<Npc>().personality = Npc.Npc_Personality.AGGESSIVE; }
             else if(i == 1) { npc.GetComponent<Npc>().personality = Npc.Npc_Personality.Defensive; }
 

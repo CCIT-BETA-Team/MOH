@@ -122,25 +122,25 @@ public class Player : p_Player
             if (Input.GetKey(KeyCode.LeftControl)) { }
 
             //바닥 감지할 레이
-            Debug.DrawRay(transform.position, new Vector3(0, -1, 0) * 3.0f, Color.green);
-            if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out groundHit))
-            {
-                if (groundHit.collider.CompareTag("Untagged") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-                {
-                    if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
-                        return;
-                    else
-                        audioSource.clip = groundMaterial[0];
-                }
+            //Debug.DrawRay(transform.position, new Vector3(0, -1, 0) * 3.0f, Color.green);
+            //if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out groundHit))
+            //{
+            //    if (groundHit.collider.CompareTag("Untagged") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            //    {
+            //        if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
+            //            return;
+            //        else
+            //            audioSource.clip = groundMaterial[0];
+            //    }
                 
-                else if (groundHit.collider.CompareTag("wood") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-                {
-                    if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
-                        return;
-                    else
-                        audioSource.clip = groundMaterial[1];
-                }
-            }
+            //    else if (groundHit.collider.CompareTag("wood") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            //    {
+            //        if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
+            //            return;
+            //        else
+            //            audioSource.clip = groundMaterial[1];
+            //    }
+            //}
 
             //장비
             if (Input.GetMouseButton(1)) { Zoom(); }

@@ -107,6 +107,7 @@ public class Npc : MonoBehaviour
     public float fear_percent;
 
     public GameObject what;
+    public Room my_room;
 
     #region
     protected readonly int moveing_hash = Animator.StringToHash("agent_move_check");
@@ -223,6 +224,9 @@ public class Npc : MonoBehaviour
     protected State next_state = State.NULL;
     protected State current_state = State.NULL;
 
+    public Room bed_room_1;
+    public Room bed_room_2;
+
     public float sleepy_percent_check
     {
         get { return sleepy_percent; }
@@ -238,7 +242,16 @@ public class Npc : MonoBehaviour
                     Pathfinding_List_Initialization();
                     current_state = State.SLEEP;
                     Re_Set_Room:
-                    target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
+                    target_room = my_room.gameObject;
+                    //target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
+                    //if (personality == Npc_Personality.AGGESSIVE)
+                    //{
+                    //    target_room = bed_room_1.gameObject;
+                    //}
+                    //else if (personality == Npc_Personality.Defensive)
+                    //{
+                    //    target_room = bed_room_2.gameObject;
+                    //}
                     target_item = target_room.GetComponent<Room>().Decide_Target_Item();
 
                     if (target_item != null)
