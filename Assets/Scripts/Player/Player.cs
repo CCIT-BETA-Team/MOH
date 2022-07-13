@@ -21,6 +21,11 @@ public class Player : p_Player
     public bool is_attack;
     bool is_capture;
 
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip[] groundMaterial;
+    RaycastHit groundHit;
+
     public List<Rigidbody> itemRG = new List<Rigidbody>();
     public List<Collider> itemCol = new List<Collider>();
     public int currentItem;
@@ -38,7 +43,9 @@ public class Player : p_Player
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-  
+        audioSource = GetComponent<AudioSource>();
+        ani = GetComponent<Animator>();
+        audioSource.clip = groundMaterial[0];
     }
 
     void Update()
@@ -91,12 +98,49 @@ public class Player : p_Player
             movement = movement.normalized;
             movement *= walkingSpeed;
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                if (isJumping == false)
+                    ani.SetBool("IsMove", true);
+                else
+                    ani.SetBool("IsMove", false);
                 rg.MovePosition(transform.position + transform.rotation * movement * Time.fixedDeltaTime * (walkingSpeed - itemBag[currentItem].weight * 0.3f));
+                //rg.MovePosition(transform.position + movement * Time.deltaTime);
+            }
+            else
+                ani.SetBool("IsMove", false);
             //rg.MovePosition(transform.position + movement * Time.deltaTime);
 
-            if (Input.GetKey(KeyCode.LeftShift)) { }
-            if (Input.GetKeyDown(KeyCode.Space)) { rg.AddForce(Vector3.up * power); }
+            if (Input.GetKey(KeyCode.LeftShift)) { ani.SetBool("IsRun", true); }
+            else { ani.SetBool("IsRun", false); }
+
+            if (isJumping == false && Input.GetKeyDown(KeyCode.Space)) 
+            {
+                isJumping = true;
+                rg.AddForce(Vector3.up * power);
+            }
+
             if (Input.GetKey(KeyCode.LeftControl)) { }
+
+            //바닥 감지할 레이
+            Debug.DrawRay(transform.position, new Vector3(0, -1, 0) * 3.0f, Color.green);
+            if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out groundHit))
+            {
+                if (groundHit.collider.CompareTag("Untagged") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
+                        return;
+                    else
+                        audioSource.clip = groundMaterial[0];
+                }
+                
+                else if (groundHit.collider.CompareTag("wood") && ani.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    if (audioSource.isPlaying && !Input.GetKey(KeyCode.LeftShift))
+                        return;
+                    else
+                        audioSource.clip = groundMaterial[1];
+                }
+            }
 
             //장비
             if (Input.GetMouseButton(1)) { Zoom(); }
@@ -151,6 +195,31 @@ public class Player : p_Player
 
         if (Input.GetKeyDown(KeyCode.F)) { ani.SetTrigger("FXXk"); }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isJumping = false;
+    }
+    //------------------------------------------------------------------------------------------
+
+    //----------------------------------------------------------------------
+    public void stepsound()
+    {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            isMoving = true;
+        else
+            isMoving = false;
+
+        if (isMoving == true && isJumping == false)
+            audioSource.PlayOneShot(audioSource.clip);
+        else
+            audioSource.Pause();
+    }
+    //----------------------------------------------------------------------
+
+    //----------------------------------------------------------------------
+    public void fakeMotion() { }
+    //----------------------------------------------------------------------
 
     public void ItemSwitch(Item item)
     {

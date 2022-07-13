@@ -16,6 +16,9 @@ public class p_Player : Singleton<p_Player>
     public float runningSpeed;
     protected float sensitivity = 0.5f;
     public bool lighted;
+    public bool isJumping;
+    public bool isMoving;
+
     [Header("Player로 옮겨야할수도있음")]
     public float unlock_default;
     public float unlock_tool;

@@ -53,15 +53,6 @@ public class ScenesManager : Singleton<ScenesManager>
         StartCoroutine(LoadSceneProcess());
 
     }
-    void Update()
-    {
-       
-            if (Input.anyKey)
-            {
-                op.allowSceneActivation = true;
-            }
-      
-    }
 
     IEnumerator LoadSceneProcess()
     {
@@ -88,7 +79,11 @@ public class ScenesManager : Singleton<ScenesManager>
                 loadingText.text = (Math.Truncate(LoadingBar.fillAmount * 100)).ToString() + "%";
                 if (LoadingBar.fillAmount >= 1.0f)
                 {
+                    yield return new WaitForSeconds(3.0f);
                     anyKeyText.text = "계속 하려면 아무키나 입력하세요.";
+                    if (Input.anyKey)
+                        op.allowSceneActivation = true;
+
                     if (op.allowSceneActivation == true)
                         yield break;
                 }
