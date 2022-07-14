@@ -119,6 +119,7 @@ public class Npc : MonoBehaviour
     protected readonly int pee_end_hash = Animator.StringToHash("pee_end_check");
     protected readonly int thirst_hash = Animator.StringToHash("thirst_check");
     protected readonly int call_police_hash = Animator.StringToHash("call_police_check");
+    protected readonly int exit = Animator.StringToHash("Exit");
 
     #endregion
 
@@ -447,6 +448,7 @@ public class Npc : MonoBehaviour
 
         for(int i = 0; i < NpcManager.instance.npc_list.Count;i++)
         {
+            NpcManager.instance.npc_list[i].GetComponent<Npc>().anim.SetTrigger(exit);
             NpcManager.instance.npc_list[i].GetComponent<Npc>().state = State.REPORT;
         }
     }

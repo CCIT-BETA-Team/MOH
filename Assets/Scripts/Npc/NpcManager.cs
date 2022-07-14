@@ -222,6 +222,7 @@ public class NpcManager : Singleton<NpcManager>
             GameObject police = Instantiate(police_npc, spawn_position, Quaternion.identity);
             police.name = "Police[" + i + "]";
         }
+        Debug.Log(2323);
     }
 
     IEnumerator Count_Police_Time()

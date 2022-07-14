@@ -238,12 +238,12 @@ public class Man : Npc
                 else if (path_finding[0].layer == 10)//Room
                 {
                     Vector3 dir = target_item.transform.position - transform.position;
-                    if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 0.1f)
+                    if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
                     {
 
                         transform.rotation = Quaternion.LookRotation(dir).normalized;
                     }
-                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 0.1f) // agent.remainingDistance 
                     {
                         this.agent.enabled = false;
                         //상호작용 애니메이션
@@ -261,7 +261,7 @@ public class Man : Npc
                         if (path_finding[0].gameObject.name == "BED_ROOM_2")
                         {
                             transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
-                            transform.rotation = target_item.transform.rotation;
+                            transform.rotation = Quaternion.Euler(0, 90, 0);
                         }
                     }
                 }

@@ -1658,20 +1658,20 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4893633830716756560}
   m_Enabled: 1
-  m_AgentTypeID: -334000983
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_AgentTypeID: 0
+  m_Radius: 0.2
+  m_Speed: 1
+  m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.96
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &6723043890652995091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,10 +1684,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f4396ba1882164a8857b51cf11fce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 2840082559497288574}
   npc_item: []
   path_finding: []
-  anim: {fileID: 0}
+  anim: {fileID: -7567386386270129960}
   player_obj: {fileID: 0}
   player: {fileID: 0}
   ghost: {fileID: 3263810280660732973, guid: 4499fdd9621cc0843969962a4e081462, type: 3}
@@ -1713,7 +1713,10 @@ MonoBehaviour:
   thirst_percent: 0
   fear_percent: 0
   what: {fileID: 0}
+  my_room: {fileID: 0}
   next_state: 10
+  bed_room_1: {fileID: 0}
+  bed_room_2: {fileID: 0}
   anime: {fileID: 0}
 --- !u!1 &5186225794492566377
 GameObject:

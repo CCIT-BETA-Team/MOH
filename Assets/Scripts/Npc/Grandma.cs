@@ -243,7 +243,7 @@ public class Grandma : Npc
 
                         transform.rotation = Quaternion.LookRotation(dir).normalized;
                     }
-                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 0.1f) // agent.remainingDistance 
                     {
                         this.agent.enabled = false;
                         //상호작용 애니메이션
@@ -261,7 +261,7 @@ public class Grandma : Npc
                         if (path_finding[0].gameObject.name == "BED_ROOM_2")
                         {
                             transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
-                            transform.rotation = target_item.transform.rotation;
+                            transform.rotation = Quaternion.Euler(0, 90, 0);
                         }
                     }
                 }
@@ -807,8 +807,8 @@ public class Grandma : Npc
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 
-        if (npc_type != Npc_Type.POLICE)
-            Invoke("Change_State_Move", 1f);
+        //if (npc_type != Npc_Type.POLICE)
+        //    Invoke("Change_State_Move", 1f);
 
         //this.state = State.IDLE;
         //Select_Personality();
@@ -916,7 +916,7 @@ public class Grandma : Npc
             state = State.FAINT;
         }
 
-        //(Input.GetKey(KeyCode.K)) { anim.SetTrigger(gun_hash); }
+        if(Input.GetKeyDown(KeyCode.K)) { anim.SetTrigger(gun_hash); }
 
     }
 

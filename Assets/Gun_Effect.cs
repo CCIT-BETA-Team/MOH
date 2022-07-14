@@ -26,12 +26,15 @@ public class Gun_Effect : MonoBehaviour
         
     }
     GameObject gun_light;
+    public float kang_seong_jun;
     public void Gun_Light_On()
     {
         if(gun_light == null)
         gun_light = Instantiate(gun_effect, effect_trans.position , Quaternion.Euler(0, 90, 0));
+        //gun_light.transform.localRotation = Quaternion.Euler(0, 90 + transform.root.rotation.y, 0);
+        gun_light.transform.localRotation = Quaternion.Euler(0, 90, 0);
         gun_light.transform.parent = effect_trans;
-        //Debug.Log(23);
+        Debug.Log(23);
         ani.SetTrigger(Shot);
         Invoke("Destroy_Light",0.1f);
     }
