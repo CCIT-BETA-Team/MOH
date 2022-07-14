@@ -49,43 +49,42 @@ public class ScenesManager : Singleton<ScenesManager>
 
     void Start()
     {
-        RandomLoadingImage();
         StartCoroutine(LoadSceneProcess());
-
     }
-
+        
     IEnumerator LoadSceneProcess()
     {
+        RandomLoadingImage();
         yield return null;
-        missionText.text = GameManager.instance.select_mission.mission_name;
         op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
-        float timer = 0f;
+        missionText.text = GameManager.instance.select_mission.mission_name;
         int index = UnityEngine.Random.Range(0, str.Length);
         tipText.text = str[index];
+        float timer = 0f;
         while(!op.isDone)
         {
             yield return null;
-
-            if (op.progress < 0.001f)
+            if (op.progress < 0.9f)
             {
                 LoadingBar.fillAmount = op.progress;
                 loadingText.text = (Math.Truncate(LoadingBar.fillAmount * 100)).ToString() + "%";
+                if (LoadingBar.fillAmount >= op.progress) { timer = 0f; }
             }
             else
             {
                 timer += Time.deltaTime;
-                LoadingBar.fillAmount = Mathf.Lerp(0.001f, 1.0f, timer);
+                LoadingBar.fillAmount = Mathf.Lerp(LoadingBar.fillAmount, 1.0f, timer);
                 loadingText.text = (Math.Truncate(LoadingBar.fillAmount * 100)).ToString() + "%";
-                if (LoadingBar.fillAmount >= 1.0f)
+                if (LoadingBar.fillAmount == 1.0f)
                 {
-                    yield return new WaitForSeconds(3.0f);
                     anyKeyText.text = "계속 하려면 아무키나 입력하세요.";
                     if (Input.anyKey)
+                    {
                         op.allowSceneActivation = true;
-
-                    if (op.allowSceneActivation == true)
+                        anyKeyText.text = null;
                         yield break;
+                    }
                 }
             }
         }
