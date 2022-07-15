@@ -18,6 +18,7 @@ public class Police : Npc
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
+        agent.speed = 2f;
     }
 
     void Update()

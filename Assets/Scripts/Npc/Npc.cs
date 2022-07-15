@@ -83,7 +83,7 @@ public class Npc : MonoBehaviour
         Defensive
     }
     public Npc_Personality personality = Npc_Personality.AGGESSIVE;
-
+    public RagDollSetter rds;
 
     /// <summary>
     /// For Police , Aggessive Npc
@@ -449,6 +449,7 @@ public class Npc : MonoBehaviour
         for(int i = 0; i < NpcManager.instance.npc_list.Count;i++)
         {
             NpcManager.instance.npc_list[i].GetComponent<Npc>().anim.SetTrigger(exit);
+            if(NpcManager.instance.npc_list[i].GetComponent<Npc>().state != State.FAINT)
             NpcManager.instance.npc_list[i].GetComponent<Npc>().state = State.REPORT;
         }
     }

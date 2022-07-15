@@ -9,6 +9,6 @@ public class TitleToPreparationSite : MonoBehaviour
 
     public void gotoPreparationSite()
     {
-        ScenesManager.instance.Load_Scene("PreparationSite", ScenesManager.LoadingType.DIRECT);
+        ScenesManager.Load_Scene("PreparationSite", ScenesManager.LoadingType.DIRECT);
     }
 }

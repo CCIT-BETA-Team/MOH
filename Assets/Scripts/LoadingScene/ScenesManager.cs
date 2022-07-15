@@ -31,7 +31,7 @@ public class ScenesManager : Singleton<ScenesManager>
     DIRECT
     }
 
-    public void Load_Scene(string SceneName,LoadingType type)
+    public static void Load_Scene(string SceneName,LoadingType type)
     {
       
         switch (type)
@@ -49,12 +49,12 @@ public class ScenesManager : Singleton<ScenesManager>
 
     void Start()
     {
+        RandomLoadingImage();
         StartCoroutine(LoadSceneProcess());
     }
         
     IEnumerator LoadSceneProcess()
     {
-        RandomLoadingImage();
         yield return null;
         op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;

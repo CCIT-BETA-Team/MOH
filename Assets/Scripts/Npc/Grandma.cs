@@ -789,6 +789,8 @@ public class Grandma : Npc
             this.agent.enabled = false;
             //agent.speed = report_npc_speed;
         }
+        anim.SetTrigger(exit);
+        rds.RagdollOnOff(true);
     }
     private void Awake()
     {
@@ -807,8 +809,8 @@ public class Grandma : Npc
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 
-        //if (npc_type != Npc_Type.POLICE)
-        //    Invoke("Change_State_Move", 1f);
+        if (npc_type != Npc_Type.POLICE)
+            Invoke("Change_State_Move", 1f);
 
         //this.state = State.IDLE;
         //Select_Personality();
@@ -836,7 +838,7 @@ public class Grandma : Npc
         else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
         #endregion
 
-        if (this.state != State.REPORT && this.state != State.TRACE)
+        if (this.state != State.REPORT && this.state != State.TRACE && this.state != State.FAINT)
             if (Check_Unit())
             {
                 Vector3 p_dir = player.transform.position - cam.transform.position;
@@ -916,7 +918,7 @@ public class Grandma : Npc
             state = State.FAINT;
         }
 
-        if(Input.GetKeyDown(KeyCode.K)) { anim.SetTrigger(gun_hash); }
+        if (Input.GetKeyDown(KeyCode.K)) { anim.SetTrigger(gun_hash); }
 
     }
 

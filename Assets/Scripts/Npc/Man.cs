@@ -776,7 +776,7 @@ public class Man : Npc
             state = State.IDLE;
             target_item = null;
             target_room = null;
-            npc_ghost = null;
+            npc_ghost = null; 
             opening_check = false;
             sleepy_percent = 0;
             sleepy_percent_check = sleepy_percent;
@@ -789,6 +789,9 @@ public class Man : Npc
             this.agent.enabled = false;
             //agent.speed = report_npc_speed;
         }
+        anim.SetTrigger(exit);
+        rds.RagdollOnOff(true);
+
     }
     private void Awake()
     {
@@ -836,7 +839,7 @@ public class Man : Npc
         else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
         #endregion
 
-        if (this.state != State.REPORT && this.state != State.TRACE)
+        if (this.state != State.REPORT && this.state != State.TRACE && this.state != State.FAINT)
             if (Check_Unit())
             {
                 Vector3 p_dir = player.transform.position - cam.transform.position;

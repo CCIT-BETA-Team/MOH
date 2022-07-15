@@ -285,6 +285,8 @@ MonoBehaviour:
   walkingSpeed: 3
   runningSpeed: 0
   lighted: 1
+  isJumping: 0
+  isMoving: 0
   unlock_default: 10
   unlock_tool: 0
   unlock_skill: 0
@@ -301,6 +303,7 @@ MonoBehaviour:
   rg: {fileID: 2680651238598190308}
   power: 200
   is_attack: 0
+  groundMaterial: []
   itemRG:
   - {fileID: 0}
   - {fileID: 0}
@@ -380,7 +383,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2680651238598190310}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 84ff227433b49484c9b0b4ab240c9c6a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.35
