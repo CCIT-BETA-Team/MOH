@@ -851,13 +851,6 @@ public class Woman : Npc
                     {
                         if (player.lighted == true)
                         {
-
-                            ///진행중인 애니메이션 꺼주기
-
-                            ///
-
-                            ///Percent_Initialization
-                            ///
                             current_state = State.REPORT;
 
                             Fear_Check();
@@ -913,6 +906,26 @@ public class Woman : Npc
                 }
             }
 
+        if (this.state != State.REPORT && this.state != State.TRACE && this.state != State.FAINT)
+        {
+            if (Check_Npc())
+            {
+                Vector3 n_dir = other_npc.transform.position - cam.transform.position;
+                if (Physics.Raycast(cam.transform.position, new Vector3(n_dir.x, n_dir.y + 0.5f, n_dir.z), out hit, Mathf.Infinity, layermask_for_except))
+                {
+                    Debug.DrawRay(cam.transform.position, n_dir, Color.green);
+                    n_what = hit.transform.gameObject;
+                    if (hit.transform.gameObject.layer == 7)
+                    {
+                        if (hit.transform.gameObject.GetComponent<Npc>().state == State.FAINT)
+                        {
+                            state = State.FAINT;
+                        }
+                    }
+                }
+            }
+        }
+
 
         if (faint_gauge <= 0)
         {
@@ -933,7 +946,12 @@ public class Woman : Npc
         bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
         return onScreen;
     }
-
+    public bool Check_Npc()
+    {
+        Vector3 screenPoint = cam.WorldToViewportPoint(other_npc.transform.position);
+        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        return onScreen;
+    }
 
     IEnumerator State_Gaze_Change()
     {

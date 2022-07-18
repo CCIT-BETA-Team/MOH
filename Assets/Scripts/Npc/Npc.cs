@@ -25,6 +25,8 @@ public class Npc : MonoBehaviour
     public GameObject target_item;
     public GameObject current_room;
     //
+    public GameObject other_npc;
+    //
     protected bool opening_check = false;
     protected bool state_end_check = false;
     protected bool move_check = false;// ¾ÆÁ÷ ¾È¾¸
@@ -107,6 +109,7 @@ public class Npc : MonoBehaviour
     public float fear_percent;
 
     public GameObject what;
+    public GameObject n_what;
     public Room my_room;
 
     #region

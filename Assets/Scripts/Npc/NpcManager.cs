@@ -19,6 +19,7 @@ public class NpcManager : Singleton<NpcManager>
 
     //For Test ::Jun
     public List<GameObject> npc_list = new List<GameObject>();
+    public int npc_faint_count = 0;
 
 
     [Header("Target_Room")]
@@ -58,6 +59,17 @@ public class NpcManager : Singleton<NpcManager>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P)) { Report_Police(); }
+
+        if(npc_list.Count > 0)
+        {
+            if(npc_list[0].GetComponent<Npc>().state == Npc.State.FAINT && npc_list[1].GetComponent<Npc>().state == Npc.State.FAINT)
+            {
+                if(!police_report)
+                {
+                    Report_Police();
+                }
+            }
+        }
     }
 
     public Transform request() { return this.transform; }
@@ -91,8 +103,17 @@ public class NpcManager : Singleton<NpcManager>
             npc.GetComponent<Npc>().sleepy_percent = 99.9f;
             npc_list.Add(npc);
             npc.GetComponent<Npc>().my_room = bed_rooms[i];
-            if(i == 0) { npc.GetComponent<Npc>().personality = Npc.Npc_Personality.AGGESSIVE; }
-            else if(i == 1) { npc.GetComponent<Npc>().personality = Npc.Npc_Personality.Defensive; }
+            if(i == 0)
+            {
+                npc.GetComponent<Npc>().personality = Npc.Npc_Personality.AGGESSIVE;
+
+            }
+            else if(i == 1)
+            {
+                npc.GetComponent<Npc>().personality = Npc.Npc_Personality.Defensive;
+                npc_list[0].GetComponent<Npc>().other_npc = npc;
+                npc.GetComponent<Npc>().other_npc = npc_list[0];
+            }
 
             //npc.GetComponent<Npc>().npc_room = npc_room();
 

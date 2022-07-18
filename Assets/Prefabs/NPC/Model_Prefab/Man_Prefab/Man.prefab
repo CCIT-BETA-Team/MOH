@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7460329977687555604}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 266530164}
   - component: {fileID: 266530163}
   - component: {fileID: 266530162}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2700132022421363468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2804137586195974430}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightToe_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 385858154413928838}
   - component: {fileID: 266530149}
   - component: {fileID: 266530141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5883740272730804210}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2003292141490338130}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4791347309915136890}
   - component: {fileID: 3147944149100006722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ch01_Shirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1302708930056297153}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 266530159}
   - component: {fileID: 266530158}
   - component: {fileID: 266530156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 620390904416761159}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 542898780951478895}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8546812162986778610}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3351220560976239207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftToe_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8660199581898035018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6554085276074578710}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1076486744386463791}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,7 +791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1464084662661872235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,7 +821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7448231347930844014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9177509145539060618}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,7 +883,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2888746851195294328}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8734536685787174524}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1621677808441174007}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -975,7 +975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8044575066820367025}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 266530142}
   - component: {fileID: 266530137}
   - component: {fileID: 266530140}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1116,7 +1116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5808372503676819292}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1148,7 +1148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6034561245201610678}
   - component: {fileID: 5200618794109282551}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ch01_Pants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1243,7 +1243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6752381576289051768}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,7 +1280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5203374649888392012}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1311,7 +1311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 689971951695505261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1344,7 +1344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 289267867757355267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1374,7 +1374,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5356355194894491655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1405,7 +1405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2384921064820285210}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1436,7 +1436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4935910780407394178}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1475,7 +1475,7 @@ GameObject:
   - component: {fileID: 5194978675036500330}
   - component: {fileID: 5194978675036500325}
   - component: {fileID: 8186815714112159128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Man
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1774,7 +1774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4677937177196812641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1805,7 +1805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2257993854310721615}
   - component: {fileID: 9159320789232646842}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ch01_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1948,7 +1948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3253474139257946428}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1982,7 +1982,7 @@ GameObject:
   - component: {fileID: 5194978675410668664}
   - component: {fileID: 5194978675410668665}
   - component: {fileID: 5194978675410668670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Npc_Eyes for Scene Check (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2114,7 +2114,7 @@ GameObject:
   - component: {fileID: 5194978675573516801}
   - component: {fileID: 5194978675573516806}
   - component: {fileID: 5194978675573516807}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Npc_Eyes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2243,7 +2243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6086503071412711999}
   - component: {fileID: 956129571598050996}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ch01_Sneakers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2333,7 +2333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3104634204107524378}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2364,7 +2364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1949110865097072365}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2395,7 +2395,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6867370631677852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2425,7 +2425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2017507331758906322}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2455,7 +2455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3125353403927603245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2489,7 +2489,7 @@ GameObject:
   - component: {fileID: 266530139}
   - component: {fileID: 266530138}
   - component: {fileID: 266530136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2596,7 +2596,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4378480077655883585}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2627,7 +2627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4181894141981828238}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2658,7 +2658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6927096586262047361}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2689,7 +2689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4424719317961501251}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2720,7 +2720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4016070358512702363}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2754,7 +2754,7 @@ GameObject:
   - component: {fileID: 266530152}
   - component: {fileID: 266530151}
   - component: {fileID: 266530150}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: mixamorig12:Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2863,7 +2863,7 @@ GameObject:
   - component: {fileID: 266530148}
   - component: {fileID: 266530144}
   - component: {fileID: 266530147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2970,7 +2970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7895272725532425736}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3002,7 +3002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7676409247425243207}
   - component: {fileID: 7537794135566015287}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ch01_Eyelashes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3090,7 +3090,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4689161767476768975}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3124,7 +3124,7 @@ GameObject:
   - component: {fileID: 266530167}
   - component: {fileID: 266530166}
   - component: {fileID: 266530165}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3231,7 +3231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6780313734644246136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3262,7 +3262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7527209193929789662}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3293,7 +3293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9167663743198545134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3323,7 +3323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563988508781894793}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3354,7 +3354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6140387870176186027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3388,7 +3388,7 @@ GameObject:
   - component: {fileID: 266530161}
   - component: {fileID: 266530157}
   - component: {fileID: 266530160}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3495,7 +3495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8539264020935916149}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3526,7 +3526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5734550554591047189}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3560,7 +3560,7 @@ GameObject:
   - component: {fileID: 266530155}
   - component: {fileID: 266530154}
   - component: {fileID: 266530153}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3666,7 +3666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6723114292084679008}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3697,7 +3697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1774472256807334847}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:HeadTop_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3727,7 +3727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6542296216671184045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:RightHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3758,7 +3758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3402155737567755954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3792,7 +3792,7 @@ GameObject:
   - component: {fileID: 266530146}
   - component: {fileID: 266530145}
   - component: {fileID: 266530143}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3899,7 +3899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1265110107779004578}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mixamorig12:LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3932,13 +3932,65 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6752381576289051768}
     m_Modifications:
+    - target: {fileID: 4715285668918526707, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715332552502642369, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4715412896945543357, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
       propertyPath: m_Name
       value: usp45_prefab (5)
       objectReference: {fileID: 0}
     - target: {fileID: 4715412896945543357, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715412896945543357, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715527465395993543, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715585094923461541, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715682117356029539, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715893467836560909, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716071902962789849, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716097995632494285, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4716457000362958962, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717410219119926063, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717451073821309631, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717461694113865189, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4718194931910969689, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
       propertyPath: m_RootOrder
@@ -3984,6 +4036,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4830107370734944725, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830107371963156264, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830107372656356243, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8601010564264002281, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4288fbbe2d6c7d045a9551429afcab6b, type: 3}
 --- !u!1 &8028823992255272867 stripped
@@ -4006,6 +4074,10 @@ PrefabInstance:
     - target: {fileID: 2936142714183354369, guid: 9f6d3d3e378af674f9a29fd4676ba458, type: 3}
       propertyPath: m_Name
       value: Bat_Base01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936142714183354369, guid: 9f6d3d3e378af674f9a29fd4676ba458, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2936142714183354369, guid: 9f6d3d3e378af674f9a29fd4676ba458, type: 3}
       propertyPath: m_IsActive
