@@ -15,7 +15,6 @@ public class ScenesManager : Singleton<ScenesManager>
     public string[] str;
     AsyncOperation op;
 
-
     #region For Loading Image
     public Sprite[] pictures;
     public Image loadingimage;
@@ -23,7 +22,6 @@ public class ScenesManager : Singleton<ScenesManager>
 
     [SerializeField]
     Image LoadingBar;
-
 
     public enum LoadingType
     {
@@ -33,7 +31,6 @@ public class ScenesManager : Singleton<ScenesManager>
 
     public static void Load_Scene(string SceneName,LoadingType type)
     {
-      
         switch (type)
         {
             case (LoadingType)0:
@@ -44,33 +41,34 @@ public class ScenesManager : Singleton<ScenesManager>
                 SceneManager.LoadScene(SceneName);
                 break;
         }
-
     }
 
     void Start()
     {
         RandomLoadingImage();
         StartCoroutine(LoadSceneProcess());
+        missionText.text = GameManager.instance.select_mission.mission_name;
+        int index = UnityEngine.Random.Range(0, str.Length);
+        tipText.text = str[index];
     }
-        
+
     IEnumerator LoadSceneProcess()
     {
         yield return null;
         op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
-        missionText.text = GameManager.instance.select_mission.mission_name;
-        int index = UnityEngine.Random.Range(0, str.Length);
-        tipText.text = str[index];
         float timer = 0f;
-        while(!op.isDone)
+        while (!op.isDone)
         {
             yield return null;
             if (op.progress < 0.9f)
             {
-                LoadingBar.fillAmount = op.progress;
+                timer += Time.deltaTime;
+                LoadingBar.fillAmount = Mathf.Lerp(0f, 0.9f, timer);
                 loadingText.text = (Math.Truncate(LoadingBar.fillAmount * 100)).ToString() + "%";
                 if (LoadingBar.fillAmount >= op.progress) { timer = 0f; }
             }
+
             else
             {
                 timer += Time.deltaTime;
