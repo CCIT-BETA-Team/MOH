@@ -101,6 +101,7 @@ public class Map : MonoBehaviour
         Vector3 rotation = target_spot[n].spawn_possible_spot.spawn_rotation;
         GameObject target_item = Instantiate(gm.select_mission.goal_item, target_spot[n].spawn_possible_spot.transform.position, Quaternion.Euler(rotation.x, rotation.y, rotation.z));
         target_item.transform.name = gm.select_mission.goal_item.name;
+        target_item.GetComponent<Item_Info>().parameter_type = Item.parameterType.NONE;
         target_spot[n].spawn_possible_spot.item = gm.select_mission.goal;
         target_spot[n].spawn_possible_spot.spawned_item = true;
         gm.select_mission.goal.parent_room = target_spot[n].spawn_possible_room;

@@ -14,5 +14,6 @@ public class PlayerLaptop : Item
         PopupManager.instance.current_popup.SetActive(false);
         PopupManager.instance.ip_.SetActive(false);
         GameManager.instance.player_comp.freeze = true;
+        PopupManager.instance.cross_head.enabled = false;
     }
 }

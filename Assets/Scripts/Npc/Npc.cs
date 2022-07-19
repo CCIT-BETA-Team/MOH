@@ -11,7 +11,10 @@ public class Npc : MonoBehaviour
     //
     public Animator anim;
     //
-   
+    [Header("Sound")]
+    public AudioSource sound;
+    public AudioClip[] Sounds;
+    //    
     public GameObject player_obj;
     public Player player;
     public GameObject ghost;
@@ -41,7 +44,7 @@ public class Npc : MonoBehaviour
     //
 
     public float attack_range;//임의 값 설정
-    public AudioSource sound;
+    
     //
     protected float npc_speed;
     protected float report_npc_speed = 1.5f;

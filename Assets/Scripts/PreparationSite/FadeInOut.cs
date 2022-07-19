@@ -55,5 +55,6 @@ public class FadeInOut : MonoBehaviour
         PopupManager.instance.ip_.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         GameManager.instance.player_comp.freeze = false;
+        PopupManager.instance.cross_head.enabled = true;
     }
 }

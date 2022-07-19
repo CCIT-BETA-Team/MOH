@@ -39,6 +39,7 @@ public class Player : p_Player
     [HideInInspector] public int swap_hash_1 = Animator.StringToHash("Swap_1");
     [HideInInspector] public int swap_hash_2 = Animator.StringToHash("Swap_2");
     [HideInInspector] public int swap_hash_3 = Animator.StringToHash("Swap_3");
+    [HideInInspector] public int swing_hash = Animator.StringToHash("Player_Hit");
 
     void Start()
     {
@@ -51,6 +52,8 @@ public class Player : p_Player
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1)) { Debug.Log(money); }
+
+        if(Input.GetKeyDown(KeyCode.K)) { ani.SetTrigger(swing_hash); }
 
         switch (GameManager.Platform)
         {

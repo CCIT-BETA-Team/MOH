@@ -29,7 +29,7 @@ public class Item_Info : Item
 
     void OnTriggerEnter(Collider col)
     {
-        if (player.is_attack && col.gameObject.layer == 12)
+        if (player.is_attack && col.gameObject.layer == 7)
         {
             Npc npc = col.transform.root.GetComponent<Npc>();
             npc.faint_gauge -= damage;

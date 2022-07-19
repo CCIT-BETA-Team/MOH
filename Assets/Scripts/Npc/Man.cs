@@ -917,7 +917,7 @@ public class Man : Npc
                     n_what = hit.transform.gameObject;
                     if (hit.transform.gameObject.layer == 7)
                     {
-                        if (hit.transform.gameObject.GetComponent<Npc>().state == State.FAINT)
+                        if (hit.transform.root.gameObject.GetComponent<Npc>().state == State.FAINT)
                         {
                             state = State.FAINT;
                         }
