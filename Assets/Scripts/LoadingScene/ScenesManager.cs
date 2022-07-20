@@ -58,23 +58,23 @@ public class ScenesManager : Singleton<ScenesManager>
         op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         float timer = 0f;
+        float _timer = 0f;
         while (!op.isDone)
         {
             yield return null;
-            if (op.progress < 0.9f)
+            if (op.progress < 0.9f || LoadingBar.fillAmount < 0.9f)
             {
-                timer += Time.deltaTime;
-                LoadingBar.fillAmount = Mathf.Lerp(0f, 0.9f, timer);
+                _timer += Time.deltaTime * 0.7f;
+                LoadingBar.fillAmount = Mathf.Lerp(0.001f, 0.9f, _timer);
                 loadingText.text = (Math.Truncate(LoadingBar.fillAmount * 100)).ToString() + "%";
-                if (LoadingBar.fillAmount >= op.progress) { timer = 0f; }
             }
 
             else
             {
-                timer += Time.deltaTime;
-                LoadingBar.fillAmount = Mathf.Lerp(LoadingBar.fillAmount, 1.0f, timer);
+                timer += Time.deltaTime * 0.3f;
+                LoadingBar.fillAmount = Mathf.Lerp(0.9f, 1.0f, timer);
                 loadingText.text = (Math.Truncate(LoadingBar.fillAmount * 100)).ToString() + "%";
-                if (LoadingBar.fillAmount == 1.0f)
+                if (LoadingBar.fillAmount >= 1.0f)
                 {
                     anyKeyText.text = "계속 하려면 아무키나 입력하세요.";
                     if (Input.anyKey)
