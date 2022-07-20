@@ -42,7 +42,7 @@ public class Mission : ScriptableObject
         m.coment.text = coment;
         m.scenario.text = scenario;
         m.main_mission.text = main_mission;
-        //m.sub_mission.text = sub_mission[0];
+        m.sub_mission.text = sub_mission[0];
     }
     
     public void InfoCard_Update(InfoCard ic, MissionCard m)
