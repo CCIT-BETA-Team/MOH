@@ -61,6 +61,12 @@ public class Man : Npc
                     Invoke("For_Close_Door_Delay", 1f);
                 }
             }
+            else if(random_close_door == 1)
+            {
+                Close_Door_Save = path_finding[0].transform.parent.gameObject;
+                Close_Door_Save.GetComponent<DoorScript>().handle[0].GetComponent<Door>().isLock = false;
+                Close_Door_Save.GetComponent<DoorScript>().handle[1].GetComponent<Door>().isLock = false;
+            }
             //
             path_finding.RemoveAt(0);
             npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
