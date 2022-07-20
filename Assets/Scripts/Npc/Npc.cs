@@ -505,4 +505,15 @@ public class Npc : MonoBehaviour
     {
         if (cudgel.activeSelf == true) { cudgel.SetActive(false); }
     }
+    public void Walk_Sound()
+    {
+        sound.clip = Sounds[0];
+        sound.PlayOneShot(sound.clip);
+    }
+
+    public void Shot_Sound()
+    {
+        sound.clip = Sounds[1];
+        sound.PlayOneShot(sound.clip);
+    }
 }
