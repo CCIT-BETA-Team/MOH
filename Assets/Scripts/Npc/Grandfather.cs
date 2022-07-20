@@ -921,7 +921,7 @@ public class Grandfather : Npc
                 {
                     Debug.DrawRay(cam.transform.position, n_dir, Color.green);
                     n_what = hit.transform.gameObject;
-                    if (hit.transform.gameObject.layer == 7)
+                    if (hit.transform.root.gameObject.layer == 7)
                     {
                         if (hit.transform.root.gameObject.GetComponent<Npc>().state == State.FAINT)
                         {

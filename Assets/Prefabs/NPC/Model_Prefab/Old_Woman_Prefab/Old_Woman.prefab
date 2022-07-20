@@ -1917,6 +1917,10 @@ MonoBehaviour:
   npc_item: []
   path_finding: []
   anim: {fileID: -7791474976208023773}
+  sound: {fileID: -7486472040764696580}
+  Sounds:
+  - {fileID: 8300000, guid: 4d11813f5983ce047873c94858e6a6c1, type: 3}
+  - {fileID: 8300000, guid: 4c1b2ce3cbfe3fc4081e1554fd2bd469, type: 3}
   player_obj: {fileID: 0}
   player: {fileID: 0}
   ghost: {fileID: 3263810280660732973, guid: 4499fdd9621cc0843969962a4e081462, type: 3}
@@ -1924,10 +1928,10 @@ MonoBehaviour:
   target_room: {fileID: 0}
   target_item: {fileID: 0}
   current_room: {fileID: 0}
+  other_npc: {fileID: 0}
   faint_gauge: 100
   distance_rest: 0
   attack_range: 0
-  sound: {fileID: 0}
   faint_time: 0
   npc_type: 0
   state: 0
@@ -1943,6 +1947,7 @@ MonoBehaviour:
   thirst_percent: 0
   fear_percent: 0
   what: {fileID: 0}
+  n_what: {fileID: 0}
   my_room: {fileID: 0}
   next_state: 10
   bed_room_1: {fileID: 0}
