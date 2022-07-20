@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: ' '
 --- !u!222 &9357203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -822,8 +822,8 @@ MonoBehaviour:
   anyKeyText: {fileID: 1573759296}
   str:
   - "\uBB3C\uAC74\uC744 \uB358\uC838 \uC0AC\uB78C\uB4E4\uC744 \uB9DE\uD788\uC138\uC694!
-    \uC798\uB9CC \uB9DE\uCD98\uB2E4\uBA74 \uC870\uC6A9\uD788 \uC81C\uC555 \uD560
-    \uC218 \uC788\uC744\uC9C0\uB3C4...?"
+    \uC798\uB9CC\uB9DE\uCD98\uB2E4\uBA74 \uC870\uC6A9\uD788 \uC81C\uC555 \uD560 \uC218
+    \uC788\uC744\uC9C0\uB3C4..?"
   - "\uBE44\uC2F8\uBCF4\uC774\uB294 \uBB3C\uAC74\uB4E4\uC740 \uC81C\uC790\uB9AC\uC5D0
     \uB450\uC138\uC694. \uB208\uC370\uBBF8\uAC00 \uC88B\uC740 \uC0AC\uB78C\uB4E4\uC740
     \uC0AC\uB77C\uC9C4 \uAC83\uC744 \uB208\uCE58\uCC48\uB2F5\uB2C8\uB2E4"
