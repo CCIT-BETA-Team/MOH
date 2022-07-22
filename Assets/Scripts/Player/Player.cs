@@ -12,7 +12,7 @@ public class Player : p_Player
     public Item emptyhand;
     public Rigidbody rg;
     public float power;
-     
+    public GameObject light_obj; 
     [Space]
     [Header("플레이어 아이템 관련")]
     bool isHoldingItem;
@@ -53,8 +53,21 @@ public class Player : p_Player
     {
         if (Input.GetKeyDown(KeyCode.Keypad1)) { Debug.Log(money); }
 
-        if(Input.GetKeyDown(KeyCode.K)) { ani.SetTrigger(swing_hash); }
-
+        //Hit
+        //if(Input.GetMouseButtonDown(0)) { ani.SetTrigger(swing_hash); }
+        //Light
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            if (light_obj.activeSelf == true)
+            {
+                light_obj.SetActive(false);
+            }
+            else if(light_obj.activeSelf == false)
+            {
+                light_obj.SetActive(true);
+            }
+        }
+        
         switch (GameManager.Platform)
         {
             case 0: //오큘러스
@@ -196,7 +209,7 @@ public class Player : p_Player
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F)) { ani.SetTrigger("FXXk"); }
+        //if (Input.GetKeyDown(KeyCode.F)) { ani.SetTrigger("FXXk"); }
     }
 
     private void OnCollisionEnter(Collision collision)

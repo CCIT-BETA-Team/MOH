@@ -8,7 +8,7 @@ public class Item_Info : Item
 
     public override void interaction()
     {
-        player.ani.SetTrigger(player.attack_hash);
+        player.ani.SetTrigger(player.swing_hash);
     }
 
     public bool interact_obj = false;
