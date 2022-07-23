@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
 #endif
 
     public GameObject Player;
+    public Player player_comp;
     public bool b_selet_mission = false;
     public Mission select_mission;
 
@@ -23,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     {
         //게임 준비단계 (매니저들한테서 이것저것 단계별설정 여기서 ㄱ)
 
-        //NpcManager.instance.Spawn_Npc(); //NPC 스폰
+        /*NpcManager.instance.Spawn_Npc();*/ //NPC 스폰
     }
 
     void Update()

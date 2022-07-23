@@ -164,9 +164,10 @@ GameObject:
   m_Component:
   - component: {fileID: 418428}
   - component: {fileID: 11153616}
-  - component: {fileID: 6510220}
   - component: {fileID: 11488420}
   - component: {fileID: 438603423}
+  - component: {fileID: 584473313}
+  - component: {fileID: 584473314}
   m_Layer: 0
   m_Name: Garage_door
   m_TagString: Untagged
@@ -207,19 +208,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!65 &6510220
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136820}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.3599997, y: 2.097654, z: 5}
-  m_Center: {x: 0, y: 1.0388271, z: 0}
 --- !u!114 &11488420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +249,7 @@ MonoBehaviour:
     enabled: 0
     isUnlock: 0
     LockPrefab: {fileID: 0}
+  Opened: 0
 --- !u!114 &438603423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,8 +262,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a752842ecb9c6478e9d4377d19d3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   id: 0
+  item_name: 
   itemtype: 2
+  item_size: 0
+  parameter_type: 0
   price: 0
   weight: 0
   bIsMoving: 0
@@ -282,9 +275,44 @@ MonoBehaviour:
   bIsGrab: 0
   GrabRotation: {x: 0, y: 0, z: 0}
   bIsLightOnPlayer: 0
+  item_image: {fileID: 0}
+  parent_room: {fileID: 0}
+  enter_spot: {fileID: 0}
   ani: {fileID: 0}
   animation: {fileID: 0}
   object_remotetype: 1
+--- !u!208 &584473313
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136820}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.25, y: 1, z: 0.05}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &584473314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136820}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 2.390913, y: 1.6362433, z: 0.057606697}
+  m_Center: {x: -0.0015325546, y: 1.3181217, z: 0.035627842}
+  m_Area: 3
+  m_AffectedAgents: ffffffff
 --- !u!1 &139232
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 470106}
   - component: {fileID: 13717318}
+  - component: {fileID: 1292683147}
   m_Layer: 0
   m_Name: Garage_Door_mesh
   m_TagString: Untagged
@@ -466,6 +495,22 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 1.2305648, z: -1.3463305}
     m_Extent: {x: 1.2640353, y: 1.2343531, z: 1.5104173}
   m_DirtyAABB: 0
+--- !u!208 &1292683147
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152810}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.264, y: 1.2340001, z: 1.5100001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -3.565, y: 1.195, z: -6.4810004}
+  m_TimeToStationary: 0.5
 --- !u!1 &186098
 GameObject:
   m_ObjectHideFlags: 0

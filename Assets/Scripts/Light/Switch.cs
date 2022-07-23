@@ -17,7 +17,7 @@ public class Switch : Item
 
     // Update is called once per frame
 
-    private void Awake()
+    private void Start()
     {
         Lightmanager.instance.Resist_Light(this);
     }

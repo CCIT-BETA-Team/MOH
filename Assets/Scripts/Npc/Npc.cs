@@ -11,19 +11,24 @@ public class Npc : MonoBehaviour
     //
     public Animator anim;
     //
-   
+    [Header("Sound")]
+    public AudioSource sound;
+    public AudioClip[] Sounds;
+    //    
     public GameObject player_obj;
     public Player player;
     public GameObject ghost;
     public GameObject npc_ghost;
     protected GameObject Close_Door_Save;
     //
-    protected int layermask_for_except = (1 << 9) | (1 << 10) | (1 << 15);
+    protected int layermask_for_except = (1 << 9) | (1 << 10) | (1 << 15) | (1 << 17);
     
     //
     public GameObject target_room;
     public GameObject target_item;
     public GameObject current_room;
+    //
+    public GameObject other_npc;
     //
     protected bool opening_check = false;
     protected bool state_end_check = false;
@@ -35,9 +40,11 @@ public class Npc : MonoBehaviour
     //npc에 타격에 따른 감소값
     public float faint_gauge = 100;
     //
+    public float distance_rest = 0;
+    //
 
     public float attack_range;//임의 값 설정
-    public AudioSource sound;
+    
     //
     protected float npc_speed;
     protected float report_npc_speed = 1.5f;
@@ -81,7 +88,7 @@ public class Npc : MonoBehaviour
         Defensive
     }
     public Npc_Personality personality = Npc_Personality.AGGESSIVE;
-
+    public RagDollSetter rds;
 
     /// <summary>
     /// For Police , Aggessive Npc
@@ -104,11 +111,21 @@ public class Npc : MonoBehaviour
     [Range(0, 100)]
     public float fear_percent;
 
+    public GameObject what;
+    public GameObject n_what;
+    public Room my_room;
+
     #region
     protected readonly int moveing_hash = Animator.StringToHash("agent_move_check");
     protected readonly int gun_hash = Animator.StringToHash("agent_attack_check_gun");
     protected readonly int punch_hash = Animator.StringToHash("agent_attack_check_punch");
     protected readonly int cudgel_hash = Animator.StringToHash("agent_attack_check_cudgel");
+    protected readonly int sleep_hash = Animator.StringToHash("sleep_check");
+    protected readonly int pee_hash = Animator.StringToHash("pee_check");
+    protected readonly int pee_end_hash = Animator.StringToHash("pee_end_check");
+    protected readonly int thirst_hash = Animator.StringToHash("thirst_check");
+    protected readonly int call_police_hash = Animator.StringToHash("call_police_check");
+    protected readonly int exit = Animator.StringToHash("Exit");
 
     #endregion
 
@@ -214,6 +231,9 @@ public class Npc : MonoBehaviour
     protected State next_state = State.NULL;
     protected State current_state = State.NULL;
 
+    public Room bed_room_1;
+    public Room bed_room_2;
+
     public float sleepy_percent_check
     {
         get { return sleepy_percent; }
@@ -224,10 +244,21 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     sleepy_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.SLEEP;
                     Re_Set_Room:
-                    target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
+                    target_room = my_room.gameObject;
+                    //target_room = NpcManager.instance.Bed_Room[Random.Range(0, NpcManager.instance.Bed_Room.Count)].gameObject;
+                    //if (personality == Npc_Personality.AGGESSIVE)
+                    //{
+                    //    target_room = bed_room_1.gameObject;
+                    //}
+                    //else if (personality == Npc_Personality.Defensive)
+                    //{
+                    //    target_room = bed_room_2.gameObject;
+                    //}
                     target_item = target_room.GetComponent<Room>().Decide_Target_Item();
 
                     if (target_item != null)
@@ -260,7 +291,9 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     pee_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.PEE;
 
                     Re_Set_Room:
@@ -296,7 +329,9 @@ public class Npc : MonoBehaviour
                 if (this.state == State.IDLE || this.state == State.Move)
                 {
                     thirst_percent = 0;
+                    Destroy(npc_ghost);
                     State_Initizlize();
+                    Pathfinding_List_Initialization();
                     current_state = State.THIRST;
 
                     Re_Set_Room:
@@ -341,10 +376,10 @@ public class Npc : MonoBehaviour
             case Npc_Type.WOMAN:
                 break;
         }
-        Select_Personality();
+        //Select_Personality();
 
-        if(npc_type != Npc_Type.POLICE)
-        Invoke("Change_State_Move", 1f);
+        //if(npc_type != Npc_Type.POLICE)
+        //Invoke("Change_State_Move", 1f);
 
         if(npc_type == Npc_Type.POLICE) { attack_type = Attack_Type.GUN; }
         
@@ -376,6 +411,7 @@ public class Npc : MonoBehaviour
     {
         state = State.Move;
         this.agent.enabled = true;
+        if(ghost != null)
         npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, this);
         //target_room = npc_ghost.GetComponent<Ghost>().target_room;
         target_room = npc_ghost.GetComponent<Ghost>().target_room;
@@ -394,16 +430,16 @@ public class Npc : MonoBehaviour
         if (a == 0)
         {
             this.personality = Npc_Personality.AGGESSIVE;
-            int select_attack_type = Random.Range(0, 3);
+            int select_attack_type = Random.Range(0, 2);
             switch(select_attack_type)
             {
                 case 0:
                     this.attack_type = Attack_Type.GUN;
                     break;
-                case 1:
+                case 2:
                     this.attack_type = Attack_Type.PUNCH;
                     break;
-                case 2:
+                case 1:
                     this.attack_type = Attack_Type.CUDGEL;
                     break;
             }
@@ -418,9 +454,66 @@ public class Npc : MonoBehaviour
 
         for(int i = 0; i < NpcManager.instance.npc_list.Count;i++)
         {
+            NpcManager.instance.npc_list[i].GetComponent<Npc>().anim.SetTrigger(exit);
+            if(NpcManager.instance.npc_list[i].GetComponent<Npc>().state != State.FAINT)
             NpcManager.instance.npc_list[i].GetComponent<Npc>().state = State.REPORT;
         }
     }
 
+    public void anim_event_state_check()
+    {
+        anim.ResetTrigger("sleep_hash");
+        anim.ResetTrigger("pee_hash");
+        anim.ResetTrigger("thirst_hash");
+        state_end_check = true;
+    }
 
+    //For_State_End_Check
+    protected bool once = false;
+    public void state_end_check_for_invoke()
+    {
+        anim.SetTrigger(pee_end_hash);
+        state_end_check = true;
+    }
+    
+    public void State_end_check_true()
+    {
+        state_end_check = true;
+    }
+
+    //For_Gun
+    public void Set_Active_True_For_Gun()
+    {
+        gun.SetActive(true);
+    }
+    public void Set_Active_False_For_Gun()
+    {
+        if(gun.activeSelf == true) { gun.SetActive(false); }
+    }
+
+    public void Gun_Interact()
+    {
+        gun.GetComponent<Gun_Effect>().Gun_Light_On();
+    }
+
+    public void Set_Active_True_For_Bat()
+    {
+        cudgel.SetActive(true);
+    }
+
+    public void Set_Active_False_For_Bat()
+    {
+        if (cudgel.activeSelf == true) { cudgel.SetActive(false); }
+    }
+    public void Walk_Sound()
+    {
+        sound.clip = Sounds[0];
+        sound.PlayOneShot(sound.clip);
+    }
+
+    public void Shot_Sound()
+    {
+        sound.clip = Sounds[1];
+        sound.PlayOneShot(sound.clip);
+    }
 }

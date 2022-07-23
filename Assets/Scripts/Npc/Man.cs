@@ -44,38 +44,44 @@ public class Man : Npc
         }
     }
     //
-    
+
     ///////////////////////
-    
+
     void Reback_Velocity()
     {
         if (state == current_state && npc_ghost != null && npc_ghost.GetComponent<Ghost>().pathfinding_list.Count > 0)
         {
             //
-            int random_close_door = Random.Range(0,2);
-        if(random_close_door == 0) 
-        {
-            if (path_finding[0].transform.gameObject.layer != 10)
+            int random_close_door = Random.Range(0, 2);
+            if (random_close_door == 0)
+            {
+                if (path_finding[0].transform.gameObject.layer != 10)
+                {
+                    Close_Door_Save = path_finding[0].transform.parent.gameObject;
+                    Invoke("For_Close_Door_Delay", 1f);
+                }
+            }
+            else if(random_close_door == 1)
             {
                 Close_Door_Save = path_finding[0].transform.parent.gameObject;
-                Invoke("For_Close_Door_Delay", 1f);
+                Close_Door_Save.GetComponent<DoorScript>().handle[0].GetComponent<Door>().isLock = false;
+                Close_Door_Save.GetComponent<DoorScript>().handle[1].GetComponent<Door>().isLock = false;
             }
-        }
-        //
+            //
             path_finding.RemoveAt(0);
             npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
         }
         //
         this.agent.enabled = true;
-        this.agent.isStopped = false;
+        //this.agent.isStopped = false;
         opening_check = false;
     }
     void For_Close_Door_Delay() // invoke
     {
-        if(Close_Door_Save != null)
+        if (Close_Door_Save != null)
         {
-            Close_Door_Save.GetComponent<DoorScript>().CloseDoor(); 
-            Close_Door_Save = null; 
+            Close_Door_Save.GetComponent<DoorScript>().CloseDoor();
+            Close_Door_Save = null;
         }
     }
     private void Move()
@@ -243,16 +249,25 @@ public class Man : Npc
 
                         transform.rotation = Quaternion.LookRotation(dir).normalized;
                     }
-                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 0.1f) // agent.remainingDistance 
                     {
                         this.agent.enabled = false;
                         //상호작용 애니메이션
-
-
                         if (current_room == target_room)
                         {
-                            //상호작용 애니메이션
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            anim.SetTrigger(sleep_hash);
+                        }
+
+                        if (path_finding[0].gameObject.name == "BED_ROOM_1")
+                        {
+                            transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
+                            Vector3 look = Vector3.zero;
+                            transform.rotation = Quaternion.LookRotation(look);
+                        }
+                        if (path_finding[0].gameObject.name == "BED_ROOM_2")
+                        {
+                            transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
+                            transform.rotation = Quaternion.Euler(0, 90, 0);
                         }
                     }
                 }
@@ -260,9 +275,9 @@ public class Man : Npc
         }
         //행동 끝난 경우
         if (state_end_check)
-        { 
+        {
             Pathfinding_List_Initialization();
-            if(next_state == State.NULL)
+            if (next_state == State.NULL)
             {
                 State_Initizlize();
                 Change_State_Move();
@@ -270,7 +285,7 @@ public class Man : Npc
 
                 sleepy_percent = 0;
             }
-            else if(next_state != State.NULL)
+            else if (next_state != State.NULL)
             {
                 state = next_state;
                 //next_state = null;
@@ -281,7 +296,7 @@ public class Man : Npc
             }
             state_end_check = false;
         }
-        
+
     }
     private void Pee()
     {
@@ -335,10 +350,10 @@ public class Man : Npc
                         if (Vector3.SqrMagnitude(dis) <= 0.5f)
                         {
                             int random_close_door = Random.Range(0, 2);
-                            if (random_close_door == 0) 
+                            if (random_close_door == 0)
                             {
                                 Close_Door_Save = path_finding[0].transform.parent.gameObject; //문 기억
-                                Invoke("For_Close_Door_Delay", 1f); 
+                                Invoke("For_Close_Door_Delay", 1f);
                             }
 
                             path_finding.RemoveAt(0);
@@ -353,17 +368,36 @@ public class Man : Npc
                     if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
                     {
                         transform.rotation = Quaternion.LookRotation(dir).normalized;
+                        //transform.rotation = target_item.transform.rotation;
                     }
-                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 0.1f) // agent.remainingDistance 
                     {
                         this.agent.enabled = false;
-                        //상호작용 애니메이션
-
+                        transform.rotation = target_item.transform.rotation;
 
                         if (current_room == target_room)
                         {
                             //상호작용 애니메이션
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            if (once == false)
+                            {
+                                anim.SetTrigger(pee_hash);
+                                Invoke("state_end_check_for_invoke", 5f);
+                                once = true;
+                            }
+                        }
+
+                        //상호작용 애니메이션
+                        if (path_finding[0].gameObject.name == "BATH_ROOM_1")
+                        {
+                            this.transform.position = new Vector3(-22.6f, 3.361f, -21.83f);
+                        }
+                        if (path_finding[0].gameObject.name == "BATH_ROOM_2")
+                        {
+                            this.transform.position = new Vector3(-16.89f, 3.361f, -17.84f);
+                        }
+                        if (path_finding[0].gameObject.name == "BATH_ROOM_3")
+                        {
+                            this.transform.position = new Vector3(-16.5f, 0.7f, -18.8f);
                         }
                     }
                 }
@@ -392,6 +426,7 @@ public class Man : Npc
                 pee_percent = 0;
             }
             state_end_check = false;
+            once = false;
         }
     }
     private void Thirst()
@@ -475,7 +510,7 @@ public class Man : Npc
                             if (current_room == target_room)
                             {
                                 //상호작용 애니메이션
-                                state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                                anim.SetTrigger(thirst_hash);
                             }
                         }
                     }
@@ -490,7 +525,7 @@ public class Man : Npc
             {
                 State_Initizlize();
                 Change_State_Move();
-                
+
                 state_end_check = false;
                 thirst_percent = 0;
             }
@@ -533,18 +568,20 @@ public class Man : Npc
         }
 
 
-        if(personality == Npc_Personality.AGGESSIVE)
+        if (personality == Npc_Personality.AGGESSIVE)
         {
             state = State.TRACE;
-            
+
             first_report_check = true;
         }
-        else if(personality == Npc_Personality.Defensive)
+        else if (personality == Npc_Personality.Defensive)
         {
             if (!first_report_check)
             {
+                state = State.REPORT;
                 int report_obj_count = NpcManager.instance.phone_items.Count;
                 target_item = NpcManager.instance.phone_items[Random.Range(0, report_obj_count)].gameObject;
+                target_room = target_item.GetComponent<Item_Info>().parent_room.gameObject;
                 npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, this);
             }
             first_report_check = true;
@@ -617,17 +654,17 @@ public class Man : Npc
                             this.agent.enabled = false;
                             //상호작용 애니메이션
 
-
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            anim.SetTrigger(call_police_hash);
+                            //state_end_check = true;//애니메이션 끝나면 true  ㄱ
                         }
                     }
                 }
             }
-            else if(state_end_check)
+            else if (state_end_check)
             {
                 //경찰 호출
-                if(!NpcManager.instance.police_report)
-                NpcManager.instance.Report_Police();
+                if (!NpcManager.instance.police_report)
+                    NpcManager.instance.Report_Police();
 
                 //웅크린 동작 애니메이션
             }
@@ -637,21 +674,20 @@ public class Man : Npc
     private void Trace()
     {
         Vector3 distance = player_obj.transform.position - transform.position;
-        Debug.Log(Vector3.SqrMagnitude(distance));
         if (current_state != State.TRACE)
         {
             npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
             //Debug.Log("Ghost생성"); 
         }
         current_state = State.TRACE;
-        if (Vector3.SqrMagnitude(distance) <= 5f)
+        if (Vector3.SqrMagnitude(distance) <= 5)
         {
             agent.enabled = false;
 
             Vector3 look_rotation = new Vector3(player_obj.transform.position.x, transform.position.y, player_obj.transform.position.z);
             transform.LookAt(look_rotation);
             //
-            switch(attack_type)
+            switch (attack_type)
             {
                 case Attack_Type.GUN:
                     ///
@@ -669,6 +705,7 @@ public class Man : Npc
                     ///
                     ///
                     ///
+                    cudgel.SetActive(true);
                     anim.SetTrigger(cudgel_hash);
                     break;
             }
@@ -679,15 +716,15 @@ public class Man : Npc
             anim.ResetTrigger(gun_hash);
             anim.ResetTrigger(punch_hash);
             anim.ResetTrigger(cudgel_hash);
+            Debug.Log(Vector3.SqrMagnitude(distance));
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+                agent.enabled = true;
 
-            if(anim.GetCurrentAnimatorStateInfo(0).IsName("idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("walk"))
-            agent.enabled = true;
-
-            if (npc_ghost == null) { npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this); Debug.Log("고스트를 몇번 생성했냐?"); }
+            if (npc_ghost == null) { npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this); }
             if (!state_end_check)
             {
                 if (npc_ghost != null && opening_check == false) { this.agent.SetDestination(npc_ghost.transform.position); }
-                else if(npc_ghost == null) { this.agent.SetDestination(player_obj.transform.position); }
+                else if (npc_ghost == null) { this.agent.SetDestination(player_obj.transform.position); }
                 if (path_finding.Count > 0)
                 {
                     if (path_finding[0].layer == 9)//Door
@@ -696,7 +733,7 @@ public class Man : Npc
                         {
                             var door_info = path_finding[0].transform.parent.GetComponent<DoorScript>();
                             Vector3 dis = path_finding[0].transform.position - this.transform.position;
-                            
+
                             if (Vector3.SqrMagnitude(dis) <= 1f)
                             {
                                 opening_check = true;
@@ -714,63 +751,21 @@ public class Man : Npc
                         else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
                         {
                             path_finding.RemoveAt(0);
-                            if(npc_ghost != null) { npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0); }
+                            if (npc_ghost != null) { npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0); }
 
                             Vector3 dis = path_finding[0].transform.position - transform.position;
 
                             if (Vector3.SqrMagnitude(dis) <= 0.5f)
                             {
-                                
+
                             }
                         }
                     }
-
-                    //if (path_finding.Count > 0)
-                    //{
-                    //    if (path_finding[0].layer == 9)//Door
-                    //    {
-                    //        if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened == false)
-                    //        {
-                    //            var door_info = path_finding[0].transform.parent.GetComponent<DoorScript>();
-                    //            Vector3 dis = path_finding[0].transform.position - this.transform.position;
-                    //            if (Vector3.SqrMagnitude(dis) <= 1f)
-                    //            {
-                    //                opening_check = true;
-                    //                this.agent.enabled = false;
-                    //                //
-                    //                door_info.OpenDoor();
-                    //                Pathfinding_List_Initialization();
-                    //                Destroy(npc_ghost);
-                    //                npc_ghost = null;
-                    //                current_state = State.TRACE;
-
-                    //                path_finding.RemoveAt(0);
-                    //                this.agent.enabled = true;
-                    //                this.agent.isStopped = false;
-                    //                opening_check = false;
-                    //            }
-                    //        }
-                    //        else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
-                    //        {
-                    //            Vector3 dis = path_finding[0].transform.position - transform.position;
-
-                    //            if (Vector3.SqrMagnitude(dis) <= 0.5f)
-                    //            {
-                    //                path_finding.RemoveAt(0);
-                    //                if (npc_ghost != null)
-                    //                    npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
-                    //                Pathfinding_List_Initialization();
-                    //                Destroy(npc_ghost);
-                    //                npc_ghost = null;
-                    //            }
-                    //        }
-                    //    }
-                    //}
                 }
             }
-            if(path_finding.Count > 0)
+            if (path_finding.Count > 0)
             {
-                if(path_finding[0].layer == 6)
+                if (path_finding[0].layer == 6)
                 {
                     Pathfinding_List_Initialization();
                 }
@@ -787,7 +782,7 @@ public class Man : Npc
             state = State.IDLE;
             target_item = null;
             target_room = null;
-            npc_ghost = null;
+            npc_ghost = null; 
             opening_check = false;
             sleepy_percent = 0;
             sleepy_percent_check = sleepy_percent;
@@ -799,7 +794,11 @@ public class Man : Npc
             //current_state = State.REPORT;
             this.agent.enabled = false;
             //agent.speed = report_npc_speed;
+            faint_first_check = true;
         }
+        anim.SetTrigger(exit);
+        rds.RagdollOnOff(true);
+
     }
     private void Awake()
     {
@@ -808,17 +807,22 @@ public class Man : Npc
         //player = GameManager.instance.Player.GetComponent<Player>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
 
-        
+
     }
 
     void Start()
     {
+        bed_room_1 = NpcManager.instance.bed_room_1;
+        bed_room_2 = NpcManager.instance.bed_room_2;
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 
-        this.state = State.IDLE;
+        if (npc_type != Npc_Type.POLICE)
+            Invoke("Change_State_Move", 1f);
+
+        //this.state = State.IDLE;
         //Select_Personality();
-        this.personality = Npc_Personality.AGGESSIVE;
+        //this.personality = Npc_Personality.AGGESSIVE;
 
         StartCoroutine(State_Gaze_Change());
         //
@@ -834,7 +838,6 @@ public class Man : Npc
     {
         #region
         state_check = this.state;
-        //Debug.Log(this.state);
         #endregion
 
         #region
@@ -842,91 +845,116 @@ public class Man : Npc
         else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
         #endregion
 
-        if (this.state != State.REPORT && this.state != State.TRACE)
-        if (Check_Unit())
-        {
-                Vector3 p_dir = player.transform.position - cam.transform.position;
-            if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x,p_dir.y + 0.5f,p_dir.z) ,out hit, Mathf.Infinity,layermask_for_except))
+        if (this.state != State.REPORT && this.state != State.TRACE && this.state != State.FAINT)
+            if (Check_Unit())
             {
-                if (hit.transform.gameObject.layer == 6)//player
+                Vector3 p_dir = player.transform.position - cam.transform.position;
+                if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x, p_dir.y + 0.5f, p_dir.z), out hit, Mathf.Infinity, layermask_for_except))
                 {
-                    if (player.lighted == true)
+                    Debug.DrawRay(cam.transform.position, p_dir, Color.red);
+                    what = hit.transform.gameObject;
+                    if (hit.transform.gameObject.layer == 6)//player
                     {
-                            ///진행중인 애니메이션 꺼주기
-
-                            ///
-
-                            ///Percent_Initialization
-                            ///
+                        if (player.lighted == true)
+                        {
                             current_state = State.REPORT;
 
                             Fear_Check();
+                        }
+                        #region
+                        //if(hit.transform.gameObject.)
+                        //miss_player = false;
+                        //Vector2 player_uv = hit.textureCoord;
+                        //Vector2 screen_pos = cam.WorldToViewportPoint(player.transform.position);
+                        //player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
+                        //screen_uv_color = uv_texture(tex).GetPixel((int)(Screen.width * screen_pos.x), (int)(Screen.height * screen_pos.y));
+                        //if (screen_uv_color.r + screen_uv_color.g + screen_uv_color.b < 0.1f) { }
+                        //else
+                        //{
+                        //    if (this.state != State.REPORT)
+                        //    {
+                        //        fear_percent = 100;
+                        //        Fear_Check();
+                        //    }
+                        //}
+                        //Debug.Log("Pixel position   :   "+screen_pos.x +"   "+screen_pos.y);
+                        //Debug.Log("Color R : " + player_texture_Color.r + " , " + "Color G : " + +player_texture_Color.g + " , " + "Color B : " + +player_texture_Color.b + " , " + "Texture uv Pixel Color");
+                        //Debug.Log("Color R : " + screen_uv_color.r + " , " + "Color G : " + + screen_uv_color.g + " , "+"Color B : " + + screen_uv_color.b + " , "+ "Scene uv Pixel Color");
+                        ////화면에서 보는 플레이어 컬러
+
+                        //Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
+                        #endregion ///
                     }
                     #region
-                    //if(hit.transform.gameObject.)
-                    //miss_player = false;
-                    //Vector2 player_uv = hit.textureCoord;
-                    //Vector2 screen_pos = cam.WorldToViewportPoint(player.transform.position);
-                    //player_texture_Color = player_texture.GetPixel((int)player_uv.x, (int)player_uv.y);
-                    //screen_uv_color = uv_texture(tex).GetPixel((int)(Screen.width * screen_pos.x), (int)(Screen.height * screen_pos.y));
-                    //if (screen_uv_color.r + screen_uv_color.g + screen_uv_color.b < 0.1f) { }
                     //else
                     //{
-                    //    if (this.state != State.REPORT)
+                    //    if(miss_player == false && miss_player != null)
                     //    {
-                    //        fear_percent = 100;
-                    //        Fear_Check();
+                    //        miss_player = true;
+                    //        player_check_time += Time.deltaTime;
+                    //        if(this.state == State.REPORT || this.state == State.TRACE)
+                    //        {
+                    //            if(player_check_time > 5.0f)
+                    //            {
+                    //                aggessive_trace_check = false;
+                    //                player_check_time = 0;
+                    //            }
+                    //        }
                     //    }
                     //}
-                    //Debug.Log("Pixel position   :   "+screen_pos.x +"   "+screen_pos.y);
-                    //Debug.Log("Color R : " + player_texture_Color.r + " , " + "Color G : " + +player_texture_Color.g + " , " + "Color B : " + +player_texture_Color.b + " , " + "Texture uv Pixel Color");
-                    //Debug.Log("Color R : " + screen_uv_color.r + " , " + "Color G : " + + screen_uv_color.g + " , "+"Color B : " + + screen_uv_color.b + " , "+ "Scene uv Pixel Color");
-                    ////화면에서 보는 플레이어 컬러
 
-                    //Debug.DrawRay(cam.transform.position,hit.transform.position - cam.transform.position, Color.blue,10000000000000000000);
-                    #endregion ///
+
+                    //if (this.state == State.REPORT || this.state == State.TRACE)
+                    //{
+
+                    //}
+                    #endregion
                 }
-                #region
-                //else
-                //{
-                //    if(miss_player == false && miss_player != null)
-                //    {
-                //        miss_player = true;
-                //        player_check_time += Time.deltaTime;
-                //        if(this.state == State.REPORT || this.state == State.TRACE)
-                //        {
-                //            if(player_check_time > 5.0f)
-                //            {
-                //                aggessive_trace_check = false;
-                //                player_check_time = 0;
-                //            }
-                //        }
-                //    }
-                //}
+            }
 
-
-                //if (this.state == State.REPORT || this.state == State.TRACE)
-                //{
-
-                //}
-                #endregion
+        if(this.state != State.REPORT && this.state != State.TRACE && this.state != State.FAINT)
+        {
+            if(Check_Npc())
+            {
+                Vector3 n_dir = other_npc.transform.position - cam.transform.position;
+                if(Physics.Raycast(cam.transform.position, new Vector3(n_dir.x, n_dir.y + 0.5f, n_dir.z), out hit, Mathf.Infinity, layermask_for_except))
+                {
+                    Debug.DrawRay(cam.transform.position, n_dir, Color.green);
+                    n_what = hit.transform.gameObject;
+                    if (hit.transform.root.gameObject.layer == 7)
+                    {
+                        if (hit.transform.root.gameObject.GetComponent<Npc>().state == State.FAINT)
+                        {
+                            state = State.FAINT;
+                        }
+                    }
+                }
             }
         }
 
 
-        if(faint_gauge <= 0)
+        if (faint_gauge <= 0)
         {
             state = State.FAINT;
         }
-    }
- 
-    
 
-    
+        //(Input.GetKey(KeyCode.K)) { anim.SetTrigger(gun_hash); }
+
+    }
+
+
+
+
 
     public bool Check_Unit()
     {
         Vector3 screenPoint = cam.WorldToViewportPoint(player_obj.transform.position);
+        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        return onScreen;
+    }
+    public bool Check_Npc()
+    {
+        Vector3 screenPoint = cam.WorldToViewportPoint(other_npc.transform.position);
         bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
         return onScreen;
     }
@@ -935,7 +963,7 @@ public class Man : Npc
     IEnumerator State_Gaze_Change()
     {
         yield return new WaitForSeconds(2f);
-        
+
         StateGazeUp(this.state);
 
         ///
@@ -943,8 +971,8 @@ public class Man : Npc
         pee_percent_check = pee_percent;
         thirst_percent_check = thirst_percent;
         ///
-        if(state_continue)
-        StartCoroutine(State_Gaze_Change());
+        if (state_continue)
+            StartCoroutine(State_Gaze_Change());
     }
 
 
@@ -955,4 +983,4 @@ public class Man : Npc
             current_room = col.gameObject;
         }
     }
- }
+}

@@ -85,6 +85,7 @@ public class Ghost : MonoBehaviour
                 Debug.Log(col.gameObject);
                 //pathfinding_list.Add(player);
                 //parent_npc.path_finding = pathfinding_list.ToList();
+                Destroy(this.gameObject);
             }
         }
     }

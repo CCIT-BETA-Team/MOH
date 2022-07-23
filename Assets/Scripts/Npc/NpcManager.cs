@@ -19,10 +19,12 @@ public class NpcManager : Singleton<NpcManager>
 
     //For Test ::Jun
     public List<GameObject> npc_list = new List<GameObject>();
+    public int npc_faint_count = 0;
 
 
     [Header("Target_Room")]
     public List<Room> Bed_Room = new List<Room>();
+    public List<Room> Bed_Rooms = new List<Room>();
     public List<Room> Bath_Room = new List<Room>();
     public List<Room> Dining_Room = new List<Room>();
 
@@ -47,21 +49,27 @@ public class NpcManager : Singleton<NpcManager>
     [Header("°æÂû ¼ö")]
     public int police_spawn_count;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        Debug.Log("Npc_manager check");
-    }
-
     void Start()
     {
         Sort_Room();
+        Spawn_Npc();
         put_in_target_item();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P)) { Report_Police(); }
+
+        if(npc_list.Count > 0)
+        {
+            if(npc_list[0].GetComponent<Npc>().state == Npc.State.FAINT && npc_list[1].GetComponent<Npc>().state == Npc.State.FAINT)
+            {
+                if(!police_report)
+                {
+                    Report_Police();
+                }
+            }
+        }
     }
 
     public Transform request() { return this.transform; }
@@ -78,6 +86,9 @@ public class NpcManager : Singleton<NpcManager>
         return n;
     }
 
+    public Room bed_room_1;
+    public Room bed_room_2;
+    public Room[] bed_rooms;
     public void Spawn_Npc()
     {
         for(int i = 0; i < map.npc_amount; i++) 
@@ -89,7 +100,21 @@ public class NpcManager : Singleton<NpcManager>
             GameObject spawn_point = room_list[x].npc_spawn_position[y];
              
             GameObject npc = Instantiate(Decide_Npc(npc_prefabs), spawn_point.transform.position, Quaternion.identity, transform);
+            npc.GetComponent<Npc>().sleepy_percent = 99.9f;
             npc_list.Add(npc);
+            npc.GetComponent<Npc>().my_room = bed_rooms[i];
+            if(i == 0)
+            {
+                npc.GetComponent<Npc>().personality = Npc.Npc_Personality.AGGESSIVE;
+
+            }
+            else if(i == 1)
+            {
+                npc.GetComponent<Npc>().personality = Npc.Npc_Personality.Defensive;
+                npc_list[0].GetComponent<Npc>().other_npc = npc;
+                npc.GetComponent<Npc>().other_npc = npc_list[0];
+            }
+
             //npc.GetComponent<Npc>().npc_room = npc_room();
 
             room_list[x].npc_spawn_position.RemoveAt(y);
@@ -201,11 +226,13 @@ public class NpcManager : Singleton<NpcManager>
         GameObject npc_ghost = Instantiate(ghost, new Vector3(npc_transform.position.x, npc_transform.position.y + 1, npc_transform.position.z), Quaternion.identity);
         var ghost_info = npc_ghost.GetComponent<Ghost>();
         ghost_info.parent_npc = npc;
+        ghost_info.target_room = npc.target_room;
         ghost_info.Move_Point(telphone);
         return npc_ghost;
     }
     public void Spawn_Police()
     {
+        PopupManager.instance.Popup_On(1);
         Vector3 spawn_position;
         for(int i = 0; i < police_spawn_count; i++)
         {
@@ -216,6 +243,7 @@ public class NpcManager : Singleton<NpcManager>
             GameObject police = Instantiate(police_npc, spawn_position, Quaternion.identity);
             police.name = "Police[" + i + "]";
         }
+        Debug.Log(2323);
     }
 
     IEnumerator Count_Police_Time()
@@ -247,5 +275,6 @@ public class NpcManager : Singleton<NpcManager>
         current_count = police_count;
 
         StartCoroutine(Count_Police_Time());
+        PopupManager.instance.Popup_On(0);
     }
 }

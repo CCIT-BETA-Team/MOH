@@ -8,12 +8,15 @@ public class Item_Info : Item
 
     public override void interaction()
     {
-        player.ani.SetTrigger(player.attack_hash);
+        player.ani.SetTrigger(player.swing_hash);
     }
 
     public bool interact_obj = false;
     private void Start()
     {
+        player = GameManager.instance.Player.GetComponent<Player>();
+
+        if(NpcManager.instance != null)
         NpcManager.instance.Sort_Out_Items(this, parameter_type);
 
         if (parent_room != null) { parent_room.Add_Furniture(this.gameObject); }
@@ -26,7 +29,7 @@ public class Item_Info : Item
 
     void OnTriggerEnter(Collider col)
     {
-        if (player.is_attack && col.gameObject.layer == 12)
+        if (player.is_attack && col.gameObject.layer == 7)
         {
             Npc npc = col.transform.root.GetComponent<Npc>();
             npc.faint_gauge -= damage;

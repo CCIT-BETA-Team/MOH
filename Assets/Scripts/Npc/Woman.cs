@@ -61,13 +61,19 @@ public class Woman : Npc
                     Invoke("For_Close_Door_Delay", 1f);
                 }
             }
+            else if (random_close_door == 1)
+            {
+                Close_Door_Save = path_finding[0].transform.parent.gameObject;
+                Close_Door_Save.GetComponent<DoorScript>().handle[0].GetComponent<Door>().isLock = false;
+                Close_Door_Save.GetComponent<DoorScript>().handle[1].GetComponent<Door>().isLock = false;
+            }
             //
             path_finding.RemoveAt(0);
             npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
         }
         //
         this.agent.enabled = true;
-        this.agent.isStopped = false;
+        //this.agent.isStopped = false;
         opening_check = false;
     }
     void For_Close_Door_Delay() // invoke
@@ -243,16 +249,25 @@ public class Woman : Npc
 
                         transform.rotation = Quaternion.LookRotation(dir).normalized;
                     }
-                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 0.1f) // agent.remainingDistance 
                     {
                         this.agent.enabled = false;
                         //상호작용 애니메이션
-
-
                         if (current_room == target_room)
                         {
-                            //상호작용 애니메이션
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            anim.SetTrigger(sleep_hash);
+                        }
+
+                        if (path_finding[0].gameObject.name == "BED_ROOM_1")
+                        {
+                            transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
+                            Vector3 look = Vector3.zero;
+                            transform.rotation = Quaternion.LookRotation(look);
+                        }
+                        if (path_finding[0].gameObject.name == "BED_ROOM_2")
+                        {
+                            transform.position = new Vector3(target_item.transform.position.x, target_item.transform.position.y + 0.5f, target_item.transform.position.z);
+                            transform.rotation = Quaternion.Euler(0, 90, 0);
                         }
                     }
                 }
@@ -353,17 +368,36 @@ public class Woman : Npc
                     if (Vector3.SqrMagnitude(dir) <= 3f && Vector3.SqrMagnitude(dir) >= 1f)
                     {
                         transform.rotation = Quaternion.LookRotation(dir).normalized;
+                        //transform.rotation = target_item.transform.rotation;
                     }
-                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 1) // agent.remainingDistance 
+                    if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance < 0.1f) // agent.remainingDistance 
                     {
                         this.agent.enabled = false;
-                        //상호작용 애니메이션
-
+                        transform.rotation = target_item.transform.rotation;
 
                         if (current_room == target_room)
                         {
                             //상호작용 애니메이션
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            if (once == false)
+                            {
+                                anim.SetTrigger(pee_hash);
+                                Invoke("state_end_check_for_invoke", 5f);
+                                once = true;
+                            }
+                        }
+
+                        //상호작용 애니메이션
+                        if (path_finding[0].gameObject.name == "BATH_ROOM_1")
+                        {
+                            this.transform.position = new Vector3(-22.6f, 3.361f, -21.83f);
+                        }
+                        if (path_finding[0].gameObject.name == "BATH_ROOM_2")
+                        {
+                            this.transform.position = new Vector3(-16.89f, 3.361f, -17.84f);
+                        }
+                        if (path_finding[0].gameObject.name == "BATH_ROOM_3")
+                        {
+                            this.transform.position = new Vector3(-16.5f, 0.7f, -18.8f);
                         }
                     }
                 }
@@ -392,6 +426,7 @@ public class Woman : Npc
                 pee_percent = 0;
             }
             state_end_check = false;
+            once = false;
         }
     }
     private void Thirst()
@@ -475,7 +510,7 @@ public class Woman : Npc
                             if (current_room == target_room)
                             {
                                 //상호작용 애니메이션
-                                state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                                anim.SetTrigger(thirst_hash);
                             }
                         }
                     }
@@ -543,8 +578,10 @@ public class Woman : Npc
         {
             if (!first_report_check)
             {
+                state = State.REPORT;
                 int report_obj_count = NpcManager.instance.phone_items.Count;
                 target_item = NpcManager.instance.phone_items[Random.Range(0, report_obj_count)].gameObject;
+                target_room = target_item.GetComponent<Item_Info>().parent_room.gameObject;
                 npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, ghost, target_item, this);
             }
             first_report_check = true;
@@ -617,8 +654,8 @@ public class Woman : Npc
                             this.agent.enabled = false;
                             //상호작용 애니메이션
 
-
-                            state_end_check = true;//애니메이션 끝나면 true  ㄱ
+                            anim.SetTrigger(call_police_hash);
+                            //state_end_check = true;//애니메이션 끝나면 true  ㄱ
                         }
                     }
                 }
@@ -637,14 +674,13 @@ public class Woman : Npc
     private void Trace()
     {
         Vector3 distance = player_obj.transform.position - transform.position;
-        Debug.Log(Vector3.SqrMagnitude(distance));
         if (current_state != State.TRACE)
         {
             npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
             //Debug.Log("Ghost생성"); 
         }
         current_state = State.TRACE;
-        if (Vector3.SqrMagnitude(distance) <= 5f)
+        if (Vector3.SqrMagnitude(distance) <= 5)
         {
             agent.enabled = false;
 
@@ -669,6 +705,7 @@ public class Woman : Npc
                     ///
                     ///
                     ///
+                    cudgel.SetActive(true);
                     anim.SetTrigger(cudgel_hash);
                     break;
             }
@@ -679,11 +716,11 @@ public class Woman : Npc
             anim.ResetTrigger(gun_hash);
             anim.ResetTrigger(punch_hash);
             anim.ResetTrigger(cudgel_hash);
-
+            Debug.Log(Vector3.SqrMagnitude(distance));
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("walk"))
                 agent.enabled = true;
 
-            if (npc_ghost == null) { npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this); Debug.Log("고스트를 몇번 생성했냐?"); }
+            if (npc_ghost == null) { npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this); }
             if (!state_end_check)
             {
                 if (npc_ghost != null && opening_check == false) { this.agent.SetDestination(npc_ghost.transform.position); }
@@ -724,48 +761,6 @@ public class Woman : Npc
                             }
                         }
                     }
-
-                    //if (path_finding.Count > 0)
-                    //{
-                    //    if (path_finding[0].layer == 9)//Door
-                    //    {
-                    //        if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened == false)
-                    //        {
-                    //            var door_info = path_finding[0].transform.parent.GetComponent<DoorScript>();
-                    //            Vector3 dis = path_finding[0].transform.position - this.transform.position;
-                    //            if (Vector3.SqrMagnitude(dis) <= 1f)
-                    //            {
-                    //                opening_check = true;
-                    //                this.agent.enabled = false;
-                    //                //
-                    //                door_info.OpenDoor();
-                    //                Pathfinding_List_Initialization();
-                    //                Destroy(npc_ghost);
-                    //                npc_ghost = null;
-                    //                current_state = State.TRACE;
-
-                    //                path_finding.RemoveAt(0);
-                    //                this.agent.enabled = true;
-                    //                this.agent.isStopped = false;
-                    //                opening_check = false;
-                    //            }
-                    //        }
-                    //        else if (path_finding[0].transform.parent.GetComponent<DoorScript>().Opened)
-                    //        {
-                    //            Vector3 dis = path_finding[0].transform.position - transform.position;
-
-                    //            if (Vector3.SqrMagnitude(dis) <= 0.5f)
-                    //            {
-                    //                path_finding.RemoveAt(0);
-                    //                if (npc_ghost != null)
-                    //                    npc_ghost.GetComponent<Ghost>().pathfinding_list.RemoveAt(0);
-                    //                Pathfinding_List_Initialization();
-                    //                Destroy(npc_ghost);
-                    //                npc_ghost = null;
-                    //            }
-                    //        }
-                    //    }
-                    //}
                 }
             }
             if (path_finding.Count > 0)
@@ -800,6 +795,9 @@ public class Woman : Npc
             this.agent.enabled = false;
             //agent.speed = report_npc_speed;
         }
+        anim.SetTrigger(exit);
+        rds.RagdollOnOff(true);
+
     }
     private void Awake()
     {
@@ -813,12 +811,17 @@ public class Woman : Npc
 
     void Start()
     {
+        bed_room_1 = NpcManager.instance.bed_room_1;
+        bed_room_2 = NpcManager.instance.bed_room_2;
         player_obj = GameManager.instance.Player;
         player = GameManager.instance.Player.GetComponent<Player>();
 
-        this.state = State.IDLE;
+        if (npc_type != Npc_Type.POLICE)
+            Invoke("Change_State_Move", 1f);
+
+        //this.state = State.IDLE;
         //Select_Personality();
-        this.personality = Npc_Personality.AGGESSIVE;
+        //this.personality = Npc_Personality.AGGESSIVE;
 
         StartCoroutine(State_Gaze_Change());
         //
@@ -842,22 +845,18 @@ public class Woman : Npc
         else if (!this.agent.enabled) { anim.SetBool(moveing_hash, false); }
         #endregion
 
-        if (this.state != State.REPORT && this.state != State.TRACE)
+        if (this.state != State.REPORT && this.state != State.TRACE && this.state != State.FAINT)
             if (Check_Unit())
             {
                 Vector3 p_dir = player.transform.position - cam.transform.position;
                 if (Physics.Raycast(cam.transform.position, new Vector3(p_dir.x, p_dir.y + 0.5f, p_dir.z), out hit, Mathf.Infinity, layermask_for_except))
                 {
+                    Debug.DrawRay(cam.transform.position, p_dir, Color.red);
+                    what = hit.transform.gameObject;
                     if (hit.transform.gameObject.layer == 6)//player
                     {
                         if (player.lighted == true)
                         {
-                            ///진행중인 애니메이션 꺼주기
-
-                            ///
-
-                            ///Percent_Initialization
-                            ///
                             current_state = State.REPORT;
 
                             Fear_Check();
@@ -913,11 +912,34 @@ public class Woman : Npc
                 }
             }
 
+        if (this.state != State.REPORT && this.state != State.TRACE && this.state != State.FAINT)
+        {
+            if (Check_Npc())
+            {
+                Vector3 n_dir = other_npc.transform.position - cam.transform.position;
+                if (Physics.Raycast(cam.transform.position, new Vector3(n_dir.x, n_dir.y + 0.5f, n_dir.z), out hit, Mathf.Infinity, layermask_for_except))
+                {
+                    Debug.DrawRay(cam.transform.position, n_dir, Color.green);
+                    n_what = hit.transform.gameObject;
+                    if (hit.transform.root.gameObject.layer == 7)
+                    {
+                        if (hit.transform.root.gameObject.GetComponent<Npc>().state == State.FAINT)
+                        {
+                            state = State.FAINT;
+                        }
+                    }
+                }
+            }
+        }
+
 
         if (faint_gauge <= 0)
         {
             state = State.FAINT;
         }
+
+        //(Input.GetKey(KeyCode.K)) { anim.SetTrigger(gun_hash); }
+
     }
 
 
@@ -930,7 +952,12 @@ public class Woman : Npc
         bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
         return onScreen;
     }
-
+    public bool Check_Npc()
+    {
+        Vector3 screenPoint = cam.WorldToViewportPoint(other_npc.transform.position);
+        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        return onScreen;
+    }
 
     IEnumerator State_Gaze_Change()
     {

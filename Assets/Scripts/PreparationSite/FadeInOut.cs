@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FadeInOut : MonoBehaviour
 {
-    public Player player;
+    //public Player player;
     public Camera[] cam;
     public GameObject[] main_ui;
     public RawImage[] fade_image;
@@ -50,12 +50,11 @@ public class FadeInOut : MonoBehaviour
 
     public void LobieToSite()
     {
-        StartCoroutine(CamearaSwitch(Fade_State.IN, cam[0], cam[1], fade_image[0], fade_image[1]));
-        for(int i = 0; i < main_ui.Length; i++)
-        {
-            main_ui[i].SetActive(true);
-        }
+        StartCoroutine(CamearaSwitch(Fade_State.IN, GameManager.instance.player_comp.cam, cam[1], fade_image[0], fade_image[1]));
+        PopupManager.instance.current_popup.SetActive(true);
+        PopupManager.instance.ip_.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
-        player.freeze = false;
+        GameManager.instance.player_comp.freeze = false;
+        PopupManager.instance.cross_head.enabled = true;
     }
 }

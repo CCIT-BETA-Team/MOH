@@ -87,6 +87,8 @@ public class DoorScript : MonoBehaviour {
 	Animation doorAnimation;
 	Animation LockAnim;
 
+    public GameObject[] handle;
+
 
 	
 	void Start (){

@@ -12,18 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6641b2d5fac89b4dac16933b6621338, type: 3}
   m_Name: TestMission 5
   m_EditorClassIdentifier: 
-  mission_scene: RoomTest
-  mission_name: "\uBBF8\uC1585"
-  goal_item: {fileID: 2086195658485625636, guid: dae03fc240873384dbedcd6182957397, type: 3}
+  mission_scene: Test Map 1
+  mission_name: "\uAE30\uBC00 \uBB38\uC11C"
+  mission_building_name: "\uD3EC\uD130\uC988 \uC2A4\uD50C\uB808\uC774"
+  goal_item: {fileID: 2086195658485625636, guid: 87e4cc5a94c81764d92d5b7bf3e7142f, type: 3}
   mission_image: {fileID: 21300000, guid: 70769a905f183e946a632c56493313d9, type: 3}
   goal_image: {fileID: 21300000, guid: 5d9d4cb5ccbfd9247808d302bb693cca, type: 3}
-  coment: "\"\uC758\uB8B0\uC790\uC758 \uCF54\uBA58\uD2B8\uB294 \uC774\uACF3\uC5D0\""
-  client_name: "\uACE0\uAE38\uB3D9"
-  scenario: "\uC2DC\uB098\uB9AC\uC624\uB294\n\uC774\uACF3\uC5D0\n\uCD9C\uB825\uB429\uB2C8\uB2E4."
-  main_mission: "- \uBA54\uC778 \uBBF8\uC158 \uC774\uB984"
-  sub_mission:
-  - "- \uC11C\uBE0C \uBBF8\uC158 \uC774\uB984"
-  - "- \uC11C\uBE0C \uBBF8\uC158 \uC774\uB984"
-  weather: 0
-  time: 0
+  coment: "\"\uC784\uBB34\uB97C \uC2E4\uD328\uD560 \uC2DC \uC218 \uB9CE\uC740 \uC0AC\uB78C\uB4E4\uC758
+    \n\uBAA9\uC228\uC774 \uC704\uD5D8\uD560 \uC218 \uC788\uB2E4.\""
+  client_name: "\uBC14\uD1A0\uB808 \uB9B4\uB9AC\uC2A4"
+  scenario: "\"\uBC29\uC704 \uC0B0\uC5C5\uCCB4\uC758 \uC2E0\uBB34\uAE30\uC5D0 \uAD00\uD55C
+    \uC8FC\uC694 \uC124\uACC4\uB3C4\uB97C \uBE7C\uB3CC\uB838\uB2E4\uACE0 \uD55C\uB2E4.
+    \uB2E4\uC2DC \uC720\uCD9C\uB418\uC9C0 \uC54A\uB3C4\uB85D \uD68C\uC218\uD558\uC790.\""
+  main_mission: "\uAE30\uBB3C \uBB38\uC11C \uB418\uCC3E\uAE30"
+  sub_mission: []
+  weather: 2
+  time: 2
   mission_popups: []

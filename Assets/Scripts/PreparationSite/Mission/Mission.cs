@@ -9,6 +9,7 @@ public class Mission : ScriptableObject
 {
     public string mission_scene;
     public string mission_name;
+    public string mission_building_name;
     public GameObject goal_item;
     [HideInInspector] public Item goal { get { return goal_item.GetComponent<Item>();} }
     //º¸»ó
@@ -23,7 +24,7 @@ public class Mission : ScriptableObject
     [TextArea]
     public string main_mission;
     [TextArea]
-    public string[] sub_mission;
+    public List<string> sub_mission;
     public enum weather_enum { SUNNY, CLOUDY, RAIN, STORM }
     public weather_enum weather;
     public enum time_enum { EARLY_EVENING, EVENING, NIGHT }
@@ -75,20 +76,21 @@ public class Mission : ScriptableObject
     {
         ip.main_mission_text.text = mission_name;
 
-        if (ip.sub_mission_text.Length > 0)
+        if (ip.sub_mission_text.Count > 0)
         {
-            for (int i = 0; i < ip.sub_mission_text.Length; i++)
+            for (int i = 0; i < ip.sub_mission_text.Count; i++)
             {
                 Destroy(ip.sub_mission_text[i].gameObject);
             }
+            ip.sub_mission_text = new List<Text>();
         }
         
-        if (sub_mission.Length > 0)
+        if (sub_mission.Count > 0)
         {
             ip.sub_mission.enabled = true;
-            ip.sub_mission_text = new Text[sub_mission.Length];
+            ip.sub_mission_text = new List<Text>();
 
-            for (int i = 0; i < sub_mission.Length; i++)
+            for (int i = 0; i < sub_mission.Count; i++)
             {
                 GameObject sub_mission_text = new GameObject("sub_mission_text[" + i + "]");
                 sub_mission_text.transform.SetParent(ip.go.transform);
@@ -97,23 +99,21 @@ public class Mission : ScriptableObject
                 sub_text.rectTransform.sizeDelta = new Vector2(ip.main_mission_text.rectTransform.rect.width, ip.main_mission_text.rectTransform.rect.height);
                 sub_text.font = ip.main_mission_text.font;
                 sub_text.fontSize = ip.main_mission_text.fontSize;
-                ip.sub_mission_text[i] = sub_text;
+                ip.sub_mission_text.Add(sub_text);
+
+                PopupManager.instance.Mission_Info_Popup_Setting(sub_mission.Count);
 
                 if (i == 0)
                 {
                     sub_mission_text.transform.position = new Vector3(ip.main_mission_text.transform.position.x, ip.main_mission_text.transform.position.y - 80f, ip.main_mission_text.transform.position.z);
-                    ((RectTransform)ip.transform).sizeDelta = new Vector2(ip.only_main_transform.x, ip.only_main_transform.y + ip.sub_transform);
-                    ((RectTransform)ip.transform).anchoredPosition = new Vector2(-((RectTransform)ip.transform).rect.width / 2, -((RectTransform)ip.transform).rect.height / 2);
                 }
                 else if (i > 0)
                 {
                     sub_mission_text.transform.position = new Vector3(ip.sub_mission_text[0].transform.position.x, ip.sub_mission_text[0].transform.position.y - 33.6f * i, ip.sub_mission_text[0].transform.position.z);
-                    ((RectTransform)ip.transform).sizeDelta = new Vector2(((RectTransform)ip.transform).sizeDelta.x, ((RectTransform)ip.transform).sizeDelta.y + ip.sub_list_transform);
-                    ((RectTransform)ip.transform).anchoredPosition = new Vector2(-((RectTransform)ip.transform).rect.width / 2, -((RectTransform)ip.transform).rect.height / 2);
                 }
             }
         }
-        else if(sub_mission.Length == 0)
+        else if(sub_mission.Count == 0)
         {
             ip.sub_mission.enabled = false;
             ((RectTransform)ip.transform).sizeDelta = new Vector2(ip.only_main_transform.x, ip.only_main_transform.y);

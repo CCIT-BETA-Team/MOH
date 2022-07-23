@@ -9,13 +9,16 @@ public class Police : Npc
 
     private void Awake()
     {
-        player_obj = GameManager.instance.Player;
-        player = GameManager.instance.Player.GetComponent<Player>();
-        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        
     }
     void Start()
     {
         attack_type = Attack_Type.GUN;
+
+        player_obj = GameManager.instance.Player;
+        player = GameManager.instance.Player.GetComponent<Player>();
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        agent.speed = 2f;
     }
 
     void Update()
@@ -28,7 +31,6 @@ public class Police : Npc
     private void Trace()
     {
         Vector3 distance = player_obj.transform.position - this.gameObject.transform.position;
-        Debug.Log(Vector3.SqrMagnitude(distance));
         if (current_state != State.TRACE)
         {
             npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);
@@ -50,7 +52,7 @@ public class Police : Npc
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("idle") || anim.GetCurrentAnimatorStateInfo(0).IsName("running"))
                 agent.enabled = true;
 
-            if (npc_ghost == null) { npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this); Debug.Log("고스트를 몇번 생성했냐?"); }
+            if (npc_ghost == null) { npc_ghost = NpcManager.instance.Ins_Ghost(this.transform, player.transform, ghost, this);  }
             if (!state_end_check)
             {
                 if (npc_ghost != null && opening_check == false) { this.agent.SetDestination(npc_ghost.transform.position); }

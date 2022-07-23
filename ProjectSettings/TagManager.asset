@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Glass
+  - grass
+  - wood
+  - ground
   layers:
   - Default
   - TransparentFX
@@ -22,11 +25,11 @@ TagManager:
   - Furniture
   - Block
   - Light_Obj
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Stairs
+  - Doorr
+  - Item
+  - NPC
   - 
   - 
   - 

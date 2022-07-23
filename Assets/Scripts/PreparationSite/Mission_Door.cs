@@ -9,6 +9,7 @@ public class Mission_Door : Item
     {
         if(GameManager.instance.select_mission != null)
         {
+            GameManager.instance.Player.SetActive(false);
             Mission_Start(GameManager.instance.select_mission);
         }
         else if(GameManager.instance.select_mission == null)
@@ -19,6 +20,6 @@ public class Mission_Door : Item
     
     static void Mission_Start(Mission select_mission)
     {
-        ScenesManager.instance.Load_Scene(select_mission.mission_scene);
+        ScenesManager.Load_Scene(select_mission.mission_scene,ScenesManager.LoadingType.DELAY);
     }
 }

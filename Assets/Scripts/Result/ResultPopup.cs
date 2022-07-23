@@ -13,6 +13,7 @@ public class ResultPopup : MonoBehaviour
     public Text mission_name_text;
     public Text pay_text;
     public Image screen_shot;
+    public Image mission_image;
     public int time = 0;
     int sec { get { return time % 60; } }
     int min { get { return time / 60 % 60; } }
@@ -32,12 +33,16 @@ public class ResultPopup : MonoBehaviour
         screen_shot.sprite = GameManager.instance.screen_sprite;
         StopCoroutine(Timer());
         time_text.text = string.Format("{0:D2}", hour) + ":" + string.Format("{0:D2}", min) + ":" + string.Format("{0:D2}", sec);
+        mission_image.sprite = GameManager.instance.select_mission.mission_image;
     }
 
     public void Go_PreparationSite()
     {
         //ScenesManager.instance.Load_Sence("PreparationSite");
-        ScenesManager.instance.Load_Scene("PreparationSite");
+        GameManager.instance.player_comp.Player_Init();
+        PopupManager.instance.Mission_Popup_Init();
+        GameManager.instance.b_selet_mission = false;
+        ScenesManager.Load_Scene("PreparationSite", (ScenesManager.LoadingType)1);
         //ScenesManager.instance.missionText.text = "";
     }
 
