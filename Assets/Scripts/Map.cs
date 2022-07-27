@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Map : MonoBehaviour
+public class Map : Singleton<Map>
 {
     public GameObject target_building;
     public GameObject target_building_parent;
     public Image[] target_directions;
+    public Canvas target_direction_canvas;
     public Camera player_cam;
 
     public ResultPopup result_popup;

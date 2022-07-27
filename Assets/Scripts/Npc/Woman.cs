@@ -799,6 +799,7 @@ public class Woman : Npc
         rds.RagdollOnOff(true);
 
     }
+
     private void Awake()
     {
         layermask_for_except = ~layermask_for_except;
@@ -916,16 +917,19 @@ public class Woman : Npc
         {
             if (Check_Npc())
             {
-                Vector3 n_dir = other_npc.transform.position - cam.transform.position;
-                if (Physics.Raycast(cam.transform.position, new Vector3(n_dir.x, n_dir.y + 0.5f, n_dir.z), out hit, Mathf.Infinity, layermask_for_except))
+                if (other_npc != null)
                 {
-                    Debug.DrawRay(cam.transform.position, n_dir, Color.green);
-                    n_what = hit.transform.gameObject;
-                    if (hit.transform.root.gameObject.layer == 7)
+                    Vector3 n_dir = other_npc.transform.position - cam.transform.position;
+                    if (Physics.Raycast(cam.transform.position, new Vector3(n_dir.x, n_dir.y + 0.5f, n_dir.z), out hit, Mathf.Infinity, layermask_for_except))
                     {
-                        if (hit.transform.root.gameObject.GetComponent<Npc>().state == State.FAINT)
+                        Debug.DrawRay(cam.transform.position, n_dir, Color.green);
+                        n_what = hit.transform.gameObject;
+                        if (hit.transform.root.gameObject.layer == 7)
                         {
-                            state = State.FAINT;
+                            if (hit.transform.root.gameObject.GetComponent<Npc>().state == State.FAINT)
+                            {
+                                state = State.FAINT;
+                            }
                         }
                     }
                 }
@@ -954,9 +958,13 @@ public class Woman : Npc
     }
     public bool Check_Npc()
     {
-        Vector3 screenPoint = cam.WorldToViewportPoint(other_npc.transform.position);
-        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
-        return onScreen;
+        if (other_npc != null)
+        {
+            Vector3 screenPoint = cam.WorldToViewportPoint(other_npc.transform.position);
+            bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+            return onScreen;
+        }
+        else return false;
     }
 
     IEnumerator State_Gaze_Change()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000011646968180}
   - component: {fileID: 33000012245234398}
   - component: {fileID: 23000011985552262}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: MobilePhone_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 33000010518736824}
   - component: {fileID: 23000014211024014}
   - component: {fileID: 65000013450386068}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: MobilePhone_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 2131622593}
   - component: {fileID: 8838420260683973620}
   - component: {fileID: -4303185105151477264}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: MobilePhone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

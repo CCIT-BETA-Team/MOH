@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TestMission
   m_EditorClassIdentifier: 
   mission_scene: Test Map 1
-  mission_name: "\uBA85\uD654 \uD6D4\uCE58\uAE30"
+  mission_name: "\uBA85\uD654"
   mission_building_name: "\uCC38\uB098\uBB34 \uD558\uC6B0\uC2A4"
-  goal_item: {fileID: 2086195658485625636, guid: dae03fc240873384dbedcd6182957397, type: 3}
+  goal_item: {fileID: 1000010746552128, guid: d55b54ac3102f8a428645d699940ad94, type: 3}
   mission_image: {fileID: 21300000, guid: 70769a905f183e946a632c56493313d9, type: 3}
   goal_image: {fileID: 21300000, guid: 5d9d4cb5ccbfd9247808d302bb693cca, type: 3}
   coment: "\"\uBA85\uD654\uC640 \uC77C\uBC18 \uC561\uC790\uB97C \uD5F7\uAC08\uB9AC\uC9C0
@@ -26,7 +26,8 @@ MonoBehaviour:
     \uC644\uC218\uD558\uC5EC \uB2E4\uC2DC \uC81C \uC8FC\uC778\uC5D0\uAC8C \uB3CC\uC544\uAC00\uB3C4\uB85D
     \uD558\uC790.\""
   main_mission: "\uBA85\uD654 \uD6D4\uCE58\uAE30"
-  sub_mission: []
+  sub_mission:
+  - ' '
   weather: 2
-  time: 0
+  time: 1
   mission_popups: []

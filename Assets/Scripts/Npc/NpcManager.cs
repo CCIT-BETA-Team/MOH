@@ -112,7 +112,7 @@ public class NpcManager : Singleton<NpcManager>
             {
                 npc.GetComponent<Npc>().personality = Npc.Npc_Personality.Defensive;
                 npc_list[0].GetComponent<Npc>().other_npc = npc;
-                npc.GetComponent<Npc>().other_npc = npc_list[0];
+                npc_list[1].GetComponent<Npc>().other_npc = npc_list[0];
             }
 
             //npc.GetComponent<Npc>().npc_room = npc_room();

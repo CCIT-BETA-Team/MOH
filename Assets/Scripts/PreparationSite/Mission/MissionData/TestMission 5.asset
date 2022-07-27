@@ -15,7 +15,7 @@ MonoBehaviour:
   mission_scene: Test Map 1
   mission_name: "\uAE30\uBC00 \uBB38\uC11C"
   mission_building_name: "\uD3EC\uD130\uC988 \uC2A4\uD50C\uB808\uC774"
-  goal_item: {fileID: 2086195658485625636, guid: 87e4cc5a94c81764d92d5b7bf3e7142f, type: 3}
+  goal_item: {fileID: 750464003856559807, guid: d7078e124c792594eabfac9283afa2c7, type: 3}
   mission_image: {fileID: 21300000, guid: 70769a905f183e946a632c56493313d9, type: 3}
   goal_image: {fileID: 21300000, guid: 5d9d4cb5ccbfd9247808d302bb693cca, type: 3}
   coment: "\"\uC784\uBB34\uB97C \uC2E4\uD328\uD560 \uC2DC \uC218 \uB9CE\uC740 \uC0AC\uB78C\uB4E4\uC758
@@ -25,7 +25,8 @@ MonoBehaviour:
     \uC8FC\uC694 \uC124\uACC4\uB3C4\uB97C \uBE7C\uB3CC\uB838\uB2E4\uACE0 \uD55C\uB2E4.
     \uB2E4\uC2DC \uC720\uCD9C\uB418\uC9C0 \uC54A\uB3C4\uB85D \uD68C\uC218\uD558\uC790.\""
   main_mission: "\uAE30\uBB3C \uBB38\uC11C \uB418\uCC3E\uAE30"
-  sub_mission: []
-  weather: 2
+  sub_mission:
+  - ' '
+  weather: 3
   time: 2
   mission_popups: []
