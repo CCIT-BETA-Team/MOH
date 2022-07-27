@@ -342,7 +342,7 @@ namespace Aura2API
 
             if (CastsShadows)
             {
-                Vector2Int shadowMapSize = new Vector2Int(0, 0);
+                Vector2Int shadowMapSize = new Vector2Int(256 , 256);
                 switch(Type)
                 {
                     case LightType.Directional :
@@ -364,7 +364,7 @@ namespace Aura2API
                         break;
                 }
 
-                shadowMapRenderTexture = new RenderTexture(shadowMapSize.x, shadowMapSize.y, 0, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear);
+                shadowMapRenderTexture = new RenderTexture(shadowMapSize.x, shadowMapSize.y, 16, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear);
                 shadowMapRenderTexture.name = gameObject.name + " : Shadow Map Render Texture";
                 shadowMapRenderTexture.Create();
                 RenderTargetIdentifier shadowMapRenderTextureIdentifier = BuiltinRenderTextureType.CurrentActive;
