@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   id: 1
-  item_name: "\uB9DD\uCE58"
+  item_name: Hammer
   itemtype: 3
   item_size: 0
   parameter_type: 4

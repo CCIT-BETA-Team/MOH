@@ -402,12 +402,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85."
+  m_Text: "\uCC3D\uBB38\uACFC \uC720\uB9AC\uBB38\uC5D0 \uC18C\uB9AC\uC5C6\uC774 \uC774\uB3D9
+    \uD1B5\uB85C\uB97C \uB9CC\uB4E4 \uC218 \uC788\uC9C0\uB9CC \uC8FC\uBBFC\uC5D0\uAC8C
+    \uBC1C\uAC01\uB420 \uC2DC \uC989\uAC01 \uC2E0\uACE0\uB97C \uB2F9\uD560 \uC218
+    \uC788\uB2E4. "
 --- !u!222 &36343367
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1165,7 +1163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ts: {fileID: 1740502307}
   anime: {fileID: 135758638}
-  item: {fileID: 4505714320394908194, guid: 471403d75f5b3f54e80de0ecc1f73ee7, type: 3}
+  item: {fileID: 3901896521581812149, guid: 7d8d84b21b397674c83d920b00cc7a7e, type: 3}
   panel: {fileID: 1925013610}
   item_name: {fileID: 1915099471}
   item_explain: {fileID: 36343366}
@@ -3109,12 +3107,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85."
+  m_Text: "\uB9E4\uC6B0 \uD070 \uC18C\uB9AC\uB97C \uBC1C\uC0DD\uC2DC\uD0A4\uC9C0\uB9CC
+    \uC0C1\uD638\uC791\uC6A9 \uAC00\uB2A5\uD55C \uC544\uC774\uD15C\uC744 \uD30C\uAD34\uC2DC\uD0A8\uB2E4."
 --- !u!222 &416549011
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7078,7 +7072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC774\uB984"
+  m_Text: "\uC1E0\uC9C0\uB81B\uB300"
 --- !u!222 &867854498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7138,7 +7132,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC774\uB984"
+  m_Text: "\uB9DD\uCE58"
 --- !u!222 &875007919
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7618,7 +7612,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 180150754, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 180150756, guid: 47e65a0ccceee234e85af0f2a992d082, type: 3}
       propertyPath: m_SpotAngle
@@ -8322,7 +8316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ts: {fileID: 1740502307}
   anime: {fileID: 942933734}
-  item: {fileID: 4505714320394908194, guid: 471403d75f5b3f54e80de0ecc1f73ee7, type: 3}
+  item: {fileID: 4505714320394908194, guid: 0ce8b120883e37143acd8f6bcda1b5ea, type: 3}
   panel: {fileID: 652057572}
   item_name: {fileID: 1936113054}
   item_explain: {fileID: 1946238112}
@@ -8779,7 +8773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ts: {fileID: 1740502307}
   anime: {fileID: 982216614}
-  item: {fileID: 4505714320394908194, guid: 471403d75f5b3f54e80de0ecc1f73ee7, type: 3}
+  item: {fileID: 3901896521581812149, guid: 33f40eea48a3d6646880101cc31f9134, type: 3}
   panel: {fileID: 845308969}
   item_name: {fileID: 1132319204}
   item_explain: {fileID: 1466766379}
@@ -8998,12 +8992,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85."
+  m_Text: "\uC7A0\uACA8\uC788\uB294 \uBB38\uC744 \uBE60\uB974\uAC8C \uC5F4 \uC218
+    \uC788\uB294 \uB3C4\uAD6C"
 --- !u!222 &985606993
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9954,7 +9944,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC774\uB984"
+  m_Text: "\uB354\uBBF8\uAC74"
 --- !u!222 &1132319205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10334,12 +10324,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85."
+  m_Text: "\uC8FC\uBBFC\uC744 \uAE30\uC808\uC2DC\uD0A4\uAC70\uB098 \uC804\uB4F1\uC744
+    \uB9DE\uCD94\uBA74 \uC804\uB4F1\uC744 \uD30C\uAD34\uC2DC\uD0AC\uC218 \uC788\uB2E4."
 --- !u!222 &1212847714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12577,12 +12563,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85."
+  m_Text: "\uC8FC\uBBFC\uC744 \uAE30\uC808 \uC2DC\uD0AC \uC218 \uC5C6\uC9C0\uB9CC
+    \uB9E4\uC6B0 \uD070 \uC18C\uB9AC\uB97C \uBC1C\uC0DD\uC2DC\uD0A8\uB2E4.\n\uD070
+    \uC18C\uB9AC\uB294 \uC8FC\uBBFC\uC758 \uACBD\uACC4\uB3C4\uB97C \uC62C\uB9AC\uC9C0\uB294
+    \uC54A\uC9C0\uB9CC \uC8FC\uBBFC\uC744 \uC720\uC778\uD55C\uB2E4."
 --- !u!222 &1466766380
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12788,7 +12772,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC774\uB984"
+  m_Text: gun
 --- !u!222 &1469052489
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16157,7 +16141,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC774\uB984"
+  m_Text: "\uC720\uB9AC \uC808\uB2E8\uAE30"
 --- !u!222 &1915099472
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16466,7 +16450,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC774\uB984"
+  m_Text: "\uB77D\uD53D"
 --- !u!222 &1936113055
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16545,12 +16529,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85.
-    \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C
-    \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85. \uC544\uC774\uD15C \uC124\uBA85."
+  m_Text: "\uC7A0\uACA8\uC788\uB294 \uBB38\uC744 \uBE60\uB974\uAC8C \uC5F4 \uC218
+    \uC788\uACE0 \uBB38\uC744 \uC5F4\uC5B4\uBCF8 \uD754\uC801\uC744 \uC9C0\uC6B8
+    \uC218 \uC788\uB2E4."
 --- !u!222 &1946238113
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24880,11 +24861,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '- Sub Mission
-
-    - Sub Mission
-
-    - Sub Mission'
+  m_Text: '- Sub Mission'
 --- !u!33 &1426167922281861151
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29017,7 +28994,7 @@ GameObject:
   - component: {fileID: 3915086413077763664}
   - component: {fileID: 3915086413077763665}
   m_Layer: 0
-  m_Name: Coment
+  m_Name: Comment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35781,7 +35758,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Client's Coment
+  m_Text: Client's Comment
 --- !u!1 &9014266051236468313
 GameObject:
   m_ObjectHideFlags: 0

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   id: 0
-  item_name: "\uC1E0\uC9C0\uB81B\uB300"
+  item_name: Crowbar
   itemtype: 3
   item_size: 0
   parameter_type: 4
