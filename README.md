@@ -16,6 +16,11 @@ MOH 프로젝트는 2022학년도 1학기 동안 개발하여 중부대학교 �
 
 ### 멤버
 
+## 그래픽
+|<img src="https://avatars.githubusercontent.com/u/89765238?v=4" width="150" height="150"/>|
+|:-----------------:|
+|[Kimyangjun](https://github.com/Kimyangjun)|
+
 ## 프로그래밍
 |<img src="https://github.com/baegichan/CCIT_SYNDROME/assets/88014706/7fefe5f4-2440-4e46-9e1a-3703bf2fc743" width="150" height="150"/>|<img src="https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/de0481a2-cad9-492f-b6ff-4b3c14bef2c6" width="150" height="150"/>|
 |:-----------------:|:-----------------:|
