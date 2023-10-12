@@ -16,11 +16,10 @@ MOH 프로젝트는 2022학년도 1학기 동안 개발하여 중부대학교 �
 
 ### 멤버
 
-
-|<img src="https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/0d720e06-6b9e-497d-afbd-5922be501f78" width="150" height="150"/>|<img src="https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/8362d20f-a67b-4f69-9e59-70be025e054a" width="150" height="150"/>|<img src="https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/de0481a2-cad9-492f-b6ff-4b3c14bef2c6" width="150" height="150"/>|<img src="https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/c94f056f-c4a2-4f56-a21b-57c6da366f3f" width="150" height="150"/>|
-|:-----------------:|:-----------------:|:-----------------:|:-----------------:|
-|[tuost](https://github.com/tuost)|[OwlCoffee](https://github.com/OwlCoffee)|[JeonSeaStar](https://github.com/JeonSeaStar)|[Toddoward](https://github.com/Toddoward)|
-
+## 프로그래밍
+|<img src="https://github.com/baegichan/CCIT_SYNDROME/assets/88014706/7fefe5f4-2440-4e46-9e1a-3703bf2fc743" width="150" height="150"/>|<img src="https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/de0481a2-cad9-492f-b6ff-4b3c14bef2c6" width="150" height="150"/>|
+|:-----------------:|:-----------------:|
+|[khome7](https://github.com/khome7)|[JeonSeaStar](https://github.com/JeonSeaStar?tab=followers)|
 
 ### 사용기술
 <div>
