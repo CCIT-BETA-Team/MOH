@@ -37,12 +37,11 @@ MOH 프로젝트는 2022학년도 1학기 동안 개발하여 중부대학교 �
 
 
 ### 인게임 사진
-#### * 주인공의 방
-![image](https://github.com/CCIT-Team/MOH/assets/89560484/66cefc12-f765-418a-af3b-9e63ae70bf4c)
-![스크린샷 2023-10-13 141636](https://github.com/CCIT-Team/MOH/assets/89560484/8df0d775-bdb1-49c5-bc29-76e2c1dc5601)
+#### * 주인공 스토리
+![image](https://github.com/CCIT-Team/MOH/assets/89560484/8df0d775-bdb1-49c5-bc29-76e2c1dc5601)
 
-![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/5601fa9f-bac6-4b23-9c41-c222b9c976bf)
-![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/65d5432a-8453-4c36-8f59-851d999c2bcc)
+#### * 게임 시작 화면
+![image](https://github.com/CCIT-Team/MOH/assets/89560484/b457b70e-c9da-4fed-be97-82d090c82f52)
 
 #### * A 시나리오(화물 정리)
 ![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/33b03e0c-9425-4c5f-bde7-c394e007a3fd)
