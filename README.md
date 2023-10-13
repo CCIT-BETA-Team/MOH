@@ -39,6 +39,8 @@ MOH 프로젝트는 2022학년도 1학기 동안 개발하여 중부대학교 �
 ### 인게임 사진
 #### * 주인공의 방
 ![image](https://github.com/CCIT-Team/MOH/assets/89560484/66cefc12-f765-418a-af3b-9e63ae70bf4c)
+![그림1](https://github.com/CCIT-Team/MOH/assets/89560484/6e17933f-6bc0-4a60-99e0-306063252855)
+
 ![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/5601fa9f-bac6-4b23-9c41-c222b9c976bf)
 ![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/65d5432a-8453-4c36-8f59-851d999c2bcc)
 
