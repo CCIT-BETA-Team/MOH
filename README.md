@@ -53,9 +53,15 @@ MOH 프로젝트는 2022학년도 1학기 동안 개발하여 중부대학교 �
 ![image](https://github.com/CCIT-Team/MOH/assets/89560484/5c67aa20-884c-49a5-aefe-2439631e9c11)
 
 
-#### * C 시나리오(화물 정리)
-![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/f05707d9-503f-47d5-bea4-af49d70df176)
-![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/f986e412-63c5-49f7-99cb-b1fa89e7e91c)
-![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/d0ecbc35-85c7-439a-9714-f34d878c27b1)
+#### * 임무 수행
+![8888](https://github.com/CCIT-Team/MOH/assets/89560484/d6ac8e36-a6cf-480c-8ac1-45e5f47311ab)
+![9999](https://github.com/CCIT-Team/MOH/assets/89560484/f078fc21-d849-48dc-a37b-b0a3b79a070a)
+
+#### * NPC
+![101010](https://github.com/CCIT-Team/MOH/assets/89560484/6d166f9a-d01f-4f6b-8dc8-cf51fe3707ae)
+![161616](https://github.com/CCIT-Team/MOH/assets/89560484/f577838c-31be-47fc-b58e-411ffcd6ab75)
+
+#### * 임무 수행
+![15151515](https://github.com/CCIT-Team/MOH/assets/89560484/02e3384a-3de4-4f14-8c35-e6b05c70e7ce)
 
 <br/> 
