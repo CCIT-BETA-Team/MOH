@@ -48,10 +48,10 @@ MOH 프로젝트는 2022학년도 1학기 동안 개발하여 중부대학교 �
 ![image](https://github.com/CCIT-Team/MOH/assets/89560484/d6d73656-f0fd-4330-8bd9-6c95522665e4)
 
 
-#### * B 시나리오(동물 구조)
-![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/b44d01f2-ecb0-4896-bc09-f6f88ea2b6c6)
-![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/e43b88e9-e842-40ef-b7d1-9e0a49adc851)
-![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/cfbc6849-d431-469c-b5f0-94a0e7e629f0)
+#### * 상점과 도구
+![image](https://github.com/CCIT-Team/MOH/assets/89560484/210d4423-5d56-4735-a932-437ca63e18c9)
+![image](https://github.com/CCIT-Team/MOH/assets/89560484/5c67aa20-884c-49a5-aefe-2439631e9c11)
+
 
 #### * C 시나리오(화물 정리)
 ![image](https://github.com/JeonSeaStar/Empathy--VR-2Team/assets/88014706/f05707d9-503f-47d5-bea4-af49d70df176)
